@@ -5,9 +5,8 @@ import MobileLayout from "./mobileLayout/MobileLayout";
 const Layout: React.FC = ({ children }) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
-  if (isDesktop) return <DesktopLayout>{children}</DesktopLayout>;
-  return <MobileLayout>{children}</MobileLayout>;
+  const Component = isDesktop ? DesktopLayout : MobileLayout;
+  return <Component>{children}</Component>;
 };
 
 export default Layout;

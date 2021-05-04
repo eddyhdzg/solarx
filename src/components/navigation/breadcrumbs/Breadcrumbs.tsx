@@ -1,6 +1,6 @@
 import { Breadcrumbs as MUIBreadcrumbs, Typography } from "@material-ui/core";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import useBreadcrumbs from "./useBreadcrumbs";
+import { useBreadcrumbs } from "hooks";
 import { convertBreadcrumb } from "utils/functions";
 import useStyles from "./breadcrumbs.jss";
 

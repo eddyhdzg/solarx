@@ -8,9 +8,9 @@ import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 
 export const routesTree: {
-  [key in Routes]: {
+  [key: string]: {
     subHeader: string;
-    subRoutes: { title: string; route: string }[];
+    subRoutes: { title: string; subRoute: string }[];
   }[];
 } = {
   home: [
@@ -19,11 +19,11 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Buy",
-          route: "buy",
+          subRoute: "buy",
         },
         {
           title: "Sell",
-          route: "sell",
+          subRoute: "sell",
         },
       ],
     },
@@ -32,7 +32,7 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Crowdfunding",
-          route: "crowdfunding",
+          subRoute: "crowdfunding",
         },
       ],
     },
@@ -41,11 +41,11 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Investment funds",
-          route: "investment-funds",
+          subRoute: "investment-funds",
         },
         {
           title: "Bonds",
-          route: "bonds",
+          subRoute: "bonds",
         },
       ],
     },
@@ -56,7 +56,7 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Link A 1",
-          route: "link-a-1",
+          subRoute: "link-a-1",
         },
       ],
     },
@@ -65,11 +65,11 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Link B 1",
-          route: "link-b-1",
+          subRoute: "link-b-1",
         },
         {
           title: "Link B 2",
-          route: "link-b-2",
+          subRoute: "link-b-2",
         },
       ],
     },
@@ -80,7 +80,7 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Link C 1",
-          route: "link-c-1",
+          subRoute: "link-c-1",
         },
       ],
     },
@@ -89,7 +89,7 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Link D 1",
-          route: "link-d-1",
+          subRoute: "link-d-1",
         },
       ],
     },
@@ -100,11 +100,11 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Link E 1",
-          route: "link-e-1",
+          subRoute: "link-e-1",
         },
         {
           title: "Link E 2",
-          route: "link-e-2",
+          subRoute: "link-e-2",
         },
       ],
     },
@@ -115,7 +115,7 @@ export const routesTree: {
       subRoutes: [
         {
           title: "Link F 1",
-          route: "link-f-1",
+          subRoute: "link-f-1",
         },
       ],
     },

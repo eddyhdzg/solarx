@@ -2,7 +2,7 @@ import { Routes } from "types";
 
 const en: {
   routes: {
-    [key in Routes]: {
+    [key in Routes | string]: {
       title: string;
     };
   };

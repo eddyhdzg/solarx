@@ -1,35 +1,39 @@
 import { useState, useEffect } from "react";
 import { Button, Typography } from "@material-ui/core";
-import { useCopywriting } from "hooks";
-import { Query } from "types";
+import { useCopywriting, useBreadcrumbs } from "hooks";
 import ChevronLeftRoundedIcon from "@material-ui/icons/ChevronLeftRounded";
 import useStyles from "./mobileHeader.jss";
+import { Link } from "react-router-dom";
 
 const MobileHeader: React.FC = () => {
   const classes = useStyles();
-  // const { query, isReady, back } = useRouter();
-  // const { section, subSection } = query as Query;
-  // const copy = useCopywriting();
+  const copy = useCopywriting();
   const [title, setTitle] = useState("Loading...");
+  const breadkcrumbs = useBreadcrumbs();
 
-  // useEffect(() => {
-  //   if (section && subSection) return setTitle(subSection);
-  //   if (section) return setTitle(copy.routes[section].title);
-  //   return setTitle("Error");
-  // }, [section, subSection, isReady]);
+  useEffect(() => {
+    if (breadkcrumbs.length === 0) return setTitle("Error");
+    if (breadkcrumbs.length === 1) return setTitle(breadkcrumbs[0].breadcrumb);
+    return setTitle(breadkcrumbs[1].breadcrumb);
+  }, [breadkcrumbs]);
 
   return (
     <div className={classes.mobileHeader_container}>
-      {/* {section && subSection && (
+      {breadkcrumbs.length > 1 && (
         <Button
           color="primary"
           className={classes.mobileHeader_button}
-          onClick={() => back()}
+          component={Link}
+          to={breadkcrumbs[breadkcrumbs.length - 2].href}
         >
           <ChevronLeftRoundedIcon />
-          {section}
+          {
+            copy.routes[breadkcrumbs[breadkcrumbs.length - 2]?.breadcrumb]
+              ?.title
+          }
         </Button>
-      )} */}
+      )}
+
       <Typography className={classes.mobileHeader_text} variant="h4">
         {title}
       </Typography>

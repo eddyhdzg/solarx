@@ -7,32 +7,27 @@ import {
 import { mergedRoutes } from "constant";
 import { Routes } from "types";
 import useStyles from "./mobileAppbar.jss";
-// import { useRouter } from "next/router";
+import { useLocation, NavLink } from "react-router-dom";
 
 const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
   const classes = useStyles();
-  // const { query, push } = useRouter();
-  // const { section } = query;
+  const { pathname } = useLocation();
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: Routes) => {
-    // push({
-    //   pathname: "/[section]",
-    //   query: { section: newValue },
-    // });
-  };
+  const handleChange = (_: React.ChangeEvent<{}>, newValue: Routes) => {};
 
   return (
     <BottomNavigation
       {...props}
-      // value={section}
-      value={"section"}
+      value={pathname}
       onChange={handleChange}
       className={classes.mobileAppbar_root}
     >
       {mergedRoutes.map(({ route, Icon }) => (
         <BottomNavigationAction
           key={route}
-          value={route}
+          component={NavLink}
+          to={"/" + route}
+          activeClassName="Mui-selected"
           label={route}
           icon={<Icon className={classes.mobileAppbar_icon} />}
           classes={{

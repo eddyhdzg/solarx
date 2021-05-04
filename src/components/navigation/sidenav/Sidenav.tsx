@@ -3,31 +3,25 @@ import { Tooltip } from "components";
 import { routes, more } from "constant";
 import { useCopywriting } from "hooks";
 import useStyles from "./sidenav.jss";
-// import Image from "next/image";
+import logo from "assets/images/Logo.svg";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidenav: React.FC = () => {
   const classes = useStyles();
-  // const { query, push } = useRouter();
-  // const { section } = query;
   const copy = useCopywriting();
-
-  const handleClick = (section: string) => {
-    // push({
-    //   pathname: "/[section]",
-    //   query: { section },
-    // });
-  };
 
   return (
     <div className={classes.sidenav_root}>
       <div className={classes.sidenav_toolbar}>
-        {/* <Image
-          src="/images/logo.svg"
-          height={24}
-          width={24}
-          onClick={() => handleClick("home")}
-          className={classes.sidenav_logo}
-        /> */}
+        <Link to="/home">
+          <img
+            src={logo}
+            height={24}
+            width={24}
+            className={classes.sidenav_logo}
+            alt="nav-logo"
+          />
+        </Link>
       </div>
       <div className={classes.sidenav_content}>
         <div>
@@ -40,8 +34,9 @@ const Sidenav: React.FC = () => {
               >
                 <ListItem
                   button
-                  selected={"home" === route}
-                  onClick={() => handleClick(route)}
+                  component={NavLink}
+                  to={"/" + route}
+                  activeClassName="Mui-selected"
                   className={classes.sidenav_listItem}
                 >
                   <ListItemIcon className={classes.sidenav_icon}>
@@ -62,8 +57,9 @@ const Sidenav: React.FC = () => {
               >
                 <ListItem
                   button
-                  selected={"more" === route}
-                  onClick={() => handleClick(route)}
+                  component={NavLink}
+                  to={"/" + route}
+                  activeClassName="Mui-selected"
                   className={classes.sidenav_listItem}
                 >
                   <ListItemIcon className={classes.sidenav_icon}>
