@@ -1,32 +1,38 @@
-import React from "react";
+import { useContext } from "react";
 import {
   BottomNavigation,
   BottomNavigationAction,
   BottomNavigationProps,
 } from "@material-ui/core";
 import { mergedRoutes } from "constant";
-import { Routes } from "types";
+import { TBaseRoutes } from "types";
 import useStyles from "./mobileAppbar.jss";
 import { useLocation, NavLink } from "react-router-dom";
+import { RouterMemoContext } from "providers/RouterMemoContext";
 
 const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
   const classes = useStyles();
   const { pathname } = useLocation();
+  const routerMemo = useContext(RouterMemoContext);
 
-  const handleChange = (_: React.ChangeEvent<{}>, newValue: Routes) => {};
+  const getMemoryRoute = (baseRoute: TBaseRoutes) => {
+    if (pathname.includes(baseRoute)) {
+      return pathname.substring(0, pathname.lastIndexOf("/")) || baseRoute;
+    }
+    return routerMemo[baseRoute];
+  };
 
   return (
     <BottomNavigation
       {...props}
       value={pathname}
-      onChange={handleChange}
       className={classes.mobileAppbar_root}
     >
       {mergedRoutes.map(({ route, Icon }) => (
         <BottomNavigationAction
           key={route}
           component={NavLink}
-          to={"/" + route}
+          to={getMemoryRoute(route as TBaseRoutes)}
           activeClassName="Mui-selected"
           label={route}
           icon={<Icon className={classes.mobileAppbar_icon} />}

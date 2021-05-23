@@ -35,7 +35,7 @@ const Sidenav: React.FC = () => {
                 <ListItem
                   button
                   component={NavLink}
-                  to={"/" + route}
+                  to={route}
                   activeClassName="Mui-selected"
                   className={classes.sidenav_listItem}
                 >
@@ -58,7 +58,7 @@ const Sidenav: React.FC = () => {
                 <ListItem
                   button
                   component={NavLink}
-                  to={"/" + route}
+                  to={route}
                   activeClassName="Mui-selected"
                   className={classes.sidenav_listItem}
                 >

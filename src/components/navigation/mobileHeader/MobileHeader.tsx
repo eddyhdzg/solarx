@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { AppBar as MUIAppbar, Toolbar } from "@material-ui/core";
 import { Button, Typography } from "@material-ui/core";
 import { useCopywriting, useBreadcrumbs } from "hooks";
 import ChevronLeftRoundedIcon from "@material-ui/icons/ChevronLeftRounded";
@@ -8,36 +8,33 @@ import { Link } from "react-router-dom";
 const MobileHeader: React.FC = () => {
   const classes = useStyles();
   const copy = useCopywriting();
-  const [title, setTitle] = useState("Loading...");
-  const breadkcrumbs = useBreadcrumbs();
-
-  useEffect(() => {
-    if (breadkcrumbs.length === 0) return setTitle("Error");
-    if (breadkcrumbs.length === 1) return setTitle(breadkcrumbs[0].breadcrumb);
-    return setTitle(breadkcrumbs[1].breadcrumb);
-  }, [breadkcrumbs]);
+  const breadcrumbs = useBreadcrumbs();
 
   return (
-    <div className={classes.mobileHeader_container}>
-      {breadkcrumbs.length > 1 && (
-        <Button
-          color="primary"
-          className={classes.mobileHeader_button}
-          component={Link}
-          to={breadkcrumbs[breadkcrumbs.length - 2].href}
-        >
-          <ChevronLeftRoundedIcon />
-          {
-            copy.routes[breadkcrumbs[breadkcrumbs.length - 2]?.breadcrumb]
-              ?.title
-          }
-        </Button>
-      )}
+    <MUIAppbar position="static" color="transparent">
+      <Toolbar className={classes.mobileHeader_toolbar}>
+        <div>
+          {breadcrumbs.length > 1 && (
+            <Button
+              color="primary"
+              className={classes.mobileHeader_button}
+              component={Link}
+              to={breadcrumbs[breadcrumbs.length - 2].href}
+            >
+              <ChevronLeftRoundedIcon />
+              {
+                copy.routes[breadcrumbs[breadcrumbs.length - 2]?.breadcrumb]
+                  ?.title
+              }
+            </Button>
+          )}
+        </div>
 
-      <Typography className={classes.mobileHeader_text} variant="h4">
-        {title}
-      </Typography>
-    </div>
+        <Typography className={classes.mobileHeader_text} variant="h4">
+          {copy.routes[breadcrumbs[breadcrumbs.length - 1]?.breadcrumb]?.title}
+        </Typography>
+      </Toolbar>
+    </MUIAppbar>
   );
 };
 

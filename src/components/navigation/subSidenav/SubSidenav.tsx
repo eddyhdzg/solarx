@@ -11,17 +11,17 @@ import { useCopywriting } from "hooks";
 import useStyles from "./subSidenav.jss";
 import { NavLink } from "react-router-dom";
 import { useBreadcrumbs } from "hooks";
-import { Routes } from "types";
+import { TBaseRoutes } from "types";
 
 const SubSidenav: FC = () => {
   const classes = useStyles();
   const copy = useCopywriting();
   const breadcrumbs = useBreadcrumbs();
-  const route = breadcrumbs[0]?.breadcrumb as Routes | undefined;
+  const route = breadcrumbs[0]?.href as TBaseRoutes | undefined;
 
   const title = () => {
-    if (!route) return "Error";
-    return copy.routes[route].title;
+    if (!route) return "";
+    return copy.routes[route]?.title;
   };
 
   return (
@@ -48,7 +48,7 @@ const SubSidenav: FC = () => {
                           key={subRoute}
                           button
                           component={NavLink}
-                          to={"/" + route + "/" + subRoute}
+                          to={route + subRoute}
                           activeClassName="Mui-selected"
                           className={classes.desktopAppbar_listItem}
                         >

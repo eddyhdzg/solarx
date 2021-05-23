@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-// import { useRouter } from "next/router";
 import {
   Divider,
   List,
@@ -8,11 +7,12 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import { routesTree } from "constant";
-import { Query } from "types";
-import { useCopywriting } from "hooks";
+import { TBaseRoutes } from "types";
+import { useBreadcrumbs } from "hooks";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Theme } from "types";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
+import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,21 +36,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const IndexPage = () => {
   const classes = useStyles();
-  // const { query, push } = useRouter();
-  // const { section, subSection } = query as Query;
-
-  const handleClick = (subSection: string) => {
-    // push({
-    //   pathname: "/[section]/[subSection]",
-    //   query: { section, subSection },
-    // });
-  };
+  const breadcrumbs = useBreadcrumbs();
+  const route = breadcrumbs[0]?.href as TBaseRoutes | undefined;
 
   return (
     <div>
-      {/* {section &&
-        section in routesTree &&
-        routesTree[section].map(({ subHeader, subRoutes }, index) => {
+      {route &&
+        routesTree[route].map(({ subHeader, subRoutes }, index) => {
           return (
             <Fragment key={subHeader}>
               <List key={subHeader}>
@@ -58,14 +50,15 @@ const IndexPage = () => {
                   {subHeader}
                 </ListSubheader>
 
-                {subRoutes.map(({ route, title }) => {
+                {subRoutes.map(({ subRoute, title }) => {
                   return (
                     <ListItem
                       key={route}
                       button
+                      component={NavLink}
+                      to={route + subRoute}
+                      activeClassName="Mui-selected"
                       className={classes.desktopAppbar_listItem}
-                      selected={subSection === route}
-                      onClick={() => handleClick(route)}
                     >
                       <ListItemText primary={title} />
                       <ChevronRightRoundedIcon
@@ -75,10 +68,10 @@ const IndexPage = () => {
                   );
                 })}
               </List>
-              {index < routesTree[section].length - 1 && <Divider />}
+              {index < routesTree[route].length - 1 && <Divider />}
             </Fragment>
           );
-        })} */}
+        })}
     </div>
   );
 };

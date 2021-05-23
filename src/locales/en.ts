@@ -8,19 +8,22 @@ const en: {
   };
 } = {
   routes: {
-    home: {
+    "/home": {
       title: "home",
     },
-    portfolio: {
+    "/home/buy": {
+      title: "buy",
+    },
+    "/portfolio": {
       title: "portfolio",
     },
-    trading: {
+    "/trading": {
       title: "trading",
     },
-    projects: {
+    "/projects": {
       title: "projects",
     },
-    more: {
+    "/more": {
       title: "more",
     },
   },
