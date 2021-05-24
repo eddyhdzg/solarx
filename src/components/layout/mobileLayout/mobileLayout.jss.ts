@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: 0,
       width: "100%",
     },
+    mobileLayout_main: {
+      padding: theme.spacing(3, 2),
+    },
   })
 );
 

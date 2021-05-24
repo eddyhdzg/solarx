@@ -6,18 +6,10 @@ import SubSidenav from "../subSidenav/SubSidenav";
 import { Routes } from "types";
 
 export interface IDesktopAppbarProps extends DrawerProps {
-  value: Routes;
-  handleListItemClick: (
-    _: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    newValue: Routes
-  ) => void;
+  value?: Routes;
 }
 
-const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
-  value,
-  handleListItemClick,
-  ...props
-}) => {
+const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({ value, ...props }) => {
   const classes = useStyles();
 
   return (

@@ -9,30 +9,9 @@ import {
 import { routesTree } from "constant";
 import { TBaseRoutes } from "types";
 import { useBreadcrumbs } from "hooks";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { Theme } from "types";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 import { NavLink } from "react-router-dom";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    desktopAppbar_subheader: {
-      lineHeight: "unset",
-      paddingTop: "8px",
-      paddingBottom: "8px",
-      fontSize: "0.75rem",
-      color: theme.palette.text.hint,
-      backgroundColor: theme.palette.background.default,
-    },
-    desktopAppbar_listItem: {
-      paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
-    },
-    desktopAppbar_icon: {
-      color: theme.palette.text.hint,
-    },
-  })
-);
+import useStyles from "./mobileSubSidenav.jss";
 
 const IndexPage = () => {
   const classes = useStyles();

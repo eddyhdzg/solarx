@@ -16,6 +16,8 @@ const useStyles = makeStyles(({ palette, mixins }: Theme) =>
       flex: "auto",
       justifyContent: "space-between",
       width: `calc(56px + env(safe-area-inset-left))`,
+      paddingLeft: 4,
+      paddingRight: 4,
       paddingBottom: "env(safe-area-inset-bottom)",
       overflowY: "scroll",
     },
@@ -30,9 +32,23 @@ const useStyles = makeStyles(({ palette, mixins }: Theme) =>
       cursor: "pointer",
     },
     sidenav_listItem: {
-      justifyContent: "flex-end",
+      justifyContent: "center",
+
       paddingTop: 16,
       paddingBottom: 16,
+      borderRadius: 4,
+    },
+    sidenav_ul: {
+      "&> *": {
+        marginTop: 4,
+        marginBottom: 4,
+        "&:first-child": {
+          marginTop: 0,
+        },
+        "&:last-child": {
+          marginBottom: 0,
+        },
+      },
     },
     sidenav_icon: {
       minWidth: "auto",

@@ -11,7 +11,11 @@ const MobileHeader: React.FC = () => {
   const breadcrumbs = useBreadcrumbs();
 
   return (
-    <MUIAppbar position="static" color="transparent">
+    <MUIAppbar
+      position="static"
+      color="transparent"
+      className={classes.mobileHeader_root}
+    >
       <Toolbar className={classes.mobileHeader_toolbar}>
         <div>
           {breadcrumbs.length > 1 && (

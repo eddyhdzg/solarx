@@ -12,11 +12,11 @@ export default function Router() {
       {routesPathsTree.map(({ path, subRoutes }) => (
         <Route key={path} path={path}>
           <Switch>
-            {subRoutes.map(({ subPath }) => (
+            {subRoutes.map(({ subPath, component: Component }) => (
               <Route
                 key={subPath}
                 path={path + subPath}
-                component={() => <p>{path + subPath}</p>}
+                render={() => <Component />}
               />
             ))}
 
@@ -32,7 +32,7 @@ export default function Router() {
               <Route
                 key={subPath}
                 path={path}
-                component={() => <MobileSubSidenav />}
+                render={() => <MobileSubSidenav />}
               />
             ))}
           </Switch>

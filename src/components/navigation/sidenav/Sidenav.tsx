@@ -25,7 +25,7 @@ const Sidenav: React.FC = () => {
       </div>
       <div className={classes.sidenav_content}>
         <div>
-          <List>
+          <List className={classes.sidenav_ul}>
             {routes.map(({ route, Icon }) => (
               <Tooltip
                 key={route}

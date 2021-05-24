@@ -1,5 +1,5 @@
 import { Breadcrumbs as MUIBreadcrumbs, Typography } from "@material-ui/core";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateNextRoundedIcon from "@material-ui/icons/NavigateNextRounded";
 import { useBreadcrumbs } from "hooks";
 import { convertBreadcrumb } from "utils/functions";
 import useStyles from "./breadcrumbs.jss";
@@ -17,7 +17,7 @@ const Breadcrumbs: React.FC = () => {
 
   return (
     <MUIBreadcrumbs
-      separator={<NavigateNextIcon fontSize="small" />}
+      separator={<NavigateNextRoundedIcon fontSize="small" />}
       aria-label="breadcrumb"
       classes={{
         ol: classes.breadcrumb_ol,

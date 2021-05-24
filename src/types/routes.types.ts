@@ -14,5 +14,6 @@ export interface IRoutesPathsTree {
   path: string;
   subRoutes: {
     subPath: string;
+    component: React.FC;
   }[];
 }

@@ -8,7 +8,7 @@ const MobileLayout: React.FC = ({ children }) => {
     <>
       <div className={classes.mobileLayout_notch} />
       <MobileHeader />
-      <main>
+      <main className={classes.mobileLayout_main}>
         {children}
         <div className={classes.mobileLayout_offset} />
       </main>

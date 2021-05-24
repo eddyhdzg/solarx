@@ -1,13 +1,13 @@
-import { RouterMemoProvider } from "./RouterMemoContext";
+import RouterMemo from "../routes/RouterMemo";
 import ThemeProvider from "./ThemeProvider";
 import { BrowserRouter } from "react-router-dom";
 
 const ProvidersWrapper: React.FC = ({ children }) => {
   return (
     <BrowserRouter>
-      <RouterMemoProvider>
+      <RouterMemo>
         <ThemeProvider>{children}</ThemeProvider>
-      </RouterMemoProvider>
+      </RouterMemo>
     </BrowserRouter>
   );
 };

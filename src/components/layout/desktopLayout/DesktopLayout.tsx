@@ -1,36 +1,27 @@
-import { useState } from "react";
 import clsx from "clsx";
-import { Routes } from "types";
 import { Header, DesktopAppbar } from "components";
 import useStyles from "./desktopLayout.jss";
+import { useStore } from "providers";
+import shallow from "zustand/shallow";
 
 const DesktopLayout: React.FC = ({ children }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
-  const [value, setValue] = useState<Routes>("home");
+  const { dispatch, drawer } = useStore(
+    ({ dispatch, drawer }) => ({ dispatch, drawer }),
+    shallow
+  );
 
   const handleDrawerToggle = () => {
-    setOpen(!open);
-  };
-
-  const handleListItemClick = (
-    _: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    newValue: Routes
-  ) => {
-    setValue(newValue);
+    dispatch({ type: "DRAWER_TOGGLE_DRAWER", payload: !drawer });
   };
 
   return (
     <div className={classes.layout}>
-      <Header open={open} toggleDrawer={handleDrawerToggle} />
-      <DesktopAppbar
-        open={open}
-        value={value}
-        handleListItemClick={handleListItemClick}
-      />
+      <Header open={drawer} toggleDrawer={handleDrawerToggle} />
+      <DesktopAppbar open={drawer} />
       <main
         className={clsx(classes.layout_main, {
-          [classes.layout_main__shift]: open,
+          [classes.layout_main__shift]: drawer,
         })}
       >
         <div className={classes.layout_toolbar} />

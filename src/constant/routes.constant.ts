@@ -6,6 +6,8 @@ import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
 import { TBaseRoutes, IRoutesPathsTree } from "types";
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
+import Loader from "pages/[section]/[subSection]";
+import Preferences from "pages/more/Preferences";
 
 export const routesTree: {
   [key: string]: {
@@ -111,11 +113,11 @@ export const routesTree: {
   ],
   "/more": [
     {
-      subHeader: "Category f",
+      subHeader: "Account",
       subRoutes: [
         {
-          title: "Link F 1",
-          subRoute: "/link-f-1",
+          title: "Preferences",
+          subRoute: "/preferences",
         },
       ],
     },
@@ -161,18 +163,23 @@ export const routesPathsTree: IRoutesPathsTree[] = [
     subRoutes: [
       {
         subPath: "/buy",
+        component: Loader,
       },
       {
         subPath: "/sell",
+        component: Loader,
       },
       {
         subPath: "/crowdfunding",
+        component: Loader,
       },
       {
         subPath: "/investment-funds",
+        component: Loader,
       },
       {
         subPath: "/bonds",
+        component: Loader,
       },
     ],
   },
@@ -181,12 +188,15 @@ export const routesPathsTree: IRoutesPathsTree[] = [
     subRoutes: [
       {
         subPath: "/link-a-1",
+        component: Loader,
       },
       {
         subPath: "/link-b-1",
+        component: Loader,
       },
       {
         subPath: "/link-b-2",
+        component: Loader,
       },
     ],
   },
@@ -195,9 +205,11 @@ export const routesPathsTree: IRoutesPathsTree[] = [
     subRoutes: [
       {
         subPath: "/link-c-1",
+        component: Loader,
       },
       {
         subPath: "/link-d-1",
+        component: Loader,
       },
     ],
   },
@@ -206,9 +218,11 @@ export const routesPathsTree: IRoutesPathsTree[] = [
     subRoutes: [
       {
         subPath: "/link-e-1",
+        component: Loader,
       },
       {
         subPath: "/link-e-2",
+        component: Loader,
       },
     ],
   },
@@ -216,7 +230,8 @@ export const routesPathsTree: IRoutesPathsTree[] = [
     path: "/more",
     subRoutes: [
       {
-        subPath: "/link-f-1",
+        subPath: "/preferences",
+        component: Preferences,
       },
     ],
   },

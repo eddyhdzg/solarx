@@ -22,10 +22,19 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     header_toolbar: {
       backgroundColor: theme.palette.background.default,
+      justifyContent: "space-between",
+    },
+    header_buttons: {
+      display: "flex",
+      alignItems: "center",
     },
     header_menuButton: {
       marginRight: theme.spacing(2),
       marginLeft: "env(safe-area-inset-left)",
+    },
+    header_accountButton: {
+      marginLeft: theme.spacing(1),
+      marginRight: "env(safe-area-inset-left)",
     },
   })
 );

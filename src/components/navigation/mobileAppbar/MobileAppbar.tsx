@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -8,12 +7,16 @@ import { mergedRoutes } from "constant";
 import { TBaseRoutes } from "types";
 import useStyles from "./mobileAppbar.jss";
 import { useLocation, NavLink } from "react-router-dom";
-import { RouterMemoContext } from "providers/RouterMemoContext";
+import { useStore } from "providers";
+import shallow from "zustand/shallow";
 
 const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
   const classes = useStyles();
   const { pathname } = useLocation();
-  const routerMemo = useContext(RouterMemoContext);
+  const { routerMemo } = useStore(
+    ({ routerMemo }) => ({ routerMemo }),
+    shallow
+  );
 
   const getMemoryRoute = (baseRoute: TBaseRoutes) => {
     if (pathname.includes(baseRoute)) {
