@@ -12,7 +12,7 @@ const MobileHeader: React.FC = () => {
 
   return (
     <MUIAppbar
-      position="static"
+      position="relative"
       color="transparent"
       className={classes.mobileHeader_root}
     >

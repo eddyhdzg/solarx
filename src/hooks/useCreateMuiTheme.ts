@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { createMuiTheme, ThemeOptions } from "@material-ui/core";
+import {
+  createMuiTheme,
+  ThemeOptions,
+  responsiveFontSizes,
+} from "@material-ui/core";
 import { useThemeType } from "hooks";
 import { useStore } from "providers";
 import shallow from "zustand/shallow";
@@ -62,6 +66,30 @@ const useCreateMuiTheme = () => {
     typography: {
       fontFamily:
         "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      h1: {
+        fontWeight: 700,
+      },
+      h2: {
+        fontWeight: 700,
+      },
+      h3: {
+        fontWeight: 700,
+      },
+      h4: {
+        fontWeight: 700,
+      },
+      h5: {
+        fontWeight: 700,
+      },
+      h6: {
+        fontWeight: 700,
+      },
+      subtitle1: {
+        fontWeight: 600,
+      },
+      subtitle2: {
+        fontWeight: 500,
+      },
     },
   });
 
@@ -79,7 +107,7 @@ const useCreateMuiTheme = () => {
     ...customTheme,
   });
 
-  return muiTheme;
+  return responsiveFontSizes(muiTheme);
 };
 
 export default useCreateMuiTheme;

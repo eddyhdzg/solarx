@@ -1,4 +1,5 @@
 import {
+  AppBar,
   BottomNavigation,
   BottomNavigationAction,
   BottomNavigationProps,
@@ -26,25 +27,27 @@ const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
   };
 
   return (
-    <BottomNavigation
-      {...props}
-      value={pathname}
-      className={classes.mobileAppbar_root}
-    >
-      {mergedRoutes.map(({ route, Icon }) => (
-        <BottomNavigationAction
-          key={route}
-          component={NavLink}
-          to={getMemoryRoute(route as TBaseRoutes)}
-          activeClassName="Mui-selected"
-          label={route}
-          icon={<Icon className={classes.mobileAppbar_icon} />}
-          classes={{
-            root: classes.mobileAppbar_button,
-          }}
-        />
-      ))}
-    </BottomNavigation>
+    <AppBar position="fixed" className={classes.mobileAppbar_root}>
+      <BottomNavigation
+        {...props}
+        value={pathname}
+        className={classes.mobileAppbar_bottomNavigation}
+      >
+        {mergedRoutes.map(({ route, Icon }) => (
+          <BottomNavigationAction
+            key={route}
+            component={NavLink}
+            to={getMemoryRoute(route as TBaseRoutes)}
+            activeClassName="Mui-selected"
+            label={route}
+            icon={<Icon className={classes.mobileAppbar_icon} />}
+            classes={{
+              root: classes.mobileAppbar_button,
+            }}
+          />
+        ))}
+      </BottomNavigation>
+    </AppBar>
   );
 };
 

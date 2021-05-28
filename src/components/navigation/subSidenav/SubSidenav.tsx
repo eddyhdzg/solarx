@@ -5,6 +5,7 @@ import {
   ListSubheader,
   ListItem,
   ListItemText,
+  Typography,
 } from "@material-ui/core";
 import { routesTree } from "constant";
 import { useCopywriting } from "hooks";
@@ -29,7 +30,9 @@ const SubSidenav: FC = () => {
       {route && (
         <div className={classes.desktopAppbar_subnav}>
           <div className={classes.desktopAppbar_subnavHeader}>
-            <h2 className={classes.desktopAppbar_title}>{title()}</h2>
+            <Typography variant="h6" className={classes.desktopAppbar_title}>
+              {title()}
+            </Typography>
           </div>
           <Divider />
 

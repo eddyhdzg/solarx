@@ -3,6 +3,11 @@ import { Theme } from "types";
 
 const useStyles = makeStyles((theme: Theme) => ({
   mobileAppbar_root: {
+    top: "auto",
+    bottom: 0,
+    width: "100%",
+  },
+  mobileAppbar_bottomNavigation: {
     borderTopWidth: 1,
     borderTopStyle: "solid",
     borderTopColor: theme.palette.divider,

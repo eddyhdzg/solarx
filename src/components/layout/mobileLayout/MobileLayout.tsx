@@ -1,5 +1,4 @@
 import { MobileAppbar, MobileHeader } from "components";
-import { AppBar } from "@material-ui/core";
 import useStyles from "./mobileLayout.jss";
 
 const MobileLayout: React.FC = ({ children }) => {
@@ -12,9 +11,7 @@ const MobileLayout: React.FC = ({ children }) => {
         {children}
         <div className={classes.mobileLayout_offset} />
       </main>
-      <AppBar position="fixed" className={classes.mobileLayout_appBar}>
-        <MobileAppbar />
-      </AppBar>
+      <MobileAppbar />
     </>
   );
 };

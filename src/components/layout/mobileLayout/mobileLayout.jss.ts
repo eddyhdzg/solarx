@@ -8,14 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: theme.palette.background.default,
       position: "fixed",
       top: 0,
-      zIndex: theme.zIndex.appBar,
+      zIndex: theme.zIndex.appBar + 1,
     },
     mobileLayout_offset: theme.mixins.toolbar,
-    mobileLayout_appBar: {
-      top: "auto",
-      bottom: 0,
-      width: "100%",
-    },
     mobileLayout_main: {
       padding: theme.spacing(3, 2),
     },
