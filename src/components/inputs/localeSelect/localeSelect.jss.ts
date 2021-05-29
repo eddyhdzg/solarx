@@ -2,10 +2,10 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    themeSelect_select: {
+    localeSelect_select: {
       paddingLeft: theme.spacing(6),
     },
-    themeSelect_icon: {
+    localeSelect_icon: {
       margin: "auto",
       position: "absolute",
       top: "0",

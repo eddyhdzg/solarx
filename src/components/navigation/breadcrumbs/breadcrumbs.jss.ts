@@ -5,7 +5,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: "nowrap",
   },
   breadcrumb_li: {
-    textTransform: "capitalize",
+    // textTransform: "capitalize",
   },
 }));
 

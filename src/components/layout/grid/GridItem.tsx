@@ -1,11 +1,11 @@
 import { Grid as MUIGrid, GridProps } from "@material-ui/core";
-import useStyles from "./grid.jss";
+import useStyles from "./gridItem.jss";
 
 interface IGridProps extends Omit<Partial<GridProps>, "xxs"> {
   xxs?: number;
 }
 
-const Grid: React.FC<IGridProps> = ({ xxs, className, ...props }) => {
+const GridItem: React.FC<IGridProps> = ({ xxs, className, ...props }) => {
   const classes = useStyles(xxs)();
 
   return (
@@ -16,4 +16,4 @@ const Grid: React.FC<IGridProps> = ({ xxs, className, ...props }) => {
   );
 };
 
-export default Grid;
+export default GridItem;

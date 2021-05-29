@@ -1,25 +1,64 @@
 import { Copywriting } from "types";
 
 const es: Copywriting = {
-  routes: {
-    "/home": {
-      title: "inicio",
+  common: {},
+  header: {},
+  footer: {},
+  pages: {
+    preferences: {
+      theme: "Tema",
+      "interface theme": "Tema de interfaz",
+      light: "Claro",
+      dark: "Oscuro",
+      system: "Sistema",
+      "choose a theme": "Elija una preferencia de tema.",
+      en: "English",
+      es: "Español",
+      locale: "Idioma",
+      "interface locale": "Idioma de interfaz",
     },
-    "/home/buy": {
-      title: "comprar",
-    },
-    "/portfolio": {
-      title: "portafolio",
-    },
-    "/trading": {
-      title: "trading",
-    },
-    "/projects": {
-      title: "proyectos",
-    },
-    "/more": {
-      title: "más",
-    },
+  },
+  router: {
+    home: "Inicio",
+    buy: "Compra",
+    sell: "Venta",
+    crowdfunding: "Crowdfunding",
+    "investment funds": "Fondos de Inversión",
+    "investment-funds": "Fondos de Inversión",
+    bonds: "Bonos de Inversión",
+    "Share Trading": "Trading de Acciones",
+    portfolio: "Portafolio",
+    trading: "Trading",
+    projects: "Proyectos",
+    more: "Más",
+    account: "Cuenta",
+    preferences: "Preferencias",
+    "/home": "Inicio",
+    "/buy": "Compra",
+    "/portfolio": "Portafolio",
+    "/trading": "Trading",
+    "/projects": "Proyectos",
+    "/more": "Más",
+    "/investment-funds": "Fondos de Inversión",
+    "category A": "Categoría A",
+    "category B": "Categoría B",
+    "category C": "Categoría C",
+    "category D": "Categoría D",
+    "category E": "Categoría E",
+    "link a 1": "Liga A 1",
+    "link-a-1": "Liga A 1",
+    "link b 1": "Liga B 1",
+    "link-b-1": "Liga B 1",
+    "link b 2": "Liga B 2",
+    "link-b-2": "Liga B 2",
+    "link c 1": "Liga C 1",
+    "link-c-1": "Liga C 1",
+    "link d 1": "Liga D 1",
+    "link-d-1": "Liga D 1",
+    "link e 1": "Liga E 1",
+    "link-e-1": "Liga E 1",
+    "link e 2": "Liga E 2",
+    "link-e-2": "Liga E 2",
   },
 };
 

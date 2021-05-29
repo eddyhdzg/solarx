@@ -5,7 +5,7 @@ import shallow from "zustand/shallow";
 const useThemeType = () => {
   const systemTheme = useSystemTheme();
   const { themeType } = useStore(({ themeType }) => ({ themeType }), shallow);
-  const paletteType = themeType === "auto" ? systemTheme : themeType;
+  const paletteType = themeType === "system" ? systemTheme : themeType;
   return paletteType;
 };
 

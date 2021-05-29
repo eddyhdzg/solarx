@@ -9,4 +9,4 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 }
 
 export type Theme = MUITheme & typeof customTheme;
-export type ThemeType = PaletteType | "auto";
+export type ThemeType = PaletteType | "system";

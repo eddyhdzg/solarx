@@ -15,7 +15,6 @@ const useStyles = makeStyles(({ palette, mixins }: Theme) =>
       ...mixins.toolbar,
     },
     desktopAppbar_title: {
-      textTransform: "capitalize",
       margin: 0,
     },
     desktopAppbar_lists: {
@@ -34,7 +33,6 @@ const useStyles = makeStyles(({ palette, mixins }: Theme) =>
     },
     desktopAppbar_listItem: {
       borderRadius: 4,
-      textTransform: "capitalize",
     },
   })
 );

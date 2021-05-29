@@ -20,18 +20,13 @@ const SubSidenav: FC = () => {
   const breadcrumbs = useBreadcrumbs();
   const route = breadcrumbs[0]?.href as TBaseRoutes | undefined;
 
-  const title = () => {
-    if (!route) return "";
-    return copy.routes[route]?.title;
-  };
-
   return (
     <>
       {route && (
         <div className={classes.desktopAppbar_subnav}>
           <div className={classes.desktopAppbar_subnavHeader}>
             <Typography variant="h6" className={classes.desktopAppbar_title}>
-              {title()}
+              {copy?.router[route]}
             </Typography>
           </div>
           <Divider />
@@ -41,11 +36,11 @@ const SubSidenav: FC = () => {
               ({ subHeader, subRoutes }, index) => {
                 return (
                   <Fragment key={subHeader}>
-                    <List key={subHeader}>
+                    <List>
                       <ListSubheader
                         className={classes.desktopAppbar_subheader}
                       >
-                        {subHeader}
+                        {copy?.router[subHeader]}
                       </ListSubheader>
 
                       {subRoutes.map(({ subRoute, title }) => {
@@ -58,7 +53,7 @@ const SubSidenav: FC = () => {
                             activeClassName="Mui-selected"
                             className={classes.desktopAppbar_listItem}
                           >
-                            <ListItemText primary={title} />
+                            <ListItemText primary={copy?.router[title]} />
                           </ListItem>
                         );
                       })}
