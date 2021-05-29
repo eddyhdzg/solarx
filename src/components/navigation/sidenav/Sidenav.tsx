@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemIcon } from "@material-ui/core";
 import { Tooltip } from "components";
-import { routes, more } from "constant";
+import { routesTree } from "constant";
 import { useCopywriting } from "hooks";
 import useStyles from "./sidenav.jss";
 import logo from "assets/images/Logo.svg";
@@ -9,6 +9,8 @@ import { Link, NavLink } from "react-router-dom";
 const Sidenav: React.FC = () => {
   const classes = useStyles();
   const copy = useCopywriting();
+  const routes = Object.entries(routesTree);
+  const more = [routes.pop()!];
 
   return (
     <div className={classes.sidenav_root}>
@@ -26,10 +28,10 @@ const Sidenav: React.FC = () => {
       <div className={classes.sidenav_content}>
         <div>
           <List className={classes.sidenav_ul}>
-            {routes.map(({ route, Icon }) => (
+            {routes.map(([route, { icon: Icon, title }]) => (
               <Tooltip
                 key={route}
-                title={copy.routes[route].title}
+                title={copy?.router[title]}
                 placement="right"
               >
                 <ListItem
@@ -49,10 +51,10 @@ const Sidenav: React.FC = () => {
         </div>
         <div>
           <List>
-            {more.map(({ route, Icon }) => (
+            {more?.map(([route, { icon: Icon, title }]) => (
               <Tooltip
                 key={route}
-                title={copy.routes[route].title}
+                title={copy?.router[title]}
                 placement="right"
               >
                 <ListItem

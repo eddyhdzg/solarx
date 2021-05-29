@@ -22,7 +22,7 @@ const SubSidenav: FC = () => {
 
   const title = () => {
     if (!route) return "";
-    return copy.routes[route]?.title;
+    return copy.router[route];
   };
 
   return (

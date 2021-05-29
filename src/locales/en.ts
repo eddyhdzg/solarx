@@ -1,31 +1,23 @@
-import { Routes } from "types";
-
 const en: {
-  routes: {
-    [key in Routes | string]: {
-      title: string;
-    };
+  common: {};
+  header: {};
+  footer: {};
+  pages: {};
+  router: {
+    [key: string]: string;
   };
 } = {
-  routes: {
-    "/home": {
-      title: "home",
-    },
-    "/home/buy": {
-      title: "buy",
-    },
-    "/portfolio": {
-      title: "portfolio",
-    },
-    "/trading": {
-      title: "trading",
-    },
-    "/projects": {
-      title: "projects",
-    },
-    "/more": {
-      title: "more",
-    },
+  common: {},
+  header: {},
+  footer: {},
+  pages: {},
+  router: {
+    home: "home",
+    buy: "buy",
+    portfolio: "portfolio",
+    trading: "trading",
+    projects: "projects",
+    more: "more",
   },
 };
 

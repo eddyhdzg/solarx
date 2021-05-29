@@ -11,6 +11,7 @@ import Preferences from "pages/more/Preferences";
 
 export type RoutesTree = {
   [key in TBaseRoutes]: {
+    title: string;
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
     sections: {
       subHeader: string;
@@ -23,8 +24,20 @@ export type RoutesTree = {
   };
 };
 
+export type RoutesTreeCopy = {
+  [key in TBaseRoutes]: {
+    sections: {
+      subHeader: string;
+      subRoutes: {
+        title: string;
+      }[];
+    }[];
+  };
+};
+
 export const routesTree: RoutesTree = {
   "/home": {
+    title: "home",
     icon: HomeRoundedIcon,
     sections: [
       {
@@ -60,6 +73,7 @@ export const routesTree: RoutesTree = {
     ],
   },
   "/portfolio": {
+    title: "portfolio",
     icon: MenuBookRoundedIcon,
     sections: [
       {
@@ -90,6 +104,7 @@ export const routesTree: RoutesTree = {
     ],
   },
   "/trading": {
+    title: "trading",
     icon: ShowChartRoundedIcon,
     sections: [
       {
@@ -115,6 +130,7 @@ export const routesTree: RoutesTree = {
     ],
   },
   "/projects": {
+    title: "projects",
     icon: BusinessRoundedIcon,
     sections: [
       {
@@ -135,6 +151,7 @@ export const routesTree: RoutesTree = {
     ],
   },
   "/more": {
+    title: "more",
     icon: MoreHorizRoundedIcon,
     sections: [
       {
@@ -150,34 +167,3 @@ export const routesTree: RoutesTree = {
     ],
   },
 };
-
-export const routes: {
-  route: TBaseRoutes;
-  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-}[] = [
-  {
-    route: "/home",
-    Icon: HomeRoundedIcon,
-  },
-  {
-    route: "/portfolio",
-    Icon: MenuBookRoundedIcon,
-  },
-  {
-    route: "/trading",
-    Icon: ShowChartRoundedIcon,
-  },
-  {
-    route: "/projects",
-    Icon: BusinessRoundedIcon,
-  },
-];
-
-export const more: { route: TBaseRoutes; Icon: React.FC }[] = [
-  {
-    route: "/more",
-    Icon: MoreHorizRoundedIcon,
-  },
-];
-
-export const mergedRoutes = [...routes, ...more];

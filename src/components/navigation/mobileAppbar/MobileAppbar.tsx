@@ -4,7 +4,7 @@ import {
   BottomNavigationAction,
   BottomNavigationProps,
 } from "@material-ui/core";
-import { mergedRoutes } from "constant";
+import { routesTree } from "constant";
 import { TBaseRoutes } from "types";
 import useStyles from "./mobileAppbar.jss";
 import { useLocation, NavLink } from "react-router-dom";
@@ -33,7 +33,7 @@ const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
         value={pathname}
         className={classes.mobileAppbar_bottomNavigation}
       >
-        {mergedRoutes.map(({ route, Icon }) => (
+        {Object.entries(routesTree).map(([route, { icon: Icon }]) => (
           <BottomNavigationAction
             key={route}
             component={NavLink}
