@@ -37,33 +37,39 @@ const SubSidenav: FC = () => {
           <Divider />
 
           <div className={classes.desktopAppbar_lists}>
-            {routesTree[route].map(({ subHeader, subRoutes }, index) => {
-              return (
-                <Fragment key={subHeader}>
-                  <List key={subHeader}>
-                    <ListSubheader className={classes.desktopAppbar_subheader}>
-                      {subHeader}
-                    </ListSubheader>
+            {routesTree[route].sections.map(
+              ({ subHeader, subRoutes }, index) => {
+                return (
+                  <Fragment key={subHeader}>
+                    <List key={subHeader}>
+                      <ListSubheader
+                        className={classes.desktopAppbar_subheader}
+                      >
+                        {subHeader}
+                      </ListSubheader>
 
-                    {subRoutes.map(({ subRoute, title }) => {
-                      return (
-                        <ListItem
-                          key={subRoute}
-                          button
-                          component={NavLink}
-                          to={route + subRoute}
-                          activeClassName="Mui-selected"
-                          className={classes.desktopAppbar_listItem}
-                        >
-                          <ListItemText primary={title} />
-                        </ListItem>
-                      );
-                    })}
-                  </List>
-                  {index < routesTree[route].length - 1 && <Divider />}
-                </Fragment>
-              );
-            })}
+                      {subRoutes.map(({ subRoute, title }) => {
+                        return (
+                          <ListItem
+                            key={subRoute}
+                            button
+                            component={NavLink}
+                            to={route + subRoute}
+                            activeClassName="Mui-selected"
+                            className={classes.desktopAppbar_listItem}
+                          >
+                            <ListItemText primary={title} />
+                          </ListItem>
+                        );
+                      })}
+                    </List>
+                    {index < routesTree[route].sections.length - 1 && (
+                      <Divider />
+                    )}
+                  </Fragment>
+                );
+              }
+            )}
           </div>
         </div>
       )}

@@ -21,7 +21,7 @@ const IndexPage = () => {
   return (
     <div>
       {route &&
-        routesTree[route].map(({ subHeader, subRoutes }, index) => {
+        routesTree[route].sections.map(({ subHeader, subRoutes }, index) => {
           return (
             <Fragment key={subHeader}>
               <List key={subHeader}>
@@ -47,7 +47,7 @@ const IndexPage = () => {
                   );
                 })}
               </List>
-              {index < routesTree[route].length - 1 && <Divider />}
+              {index < routesTree[route].sections.length - 1 && <Divider />}
             </Fragment>
           );
         })}

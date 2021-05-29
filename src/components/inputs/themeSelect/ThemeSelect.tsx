@@ -1,9 +1,4 @@
-import {
-  FormControl,
-  Select,
-  FormControlProps,
-  FormHelperText,
-} from "@material-ui/core";
+import { FormControlProps, Button, ButtonGroup } from "@material-ui/core";
 import { useStore } from "providers";
 import shallow from "zustand/shallow";
 import LightModeOutlinedIcon from "@material-ui/icons/LightModeOutlined";
@@ -11,6 +6,8 @@ import DarkModeOutlinedIcon from "@material-ui/icons/DarkModeOutlined";
 import SettingsBrightnessIcon from "@material-ui/icons/SettingsBrightness";
 import { ThemeType } from "types";
 import useStyles from "./themeSelect.jss";
+
+const options: ThemeType[] = ["light", "dark", "auto"];
 
 interface IThemeIconProps {
   themeType: ThemeType;
@@ -36,36 +33,29 @@ const ThemeSelect: React.FC<FormControlProps> = (props) => {
     shallow
   );
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const payload = event.target.value as typeof themeType;
-    dispatch({ type: "THEME_SET_THEME", payload });
+  const handleChange = (value: ThemeType) => {
+    dispatch({ type: "THEME_SET_THEME", payload: value });
   };
 
   return (
-    <>
-      <FormControl variant="outlined" {...props}>
-        <ThemeIcon themeType={themeType} className={classes.themeSelect_icon} />
-        <Select
-          native
-          value={themeType}
-          onChange={handleChange}
-          inputProps={{
-            id: "theme-select",
-          }}
-          classes={{
-            select: classes.themeSelect_select,
-          }}
-        >
-          <option aria-label="None" value="" disabled />
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-          <option value="auto">Auto</option>
-        </Select>
-      </FormControl>
-      <FormHelperText className={classes.themeSelect_helperText}>
-        Choose a theme preference
-      </FormHelperText>
-    </>
+    <ButtonGroup variant="outlined" aria-label="outlined primary button group">
+      {options.map((option) => {
+        return (
+          <Button
+            color={themeType === option ? "primary" : "default"}
+            onClick={() => {
+              handleChange(option);
+            }}
+          >
+            <ThemeIcon
+              themeType={option}
+              className={classes.themeSelect_icon}
+            />
+            {option}
+          </Button>
+        );
+      })}
+    </ButtonGroup>
   );
 };
 

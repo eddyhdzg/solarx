@@ -1,7 +1,7 @@
 import { Redirect, Route, Switch } from "react-router";
 import { useTheme, useMediaQuery } from "@material-ui/core";
 import { MobileSubSidenav } from "components";
-import { routesPathsTree } from "constant";
+import { routesTree } from "constant";
 
 export default function Router() {
   const theme = useTheme();
@@ -9,32 +9,38 @@ export default function Router() {
 
   return (
     <Switch>
-      {routesPathsTree.map(({ path, subRoutes }) => (
+      {Object.entries(routesTree).map(([path, { sections }]) => (
         <Route key={path} path={path}>
           <Switch>
-            {subRoutes.map(({ subPath, component: Component }) => (
-              <Route
-                key={subPath}
-                path={path + subPath}
-                render={() => <Component />}
-              />
-            ))}
+            {sections.map(({ subRoutes }) =>
+              subRoutes.map(({ subRoute, component: Component }) => (
+                <Route
+                  key={subRoute}
+                  path={path + subRoute}
+                  render={() => <Component />}
+                />
+              ))
+            )}
 
             {isDesktop && (
               <Route
                 render={() => (
-                  <Redirect to={`${path}${subRoutes[0].subPath}`} />
+                  <Redirect
+                    to={`${path}${sections[0].subRoutes[0].subRoute}`}
+                  />
                 )}
               />
             )}
 
-            {subRoutes.map(({ subPath }) => (
-              <Route
-                key={subPath}
-                path={path}
-                render={() => <MobileSubSidenav />}
-              />
-            ))}
+            {sections.map(({ subRoutes }) =>
+              subRoutes.map(({ subRoute }) => (
+                <Route
+                  key={subRoute}
+                  path={path}
+                  render={() => <MobileSubSidenav />}
+                />
+              ))
+            )}
           </Switch>
         </Route>
       ))}

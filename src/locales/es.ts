@@ -1,26 +1,23 @@
-import { Routes } from "types";
+import { Copywriting } from "types";
 
-const es: {
+const es: Copywriting = {
   routes: {
-    [key in Routes | string]: {
-      title: string;
-    };
-  };
-} = {
-  routes: {
-    home: {
+    "/home": {
       title: "inicio",
     },
-    portfolio: {
+    "/home/buy": {
+      title: "comprar",
+    },
+    "/portfolio": {
       title: "portafolio",
     },
-    trading: {
+    "/trading": {
       title: "trading",
     },
-    projects: {
+    "/projects": {
       title: "proyectos",
     },
-    more: {
+    "/more": {
       title: "más",
     },
   },

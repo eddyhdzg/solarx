@@ -1,10 +1,10 @@
-// import { useRouter } from "next/router";
+import { useStore } from "providers";
+import shallow from "zustand/shallow";
 import { locales } from "locales";
 
 const useCopywriting = () => {
-  // const { locale } = useRouter();
-  // const copy = locale && locale in locales ? locales[locale] : locales["es"];
-  const copy = locales["en"];
+  const { locale } = useStore(({ locale }) => ({ locale }), shallow);
+  const copy = locale && locale in locales ? locales[locale] : locales["en"];
   return copy;
 };
 
