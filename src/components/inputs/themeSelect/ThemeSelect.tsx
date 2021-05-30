@@ -1,33 +1,11 @@
-import { Button, ButtonGroup } from "@material-ui/core";
+import { FormControl, Select, FormControlProps } from "@material-ui/core";
 import { useStore } from "providers";
 import shallow from "zustand/shallow";
-import LightModeOutlinedIcon from "@material-ui/icons/LightModeOutlined";
-import DarkModeOutlinedIcon from "@material-ui/icons/DarkModeOutlined";
-import SettingsBrightnessIcon from "@material-ui/icons/SettingsBrightness";
-import { ThemeType } from "types";
 import { useCopywriting } from "hooks";
 import useStyles from "./themeSelect.jss";
+import { options, ThemeIcon } from "../../icons/ThemeIcon";
 
-const options: ThemeType[] = ["light", "dark", "system"];
-
-interface IThemeIconProps {
-  themeType: ThemeType;
-  className?: string;
-}
-
-const ThemeIcon = ({ themeType, ...props }: IThemeIconProps) => {
-  switch (themeType) {
-    case "light":
-      return <LightModeOutlinedIcon {...props} />;
-    case "system":
-      return <SettingsBrightnessIcon {...props} />;
-    case "dark":
-    default:
-      return <DarkModeOutlinedIcon {...props} />;
-  }
-};
-
-const ThemeSelect: React.FC = () => {
+const ThemeSelect: React.FC<FormControlProps> = (props) => {
   const classes = useStyles();
   const copy = useCopywriting();
   const { dispatch, themeType } = useStore(
@@ -35,30 +13,36 @@ const ThemeSelect: React.FC = () => {
     shallow
   );
 
-  const handleChange = (value: ThemeType) => {
-    dispatch({ type: "THEME_SET_THEME", payload: value });
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    const payload = event.target.value as typeof themeType;
+    dispatch({ type: "THEME_SET_THEME", payload });
   };
 
   return (
-    <ButtonGroup variant="outlined" aria-label="outlined primary button group">
-      {options.map((option) => {
-        return (
-          <Button
-            key={option}
-            color={themeType === option ? "primary" : "default"}
-            onClick={() => {
-              handleChange(option);
-            }}
-          >
-            <ThemeIcon
-              themeType={option}
-              className={classes.themeSelect_icon}
-            />
-            {copy.pages.preferences[option]}
-          </Button>
-        );
-      })}
-    </ButtonGroup>
+    <FormControl variant="outlined" {...props}>
+      <ThemeIcon themeType={themeType} className={classes.themeSelect_icon} />
+      <Select
+        native
+        value={themeType}
+        onChange={handleChange}
+        inputProps={{
+          id: "theme-select",
+        }}
+        classes={{
+          select: classes.themeSelect_select,
+        }}
+      >
+        <option aria-label="None" value="" disabled />
+
+        {options.map((option) => {
+          return (
+            <option key={option} value={option}>
+              {copy.pages.preferences[option]}
+            </option>
+          );
+        })}
+      </Select>
+    </FormControl>
   );
 };
 
