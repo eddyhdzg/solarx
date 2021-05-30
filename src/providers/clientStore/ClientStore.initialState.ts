@@ -10,7 +10,7 @@ export type ClientState = {
 export const initialClientState: ClientState = {
   themeType: "dark",
   drawer: true,
-  locale: "es",
+  locale: "en",
   routerMemo: {
     "/home": "/home",
     "/portfolio": "/portfolio",

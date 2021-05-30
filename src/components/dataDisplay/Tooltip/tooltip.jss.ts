@@ -6,7 +6,6 @@ const useStyles = makeStyles(({ palette }: Theme) => ({
     color: palette.text.primary,
     backgroundColor:
       palette.type === "light" ? palette.common.white : palette.common.black,
-    textTransform: "capitalize",
     borderWidth: 2,
     borderColor: palette.divider,
     borderStyle: "solid",

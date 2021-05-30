@@ -55,7 +55,7 @@ const useCreateMuiTheme = () => {
       keys: ["xxs", "xs", "sm", "md", "lg", "xl"],
     }),
     palette: {
-      type: themeType === "auto" ? system : themeType,
+      type: themeType === "system" ? system : themeType,
       primary: {
         light: "#FCE882",
         main: "#FBDE51",
@@ -98,7 +98,7 @@ const useCreateMuiTheme = () => {
       ...theme,
       palette: {
         ...theme.palette,
-        type: themeType === "auto" ? system : themeType,
+        type: themeType === "system" ? system : themeType,
       },
     }));
   }, [themeType, system]);

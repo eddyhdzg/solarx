@@ -1,13 +1,14 @@
-import { FormControlProps, Button, ButtonGroup } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
 import { useStore } from "providers";
 import shallow from "zustand/shallow";
 import LightModeOutlinedIcon from "@material-ui/icons/LightModeOutlined";
 import DarkModeOutlinedIcon from "@material-ui/icons/DarkModeOutlined";
 import SettingsBrightnessIcon from "@material-ui/icons/SettingsBrightness";
 import { ThemeType } from "types";
+import { useCopywriting } from "hooks";
 import useStyles from "./themeSelect.jss";
 
-const options: ThemeType[] = ["light", "dark", "auto"];
+const options: ThemeType[] = ["light", "dark", "system"];
 
 interface IThemeIconProps {
   themeType: ThemeType;
@@ -18,7 +19,7 @@ const ThemeIcon = ({ themeType, ...props }: IThemeIconProps) => {
   switch (themeType) {
     case "light":
       return <LightModeOutlinedIcon {...props} />;
-    case "auto":
+    case "system":
       return <SettingsBrightnessIcon {...props} />;
     case "dark":
     default:
@@ -26,8 +27,9 @@ const ThemeIcon = ({ themeType, ...props }: IThemeIconProps) => {
   }
 };
 
-const ThemeSelect: React.FC<FormControlProps> = (props) => {
+const ThemeSelect: React.FC = () => {
   const classes = useStyles();
+  const copy = useCopywriting();
   const { dispatch, themeType } = useStore(
     ({ dispatch, themeType }) => ({ dispatch, themeType }),
     shallow
@@ -42,6 +44,7 @@ const ThemeSelect: React.FC<FormControlProps> = (props) => {
       {options.map((option) => {
         return (
           <Button
+            key={option}
             color={themeType === option ? "primary" : "default"}
             onClick={() => {
               handleChange(option);
@@ -51,7 +54,7 @@ const ThemeSelect: React.FC<FormControlProps> = (props) => {
               themeType={option}
               className={classes.themeSelect_icon}
             />
-            {option}
+            {copy.pages.preferences[option]}
           </Button>
         );
       })}

@@ -44,27 +44,27 @@ export const routesTree: RoutesTree = {
         subHeader: "Share Trading",
         subRoutes: [
           {
-            title: "Buy",
+            title: "buy",
             subRoute: "/buy",
             component: Loader,
           },
           {
-            title: "Sell",
+            title: "sell",
             subRoute: "/sell",
             component: Loader,
           },
           {
-            title: "Crowdfunding",
+            title: "crowdfunding",
             subRoute: "/crowdfunding",
             component: Loader,
           },
           {
-            title: "Investment Funds",
+            title: "investment funds",
             subRoute: "/investment-funds",
             component: Loader,
           },
           {
-            title: "Bonds",
+            title: "bonds",
             subRoute: "/bonds",
             component: Loader,
           },
@@ -77,25 +77,25 @@ export const routesTree: RoutesTree = {
     icon: MenuBookRoundedIcon,
     sections: [
       {
-        subHeader: "Category A",
+        subHeader: "category A",
         subRoutes: [
           {
-            title: "Link A 1",
+            title: "link a 1",
             subRoute: "/link-a-1",
             component: Loader,
           },
         ],
       },
       {
-        subHeader: "Category B",
+        subHeader: "category B",
         subRoutes: [
           {
-            title: "Link B 1",
+            title: "link b 1",
             subRoute: "/link-b-1",
             component: Loader,
           },
           {
-            title: "Link B 2",
+            title: "link b 2",
             subRoute: "/link-b-2",
             component: Loader,
           },
@@ -108,20 +108,20 @@ export const routesTree: RoutesTree = {
     icon: ShowChartRoundedIcon,
     sections: [
       {
-        subHeader: "Category C",
+        subHeader: "category C",
         subRoutes: [
           {
-            title: "Link C 1",
+            title: "link c 1",
             subRoute: "/link-c-1",
             component: Loader,
           },
         ],
       },
       {
-        subHeader: "Category D",
+        subHeader: "category D",
         subRoutes: [
           {
-            title: "Link D 1",
+            title: "link d 1",
             subRoute: "/link-d-1",
             component: Loader,
           },
@@ -134,15 +134,15 @@ export const routesTree: RoutesTree = {
     icon: BusinessRoundedIcon,
     sections: [
       {
-        subHeader: "Category e",
+        subHeader: "category E",
         subRoutes: [
           {
-            title: "Link E 1",
+            title: "link e 1",
             subRoute: "/link-e-1",
             component: Loader,
           },
           {
-            title: "Link E 2",
+            title: "link e 2",
             subRoute: "/link-e-2",
             component: Loader,
           },
@@ -155,10 +155,10 @@ export const routesTree: RoutesTree = {
     icon: MoreHorizRoundedIcon,
     sections: [
       {
-        subHeader: "Account",
+        subHeader: "account",
         subRoutes: [
           {
-            title: "Preferences",
+            title: "preferences",
             subRoute: "/preferences",
             component: Preferences,
           },
