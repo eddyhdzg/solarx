@@ -1,4 +1,5 @@
-import ThemeSection from "./subComponents/ThemeSection";
+import ThemeSection from "./subComponents/themeSection/ThemeSection";
+import LocaleSection from "./subComponents/localeSection/LocaleSection";
 import useStyles from "./preferences.jss";
 import { GridItem } from "components";
 import { Grid } from "@material-ui/core";
@@ -11,6 +12,9 @@ export default function Preferences() {
       <Grid container direction="row" spacing={4}>
         <GridItem item xs={12}>
           <ThemeSection />
+        </GridItem>
+        <GridItem item xs={12}>
+          <LocaleSection />
         </GridItem>
       </Grid>
     </div>

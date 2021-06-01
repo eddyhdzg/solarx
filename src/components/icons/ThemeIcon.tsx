@@ -3,8 +3,6 @@ import LightModeOutlinedIcon from "@material-ui/icons/LightModeOutlined";
 import DarkModeOutlinedIcon from "@material-ui/icons/DarkModeOutlined";
 import SettingsBrightnessIcon from "@material-ui/icons/SettingsBrightness";
 
-export const options: ThemeType[] = ["light", "dark", "system"];
-
 export interface IThemeIconProps {
   themeType: ThemeType;
   className?: string;

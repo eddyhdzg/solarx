@@ -4,7 +4,8 @@ import shallow from "zustand/shallow";
 import { ThemeType } from "types";
 import { useCopywriting } from "hooks";
 import useStyles from "./themeButtonGroup.jss";
-import { options, ThemeIcon } from "../../icons/ThemeIcon";
+import { ThemeIcon } from "../../icons/ThemeIcon";
+import { themeOptions } from "constant";
 
 const ThemeButtonGroup: React.FC = () => {
   const classes = useStyles();
@@ -20,7 +21,7 @@ const ThemeButtonGroup: React.FC = () => {
 
   return (
     <ButtonGroup variant="outlined" aria-label="theme select button group">
-      {options.map((option) => {
+      {themeOptions.map((option) => {
         return (
           <Button
             key={option}

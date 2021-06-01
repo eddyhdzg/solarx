@@ -36,7 +36,7 @@ export default function ThemeSection() {
               {copy.pages.preferences["interface theme"]}
             </Typography>
           </GridItem>
-          <GridItem item xs={7} sm={8} className={classes.themeSection_grid}>
+          <GridItem item xs={7} sm={8}>
             <div className={classes.themeSection_selectContainer}>
               {sm ? <ThemeButtonGroup /> : <ThemeSelect fullWidth />}
             </div>

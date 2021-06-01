@@ -36,7 +36,7 @@ const SubSidenav: FC = () => {
               ({ subHeader, subRoutes }, index) => {
                 return (
                   <Fragment key={subHeader}>
-                    <List key={subHeader}>
+                    <List>
                       <ListSubheader
                         className={classes.desktopAppbar_subheader}
                       >

@@ -12,6 +12,10 @@ const es: Copywriting = {
       dark: "Oscuro",
       system: "Sistema",
       "choose a theme": "Elija una preferencia de tema.",
+      en: "English",
+      es: "Español",
+      locale: "Idioma",
+      "interface locale": "Idioma de interfaz",
     },
   },
   router: {

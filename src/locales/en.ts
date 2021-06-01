@@ -17,11 +17,15 @@ const en: {
   pages: {
     preferences: {
       theme: "Tema",
-      "interface theme": "Interface Theme",
+      "interface theme": "Interface theme",
       light: "Light",
       dark: "Dark",
       system: "System",
       "choose a theme": "Choose a theme preference.",
+      en: "English",
+      es: "Español",
+      locale: "Language",
+      "interface locale": "Interface language",
     },
   },
   router: {

@@ -28,8 +28,8 @@ const Breadcrumbs: React.FC = () => {
         const last = index === breadcrumbs.length - 1;
         return (
           <Typography
-            color={last ? "textPrimary" : "textSecondary"}
             key={href}
+            color={last ? "textPrimary" : "textSecondary"}
             noWrap
           >
             {copy.router[breadcrumb]}
