@@ -12,7 +12,7 @@ export default function LocaleSection() {
     <SectionBlock>
       <Row>
         <Typography variant="subtitle1">
-          {copy.pages.preferences["locale"]}
+          {copy?.pages?.preferences["locale"]}
         </Typography>
       </Row>
       <Divider />
@@ -20,7 +20,7 @@ export default function LocaleSection() {
         <Grid container spacing={3}>
           <GridItem item xs={5} sm={4}>
             <Typography variant="body2">
-              {copy.pages.preferences["interface locale"]}
+              {copy?.pages?.preferences["interface locale"]}
             </Typography>
           </GridItem>
           <GridItem

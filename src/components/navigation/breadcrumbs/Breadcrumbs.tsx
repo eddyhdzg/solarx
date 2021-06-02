@@ -32,7 +32,7 @@ const Breadcrumbs: React.FC = () => {
             color={last ? "textPrimary" : "textSecondary"}
             noWrap
           >
-            {copy.router[breadcrumb]}
+            {copy?.router[breadcrumb]}
           </Typography>
         );
       })}

@@ -13,36 +13,36 @@ import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 import { NavLink } from "react-router-dom";
 import useStyles from "./mobileSubSidenav.jss";
 
-const IndexPage = () => {
+export default function MobileSubSidenav() {
   const classes = useStyles();
   const breadcrumbs = useBreadcrumbs();
   const route = breadcrumbs[0]?.href as TBaseRoutes | undefined;
   const copy = useCopywriting();
 
   return (
-    <div>
+    <div className={classes.mobileSubSidenav_root}>
       {route &&
         routesTree[route].sections.map(({ subHeader, subRoutes }, index) => {
           return (
             <Fragment key={subHeader}>
               <List>
-                <ListSubheader className={classes.desktopAppbar_subheader}>
-                  {subHeader}
+                <ListSubheader className={classes.mobileSubSidenav_subheader}>
+                  {copy?.router[subHeader]}
                 </ListSubheader>
 
                 {subRoutes.map(({ subRoute, title }) => {
                   return (
                     <ListItem
-                      key={route}
+                      key={subRoute}
                       button
                       component={NavLink}
                       to={route + subRoute}
                       activeClassName="Mui-selected"
-                      className={classes.desktopAppbar_listItem}
+                      className={classes.mobileSubSidenav_listItem}
                     >
-                      <ListItemText primary={copy.router[title]} />
+                      <ListItemText primary={copy?.router[title]} />
                       <ChevronRightRoundedIcon
-                        className={classes.desktopAppbar_icon}
+                        className={classes.mobileSubSidenav_icon}
                       />
                     </ListItem>
                   );
@@ -54,6 +54,4 @@ const IndexPage = () => {
         })}
     </div>
   );
-};
-
-export default IndexPage;
+}

@@ -34,7 +34,7 @@ const ThemeButtonGroup: React.FC = () => {
               themeType={option}
               className={classes.themeSelect_icon}
             />
-            {copy.pages.preferences[option]}
+            {copy?.pages?.preferences[option]}
           </Button>
         );
       })}

@@ -33,12 +33,10 @@ const LocaleSelect: React.FC<FormControlProps> = (props) => {
           select: classes.localeSelect_select,
         }}
       >
-        <option aria-label="None" value="" disabled />
-
         {localeOptions.map((option) => {
           return (
             <option key={option} value={option}>
-              {copy.pages.preferences[option]}
+              {copy?.pages?.preferences[option]}
             </option>
           );
         })}

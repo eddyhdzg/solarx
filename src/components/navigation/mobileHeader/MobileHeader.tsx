@@ -26,13 +26,13 @@ const MobileHeader: React.FC = () => {
               to={breadcrumbs[breadcrumbs.length - 2].href}
             >
               <ChevronLeftRoundedIcon />
-              {copy.router[breadcrumbs[breadcrumbs.length - 2]?.breadcrumb]}
+              {copy?.router[breadcrumbs[breadcrumbs.length - 2]?.breadcrumb]}
             </Button>
           )}
         </div>
 
         <Typography className={classes.mobileHeader_text} variant="h4">
-          {copy.router[breadcrumbs[breadcrumbs.length - 1]?.breadcrumb]}
+          {copy?.router[breadcrumbs[breadcrumbs.length - 1]?.breadcrumb]}
         </Typography>
       </Toolbar>
     </MUIAppbar>

@@ -26,7 +26,7 @@ const SubSidenav: FC = () => {
         <div className={classes.desktopAppbar_subnav}>
           <div className={classes.desktopAppbar_subnavHeader}>
             <Typography variant="h6" className={classes.desktopAppbar_title}>
-              {copy.router[route]}
+              {copy?.router[route]}
             </Typography>
           </div>
           <Divider />
@@ -40,7 +40,7 @@ const SubSidenav: FC = () => {
                       <ListSubheader
                         className={classes.desktopAppbar_subheader}
                       >
-                        {copy.router[subHeader]}
+                        {copy?.router[subHeader]}
                       </ListSubheader>
 
                       {subRoutes.map(({ subRoute, title }) => {
@@ -53,7 +53,7 @@ const SubSidenav: FC = () => {
                             activeClassName="Mui-selected"
                             className={classes.desktopAppbar_listItem}
                           >
-                            <ListItemText primary={copy.router[title]} />
+                            <ListItemText primary={copy?.router[title]} />
                           </ListItem>
                         );
                       })}

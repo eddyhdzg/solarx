@@ -33,12 +33,10 @@ const ThemeSelect: React.FC<FormControlProps> = (props) => {
           select: classes.themeSelect_select,
         }}
       >
-        <option aria-label="None" value="" disabled />
-
         {themeOptions.map((option) => {
           return (
             <option key={option} value={option}>
-              {copy.pages.preferences[option]}
+              {copy?.pages?.preferences[option]}
             </option>
           );
         })}
