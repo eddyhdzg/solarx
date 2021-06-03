@@ -8,7 +8,6 @@ export type ClientState = {
 };
 
 export const initialClientState: ClientState = {
-  themeType: "dark",
   drawer: true,
   locale: "en",
   routerMemo: {
@@ -18,4 +17,5 @@ export const initialClientState: ClientState = {
     "/projects": "/projects",
     "/more": "/more",
   },
+  themeType: "dark",
 };

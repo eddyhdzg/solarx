@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useStore } from "providers";
+import { useRouterMemo } from "hooks";
 import shallow from "zustand/shallow";
 import { TBaseRoutes } from "types";
 
 const RouterMemo: React.FC = ({ children }) => {
   const location = useLocation();
-  const { dispatch, routerMemo } = useStore(
+  const { dispatch, routerMemo } = useRouterMemo(
     ({ dispatch, routerMemo }) => ({ dispatch, routerMemo }),
     shallow
   );

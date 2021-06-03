@@ -4,13 +4,29 @@ import { routesTree } from "constant";
 import { useCopywriting } from "hooks";
 import useStyles from "./sidenav.jss";
 import logo from "assets/images/Logo.svg";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useRouterMemo } from "hooks";
+import { TBaseRoutes } from "types";
+import shallow from "zustand/shallow";
 
 const Sidenav: React.FC = () => {
   const classes = useStyles();
   const copy = useCopywriting();
   const routes = Object.entries(routesTree);
   const more = [routes.pop()!];
+  const { pathname } = useLocation();
+
+  const { routerMemo } = useRouterMemo(
+    ({ routerMemo }) => ({ routerMemo }),
+    shallow
+  );
+
+  const getMemoryRoute = (baseRoute: TBaseRoutes) => {
+    if (pathname.includes(baseRoute)) {
+      return pathname.substring(0, pathname.lastIndexOf("/")) || baseRoute;
+    }
+    return routerMemo[baseRoute];
+  };
 
   return (
     <div className={classes.sidenav_root}>
@@ -37,7 +53,7 @@ const Sidenav: React.FC = () => {
                 <ListItem
                   button
                   component={NavLink}
-                  to={route}
+                  to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
                   className={classes.sidenav_listItem}
                 >
@@ -60,7 +76,7 @@ const Sidenav: React.FC = () => {
                 <ListItem
                   button
                   component={NavLink}
-                  to={route}
+                  to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
                   className={classes.sidenav_listItem}
                 >

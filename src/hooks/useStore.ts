@@ -1,9 +1,12 @@
 import produce, { Draft } from "immer";
 import create, { State, StateCreator } from "zustand";
-import { Actions } from "./ClientStore.actions";
-import { ClientDispatch } from "./ClientStore.dispatch";
-import { ClientState, initialClientState } from "./ClientStore.initialState";
-import reducer from "./ClientStore.reducer";
+import { Actions } from "providers/clientStore/ClientStore.actions";
+import { ClientDispatch } from "providers/clientStore/ClientStore.dispatch";
+import {
+  ClientState,
+  initialClientState,
+} from "providers/clientStore/ClientStore.initialState";
+import reducer from "providers/clientStore/ClientStore.reducer";
 import { persist } from "zustand/middleware";
 
 const immer =
@@ -13,7 +16,7 @@ const immer =
   (set, get, api) =>
     config((fn) => set(produce(fn) as (state: T) => T), get, api);
 
-export const useStore = create<ClientState & ClientDispatch>(
+const useStore = create<ClientState & ClientDispatch>(
   persist(
     immer((set) => ({
       ...initialClientState,
@@ -24,3 +27,5 @@ export const useStore = create<ClientState & ClientDispatch>(
     }
   )
 );
+
+export default useStore;

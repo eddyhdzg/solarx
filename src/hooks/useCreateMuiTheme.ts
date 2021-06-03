@@ -1,25 +1,16 @@
-import { useState, useEffect } from "react";
-import {
-  createMuiTheme,
-  ThemeOptions,
-  responsiveFontSizes,
-} from "@material-ui/core";
-import { useThemeType } from "hooks";
-import { useStore } from "providers";
-import shallow from "zustand/shallow";
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
+import { usePalette } from "hooks";
 import createBreakpoints from "theme/createBreakpoints";
+import yellow from "@material-ui/core/colors/yellow";
 
 export const customTheme = {
-  custom: {
-    gradient: "linear-gradient(45deg, #6EE7B7, #3B82F6)",
-  },
+  custom: {},
 };
 
 const useCreateMuiTheme = () => {
-  const system = useThemeType();
-  const { themeType } = useStore(({ themeType }) => ({ themeType }), shallow);
+  const palette = usePalette();
 
-  const [theme, setTheme] = useState<ThemeOptions>({
+  const theme = {
     overrides: {
       MuiCssBaseline: {
         "@global": {
@@ -34,7 +25,7 @@ const useCreateMuiTheme = () => {
           "&.Mui-selected": {
             backgroundColor: "transparent",
             "& div": {
-              color: "#FBDE51",
+              color: palette === "dark" ? yellow[500] : yellow[700],
             },
             "&:hover, &:focus": {
               backgroundColor: "rgba(255, 250, 130, 0.24)",
@@ -55,13 +46,16 @@ const useCreateMuiTheme = () => {
       keys: ["xxs", "xs", "sm", "md", "lg", "xl"],
     }),
     palette: {
-      type: themeType === "system" ? system : themeType,
-      primary: {
-        light: "#FCE882",
-        main: "#FBDE51",
-        dark: "#F2CC0D",
-        contrastText: "#fff",
-      },
+      type: palette,
+      primary:
+        palette === "dark"
+          ? yellow
+          : {
+              light: yellow[500],
+              main: yellow[700],
+              dark: yellow[900],
+              contrastText: "#000000",
+            },
     },
     typography: {
       fontFamily:
@@ -91,17 +85,7 @@ const useCreateMuiTheme = () => {
         fontWeight: 500,
       },
     },
-  });
-
-  useEffect(() => {
-    setTheme((theme) => ({
-      ...theme,
-      palette: {
-        ...theme.palette,
-        type: themeType === "system" ? system : themeType,
-      },
-    }));
-  }, [themeType, system]);
+  };
 
   const muiTheme = createMuiTheme(theme, {
     ...customTheme,

@@ -1,4 +1,4 @@
-import { useStore } from "providers";
+import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { locales } from "locales";
 

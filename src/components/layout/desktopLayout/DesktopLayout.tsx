@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Header, DesktopAppbar } from "components";
 import useStyles from "./desktopLayout.jss";
-import { useStore } from "providers";
+import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 
 const DesktopLayout: React.FC = ({ children }) => {

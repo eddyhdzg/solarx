@@ -8,13 +8,13 @@ import { routesTree } from "constant";
 import { TBaseRoutes } from "types";
 import useStyles from "./mobileAppbar.jss";
 import { useLocation, NavLink } from "react-router-dom";
-import { useStore } from "providers";
+import { useRouterMemo } from "hooks";
 import shallow from "zustand/shallow";
 
 const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
   const classes = useStyles();
   const { pathname } = useLocation();
-  const { routerMemo } = useStore(
+  const { routerMemo } = useRouterMemo(
     ({ routerMemo }) => ({ routerMemo }),
     shallow
   );

@@ -1,7 +1,6 @@
 import { FormControl, Select, FormControlProps } from "@material-ui/core";
-import { useStore } from "providers";
 import shallow from "zustand/shallow";
-import { useCopywriting } from "hooks";
+import { useCopywriting, useStore } from "hooks";
 import useStyles from "./themeSelect.jss";
 import { ThemeIcon } from "../../icons/ThemeIcon";
 import { themeOptions } from "constant";

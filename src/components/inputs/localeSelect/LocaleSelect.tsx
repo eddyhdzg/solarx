@@ -1,7 +1,6 @@
 import { FormControl, Select, FormControlProps } from "@material-ui/core";
-import { useStore } from "providers";
 import shallow from "zustand/shallow";
-import { useCopywriting } from "hooks";
+import { useCopywriting, useStore } from "hooks";
 import LanguageIcon from "@material-ui/icons/Language";
 import useStyles from "./localeSelect.jss";
 import { localeOptions } from "constant";
