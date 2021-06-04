@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Theme } from "types";
 
-const useStyles = makeStyles(({ palette, mixins }: Theme) =>
+const useStyles = makeStyles(({ palette, mixins, spacing }: Theme) =>
   createStyles({
     desktopAppbar_subnav: {
       display: "flex",
@@ -11,22 +11,22 @@ const useStyles = makeStyles(({ palette, mixins }: Theme) =>
     desktopAppbar_subnavHeader: {
       display: "flex",
       alignItems: "center",
-      paddingLeft: "24px",
+      paddingLeft: spacing(3),
       ...mixins.toolbar,
     },
     desktopAppbar_title: {
       margin: 0,
     },
     desktopAppbar_lists: {
-      paddingLeft: "8px",
-      paddingRight: "8px",
+      paddingLeft: spacing(1),
+      paddingRight: spacing(1),
       overflowY: "scroll",
       overscrollBehavior: "contain",
     },
     desktopAppbar_subheader: {
       lineHeight: "unset",
-      paddingTop: "8px",
-      paddingBottom: "8px",
+      paddingTop: spacing(1),
+      paddingBottom: spacing(1),
       fontSize: "0.75rem",
       color: palette.text.hint,
       backgroundColor: palette.background.default,

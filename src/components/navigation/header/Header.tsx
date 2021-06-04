@@ -6,7 +6,7 @@ import useStyles from "./header.jss";
 import Breadcrumbs from "../breadcrumbs/Breadcrumbs";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { AccountButton } from "components";
 
 interface IHeaderProps {
   open: boolean;
@@ -43,13 +43,9 @@ const Header: React.FC<IHeaderProps> = ({ open, toggleDrawer }) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton
-            aria-label="account of current user"
-            aria-haspopup="true"
-            className={classes.header_accountButton}
-          >
-            <AccountCircleIcon />
-          </IconButton>
+          <div className={classes.header_accountButton}>
+            <AccountButton />
+          </div>
         </div>
       </Toolbar>
       <Divider />

@@ -7,7 +7,8 @@ import { TBaseRoutes } from "types";
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import Loader from "pages/[section]/[subSection]";
-import Preferences from "pages/more/Preferences";
+import Preferences from "pages/more/preferences/Preferences";
+import Session from "pages/more/session/Session";
 
 export type RoutesTree = {
   [key in TBaseRoutes]: {
@@ -41,42 +42,6 @@ export const routesTree: RoutesTree = {
     icon: HomeRoundedIcon,
     sections: [
       {
-        subHeader: "Share Trading",
-        subRoutes: [
-          {
-            title: "buy",
-            subRoute: "/buy",
-            component: Loader,
-          },
-          {
-            title: "sell",
-            subRoute: "/sell",
-            component: Loader,
-          },
-          {
-            title: "crowdfunding",
-            subRoute: "/crowdfunding",
-            component: Loader,
-          },
-          {
-            title: "investment funds",
-            subRoute: "/investment-funds",
-            component: Loader,
-          },
-          {
-            title: "bonds",
-            subRoute: "/bonds",
-            component: Loader,
-          },
-        ],
-      },
-    ],
-  },
-  "/portfolio": {
-    title: "portfolio",
-    icon: MenuBookRoundedIcon,
-    sections: [
-      {
         subHeader: "category A",
         subRoutes: [
           {
@@ -103,9 +68,9 @@ export const routesTree: RoutesTree = {
       },
     ],
   },
-  "/trading": {
-    title: "trading",
-    icon: ShowChartRoundedIcon,
+  "/portfolio": {
+    title: "portfolio",
+    icon: MenuBookRoundedIcon,
     sections: [
       {
         subHeader: "category C",
@@ -123,6 +88,42 @@ export const routesTree: RoutesTree = {
           {
             title: "link d 1",
             subRoute: "/link-d-1",
+            component: Loader,
+          },
+        ],
+      },
+    ],
+  },
+  "/trading": {
+    title: "trading",
+    icon: ShowChartRoundedIcon,
+    sections: [
+      {
+        subHeader: "Share Trading",
+        subRoutes: [
+          {
+            title: "buy",
+            subRoute: "/buy",
+            component: Loader,
+          },
+          {
+            title: "sell",
+            subRoute: "/sell",
+            component: Loader,
+          },
+          {
+            title: "crowdfunding",
+            subRoute: "/crowdfunding",
+            component: Loader,
+          },
+          {
+            title: "investment funds",
+            subRoute: "/investment-funds",
+            component: Loader,
+          },
+          {
+            title: "bonds",
+            subRoute: "/bonds",
             component: Loader,
           },
         ],
@@ -161,6 +162,11 @@ export const routesTree: RoutesTree = {
             title: "preferences",
             subRoute: "/preferences",
             component: Preferences,
+          },
+          {
+            title: "session",
+            subRoute: "/session",
+            component: Session,
           },
         ],
       },

@@ -4,12 +4,12 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     mobileSubSidenav_root: {
       position: "relative",
-      width: "calc(100% + 32px)",
-      left: "-16px",
+      width: `calc(100% + ${theme.spacing(4)}px)`,
+      left: -theme.spacing(2),
     },
     mobileSubSidenav_subheader: {
       lineHeight: "unset",
-      paddingTop: "8px",
+      paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(1),
       fontSize: "0.75rem",
       color: theme.palette.text.hint,

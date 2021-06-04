@@ -22,7 +22,7 @@ export default function MobileSubSidenav() {
   return (
     <div className={classes.mobileSubSidenav_root}>
       {route &&
-        routesTree[route].sections.map(({ subHeader, subRoutes }, index) => {
+        routesTree[route]?.sections?.map(({ subHeader, subRoutes }, index) => {
           return (
             <Fragment key={subHeader}>
               <List>
@@ -48,7 +48,7 @@ export default function MobileSubSidenav() {
                   );
                 })}
               </List>
-              {index < routesTree[route].sections.length - 1 && <Divider />}
+              {index < routesTree[route]?.sections?.length - 1 && <Divider />}
             </Fragment>
           );
         })}

@@ -32,7 +32,7 @@ const SubSidenav: FC = () => {
           <Divider />
 
           <div className={classes.desktopAppbar_lists}>
-            {routesTree[route].sections.map(
+            {routesTree[route]?.sections?.map(
               ({ subHeader, subRoutes }, index) => {
                 return (
                   <Fragment key={subHeader}>
@@ -58,7 +58,7 @@ const SubSidenav: FC = () => {
                         );
                       })}
                     </List>
-                    {index < routesTree[route].sections.length - 1 && (
+                    {index < routesTree[route]?.sections?.length - 1 && (
                       <Divider />
                     )}
                   </Fragment>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   mobileAppbar_button: {
     paddingBottom: "calc(8px + env(safe-area-inset-bottom))",
     [theme.breakpoints.only("xxs")]: {
-      minWidth: "64px",
+      minWidth: theme.spacing(8),
     },
   },
 }));

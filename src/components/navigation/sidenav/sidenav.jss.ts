@@ -1,7 +1,7 @@
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { Theme } from "types";
 
-const useStyles = makeStyles(({ palette, mixins }: Theme) =>
+const useStyles = makeStyles(({ palette, mixins, spacing }: Theme) =>
   createStyles({
     sidenav_root: {
       display: "flex",
@@ -25,7 +25,7 @@ const useStyles = makeStyles(({ palette, mixins }: Theme) =>
       display: "flex",
       alignItems: "center",
       justifyContent: "flex-end",
-      marginRight: "16px",
+      marginRight: spacing(2),
       ...mixins.toolbar,
     },
     sidenav_logo: {
