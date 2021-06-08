@@ -1,11 +1,11 @@
 import React from "react";
-import { AppBar, Badge, Divider, IconButton, Toolbar } from "@material-ui/core";
+import { AppBar, Divider, IconButton, Toolbar } from "@material-ui/core";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 import clsx from "clsx";
 import useStyles from "./header.jss";
 import Breadcrumbs from "../breadcrumbs/Breadcrumbs";
-import RefreshIcon from "@material-ui/icons/Refresh";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+// import RefreshIcon from "@material-ui/icons/Refresh";
+// import NotificationsIcon from "@material-ui/icons/Notifications";
 import { AccountButton } from "components";
 
 interface IHeaderProps {
@@ -35,14 +35,16 @@ const Header: React.FC<IHeaderProps> = ({ open, toggleDrawer }) => {
           <Breadcrumbs />
         </div>
         <div className={classes.header_buttons}>
-          <IconButton aria-label="refresh" aria-controls="refresh-button">
+          {/* <IconButton aria-label="refresh" aria-controls="refresh-button">
             <RefreshIcon />
           </IconButton>
-          <IconButton aria-label="show n new notifications">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <div className={classes.header_notificationButton}>
+            <IconButton aria-label="show n new notifications">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+          </div> */}
           <div className={classes.header_accountButton}>
             <AccountButton />
           </div>

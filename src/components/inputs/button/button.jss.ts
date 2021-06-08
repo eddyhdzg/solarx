@@ -1,6 +1,5 @@
 import { ButtonProps as MUIButtonProps } from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-import { Theme } from "types";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const fontSize: { [key: string]: string } = {
   large: "1.125rem",

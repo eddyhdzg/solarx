@@ -1,9 +1,9 @@
 import { Redirect, Route, RouteProps } from "react-router";
-import { useUser } from "reactfire";
+import { useSigninCheck } from "reactfire";
 import { CenterLoader } from "components";
 
 const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
-  const { status, data: user } = useUser();
+  const { status, data: signInCheckResult } = useSigninCheck();
 
   return (
     <Route
@@ -12,7 +12,7 @@ const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
         if (status === "loading") {
           return <CenterLoader />;
         }
-        return user ? (
+        return signInCheckResult.signedIn ? (
           children
         ) : (
           <Redirect

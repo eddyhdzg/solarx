@@ -3,8 +3,16 @@ import { usePalette } from "hooks";
 import createBreakpoints from "theme/createBreakpoints";
 import yellow from "@material-ui/core/colors/yellow";
 
-export const customTheme = {
-  custom: {},
+export interface CustomTheme {
+  custom: {
+    login: string;
+  };
+}
+
+export const customTheme: CustomTheme = {
+  custom: {
+    login: "linear-gradient(135deg,rgb(48, 50, 54), rgb(31, 32, 35))",
+  },
 };
 
 const useCreateMuiTheme = () => {

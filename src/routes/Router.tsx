@@ -1,14 +1,14 @@
 import { CenterLoader } from "components";
-import { useUser } from "reactfire";
+import { useSigninCheck } from "reactfire";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 
 export default function Router() {
-  const { status, data: user } = useUser();
+  const { status, data: signinResult } = useSigninCheck();
 
   if (status === "loading") {
     return <CenterLoader />;
   }
 
-  return user ? <PrivateRoutes /> : <PublicRoutes />;
+  return signinResult.signedIn ? <PrivateRoutes /> : <PublicRoutes />;
 }

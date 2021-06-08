@@ -5,11 +5,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     layout: {
       display: "flex",
-    },
-    layout_toolbar: {
-      ...theme.mixins.toolbar,
+      height: "100vh",
     },
     layout_main: {
+      position: "relative",
       flexGrow: 1,
       padding: theme.spacing(3),
       transition: theme.transitions.create("margin", {
@@ -17,6 +16,13 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen,
       }),
       marginLeft: -drawerWidth,
+      marginTop: theme.spacing(7),
+      [`${theme.breakpoints.up("xs")} and (orientation: landscape)`]: {
+        marginTop: theme.spacing(6),
+      },
+      [theme.breakpoints.up("md")]: {
+        marginTop: theme.spacing(8),
+      },
     },
     layout_main__shift: {
       transition: theme.transitions.create("margin", {

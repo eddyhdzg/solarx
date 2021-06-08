@@ -1,5 +1,10 @@
 import Router from "routes/Router";
+import { ProvidersWrapper } from "providers";
 
 export default function App() {
-  return <Router />;
+  return (
+    <ProvidersWrapper>
+      <Router />
+    </ProvidersWrapper>
+  );
 }

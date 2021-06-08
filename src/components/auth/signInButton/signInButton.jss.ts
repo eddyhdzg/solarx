@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
       "& .firebaseui-idp-button": {
         maxWidth: theme.spacing(40),
-        padding: theme.spacing(1.5, 8),
+        padding: theme.spacing(1.5, 4),
       },
     },
   })

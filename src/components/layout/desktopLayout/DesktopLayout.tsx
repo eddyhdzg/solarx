@@ -24,7 +24,6 @@ const DesktopLayout: React.FC = ({ children }) => {
           [classes.layout_main__shift]: drawer,
         })}
       >
-        <div className={classes.layout_toolbar} />
         {children}
       </main>
     </div>

@@ -68,32 +68,6 @@ export const routesTree: RoutesTree = {
       },
     ],
   },
-  "/portfolio": {
-    title: "portfolio",
-    icon: MenuBookRoundedIcon,
-    sections: [
-      {
-        subHeader: "category C",
-        subRoutes: [
-          {
-            title: "link c 1",
-            subRoute: "/link-c-1",
-            component: Loader,
-          },
-        ],
-      },
-      {
-        subHeader: "category D",
-        subRoutes: [
-          {
-            title: "link d 1",
-            subRoute: "/link-d-1",
-            component: Loader,
-          },
-        ],
-      },
-    ],
-  },
   "/trading": {
     title: "trading",
     icon: ShowChartRoundedIcon,
@@ -124,6 +98,32 @@ export const routesTree: RoutesTree = {
           {
             title: "bonds",
             subRoute: "/bonds",
+            component: Loader,
+          },
+        ],
+      },
+    ],
+  },
+  "/portfolio": {
+    title: "portfolio",
+    icon: MenuBookRoundedIcon,
+    sections: [
+      {
+        subHeader: "category C",
+        subRoutes: [
+          {
+            title: "link c 1",
+            subRoute: "/link-c-1",
+            component: Loader,
+          },
+        ],
+      },
+      {
+        subHeader: "category D",
+        subRoutes: [
+          {
+            title: "link d 1",
+            subRoute: "/link-d-1",
             component: Loader,
           },
         ],

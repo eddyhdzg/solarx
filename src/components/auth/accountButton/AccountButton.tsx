@@ -9,13 +9,14 @@ import {
   Grow,
   ClickAwayListener,
 } from "@material-ui/core";
-import { useUser, useAuth } from "reactfire";
+import { useSigninCheck, useAuth } from "reactfire";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import useStyles from "./accountButton.jss";
 
 const AccountButton: React.FC = () => {
+  const classes = useStyles();
   const auth = useAuth();
-  const {
-    data: { photoURL },
-  } = useUser();
+  const { data: signinResult } = useSigninCheck();
 
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
@@ -64,8 +65,12 @@ const AccountButton: React.FC = () => {
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
         onClick={handleToggle}
+        className={classes.accountButton_iconButton}
       >
-        <Avatar alt="google avatar" src={photoURL || undefined} />
+        <Avatar
+          alt="google avatar"
+          src={signinResult?.user?.photoURL || undefined}
+        />
       </IconButton>
 
       <Popper
@@ -90,7 +95,12 @@ const AccountButton: React.FC = () => {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem onClick={() => handleLogOut()}>Logout</MenuItem>
+                  <MenuItem onClick={() => handleLogOut()}>
+                    <ExitToAppRoundedIcon
+                      className={classes.accountButton_icon}
+                    />
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

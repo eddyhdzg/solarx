@@ -1,5 +1,4 @@
-import { makeStyles } from "@material-ui/core";
-import { Theme } from "types";
+import { makeStyles, Theme } from "@material-ui/core";
 
 const useStyles = makeStyles(({ palette }: Theme) => ({
   tooltip: {

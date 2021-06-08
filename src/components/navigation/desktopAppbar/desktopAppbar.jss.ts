@@ -1,5 +1,4 @@
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { Theme } from "types";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { drawerWidth } from "constant";
 
 const useStyles = makeStyles(({ palette }: Theme) =>
