@@ -5,12 +5,15 @@ import yellow from "@material-ui/core/colors/yellow";
 
 export interface CustomTheme {
   custom: {
+    gradient: string;
     login: string;
   };
 }
 
 export const customTheme: CustomTheme = {
   custom: {
+    gradient: "linear-gradient(60deg, #FBDE51, #F2805A)",
+    // gradient2: "linear-gradient(60deg, #EBCE41, #E2704A)",
     login: "linear-gradient(135deg,rgb(48, 50, 54), rgb(31, 32, 35))",
   },
 };
@@ -88,9 +91,11 @@ const useCreateMuiTheme = () => {
       },
       subtitle1: {
         fontWeight: 600,
+        lineHeight: "1.5rem",
       },
       subtitle2: {
         fontWeight: 500,
+        lineHeight: "1.5rem",
       },
     },
   };

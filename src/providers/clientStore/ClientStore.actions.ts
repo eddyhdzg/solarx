@@ -1,4 +1,4 @@
-import { Locales, TBaseRoutes, ThemeType } from "types";
+import { Locales, ThemeType, ProjectsType } from "types";
 
 export interface LocaleToggleLocale {
   type: "LOCALE_TOGGLE_LOCALE";
@@ -15,13 +15,13 @@ export interface DrawerToggleDrawer {
   payload: boolean;
 }
 
-export interface RouterMemoUpdateMemo {
-  type: "ROUTERMEMO_UPDATE_MEMO";
-  payload: { key: TBaseRoutes; route: string };
+export interface ProjectsToggleType {
+  type: "PROJECTS_TOGGLE_TYPE";
+  payload: ProjectsType;
 }
 
 export type Actions =
   | ThemeSetTheme
   | DrawerToggleDrawer
   | LocaleToggleLocale
-  | RouterMemoUpdateMemo;
+  | ProjectsToggleType;

@@ -12,8 +12,8 @@ const reducer = (draft: ClientState, action: Actions) => {
     case "LOCALE_TOGGLE_LOCALE":
       draft.locale = action.payload;
       break;
-    case "ROUTERMEMO_UPDATE_MEMO":
-      draft.routerMemo[action.payload.key] = action.payload.route;
+    case "PROJECTS_TOGGLE_TYPE":
+      draft.projectType = action.payload;
       break;
     default:
       throw new Error("Invalid action type");

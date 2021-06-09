@@ -9,6 +9,8 @@ import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import Loader from "pages/[section]/[subSection]";
 import Preferences from "pages/more/preferences/Preferences";
 import Session from "pages/more/session/Session";
+// import Projects from "pages/projects/Projects";
+import { ProjectsRoute } from "pages/pages";
 
 export type RoutesTree = {
   [key in TBaseRoutes]: {
@@ -140,7 +142,7 @@ export const routesTree: RoutesTree = {
           {
             title: "link e 1",
             subRoute: "/link-e-1",
-            component: Loader,
+            component: ProjectsRoute,
           },
           {
             title: "link e 2",

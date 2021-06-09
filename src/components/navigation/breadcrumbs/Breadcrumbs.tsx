@@ -2,6 +2,7 @@ import { Breadcrumbs as MUIBreadcrumbs, Typography } from "@material-ui/core";
 import NavigateNextRoundedIcon from "@material-ui/icons/NavigateNextRounded";
 import { useBreadcrumbs, useCopywriting } from "hooks";
 import useStyles from "./breadcrumbs.jss";
+import { Link } from "react-router-dom";
 
 const Breadcrumbs: React.FC = () => {
   const classes = useStyles();
@@ -31,8 +32,10 @@ const Breadcrumbs: React.FC = () => {
             key={href}
             color={last ? "textPrimary" : "textSecondary"}
             noWrap
+            component={Link}
+            to={href}
           >
-            {copy?.router[breadcrumb]}
+            {copy?.router[breadcrumb] || breadcrumb}
           </Typography>
         );
       })}

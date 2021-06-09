@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({
   const styles = useStyles({ size });
 
   return (
-    <MUIButton className={styles.button} color={color} {...props}>
+    <MUIButton className={styles.button} color={color} size={size} {...props}>
       {children}
     </MUIButton>
   );
