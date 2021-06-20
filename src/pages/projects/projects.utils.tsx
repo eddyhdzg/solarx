@@ -126,23 +126,19 @@ export const rows: Project[] = [
 
 export const tileData = [
   {
-    title: "Image",
-    author: "author",
-    img: "https://www.thekickassentrepreneur.com/wp-content/uploads/2019/12/solar-farm-business.jpg",
+    title: "Image1",
+    img: "https://reneweconomy.com.au/wp-content/uploads/2020/07/Canva-Commercial-building-factory-rooftop-installed-photovoltaic-solar-panels-1-optimised-1280x720.jpg",
   },
   {
-    title: "Image",
-    author: "author",
-    img: "https://ensia.com/wp-content/uploads/2018/05/Feature_SolarFarms_inline.jpg",
+    title: "Image2",
+    img: "https://www.solarfeeds.com/mag/wp-content/uploads/2019/08/solar-energy-3297945_1280.jpg",
   },
   {
-    title: "Image",
-    author: "author",
-    img: "https://belectric.com/wp-content/uploads/2019/05/02_BELECTRIC_India_Roof-top-project.jpg",
+    title: "Image3",
+    img: "https://iaa-network.com/wp-content/uploads/2020/09/Solar-Panel-Arbitration.jpg",
   },
   {
-    title: "Image",
-    author: "author",
-    img: "https://s3-prod.rubbernews.com/s3fs-public/NEWS_181209965_AR_-1_RXVAQCDNBWGE.jpg",
+    title: "Image4",
+    img: "https://www.hisour.com/wp-content/uploads/2018/09/Nominal-power-in-photovoltaic-1280x720.jpg",
   },
 ];

@@ -3,7 +3,6 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      minWidth: 275,
       position: "sticky",
       [theme.breakpoints.up("lg")]: {
         top: theme.spacing(10),
@@ -14,6 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "flex-end",
       justifyContent: "space-between",
       marginBottom: theme.spacing(2),
+      flexWrap: "wrap",
     },
     projectCardSummary_ul: {
       margin: 0,
@@ -30,16 +30,25 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     projectCardSummary_divider: {
-      marginBottom: theme.spacing(1),
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
     },
     projectCardSummary_input: {
       width: "100%",
-      maxWidth: "160px",
+      maxWidth: "120px",
+      [theme.breakpoints.only("xxs")]: {
+        marginBottom: theme.spacing(1),
+      },
     },
     projectCardSummary_inputs: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
+      justifyContent: "center",
+      flexDirection: "column",
+      [theme.breakpoints.up("xs")]: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+      },
     },
     projectCardSummary_cardActions: {
       justifyContent: "center",

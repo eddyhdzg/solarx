@@ -83,7 +83,7 @@ export default function ProjectDataList() {
         <div className={classes.projectGeneralInfo_ul}>
           {projectDataList1.map(({ icon: Icon, text, caption, info }) => {
             return (
-              <li className={classes.projectGeneralInfo_li}>
+              <li key={caption} className={classes.projectGeneralInfo_li}>
                 <div className={classes.projectGeneralInfo_icon}>
                   <Icon />
                 </div>
@@ -106,7 +106,7 @@ export default function ProjectDataList() {
         <div className={classes.projectGeneralInfo_ul}>
           {projectDataList2.map(({ icon: Icon, text, caption }) => {
             return (
-              <li className={classes.projectGeneralInfo_li}>
+              <li key={caption} className={classes.projectGeneralInfo_li}>
                 <div className={classes.projectGeneralInfo_icon}>
                   <Icon />
                 </div>

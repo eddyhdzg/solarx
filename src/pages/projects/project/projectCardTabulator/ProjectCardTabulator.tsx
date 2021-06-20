@@ -36,7 +36,9 @@ export default function ProjectCardTabulator() {
     <Card className={classes.root}>
       <CardContent>
         <div className={classes.header}>
-          <Typography variant="h5">Summary</Typography>
+          <Typography variant="h5" className={classes.projectCardSummary_mr1}>
+            Summary
+          </Typography>
 
           <Typography variant="body2" color="textSecondary">
             {formatNumber(sharesAvailable)} Shares available
@@ -46,7 +48,7 @@ export default function ProjectCardTabulator() {
         <div className={classes.projectCardSummary_inputs}>
           <TextField
             id="outlined-number"
-            label="Number of Shares"
+            label="Shares"
             type="number"
             InputLabelProps={{
               shrink: true,
@@ -77,6 +79,14 @@ export default function ProjectCardTabulator() {
 
         <ul className={classes.projectCardSummary_ul}>
           <li className={classes.projectCardSummary_li}>
+            <Typography variant="subtitle2" color="textSecondary">
+              Total Price
+            </Typography>
+            <Typography variant="subtitle1">
+              {formatMoney(sharePrice * shares)}
+            </Typography>
+          </li>
+          <li className={classes.projectCardSummary_li}>
             <Typography
               color="textSecondary"
               variant="subtitle2"
@@ -86,17 +96,6 @@ export default function ProjectCardTabulator() {
             </Typography>
             <Typography variant="subtitle1">
               {formatMoney(monthlyRevenue * shares * recurrence)}
-            </Typography>
-          </li>
-          <li className={classes.projectCardSummary_li}>
-            <Typography variant="subtitle2" color="textSecondary">
-              Total Price
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              className={classes.projectCardSummary_mr1}
-            >
-              {formatMoney(sharePrice * shares)}
             </Typography>
           </li>
         </ul>
