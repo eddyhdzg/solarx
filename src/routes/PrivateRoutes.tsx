@@ -12,14 +12,20 @@ export default function PrivateRoutes() {
     <Layout>
       <Switch>
         {Object.entries(routesTree).map(([path, { sections }]) => (
-          <PrivateRoute key={path} path={path}>
+          <Route key={path} path={path}>
             <Switch>
               {sections.map(({ subRoutes }) =>
-                subRoutes.map(({ subRoute, component: Component }) => (
-                  <Route key={subRoute} path={path + subRoute}>
-                    <Component />
-                  </Route>
-                ))
+                subRoutes.map(
+                  ({ subRoute, component: Component, isPrivate }) => {
+                    const RouteType = isPrivate ? PrivateRoute : Route;
+
+                    return (
+                      <RouteType key={subRoute} path={path + subRoute}>
+                        <Component />
+                      </RouteType>
+                    );
+                  }
+                )
               )}
 
               {isDesktop && (
@@ -40,7 +46,7 @@ export default function PrivateRoutes() {
                 ))
               )}
             </Switch>
-          </PrivateRoute>
+          </Route>
         ))}
 
         <Route render={() => <Redirect to="/home" />} />

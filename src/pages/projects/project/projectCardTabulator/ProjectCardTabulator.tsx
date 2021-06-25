@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import useStyles from "./projectCardTabulator.jss";
 import { formatMoney, formatNumber } from "utils";
+import { useSigninCheck } from "reactfire";
 
 const sharePrice = 8000;
 const monthlyRevenue = 118.66;
@@ -21,6 +22,7 @@ export default function ProjectCardTabulator() {
   const classes = useStyles();
   const [shares, setShares] = useState(1);
   const [recurrence, setRecurrence] = useState<1 | 12>(12);
+  const { data: signinResult } = useSigninCheck();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -101,8 +103,15 @@ export default function ProjectCardTabulator() {
         </ul>
       </CardContent>
       <CardActions className={classes.projectCardSummary_cardActions}>
-        <Button color="primary" variant="contained" size="large">
-          Proceed to Payment
+        <Button
+          color="primary"
+          variant="contained"
+          size="large"
+          disabled={!signinResult.signedIn}
+        >
+          {signinResult.signedIn
+            ? "Proceed to Payment"
+            : "Sign in to proceed to payment"}
         </Button>
       </CardActions>
     </Card>

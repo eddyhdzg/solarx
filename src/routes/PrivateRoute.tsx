@@ -1,4 +1,4 @@
-import { Redirect, Route, RouteProps } from "react-router";
+import { Route, RouteProps } from "react-router";
 import { useSigninCheck } from "reactfire";
 import { CenterLoader } from "components";
 
@@ -8,20 +8,11 @@ const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ location }) => {
+      render={() => {
         if (status === "loading") {
           return <CenterLoader />;
         }
-        return signInCheckResult.signedIn ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
-        );
+        return signInCheckResult.signedIn ? children : <h1>Please Log In</h1>;
       }}
     />
   );

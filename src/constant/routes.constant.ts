@@ -6,10 +6,8 @@ import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
 import { TBaseRoutes } from "types";
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import Loader from "pages/[section]/[subSection]";
+import Loader from "pages/loader";
 import Preferences from "pages/more/preferences/Preferences";
-import Session from "pages/more/session/Session";
-// import Projects from "pages/projects/Projects";
 import { ProjectsRoute } from "pages/pages";
 
 export type RoutesTree = {
@@ -22,17 +20,7 @@ export type RoutesTree = {
         title: string;
         subRoute: string;
         component(): JSX.Element;
-      }[];
-    }[];
-  };
-};
-
-export type RoutesTreeCopy = {
-  [key in TBaseRoutes]: {
-    sections: {
-      subHeader: string;
-      subRoutes: {
-        title: string;
+        isPrivate?: boolean;
       }[];
     }[];
   };
@@ -144,11 +132,6 @@ export const routesTree: RoutesTree = {
             subRoute: "/link-e-1",
             component: ProjectsRoute,
           },
-          {
-            title: "link e 2",
-            subRoute: "/link-e-2",
-            component: Loader,
-          },
         ],
       },
     ],
@@ -164,11 +147,6 @@ export const routesTree: RoutesTree = {
             title: "preferences",
             subRoute: "/preferences",
             component: Preferences,
-          },
-          {
-            title: "session",
-            subRoute: "/session",
-            component: Session,
           },
         ],
       },

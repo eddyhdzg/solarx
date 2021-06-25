@@ -1,3 +1,5 @@
+// Auth
+export { default as useCustomAuth } from "./auth/useCustomAuth";
 // Forms
 export * from "./forms/useProjectFilters";
 export { default as useProjectFilters } from "./forms/useProjectFilters";

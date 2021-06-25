@@ -9,15 +9,16 @@ import {
   Grow,
   ClickAwayListener,
 } from "@material-ui/core";
-import { useSigninCheck, useAuth } from "reactfire";
+import { useSigninCheck } from "reactfire";
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import GoogleIcon from "@material-ui/icons/Google";
 import useStyles from "./accountButton.jss";
+import { useCustomAuth } from "hooks";
 
 const AccountButton: React.FC = () => {
   const classes = useStyles();
-  const auth = useAuth();
+  const { signIn, signOut } = useCustomAuth();
   const { data: signinResult } = useSigninCheck();
-
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
 
@@ -36,9 +37,16 @@ const AccountButton: React.FC = () => {
     setOpen(false);
   };
 
-  const handleLogOut = () => {
-    auth.signOut();
-    setOpen(false);
+  const handleSignIn = () => {
+    signIn().finally(() => {
+      setOpen(false);
+    });
+  };
+
+  const handleSignOut = () => {
+    signOut().finally(() => {
+      setOpen(false);
+    });
   };
 
   function handleListKeyDown(event: React.KeyboardEvent) {
@@ -95,12 +103,19 @@ const AccountButton: React.FC = () => {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  <MenuItem onClick={() => handleLogOut()}>
-                    <ExitToAppRoundedIcon
-                      className={classes.accountButton_icon}
-                    />
-                    Logout
-                  </MenuItem>
+                  {signinResult.signedIn ? (
+                    <MenuItem onClick={handleSignOut}>
+                      <ExitToAppRoundedIcon
+                        className={classes.accountButton_icon}
+                      />
+                      Logout
+                    </MenuItem>
+                  ) : (
+                    <MenuItem onClick={handleSignIn}>
+                      <GoogleIcon className={classes.accountButton_icon} />
+                      Sign In With Google
+                    </MenuItem>
+                  )}
                 </MenuList>
               </ClickAwayListener>
             </Paper>
