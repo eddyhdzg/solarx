@@ -3,30 +3,20 @@ import {
   GridCellParams,
   GridColDef,
   GridValueFormatterParams,
-  GridValueGetterParams,
 } from "@material-ui/data-grid";
 import { Project } from "types";
+import { formatNumber } from "utils";
 
-const getProgress = (params: GridValueGetterParams) => {
-  const progress =
-    ((params.row?.sharesSold as number) / (params.row?.totalShares as number)) *
-    100;
-
-  return progress;
+// NEW
+export const getPanels = ({ sharesSold, totalShares }: Project) => {
+  return `${sharesSold?.toLocaleString()} / ${totalShares?.toLocaleString()}`;
 };
 
-const formatProgress = (params: GridValueFormatterParams) => {
-  const valueFormatted = (params.value as number).toLocaleString("en-US", {
-    maximumFractionDigits: 2,
-  });
-  return `${valueFormatted} %`;
+export const getProgress = ({ sharesSold, totalShares }: Project) => {
+  return `${formatNumber((sharesSold / totalShares) * 100)} %`;
 };
 
-const getPanels = (params: GridValueGetterParams) => {
-  const { sharesSold, totalShares } = params.row;
-  return [sharesSold, totalShares];
-};
-
+// OLD
 const formatPanels = (params: GridValueFormatterParams) => {
   const [sold, total] = params.value as [number, number];
   return `${sold?.toLocaleString()} / ${total?.toLocaleString()}`;
@@ -62,7 +52,7 @@ export const columns: GridColDef[] = [
     headerName: "Shares (funded/total)",
     width: 250,
     type: "number",
-    valueGetter: getPanels,
+    // valueGetter: getPanels,
     valueFormatter: formatPanels,
     // @ts-ignore
     sortComparator: sortPanels,
@@ -72,8 +62,8 @@ export const columns: GridColDef[] = [
     headerName: "Progress",
     width: 150,
     type: "number",
-    valueGetter: getProgress,
-    valueFormatter: formatProgress,
+    // valueGetter: getProgress,
+    // valueFormatter: formatProgress,
   },
 ];
 
@@ -119,7 +109,7 @@ export const rows: Project[] = [
     sharePrice: 4100,
     sharesSold: 500,
     totalShares: 500,
-    ror: 18.5,
+    ror: 18.555,
     img: "https://belectric.com/wp-content/uploads/2019/05/02_BELECTRIC_India_Roof-top-project.jpg",
   },
 ];

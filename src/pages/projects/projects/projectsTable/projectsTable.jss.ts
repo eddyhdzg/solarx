@@ -1,11 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => ({
   projectsTable_paper: {
     display: "flex",
-  },
-  projectsTable_container: {
-    flexGrow: 1,
+    whiteSpace: "nowrap",
+    overflow: "scroll",
   },
 }));
 

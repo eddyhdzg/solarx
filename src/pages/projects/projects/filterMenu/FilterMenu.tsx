@@ -140,8 +140,8 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                         {...field}
                       >
                         <option value={""}></option>
-                        <option value={"1"}>Funded</option>
-                        <option value={"0"}>Not Funded</option>
+                        <option value={"true"}>Funded</option>
+                        <option value={"false"}>Not Funded</option>
                       </Select>
                     )}
                   />

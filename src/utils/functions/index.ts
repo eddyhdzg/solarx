@@ -13,3 +13,7 @@ export const formatNumber = (num: number) => {
 export const formatMoney = (num: number) => {
   return `$${num.toLocaleString(undefined, { maximumFractionDigits: 2 })} MXN`;
 };
+
+export const formatPercentage = (num: number) => {
+  return `$${num.toLocaleString(undefined, { maximumFractionDigits: 2 })}%`;
+};

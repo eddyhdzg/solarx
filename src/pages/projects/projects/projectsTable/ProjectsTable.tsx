@@ -1,58 +1,119 @@
-import { useState } from "react";
-import { Paper } from "@material-ui/core";
 import {
-  DataGrid,
-  GridPageChangeParams,
-  GridToolbarContainer,
-  GridToolbarColumnsButton,
-} from "@material-ui/data-grid";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableFooter,
+  TablePagination,
+  Paper,
+} from "@material-ui/core";
+import TablePaginationActions from "../tablePaginationActions/TablePaginationActions";
 import useStyles from "./projectsTable.jss";
-import CustomLoading from "../customLoading/CustomLoading";
-import CustomPagination from "../customPagination/CustomPagination";
-import { columns } from "../../projects.utils";
-import { Project } from "types";
+import React from "react";
 
-function CustomToolbar() {
-  return (
-    <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-    </GridToolbarContainer>
-  );
-}
-
-interface IProjectsTableProps {
-  projects: Project[];
-}
-
-export default function ProjectsTable({ projects }: IProjectsTableProps) {
+export default function ProjectsTable({
+  getTableProps,
+  getTableBodyProps,
+  headerGroups,
+  rows,
+  prepareRow,
+  page,
+  gotoPage,
+  setPageSize,
+  state: { pageIndex, pageSize },
+}: any) {
   const classes = useStyles();
-  const [pageSize, setPageSize] = useState(5);
 
-  const handlePageSizeChange = (params: GridPageChangeParams) => {
-    setPageSize(params.pageSize);
+  const handleChangePage = (
+    _: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    gotoPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setPageSize(parseInt(event.target.value, 10));
+    gotoPage(0);
   };
 
   return (
-    <Paper elevation={2} className={classes.projectsTable_paper}>
-      <div className={classes.projectsTable_container}>
-        <DataGrid
-          autoHeight
-          pageSize={pageSize}
-          onPageSizeChange={handlePageSizeChange}
-          rowsPerPageOptions={[5, 10, 20]}
-          pagination
-          rows={projects}
-          columns={columns}
-          components={{
-            LoadingOverlay: CustomLoading,
-            Pagination: CustomPagination,
-            Toolbar: CustomToolbar,
-          }}
-          isRowSelectable={() => false}
-          disableDensitySelector
-          disableColumnMenu
-        />
-      </div>
-    </Paper>
+    <>
+      <Paper elevation={3} className={classes.projectsTable_paper}>
+        <Table {...getTableProps()}>
+          <TableHead>
+            {headerGroups.map((headerGroup: any) => (
+              <TableRow {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column: any) => (
+                  <TableCell
+                    tabIndex={column?.tabIndex || "1"}
+                    onKeyPress={() => {
+                      column.toggleSortBy();
+                    }}
+                    {...column.getHeaderProps([
+                      column.getSortByToggleProps(),
+                      {
+                        className: column?.className,
+                      },
+                    ])}
+                  >
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : ""}
+                    </span>
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableHead>
+          <TableBody {...getTableBodyProps()}>
+            {page.map((row: any) => {
+              prepareRow(row);
+              return (
+                <TableRow {...row.getRowProps()}>
+                  {row.cells.map((cell: any) => {
+                    return (
+                      <TableCell
+                        {...cell.getCellProps({
+                          className: cell.column.className,
+                        })}
+                      >
+                        {cell.render("Cell")}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25]}
+                count={rows.length}
+                rowsPerPage={pageSize}
+                page={pageIndex}
+                SelectProps={{
+                  inputProps: { "aria-label": "rows per page" },
+                  native: true,
+                }}
+                onChangePage={handleChangePage}
+                onChangeRowsPerPage={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                style={{
+                  borderBottom: "none",
+                }}
+              />
+            </TableRow>
+          </TableFooter>
+        </Table>
+      </Paper>
+    </>
   );
 }

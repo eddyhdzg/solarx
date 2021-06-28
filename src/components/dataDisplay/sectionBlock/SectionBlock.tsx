@@ -23,7 +23,7 @@ const SectionBlock: React.FC<PaperProps> & ISectionBlockCompoundComponents = ({
   ...props
 }) => {
   return (
-    <Paper elevation={2} {...props}>
+    <Paper elevation={3} {...props}>
       {children}
     </Paper>
   );

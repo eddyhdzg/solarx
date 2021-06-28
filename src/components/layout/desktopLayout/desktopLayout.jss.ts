@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: "100vh",
     },
     layout_main: {
+      overflow: "auto",
       position: "relative",
       flexGrow: 1,
       padding: theme.spacing(3),
