@@ -2,10 +2,16 @@ import useClipboard from "react-use-clipboard";
 import { Tooltip, Typography, Button } from "@material-ui/core";
 import { useLocation } from "react-router";
 import useStyles from "./projectHeader.jss";
-import IosShareIcon from "@material-ui/icons/IosShare";
+import ContentCopyIcon from "@material-ui/icons/ContentCopy";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
+import { Project } from "types";
 
-const ProjectHeader = () => {
+type IProjectHeader = Partial<Pick<Project, "id" | "name" | "location">>;
+
+const ProjectHeader: React.FC<IProjectHeader> = ({
+  name,
+  location: projectLocation,
+}) => {
   const location = useLocation();
   const [isCopied, setCopied] = useClipboard(
     "https://solarx.app" + location.pathname,
@@ -19,11 +25,9 @@ const ProjectHeader = () => {
     <div className={classes.projectHeader_header}>
       <div>
         <Typography variant="h5" component="h2">
-          "Tierra Corazón" Cabaña en Huachichil
+          {name}
         </Typography>
-        <Typography variant="subtitle2">
-          Huachichil, Coahuila de Zaragoza, México
-        </Typography>
+        <Typography variant="subtitle2">{projectLocation}</Typography>
       </div>
       <div className={classes.projectHeader_buttonsContainer}>
         <Tooltip
@@ -38,8 +42,8 @@ const ProjectHeader = () => {
             className={classes.projectHeader_shareButton}
             size="small"
           >
-            Share
-            <IosShareIcon className={classes.projectHeader_icon} />
+            Copy URL
+            <ContentCopyIcon className={classes.projectHeader_icon} />
           </Button>
         </Tooltip>
 

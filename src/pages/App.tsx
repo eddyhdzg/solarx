@@ -1,10 +1,13 @@
+import { useEffect } from "react";
+// import { useFirestore } from "reactfire";
 import Router from "routes/Router";
-import { ProvidersWrapper } from "providers";
 
 export default function App() {
-  return (
-    <ProvidersWrapper>
-      <Router />
-    </ProvidersWrapper>
-  );
+  // const firestore = useFirestore();
+
+  useEffect(() => {
+    // firestore.enablePersistence();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return <Router />;
 }

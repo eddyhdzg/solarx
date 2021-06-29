@@ -2,17 +2,17 @@ import { Switch, Route } from "react-router-dom";
 import Projects from "./projects/Projects";
 import Project from "./project/Project";
 
-const ProjectsRoute = () => {
+const CrowdfundingRoute = () => {
   return (
     <Switch>
-      <Route exact path="/projects/link-e-1">
+      <Route exact path="/crowdfunding/projects">
         <Projects />
       </Route>
-      <Route exact path="/projects/link-e-1/:id">
+      <Route exact path="/crowdfunding/projects/:id">
         <Project />
       </Route>
     </Switch>
   );
 };
 
-export default ProjectsRoute;
+export default CrowdfundingRoute;

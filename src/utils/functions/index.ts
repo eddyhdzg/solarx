@@ -15,5 +15,8 @@ export const formatMoney = (num: number) => {
 };
 
 export const formatPercentage = (num: number) => {
-  return `$${num.toLocaleString(undefined, { maximumFractionDigits: 2 })}%`;
+  return `${num.toLocaleString(undefined, { maximumFractionDigits: 0 })}%`;
+};
+export const formatPercentage2Dec = (num: number) => {
+  return `${num.toLocaleString(undefined, { maximumFractionDigits: 2 })}%`;
 };

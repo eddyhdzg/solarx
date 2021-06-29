@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       position: "sticky",
       [theme.breakpoints.up("lg")]: {
-        top: theme.spacing(10),
+        top: 0,
       },
     },
     header: {

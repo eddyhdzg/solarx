@@ -4,10 +4,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     mobileLayout_notch: {
       minHeight: "env(safe-area-inset-top)",
-      width: "100%",
       backgroundColor: theme.palette.background.default,
       position: "fixed",
       top: 0,
+      width: "100%",
       zIndex: theme.zIndex.appBar + 1,
     },
     mobileLayout_offset: theme.mixins.toolbar,

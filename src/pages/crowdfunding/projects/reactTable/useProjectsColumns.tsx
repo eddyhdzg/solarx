@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Project } from "types";
-import { formatMoney, formatPercentage } from "utils";
+import { formatMoney, formatPercentage2Dec } from "utils";
 import { getProgress, getPanels } from "../../projects.utils";
 import { Chip } from "@material-ui/core";
 import { Column } from "react-table";
@@ -57,7 +57,8 @@ const useProjectsColumns = () => {
       {
         Header: "RoR (rate of return)",
         accessor: "ror",
-        Cell: ({ value }: { value: Project["ror"] }) => formatPercentage(value),
+        Cell: ({ value }: { value: Project["ror"] }) =>
+          formatPercentage2Dec(value),
         className: classes.alignRight,
       },
       {

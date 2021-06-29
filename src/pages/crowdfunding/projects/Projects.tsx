@@ -6,7 +6,7 @@ import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import FilterChips from "./filterChips/FilterChips";
 import FilterMenu from "./filterMenu/FilterMenu";
 import { IconButton, Tooltip } from "@material-ui/core";
-import { useProjectFilters, useStore } from "hooks";
+import { useProjectFilters, useStore, useProjects } from "hooks";
 import shallow from "zustand/shallow";
 import GlobalFilter from "./reactTable/GlobalFilter";
 import {
@@ -17,7 +17,6 @@ import {
   usePagination,
 } from "react-table";
 import useProjectsColumns from "./reactTable/useProjectsColumns";
-import { rows as localProjects } from "../projects.utils";
 import useStyles from "./projects.jss";
 
 const Projects = () => {
@@ -27,11 +26,13 @@ const Projects = () => {
     shallow
   );
   const columns = useProjectsColumns();
-  const data = useMemo(() => localProjects, []);
+  const { data: projects } = useProjects();
+  const data = useMemo(() => projects, [projects]);
 
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {
       columns,
+
       data,
     },
     useFilters,

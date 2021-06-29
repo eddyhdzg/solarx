@@ -80,7 +80,6 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                 <Controller
                   name="id"
                   control={control}
-                  defaultValue=""
                   render={({ field }) => (
                     <TextField
                       id="id-filter"
@@ -95,7 +94,6 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                 <Controller
                   name="name"
                   control={control}
-                  defaultValue=""
                   render={({ field }) => (
                     <TextField
                       id="name-filter"
@@ -111,7 +109,6 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                 <Controller
                   name="location"
                   control={control}
-                  defaultValue=""
                   render={({ field }) => (
                     <TextField
                       id="location-filter"
@@ -129,7 +126,6 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                   <Controller
                     control={control}
                     name="funded"
-                    defaultValue={""}
                     render={({ field }) => (
                       <Select
                         native

@@ -30,7 +30,7 @@ export default function ProjectCard({
 
   return (
     <Card className={classes.projectCard_root}>
-      <CardActionArea component={Link} to={`/projects/link-e-1/${id}`}>
+      <CardActionArea component={Link} to={`/crowdfunding/projects/${id}`}>
         <Skeleton
           animation="wave"
           variant="rect"

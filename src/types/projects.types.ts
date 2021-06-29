@@ -8,6 +8,7 @@ export interface Project {
   sharePrice: number;
   ror: number;
   img?: string;
+  images?: string[];
 }
 
 export type ProjectsType = "cards" | "table";

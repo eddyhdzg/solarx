@@ -49,7 +49,7 @@ export default function PrivateRoutes() {
           </Route>
         ))}
 
-        <Route render={() => <Redirect to="/home" />} />
+        <Route render={() => <Redirect to="/portfolio" />} />
       </Switch>
     </Layout>
   );

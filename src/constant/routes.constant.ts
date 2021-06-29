@@ -1,6 +1,5 @@
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import MenuBookRoundedIcon from "@material-ui/icons/MenuBookRounded";
-import ShowChartRoundedIcon from "@material-ui/icons/ShowChartRounded";
+import AdminPanelSettingsOutlinedIcon from "@material-ui/icons/AdminPanelSettingsOutlined";
 import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
 import { TBaseRoutes } from "types";
@@ -8,7 +7,7 @@ import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import Loader from "pages/loader";
 import Preferences from "pages/more/preferences/Preferences";
-import { ProjectsRoute } from "pages/pages";
+import { CrowdfundingRoute, AdminRoute } from "pages/pages";
 
 export type RoutesTree = {
   [key in TBaseRoutes]: {
@@ -27,73 +26,6 @@ export type RoutesTree = {
 };
 
 export const routesTree: RoutesTree = {
-  "/home": {
-    title: "home",
-    icon: HomeRoundedIcon,
-    sections: [
-      {
-        subHeader: "category A",
-        subRoutes: [
-          {
-            title: "link a 1",
-            subRoute: "/link-a-1",
-            component: Loader,
-          },
-        ],
-      },
-      {
-        subHeader: "category B",
-        subRoutes: [
-          {
-            title: "link b 1",
-            subRoute: "/link-b-1",
-            component: Loader,
-          },
-          {
-            title: "link b 2",
-            subRoute: "/link-b-2",
-            component: Loader,
-          },
-        ],
-      },
-    ],
-  },
-  "/trading": {
-    title: "trading",
-    icon: ShowChartRoundedIcon,
-    sections: [
-      {
-        subHeader: "Share Trading",
-        subRoutes: [
-          {
-            title: "buy",
-            subRoute: "/buy",
-            component: Loader,
-          },
-          {
-            title: "sell",
-            subRoute: "/sell",
-            component: Loader,
-          },
-          {
-            title: "crowdfunding",
-            subRoute: "/crowdfunding",
-            component: Loader,
-          },
-          {
-            title: "investment funds",
-            subRoute: "/investment-funds",
-            component: Loader,
-          },
-          {
-            title: "bonds",
-            subRoute: "/bonds",
-            component: Loader,
-          },
-        ],
-      },
-    ],
-  },
   "/portfolio": {
     title: "portfolio",
     icon: MenuBookRoundedIcon,
@@ -120,17 +52,33 @@ export const routesTree: RoutesTree = {
       },
     ],
   },
-  "/projects": {
-    title: "projects",
+  "/crowdfunding": {
+    title: "crowdfunding",
     icon: BusinessRoundedIcon,
     sections: [
       {
-        subHeader: "category E",
+        subHeader: "projects",
         subRoutes: [
           {
-            title: "link e 1",
-            subRoute: "/link-e-1",
-            component: ProjectsRoute,
+            title: "projects",
+            subRoute: "/projects",
+            component: CrowdfundingRoute,
+          },
+        ],
+      },
+    ],
+  },
+  "/admin": {
+    title: "admin",
+    icon: AdminPanelSettingsOutlinedIcon,
+    sections: [
+      {
+        subHeader: "projects",
+        subRoutes: [
+          {
+            title: "manage projects",
+            subRoute: "/projects",
+            component: AdminRoute,
           },
         ],
       },

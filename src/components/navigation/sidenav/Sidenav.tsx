@@ -31,7 +31,7 @@ const Sidenav: React.FC = () => {
   return (
     <div className={classes.sidenav_root}>
       <div className={classes.sidenav_toolbar}>
-        <Link to="/home">
+        <Link to="/portfolio">
           <img
             src={logo}
             height={24}
