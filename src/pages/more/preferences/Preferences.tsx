@@ -10,10 +10,10 @@ export default function Preferences() {
   return (
     <div className={classes.root}>
       <Grid container direction="row" spacing={4}>
-        <GridItem item xs={12}>
+        <GridItem xs={12}>
           <ThemeSection />
         </GridItem>
-        <GridItem item xs={12}>
+        <GridItem xs={12}>
           <LocaleSection />
         </GridItem>
       </Grid>

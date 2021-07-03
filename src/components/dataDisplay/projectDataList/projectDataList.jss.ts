@@ -2,6 +2,9 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    projectGeneralInfo_header: {
+      marginBottom: theme.spacing(2),
+    },
     projectGeneralInfo_ulContainer: {
       display: "flex",
       flexDirection: "row",

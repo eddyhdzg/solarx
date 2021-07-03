@@ -26,11 +26,16 @@ const schema: yup.SchemaOf<useCreateProjectFormSchema> = yup.object({
       key: yup.string(),
       name: yup.string(),
     })
+    .nullable()
     .default("")
     .required("Value is required"),
-  city: yup.string().default("").required("Value is required"),
+  city: yup.string().nullable().default("").required("Value is required"),
   company: yup.string().default("").required("Value is required"),
-  businessType: yup.string().default("").required("Value is required"),
+  businessType: yup
+    .string()
+    .nullable()
+    .default("")
+    .required("Value is required"),
   // Numbers
   ror: yup
     .number()
@@ -54,9 +59,23 @@ const schema: yup.SchemaOf<useCreateProjectFormSchema> = yup.object({
   // images: yup.array().of(yup.string()).default([]),
 });
 export default function useCreateProjectForm() {
+  const defaultValues: useCreateProjectFormSchema = {
+    name: "",
+    // @ts-ignore
+    state: "",
+    city: "",
+    company: "",
+    businessType: "",
+    ror: 0,
+    sharePrice: 1,
+    totalShares: 1,
+    ppa: 0,
+  };
+
   const form = useForm<useCreateProjectFormSchema>({
     resolver: yupResolver(schema),
     mode: "onTouched",
+    defaultValues,
   });
 
   useFormPersist(
@@ -67,5 +86,5 @@ export default function useCreateProjectForm() {
     }
   );
 
-  return form;
+  return { defaultValues, ...form };
 }

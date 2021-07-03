@@ -31,12 +31,12 @@ export default function ThemeSection() {
       <Divider />
       <Row>
         <Grid container spacing={3}>
-          <GridItem item xs={5} sm={4}>
+          <GridItem xs={5} sm={4}>
             <Typography variant="body2">
               {copy?.pages?.preferences["interface theme"]}
             </Typography>
           </GridItem>
-          <GridItem item xs={7} sm={8}>
+          <GridItem xs={7} sm={8}>
             <div className={classes.themeSection_selectContainer}>
               {sm ? <ThemeButtonGroup /> : <ThemeSelect fullWidth />}
             </div>

@@ -11,9 +11,8 @@ import {
   Control,
   UseFormSetValue,
   UseFormWatch,
-  UseFormReset,
 } from "react-hook-form";
-import { NumberFormatInput } from "components";
+import { NumberFormatInput, GridItem } from "components";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { useCreateProjectFormSchema } from "hooks/forms/useCreateProjectForm";
 import useStyles from "./createProjectForm.jss";
@@ -22,19 +21,22 @@ interface ICreateProjectFormProps {
   control: Control<useCreateProjectFormSchema>;
   setValue: UseFormSetValue<useCreateProjectFormSchema>;
   watch: UseFormWatch<useCreateProjectFormSchema>;
-  reset: UseFormReset<useCreateProjectFormSchema>;
+  onSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined
+  ) => Promise<void>;
 }
 
 export default function CreateProjectForm({
   control,
   setValue,
   watch,
+  onSubmit,
 }: ICreateProjectFormProps) {
   const classes = useStyles();
   const [formState] = watch(["state"]);
 
   return (
-    <form noValidate autoComplete="off">
+    <div className={classes.createProjectForm_form}>
       <Paper className={classes.createProjectForm_paper} elevation={3}>
         <div className={classes.createProjectForm_header}>
           <Typography variant="h6" component="h6">
@@ -45,7 +47,7 @@ export default function CreateProjectForm({
           </Typography>
         </div>
         <Grid container spacing={3}>
-          <Grid item xs={6}>
+          <GridItem xs={6}>
             <Controller
               name="name"
               control={control}
@@ -63,9 +65,8 @@ export default function CreateProjectForm({
                 />
               )}
             />
-          </Grid>
-
-          <Grid item xs={6}>
+          </GridItem>
+          <GridItem xs={6}>
             <Controller
               name="state"
               control={control}
@@ -105,8 +106,8 @@ export default function CreateProjectForm({
                 />
               )}
             />
-          </Grid>
-          <Grid item xs={6}>
+          </GridItem>
+          <GridItem xs={6}>
             <Controller
               name="city"
               control={control}
@@ -117,6 +118,7 @@ export default function CreateProjectForm({
                   autoHighlight
                   disabled={!formState?.key}
                   freeSolo
+                  forcePopupIcon
                   options={
                     formState?.key in mexicanCities
                       ? mexicanCities[formState.key]
@@ -149,8 +151,8 @@ export default function CreateProjectForm({
                 />
               )}
             />
-          </Grid>
-          <Grid item xs={6}>
+          </GridItem>
+          <GridItem xs={6}>
             <Controller
               name="company"
               control={control}
@@ -168,8 +170,8 @@ export default function CreateProjectForm({
                 />
               )}
             />
-          </Grid>
-          <Grid item xs={6}>
+          </GridItem>
+          <GridItem xs={6}>
             <Controller
               name="businessType"
               control={control}
@@ -180,6 +182,7 @@ export default function CreateProjectForm({
                   options={businessTypes}
                   autoHighlight
                   freeSolo
+                  forcePopupIcon
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -207,10 +210,9 @@ export default function CreateProjectForm({
                 />
               )}
             />
-          </Grid>
+          </GridItem>
         </Grid>
       </Paper>
-
       <Paper className={classes.createProjectForm_paper} elevation={3}>
         <div className={classes.createProjectForm_header}>
           <Typography variant="h6" component="h6">
@@ -242,6 +244,7 @@ export default function CreateProjectForm({
                       min: 1,
                       max: 100,
                       fixedDecimalScale: true,
+                      thousandSeparator: true,
                       decimalScale: 2,
                     },
                     endAdornment: (
@@ -274,6 +277,7 @@ export default function CreateProjectForm({
                     inputComponent: NumberFormatInput as any,
                     inputProps: {
                       min: 1,
+                      thousandSeparator: true,
                       decimalScale: 2,
                     },
                     startAdornment: (
@@ -338,6 +342,8 @@ export default function CreateProjectForm({
                     inputComponent: NumberFormatInput as any,
                     inputProps: {
                       min: 0,
+                      decimalScale: 2,
+                      thousandSeparator: true,
                     },
                   }}
                   required
@@ -350,7 +356,6 @@ export default function CreateProjectForm({
           </Grid>
         </Grid>
       </Paper>
-
       <Paper className={classes.createProjectForm_paper} elevation={3}>
         <div className={classes.createProjectForm_header}>
           <Typography variant="h6" component="h6">
@@ -361,6 +366,6 @@ export default function CreateProjectForm({
           </Typography>
         </div>
       </Paper>
-    </form>
+    </div>
   );
 }

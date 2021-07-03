@@ -1,4 +1,4 @@
-import { Grid as MUIGrid, GridProps } from "@material-ui/core";
+import { Grid, GridProps } from "@material-ui/core";
 import useStyles from "./gridItem.jss";
 
 interface IGridProps extends Omit<Partial<GridProps>, "xxs"> {
@@ -9,7 +9,8 @@ const GridItem: React.FC<IGridProps> = ({ xxs, className, ...props }) => {
   const classes = useStyles(xxs)();
 
   return (
-    <MUIGrid
+    <Grid
+      item
       className={[classes.themeSection_grid, className].join(" ")}
       {...props}
     />

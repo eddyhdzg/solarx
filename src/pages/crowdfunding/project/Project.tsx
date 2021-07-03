@@ -6,8 +6,7 @@ import useStyles from "./project.jss";
 import ProjectCardTabulator from "./projectCardTabulator/ProjectCardTabulator";
 import ProjectGalllery from "./projectGallery/ProjectGalllery";
 import { useProject } from "hooks";
-import { CenterLoader } from "components";
-import ProjectDataList from "./projectDataList/ProjectDataList";
+import { CenterLoader, ProjectDataList } from "components";
 
 interface ProjectID {
   id?: string;
@@ -35,7 +34,13 @@ export default function Project() {
             totalShares={data.totalShares}
             sharePrice={data.sharePrice}
           />
-          <ProjectDataList />
+          <ProjectDataList
+            sharePrice={data.sharePrice}
+            ror={data.ror}
+            ppa={5}
+            company="Nestlé"
+            businessType="Food and Drinks"
+          />
         </Grid>
         <Grid item xs={12} lg={5}>
           <ProjectCardTabulator />

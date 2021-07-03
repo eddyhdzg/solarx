@@ -18,13 +18,12 @@ export default function LocaleSection() {
       <Divider />
       <Row>
         <Grid container spacing={3}>
-          <GridItem item xs={5} sm={4}>
+          <GridItem xs={5} sm={4}>
             <Typography variant="body2">
               {copy?.pages?.preferences["interface locale"]}
             </Typography>
           </GridItem>
           <GridItem
-            item
             xs={7}
             sm={8}
             className={classes.localeSection_selectContainer}

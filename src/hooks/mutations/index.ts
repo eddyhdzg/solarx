@@ -1,1 +1,1 @@
-export { default as useCreateProject } from "./useCreateProject";
+export { default as useProjectsMutations } from "./useProjectsMutations";
