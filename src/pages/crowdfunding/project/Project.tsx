@@ -22,24 +22,29 @@ export default function Project() {
   }
 
   return (
-    <Container>
+    <Container disableGutters>
       <div className={classes.project_mb2}>
-        <ProjectHeader id={data.id} name={data.name} location={data.location} />
+        <ProjectHeader
+          id={data?.id}
+          name={data?.name}
+          city={data?.city}
+          state={data?.state}
+        />
       </div>
       <Grid container spacing={3}>
         <Grid item xs={12} lg={7}>
-          <ProjectGalllery images={data.images} />
+          <ProjectGalllery images={data?.images} />
           <ProjectDescription
-            sharesSold={data.sharesSold}
-            totalShares={data.totalShares}
-            sharePrice={data.sharePrice}
+            sharesSold={data?.sharesSold}
+            totalShares={data?.totalShares}
+            sharePrice={data?.sharePrice}
           />
           <ProjectDataList
-            sharePrice={data.sharePrice}
-            ror={data.ror}
-            ppa={5}
-            company="Nestlé"
-            businessType="Food and Drinks"
+            sharePrice={data?.sharePrice}
+            ror={data?.ror}
+            ppa={data?.ppa}
+            company={data?.company}
+            businessType={data?.businessType}
           />
         </Grid>
         <Grid item xs={12} lg={5}>

@@ -5,6 +5,7 @@ export default function useProject(projectId: string | undefined) {
   const projectRef = useFirestore().collection("projects").doc(projectId);
 
   return useFirestoreDocData<Project>(projectRef, {
-    initialData: [],
+    initialData: undefined,
+    idField: "id",
   });
 }

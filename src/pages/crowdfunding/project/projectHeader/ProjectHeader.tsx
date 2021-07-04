@@ -6,12 +6,9 @@ import ContentCopyIcon from "@material-ui/icons/ContentCopy";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 import { Project } from "types";
 
-type IProjectHeader = Partial<Pick<Project, "id" | "name" | "location">>;
+type IProjectHeader = Pick<Project, "id" | "name" | "city" | "state">;
 
-const ProjectHeader: React.FC<IProjectHeader> = ({
-  name,
-  location: projectLocation,
-}) => {
+const ProjectHeader: React.FC<IProjectHeader> = ({ name, city, state }) => {
   const location = useLocation();
   const [isCopied, setCopied] = useClipboard(
     "https://solarx.app" + location.pathname,
@@ -27,7 +24,9 @@ const ProjectHeader: React.FC<IProjectHeader> = ({
         <Typography variant="h5" component="h2">
           {name}
         </Typography>
-        <Typography variant="subtitle2">{projectLocation}</Typography>
+        <Typography variant="subtitle2">
+          {city}, {state}
+        </Typography>
       </div>
       <div className={classes.projectHeader_buttonsContainer}>
         <Tooltip

@@ -16,13 +16,14 @@ import GradientLinearProgress from "../gradientLinearProgress/GradientLinearProg
 
 export default function ProjectCard({
   id,
+  city,
+  state,
   name,
-  location,
-  sharePrice,
-  sharesSold,
-  totalShares,
+  sharesSold = 0,
+  sharePrice = 0,
+  totalShares = 0,
   ror,
-  img,
+  coverImage,
 }: Project) {
   const classes = useStyles();
   const progress = Math.floor((sharesSold / totalShares) * 100);
@@ -39,7 +40,7 @@ export default function ProjectCard({
         />
         <CardMedia
           component="img"
-          src={img}
+          src={coverImage || undefined}
           alt={`project-${name}-img`}
           style={loading ? { display: "none" } : {}}
           onLoad={() => setLoading(false)}
@@ -51,7 +52,7 @@ export default function ProjectCard({
               {name}
             </Typography>
             <Typography variant="body2" color="textSecondary">
-              {location}
+              {city}, {state}
             </Typography>
           </div>
 

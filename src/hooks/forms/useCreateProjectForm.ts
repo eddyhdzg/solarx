@@ -3,18 +3,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import useFormPersist from "react-hook-form-persist";
 import { Project } from "types";
+import { useProjectsMutations } from "..";
+import { useSnackbar } from "notistack";
 import { MexicanState } from "constant";
 
 export interface useCreateProjectFormSchema
   extends Omit<
     Project,
-    "id" | "funded" | "location" | "sharesSold" | "img" | "images"
+    "id" | "created" | "state" | "sharesSold" | "coverImage" | "images"
   > {
-  state: MexicanState;
-  city: string;
-  company: string;
-  businessType: string;
-  ppa: number;
+  state: MexicanState | null;
 }
 
 const schema: yup.SchemaOf<useCreateProjectFormSchema> = yup.object({
@@ -55,14 +53,13 @@ const schema: yup.SchemaOf<useCreateProjectFormSchema> = yup.object({
     .required("Value is required"),
   ppa: yup.number().default(0).min(0, "Min value is 0"),
   // Media
-  // img: yup.string(),
+  // coverImage: yup.string(),
   // images: yup.array().of(yup.string()).default([]),
 });
 export default function useCreateProjectForm() {
   const defaultValues: useCreateProjectFormSchema = {
     name: "",
-    // @ts-ignore
-    state: "",
+    state: null,
     city: "",
     company: "",
     businessType: "",
@@ -86,5 +83,21 @@ export default function useCreateProjectForm() {
     }
   );
 
-  return { defaultValues, ...form };
+  const { createProject } = useProjectsMutations();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const onSubmit = form.handleSubmit((data, e) => {
+    e?.preventDefault();
+
+    createProject(data)
+      .then(() => {
+        enqueueSnackbar("Project Added! 🔥", { variant: "success" });
+        form.reset(defaultValues);
+      })
+      .catch(() => {
+        enqueueSnackbar("Project Not Added 😔", { variant: "error" });
+      });
+  });
+
+  return { defaultValues, onSubmit, ...form };
 }

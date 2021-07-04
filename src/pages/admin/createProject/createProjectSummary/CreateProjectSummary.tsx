@@ -26,7 +26,7 @@ interface ICreateProjectFormProps {
 
 export default function CreateProjectSummary({
   watch,
-  formState: { isValid, errors },
+  formState: { isValid, errors, touchedFields },
   trigger,
   clearErrors,
 }: ICreateProjectFormProps) {
@@ -63,28 +63,52 @@ export default function CreateProjectSummary({
         </Typography>
         <ul className={classes.createProjectSummary_ul}>
           <li>
-            <Typography variant="body2" color={errors.name && "error"}>
-              Name: {name}
+            <Typography
+              variant="body2"
+              color={errors.name && touchedFields.name && "error"}
+            >
+              <strong>Name: </strong>
+              {name}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.state && "error"}>
-              State: {state?.name}
+            <Typography
+              variant="body2"
+              color={
+                errors?.state && touchedFields?.state ? "error" : undefined
+              }
+            >
+              <strong>State: </strong>
+              {state?.name}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.city && "error"}>
-              City: {city}
+            <Typography
+              variant="body2"
+              color={errors.city && touchedFields.city && "error"}
+            >
+              <strong>City: </strong>
+              {city}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.company && "error"}>
-              Company: {company}
+            <Typography
+              variant="body2"
+              color={errors.company && touchedFields.company && "error"}
+            >
+              <strong>Company: </strong>
+              {company}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.businessType && "error"}>
-              Business Type: {businessType}
+            <Typography
+              variant="body2"
+              color={
+                errors.businessType && touchedFields.businessType && "error"
+              }
+            >
+              <strong>Business Type: </strong>
+              {businessType}
             </Typography>
           </li>
         </ul>
@@ -95,26 +119,39 @@ export default function CreateProjectSummary({
         </Typography>
         <ul className={classes.createProjectSummary_ul}>
           <li>
-            <Typography variant="body2" color={errors.ror && "error"}>
-              Rate of Return:{" "}
+            <Typography
+              variant="body2"
+              color={errors.ror && touchedFields.ror && "error"}
+            >
+              <strong>Rate of Return: </strong>
               {typeof ror === "number" && formatPercentage2Dec(ror)}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.sharePrice && "error"}>
-              Share Price:{" "}
+            <Typography
+              variant="body2"
+              color={errors.sharePrice && touchedFields.sharePrice && "error"}
+            >
+              <strong>Share Price: </strong>
               {typeof sharePrice === "number" && formatMoney(sharePrice)}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.totalShares && "error"}>
-              Total Shares:{" "}
+            <Typography
+              variant="body2"
+              color={errors.totalShares && touchedFields.totalShares && "error"}
+            >
+              <strong>Total Shares: </strong>
               {typeof totalShares === "number" && formatNumber(totalShares)}
             </Typography>
           </li>
           <li>
-            <Typography variant="body2" color={errors.ppa && "error"}>
-              PPA: {typeof ppa === "number" && formatNumber(ppa)}
+            <Typography
+              variant="body2"
+              color={errors.ppa && touchedFields.ppa && "error"}
+            >
+              <strong>PPA: </strong>
+              {typeof ppa === "number" && formatNumber(ppa)}
             </Typography>
           </li>
         </ul>

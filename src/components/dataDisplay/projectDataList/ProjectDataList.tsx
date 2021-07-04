@@ -16,23 +16,23 @@ import PaidIcon from "@material-ui/icons/Paid";
 
 interface ProjectDataListItem {
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-  text: string | number;
+  text?: string | number;
   caption: string;
   info?: string;
 }
 
 export default function ProjectDataList({
-  sharePrice,
-  ror,
-  ppa,
+  sharePrice = 0,
+  ror = 0,
+  ppa = 0,
   company,
   businessType,
 }: {
-  sharePrice: number;
-  ror: number;
-  ppa: number;
-  company: string;
-  businessType: string;
+  sharePrice?: number;
+  ror?: number;
+  ppa?: number;
+  company?: string;
+  businessType?: string;
 }) {
   const classes = useStyles();
 

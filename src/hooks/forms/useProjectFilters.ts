@@ -42,11 +42,11 @@ export default function useProjectFilters({
   const watchAllFields = form.watch();
   const id = useMemo(() => watchAllFields.id, [watchAllFields.id]);
   const name = useMemo(() => watchAllFields.name, [watchAllFields.name]);
-  const location = useMemo(
-    () => watchAllFields.location,
-    [watchAllFields.location]
-  );
-  const funded = useMemo(() => watchAllFields.funded, [watchAllFields.funded]);
+  // const location = useMemo(
+  //   () => watchAllFields.location,
+  //   [watchAllFields.location]
+  // );
+  // const funded = useMemo(() => watchAllFields.funded, [watchAllFields.funded]);
 
   useEffect(() => {
     setFilter("id", id);
@@ -56,13 +56,13 @@ export default function useProjectFilters({
     setFilter("name", name);
   }, [name, setFilter]);
 
-  useEffect(() => {
-    setFilter("location", location);
-  }, [location, setFilter]);
+  // useEffect(() => {
+  //   setFilter("location", location);
+  // }, [location, setFilter]);
 
-  useEffect(() => {
-    setFilter("funded", funded);
-  }, [funded, setFilter]);
+  // useEffect(() => {
+  //   setFilter("funded", funded);
+  // }, [funded, setFilter]);
 
   return form;
 }

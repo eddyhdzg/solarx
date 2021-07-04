@@ -29,12 +29,13 @@ const useProjectsColumns = () => {
       },
       {
         Header: "Location",
-        accessor: "location",
+        accessor: ({ city, state }: Project) => `${city}, ${state}`,
       },
       {
         Header: "Funded",
-        accessor: "funded",
-        Cell: ({ value }: { value: Project["funded"] }) =>
+        accessor: (row: Project) =>
+          (row.sharesSold ?? 0) >= (row.totalShares ?? 0),
+        Cell: ({ value }: { value: boolean }) =>
           value ? (
             <Chip
               color="primary"
@@ -49,26 +50,24 @@ const useProjectsColumns = () => {
       },
       {
         Header: "Share Price",
-        accessor: "sharePrice",
-        Cell: ({ value }: { value: Project["sharePrice"] }) =>
-          formatMoney(value),
+        accessor: ({ sharePrice }: Project) => formatMoney(sharePrice ?? 0),
         className: classes.alignRight,
       },
       {
         Header: "RoR (rate of return)",
-        accessor: "ror",
-        Cell: ({ value }: { value: Project["ror"] }) =>
-          formatPercentage2Dec(value),
+        accessor: ({ ror }: Project) => formatPercentage2Dec(ror ?? 0),
         className: classes.alignRight,
       },
       {
         Header: "Progress",
-        accessor: (row: Project) => getProgress(row),
+        accessor: ({ sharesSold, totalShares }: Project) =>
+          getProgress({ sharesSold, totalShares }),
         className: classes.alignRight,
       },
       {
         Header: "Shares (funded/total)",
-        accessor: (row: Project) => getPanels(row),
+        accessor: ({ sharesSold, totalShares }: Project) =>
+          getPanels({ sharesSold, totalShares }),
         className: classes.alignRight,
         disableSortBy: true,
         tabIndex: -1,

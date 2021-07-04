@@ -1,6 +1,7 @@
-import RouterMemo from "../routes/RouterMemo";
-import ThemeProvider from "./ThemeProvider";
 import FirebaseProvider from "./firebaseProvider/FirebaseProvider";
+import ThemeProvider from "./ThemeProvider";
+import RouterMemo from "../routes/RouterMemo";
+import SnackbarProvider from "./SnackbarProvider";
 import { BrowserRouter } from "react-router-dom";
 
 const ProvidersWrapper: React.FC = ({ children }) => {
@@ -8,7 +9,9 @@ const ProvidersWrapper: React.FC = ({ children }) => {
     <FirebaseProvider>
       <BrowserRouter>
         <RouterMemo>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <SnackbarProvider>{children}</SnackbarProvider>
+          </ThemeProvider>
         </RouterMemo>
       </BrowserRouter>
     </FirebaseProvider>

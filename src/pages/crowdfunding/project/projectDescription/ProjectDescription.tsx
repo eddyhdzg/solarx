@@ -4,8 +4,9 @@ import useStyles from "./projectDescription.jss";
 import { Project } from "types";
 import { formatPercentage, formatNumber, formatMoney } from "utils";
 
-type IProjectDescription = Partial<
-  Pick<Project, "sharesSold" | "totalShares" | "sharePrice">
+type IProjectDescription = Pick<
+  Project,
+  "sharesSold" | "totalShares" | "sharePrice"
 >;
 
 export default function ProjectDescription({

@@ -21,16 +21,12 @@ interface ICreateProjectFormProps {
   control: Control<useCreateProjectFormSchema>;
   setValue: UseFormSetValue<useCreateProjectFormSchema>;
   watch: UseFormWatch<useCreateProjectFormSchema>;
-  onSubmit: (
-    e?: React.BaseSyntheticEvent<object, any, any> | undefined
-  ) => Promise<void>;
 }
 
 export default function CreateProjectForm({
   control,
   setValue,
   watch,
-  onSubmit,
 }: ICreateProjectFormProps) {
   const classes = useStyles();
   const [formState] = watch(["state"]);
@@ -61,6 +57,9 @@ export default function CreateProjectForm({
                   required
                   error={Boolean(fieldState.error)}
                   helperText={fieldState.error?.message}
+                  inputProps={{
+                    autoComplete: "disabled",
+                  }}
                   {...field}
                 />
               )}
@@ -97,7 +96,7 @@ export default function CreateProjectForm({
                       helperText={fieldState.error?.message}
                     />
                   )}
-                  value={value || ""}
+                  value={value || null}
                   onChange={(_, item) => {
                     onChange(item);
                     setValue("city", "");
@@ -120,8 +119,8 @@ export default function CreateProjectForm({
                   freeSolo
                   forcePopupIcon
                   options={
-                    formState?.key in mexicanCities
-                      ? mexicanCities[formState.key]
+                    formState?.key! in mexicanCities
+                      ? mexicanCities[formState!.key]
                       : []
                   }
                   renderInput={(params) => (
@@ -166,6 +165,9 @@ export default function CreateProjectForm({
                   required
                   error={Boolean(fieldState.error)}
                   helperText={fieldState.error?.message}
+                  inputProps={{
+                    autoComplete: "disabled",
+                  }}
                   {...field}
                 />
               )}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IconButton, MobileStepper } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
@@ -24,6 +25,18 @@ const ProjectGalllery: React.FC<IProjectGallery> = ({ images = [] }) => {
   const handleStepChange = (step: number) => {
     setActiveStep(step);
   };
+
+  if (!maxSteps) {
+    return (
+      <div className={classes.projectGallery_root}>
+        <Skeleton
+          animation="wave"
+          variant="rect"
+          className={classes.projectGallery_img}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={classes.projectGallery_root}>

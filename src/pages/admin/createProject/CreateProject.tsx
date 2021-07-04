@@ -1,5 +1,5 @@
 import { Grid, Container } from "@material-ui/core";
-import { useCreateProjectForm, useProjectsMutations } from "hooks";
+import { useCreateProjectForm } from "hooks";
 import CreateProjectForm from "./createProjectForm/CreateProjectForm";
 import CreateProjectSummary from "./createProjectSummary/CreateProjectSummary";
 
@@ -11,25 +11,8 @@ export default function CreateProject() {
     formState,
     trigger,
     clearErrors,
-    handleSubmit,
-    reset,
-    defaultValues,
+    onSubmit,
   } = useCreateProjectForm();
-
-  const { createProject } = useProjectsMutations();
-
-  const onSubmit = handleSubmit(({ state, ...data }, e) => {
-    e?.preventDefault();
-
-    createProject({
-      // @ts-ignore
-      state: state.name,
-      // @ts-ignore
-      ...data,
-    }).then(() => {
-      reset(defaultValues);
-    });
-  });
 
   return (
     <Container
@@ -37,6 +20,7 @@ export default function CreateProject() {
       noValidate
       autoComplete="off"
       onSubmit={onSubmit}
+      disableGutters
     >
       <Grid container spacing={3}>
         <Grid item xs={12} lg={8}>
@@ -44,7 +28,6 @@ export default function CreateProject() {
             control={control}
             setValue={setValue}
             watch={watch}
-            onSubmit={onSubmit}
           />
         </Grid>
         <Grid item xs={12} lg={4}>
