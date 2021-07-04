@@ -12,24 +12,26 @@ import {
   UseFormTrigger,
   UseFormWatch,
 } from "react-hook-form";
-import { useCreateProjectFormSchema } from "hooks/forms/useCreateProjectForm";
+import { useProjectFormSchema } from "hooks/forms/schema.project";
 import { formatPercentage2Dec, formatMoney, formatNumber } from "utils";
 import { Button } from "components";
-import useStyles from "./createProjectSummary.jss";
+import useStyles from "./projectFormSummary.jss";
 
-interface ICreateProjectFormProps {
-  watch: UseFormWatch<useCreateProjectFormSchema>;
-  formState: FormState<useCreateProjectFormSchema>;
-  trigger: UseFormTrigger<useCreateProjectFormSchema>;
-  clearErrors: UseFormClearErrors<useCreateProjectFormSchema>;
+interface IProjectFormSummaryProps {
+  watch: UseFormWatch<useProjectFormSchema>;
+  formState: FormState<useProjectFormSchema>;
+  trigger: UseFormTrigger<useProjectFormSchema>;
+  clearErrors: UseFormClearErrors<useProjectFormSchema>;
+  title: "Edit" | "Create";
 }
 
-export default function CreateProjectSummary({
+export default function ProjectFormSummary({
   watch,
   formState: { isValid, errors, touchedFields },
   trigger,
   clearErrors,
-}: ICreateProjectFormProps) {
+  title,
+}: IProjectFormSummaryProps) {
   const classes = useStyles();
   const {
     name,
@@ -50,18 +52,15 @@ export default function CreateProjectSummary({
   }, [trigger, clearErrors]);
 
   return (
-    <Card className={classes.createProjectSummary_root}>
+    <Card className={classes.projectFormSummary_root}>
       <CardContent>
-        <Typography
-          variant="h6"
-          className={classes.createProjectSummary_header}
-        >
-          Project Summary
+        <Typography variant="h6" className={classes.projectFormSummary_header}>
+          {title} Project Summary
         </Typography>
         <Typography variant="subtitle1" color="textSecondary" gutterBottom>
           General
         </Typography>
-        <ul className={classes.createProjectSummary_ul}>
+        <ul className={classes.projectFormSummary_ul}>
           <li>
             <Typography
               variant="body2"
@@ -113,11 +112,11 @@ export default function CreateProjectSummary({
           </li>
         </ul>
 
-        <Divider className={classes.createProjectSummary_divider} />
+        <Divider className={classes.projectFormSummary_divider} />
         <Typography variant="subtitle1" color="textSecondary" gutterBottom>
           Numeric
         </Typography>
-        <ul className={classes.createProjectSummary_ul}>
+        <ul className={classes.projectFormSummary_ul}>
           <li>
             <Typography
               variant="body2"
@@ -156,14 +155,14 @@ export default function CreateProjectSummary({
           </li>
         </ul>
       </CardContent>
-      <CardActions className={classes.createProjectSummary_cardActions}>
+      <CardActions className={classes.projectFormSummary_cardActions}>
         <Button
           size="large"
           variant="contained"
           disabled={!isValid}
           type="submit"
         >
-          Create Project
+          {title} Project
         </Button>
       </CardActions>
     </Card>

@@ -2,16 +2,16 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    createProjectSummary_root: {
+    projectFormSummary_root: {
       [theme.breakpoints.up("lg")]: {
         position: "sticky",
         top: 0,
       },
     },
-    createProjectSummary_header: {
+    projectFormSummary_header: {
       marginBottom: theme.spacing(2),
     },
-    createProjectSummary_ul: {
+    projectFormSummary_ul: {
       padding: 0,
       margin: 0,
       listStyle: "none",
@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme: Theme) =>
         textOverflow: "ellipsis",
       },
     },
-    createProjectSummary_divider: {
+    projectFormSummary_divider: {
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
     },
-    createProjectSummary_cardActions: {
+    projectFormSummary_cardActions: {
       justifyContent: "center",
       alignItems: "flex-end",
       backgroundColor: "rgba(255,255,255,0.08)",

@@ -1,7 +1,7 @@
 import { Project } from "types";
 import { formatNumber } from "utils";
 
-export const getPanels = ({ sharesSold, totalShares }: Project) => {
+export const getPanelsRatio = ({ sharesSold, totalShares }: Project) => {
   return `${sharesSold?.toLocaleString()} / ${totalShares?.toLocaleString()}`;
 };
 

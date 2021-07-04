@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Project } from "types";
 import { formatMoney, formatPercentage2Dec } from "utils";
-import { getProgress, getPanels } from "../../projects.utils";
+import { getProgress, getPanelsRatio } from "../../projects.utils";
 import { Chip } from "@material-ui/core";
 import { Column } from "react-table";
 import { makeStyles } from "@material-ui/core";
@@ -67,7 +67,7 @@ const useProjectsColumns = () => {
       {
         Header: "Shares (funded/total)",
         accessor: ({ sharesSold, totalShares }: Project) =>
-          getPanels({ sharesSold, totalShares }),
+          getPanelsRatio({ sharesSold, totalShares }),
         className: classes.alignRight,
         disableSortBy: true,
         tabIndex: -1,

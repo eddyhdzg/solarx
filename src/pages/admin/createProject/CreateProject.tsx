@@ -1,7 +1,5 @@
-import { Grid, Container } from "@material-ui/core";
 import { useCreateProjectForm } from "hooks";
-import CreateProjectForm from "./createProjectForm/CreateProjectForm";
-import CreateProjectSummary from "./createProjectSummary/CreateProjectSummary";
+import ProjectForm from "../forms/projectForm/ProjectForm";
 
 export default function CreateProject() {
   const {
@@ -15,30 +13,15 @@ export default function CreateProject() {
   } = useCreateProjectForm();
 
   return (
-    <Container
-      component="form"
-      noValidate
-      autoComplete="off"
+    <ProjectForm
+      control={control}
+      watch={watch}
+      setValue={setValue}
+      formState={formState}
+      trigger={trigger}
+      clearErrors={clearErrors}
       onSubmit={onSubmit}
-      disableGutters
-    >
-      <Grid container spacing={3}>
-        <Grid item xs={12} lg={8}>
-          <CreateProjectForm
-            control={control}
-            setValue={setValue}
-            watch={watch}
-          />
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          <CreateProjectSummary
-            formState={formState}
-            watch={watch}
-            trigger={trigger}
-            clearErrors={clearErrors}
-          />
-        </Grid>
-      </Grid>
-    </Container>
+      title="Create"
+    />
   );
 }

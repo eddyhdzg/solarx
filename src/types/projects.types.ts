@@ -11,6 +11,7 @@ export interface Project {
   ror?: number;
   sharesSold?: number;
   sharePrice?: number;
+  softDelete?: boolean;
   state?: string;
   totalShares?: number;
 }

@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { Project } from "types";
-import { useCreateProjectFormSchema } from "../forms/useCreateProjectForm";
+import { useCreateProjectFormSchema } from "../forms/schema.project";
 
 export default function useProjectsMutations() {
   const projectsRef = useFirestore().collection("projects");
@@ -14,10 +14,23 @@ export default function useProjectsMutations() {
       images: [],
       sharesSold: 0,
       state: state?.name,
+      softDelete: false,
     };
 
     return projectsRef.add(project);
   };
 
-  return { createProject };
+  const editProject = (
+    id: string | undefined,
+    { state, ...data }: useCreateProjectFormSchema
+  ) => {
+    const project: Project = {
+      ...data,
+      state: state?.name,
+    };
+
+    return projectsRef.doc(id).update(project);
+  };
+
+  return { createProject, editProject };
 }

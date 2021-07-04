@@ -14,27 +14,27 @@ import {
 } from "react-hook-form";
 import { NumberFormatInput, GridItem } from "components";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
-import { useCreateProjectFormSchema } from "hooks/forms/useCreateProjectForm";
-import useStyles from "./createProjectForm.jss";
+import { useProjectFormSchema } from "hooks/forms/schema.project";
+import useStyles from "./projectFormBody.jss";
 
-interface ICreateProjectFormProps {
-  control: Control<useCreateProjectFormSchema>;
-  setValue: UseFormSetValue<useCreateProjectFormSchema>;
-  watch: UseFormWatch<useCreateProjectFormSchema>;
+interface IProjectFormBodyProps {
+  control: Control<useProjectFormSchema>;
+  setValue: UseFormSetValue<useProjectFormSchema>;
+  watch: UseFormWatch<useProjectFormSchema>;
 }
 
-export default function CreateProjectForm({
+export default function ProjectFormBody({
   control,
   setValue,
   watch,
-}: ICreateProjectFormProps) {
+}: IProjectFormBodyProps) {
   const classes = useStyles();
   const [formState] = watch(["state"]);
 
   return (
-    <div className={classes.createProjectForm_form}>
-      <Paper className={classes.createProjectForm_paper} elevation={3}>
-        <div className={classes.createProjectForm_header}>
+    <div className={classes.projectFormBody_form}>
+      <Paper className={classes.projectFormBody_paper} elevation={3}>
+        <div className={classes.projectFormBody_header}>
           <Typography variant="h6" component="h6">
             General
           </Typography>
@@ -215,8 +215,8 @@ export default function CreateProjectForm({
           </GridItem>
         </Grid>
       </Paper>
-      <Paper className={classes.createProjectForm_paper} elevation={3}>
-        <div className={classes.createProjectForm_header}>
+      <Paper className={classes.projectFormBody_paper} elevation={3}>
+        <div className={classes.projectFormBody_header}>
           <Typography variant="h6" component="h6">
             Numbers
           </Typography>
@@ -358,8 +358,8 @@ export default function CreateProjectForm({
           </Grid>
         </Grid>
       </Paper>
-      <Paper className={classes.createProjectForm_paper} elevation={3}>
-        <div className={classes.createProjectForm_header}>
+      <Paper className={classes.projectFormBody_paper} elevation={3}>
+        <div className={classes.projectFormBody_header}>
           <Typography variant="h6" component="h6">
             Media
           </Typography>

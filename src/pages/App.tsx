@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-// import { useFirestore } from "reactfire";
+import { useFirestore } from "reactfire";
 import Router from "routes/Router";
 
 export default function App() {
-  // const firestore = useFirestore();
+  const firestore = useFirestore();
 
   useEffect(() => {
-    // firestore.enablePersistence();
+    firestore.enablePersistence();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <Router />;
