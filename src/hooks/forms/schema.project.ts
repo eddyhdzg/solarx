@@ -2,25 +2,15 @@ import * as yup from "yup";
 import { Project } from "types";
 import { MexicanState } from "constant";
 
-export interface useCreateProjectFormSchema
+export interface useProjectFormSchema
   extends Omit<
     Project,
-    | "id"
-    | "created"
-    | "state"
-    | "sharesSold"
-    | "coverImage"
-    | "images"
-    | "softDelete"
+    "id" | "created" | "state" | "sharesSold" | "coverImage" | "images"
   > {
   state: MexicanState | null;
 }
 
-export interface useEditProjectFormSchema
-  extends useCreateProjectFormSchema,
-    Pick<Project, "softDelete"> {}
-
-export const createProjectDefaultValues: useCreateProjectFormSchema = {
+export const projectFormDefaultValues: useProjectFormSchema = {
   name: "",
   state: null,
   city: "",
@@ -30,19 +20,11 @@ export const createProjectDefaultValues: useCreateProjectFormSchema = {
   sharePrice: 1,
   totalShares: 1,
   ppa: 0,
-};
-
-export type useProjectFormSchema =
-  | useEditProjectFormSchema
-  | useCreateProjectFormSchema;
-
-export const editProjectDefaultValues: useEditProjectFormSchema = {
   softDelete: false,
-  ...createProjectDefaultValues,
 };
 
-export const createProjectSchema: yup.SchemaOf<useCreateProjectFormSchema> =
-  yup.object({
+export const projectFormSchema: yup.SchemaOf<useProjectFormSchema> = yup.object(
+  {
     // General
     name: yup.string().default("").required("Value is required"),
     state: yup
@@ -79,12 +61,6 @@ export const createProjectSchema: yup.SchemaOf<useCreateProjectFormSchema> =
       .min(1, "Min value is 1")
       .required("Value is required"),
     ppa: yup.number().default(0).min(0, "Min value is 0"),
-  });
-
-export const editProjectSchema: yup.SchemaOf<useEditProjectFormSchema> =
-  createProjectSchema.concat(
-    yup.object({
-      // Edit
-      softDelete: yup.boolean().default(false).required(),
-    })
-  );
+    softDelete: yup.boolean().default(false).required(),
+  }
+);

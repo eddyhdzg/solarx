@@ -1,12 +1,12 @@
 import { useFirestore } from "reactfire";
 import { Project } from "types";
-import { useCreateProjectFormSchema } from "../forms/schema.project";
+import { useProjectFormSchema } from "../forms/schema.project";
 
 export default function useProjectsMutations() {
   const projectsRef = useFirestore().collection("projects");
   const { serverTimestamp } = useFirestore.FieldValue;
 
-  const createProject = ({ state, ...data }: useCreateProjectFormSchema) => {
+  const createProject = ({ state, ...data }: useProjectFormSchema) => {
     const project: Project = {
       ...data,
       created: serverTimestamp() as unknown as Date,
@@ -22,8 +22,10 @@ export default function useProjectsMutations() {
 
   const editProject = (
     id: string | undefined,
-    { state, ...data }: useCreateProjectFormSchema
+    { state, ...data }: useProjectFormSchema
   ) => {
+    console.log(data);
+
     const project: Project = {
       ...data,
       state: state?.name,

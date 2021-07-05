@@ -27,7 +27,7 @@ interface IProjectFormSummaryProps {
 
 export default function ProjectFormSummary({
   watch,
-  formState: { isValid, errors, touchedFields },
+  formState: { isValid, errors, dirtyFields, isDirty, touchedFields },
   trigger,
   clearErrors,
   title,
@@ -43,6 +43,7 @@ export default function ProjectFormSummary({
     sharePrice,
     totalShares,
     ppa,
+    softDelete,
   } = watch();
 
   useEffect(() => {
@@ -64,7 +65,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.name && touchedFields.name && "error"}
+              className={
+                dirtyFields.name
+                  ? errors.name
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>Name: </strong>
               {name}
@@ -73,8 +80,12 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={
-                errors?.state && touchedFields?.state ? "error" : undefined
+              className={
+                dirtyFields.state
+                  ? errors.state
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
               }
             >
               <strong>State: </strong>
@@ -84,7 +95,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.city && touchedFields.city && "error"}
+              className={
+                touchedFields.city && dirtyFields.city
+                  ? errors.city
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>City: </strong>
               {city}
@@ -93,7 +110,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.company && touchedFields.company && "error"}
+              className={
+                dirtyFields.company
+                  ? errors.company
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>Company: </strong>
               {company}
@@ -102,14 +125,35 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={
-                errors.businessType && touchedFields.businessType && "error"
+              className={
+                dirtyFields.businessType
+                  ? errors.businessType
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
               }
             >
               <strong>Business Type: </strong>
               {businessType}
             </Typography>
           </li>
+          {title === "Edit" && (
+            <li>
+              <Typography
+                variant="body2"
+                className={
+                  dirtyFields.softDelete
+                    ? errors.softDelete
+                      ? classes.projectFormSummary_error
+                      : classes.projectFormSummary_success
+                    : undefined
+                }
+              >
+                <strong>Soft Delete: </strong>
+                {softDelete?.toString()}
+              </Typography>
+            </li>
+          )}
         </ul>
 
         <Divider className={classes.projectFormSummary_divider} />
@@ -120,7 +164,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.ror && touchedFields.ror && "error"}
+              className={
+                dirtyFields.ror
+                  ? errors.ror
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>Rate of Return: </strong>
               {typeof ror === "number" && formatPercentage2Dec(ror)}
@@ -129,7 +179,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.sharePrice && touchedFields.sharePrice && "error"}
+              className={
+                dirtyFields.sharePrice
+                  ? errors.sharePrice
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>Share Price: </strong>
               {typeof sharePrice === "number" && formatMoney(sharePrice)}
@@ -138,7 +194,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.totalShares && touchedFields.totalShares && "error"}
+              className={
+                dirtyFields.totalShares
+                  ? errors.totalShares
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>Total Shares: </strong>
               {typeof totalShares === "number" && formatNumber(totalShares)}
@@ -147,7 +209,13 @@ export default function ProjectFormSummary({
           <li>
             <Typography
               variant="body2"
-              color={errors.ppa && touchedFields.ppa && "error"}
+              className={
+                dirtyFields.ppa
+                  ? errors.ppa
+                    ? classes.projectFormSummary_error
+                    : classes.projectFormSummary_success
+                  : undefined
+              }
             >
               <strong>PPA: </strong>
               {typeof ppa === "number" && formatNumber(ppa)}
@@ -159,7 +227,7 @@ export default function ProjectFormSummary({
         <Button
           size="large"
           variant="contained"
-          disabled={!isValid}
+          disabled={!isValid || !isDirty}
           type="submit"
         >
           {title} Project

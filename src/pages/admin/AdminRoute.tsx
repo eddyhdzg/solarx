@@ -6,7 +6,7 @@ const AdminRoute = () => {
   return (
     <Switch>
       <Route exact path="/admin/projects">
-        <CreateProject />
+        Projects
       </Route>
       <Route exact path="/admin/projects/create-project">
         <CreateProject />

@@ -1,8 +1,8 @@
 import { useEditProjectForm, useProject } from "hooks";
 import { useEffect } from "react";
 import {
-  editProjectDefaultValues,
-  useEditProjectFormSchema,
+  projectFormDefaultValues,
+  useProjectFormSchema,
 } from "hooks/forms/schema.project";
 import ProjectForm from "../forms/projectForm/ProjectForm";
 import { mexicanStates } from "constant";
@@ -25,11 +25,11 @@ export default function EditProject() {
     clearErrors,
     onSubmit,
     reset,
-  } = useEditProjectForm(data.id);
+  } = useEditProjectForm(data?.id);
 
   useEffect(() => {
-    const defaultValues: useEditProjectFormSchema = !data
-      ? editProjectDefaultValues
+    const defaultValues: useProjectFormSchema = !data
+      ? projectFormDefaultValues
       : {
           name: data?.name,
           state:

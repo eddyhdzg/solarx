@@ -4,16 +4,16 @@ import useFormPersist from "react-hook-form-persist";
 import { useProjectsMutations } from "..";
 import { useSnackbar } from "notistack";
 import {
-  createProjectSchema,
-  useCreateProjectFormSchema,
-  createProjectDefaultValues,
+  projectFormSchema,
+  useProjectFormSchema,
+  projectFormDefaultValues,
 } from "./schema.project";
 
 export default function useCreateProjectForm() {
-  const form = useForm<useCreateProjectFormSchema>({
-    resolver: yupResolver(createProjectSchema),
+  const form = useForm<useProjectFormSchema>({
+    resolver: yupResolver(projectFormSchema),
     mode: "onTouched",
-    defaultValues: createProjectDefaultValues,
+    defaultValues: projectFormDefaultValues,
   });
 
   useFormPersist(
@@ -33,7 +33,7 @@ export default function useCreateProjectForm() {
     createProject(data)
       .then(() => {
         enqueueSnackbar("Project Added! 🔥", { variant: "success" });
-        form.reset(createProjectDefaultValues);
+        form.reset({}, { keepDefaultValues: true });
       })
       .catch(() => {
         enqueueSnackbar("Project Not Added 😔", { variant: "error" });

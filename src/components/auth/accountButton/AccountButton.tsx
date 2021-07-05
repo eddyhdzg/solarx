@@ -11,13 +11,13 @@ import {
 } from "@material-ui/core";
 import { useSigninCheck } from "reactfire";
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
-import GoogleIcon from "@material-ui/icons/Google";
 import useStyles from "./accountButton.jss";
 import { useCustomAuth } from "hooks";
+import SignInWithGoogle from "../signInWithGoogle/SignInWithGoogle";
 
 const AccountButton: React.FC = () => {
   const classes = useStyles();
-  const { signIn, signOut } = useCustomAuth();
+  const { signOut } = useCustomAuth();
   const { data: signinResult } = useSigninCheck();
   const [open, setOpen] = useState(false);
   const anchorRef = useRef<HTMLButtonElement>(null);
@@ -37,12 +37,6 @@ const AccountButton: React.FC = () => {
     setOpen(false);
   };
 
-  const handleSignIn = () => {
-    signIn().finally(() => {
-      setOpen(false);
-    });
-  };
-
   const handleSignOut = () => {
     signOut().finally(() => {
       setOpen(false);
@@ -59,21 +53,31 @@ const AccountButton: React.FC = () => {
   const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
-      anchorRef.current!.focus();
+      anchorRef?.current?.focus();
     }
 
     prevOpen.current = open;
-  }, [open]);
+  }, [open, anchorRef]);
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      {!signinResult.signedIn && <SignInWithGoogle />}
+
       <IconButton
         aria-label="account of current user"
         aria-haspopup="true"
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
         onClick={handleToggle}
-        className={classes.accountButton_iconButton}
+        className={[
+          classes.accountButton_iconButton,
+          !signinResult.signedIn && classes.accountButton_hide,
+        ].join(" ")}
       >
         <Avatar
           alt="google avatar"
@@ -87,6 +91,9 @@ const AccountButton: React.FC = () => {
         role={undefined}
         transition
         disablePortal
+        className={
+          !signinResult.signedIn ? classes.accountButton_hide : undefined
+        }
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -103,19 +110,12 @@ const AccountButton: React.FC = () => {
                   id="menu-list-grow"
                   onKeyDown={handleListKeyDown}
                 >
-                  {signinResult.signedIn ? (
-                    <MenuItem onClick={handleSignOut}>
-                      <ExitToAppRoundedIcon
-                        className={classes.accountButton_icon}
-                      />
-                      Logout
-                    </MenuItem>
-                  ) : (
-                    <MenuItem onClick={handleSignIn}>
-                      <GoogleIcon className={classes.accountButton_icon} />
-                      Sign In With Google
-                    </MenuItem>
-                  )}
+                  <MenuItem onClick={handleSignOut}>
+                    <ExitToAppRoundedIcon
+                      className={classes.accountButton_icon}
+                    />
+                    Logout
+                  </MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

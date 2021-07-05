@@ -1,4 +1,5 @@
 import {
+  FormControlLabel,
   Grid,
   InputAdornment,
   Paper,
@@ -12,7 +13,7 @@ import {
   UseFormSetValue,
   UseFormWatch,
 } from "react-hook-form";
-import { NumberFormatInput, GridItem } from "components";
+import { NumberFormatInput, GridItem, Switch } from "components";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { useProjectFormSchema } from "hooks/forms/schema.project";
 import useStyles from "./projectFormBody.jss";
@@ -99,7 +100,10 @@ export default function ProjectFormBody({
                   value={value || null}
                   onChange={(_, item) => {
                     onChange(item);
-                    setValue("city", "");
+                    setValue("city", "", {
+                      shouldValidate: true,
+                      shouldDirty: true,
+                    });
                   }}
                   {...field}
                 />
@@ -139,8 +143,10 @@ export default function ProjectFormBody({
                         }
                       }}
                       required
-                      error={Boolean(fieldState.error)}
-                      helperText={fieldState.error?.message}
+                      error={Boolean(fieldState.error && fieldState.isTouched)}
+                      helperText={
+                        fieldState.isTouched && fieldState.error?.message
+                      }
                     />
                   )}
                   onChange={(_, item) => {
@@ -208,6 +214,22 @@ export default function ProjectFormBody({
                   onChange={(_, item) => {
                     onChange(item);
                   }}
+                  {...field}
+                />
+              )}
+            />
+          </GridItem>
+          <GridItem xs={6}>
+            <Controller
+              name="softDelete"
+              control={control}
+              render={({ field }) => (
+                <FormControlLabel
+                  control={
+                    <Switch name="project-softDelete" checked={field.value} />
+                  }
+                  label="Soft Delete"
+                  labelPlacement="start"
                   {...field}
                 />
               )}

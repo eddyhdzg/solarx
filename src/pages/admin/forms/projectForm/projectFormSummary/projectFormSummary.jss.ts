@@ -43,6 +43,18 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: theme.spacing(2),
       paddingBottom: theme.spacing(2),
     },
+    projectFormSummary_error: {
+      color: theme.palette.error.main,
+      "&:after": {
+        content: "' ❌'",
+      },
+    },
+    projectFormSummary_success: {
+      color: theme.palette.success.main,
+      "&:after": {
+        content: "' ✅'",
+      },
+    },
   })
 );
 

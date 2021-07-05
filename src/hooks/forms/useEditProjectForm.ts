@@ -3,16 +3,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useProjectsMutations } from "..";
 import { useSnackbar } from "notistack";
 import {
-  editProjectSchema,
-  useEditProjectFormSchema,
-  editProjectDefaultValues,
+  projectFormSchema,
+  useProjectFormSchema,
+  projectFormDefaultValues,
 } from "./schema.project";
 
 export default function useEditProjectForm(id: string | undefined) {
-  const form = useForm<useEditProjectFormSchema>({
-    resolver: yupResolver(editProjectSchema),
+  const form = useForm<useProjectFormSchema>({
+    resolver: yupResolver(projectFormSchema),
     mode: "onTouched",
-    defaultValues: editProjectDefaultValues,
+    defaultValues: projectFormDefaultValues,
   });
 
   const { editProject } = useProjectsMutations();
@@ -24,6 +24,7 @@ export default function useEditProjectForm(id: string | undefined) {
     editProject(id, data)
       .then(() => {
         enqueueSnackbar("Project Edited! 🔥", { variant: "success" });
+        form.reset({}, { keepValues: true });
       })
       .catch(() => {
         enqueueSnackbar("Project Not Edited 😔", { variant: "error" });
