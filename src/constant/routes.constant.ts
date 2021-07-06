@@ -81,8 +81,8 @@ export const routesTree: RoutesTree = {
             component: AdminRoute,
           },
           {
-            title: "manage projects",
-            subRoute: "/projects/edit-project/cAgL2KfrxqlskOzbNQgL",
+            title: "create project",
+            subRoute: "/projects/create-project",
             component: AdminRoute,
           },
         ],

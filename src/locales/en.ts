@@ -46,6 +46,7 @@ const en: {
     preferences: "Preferences",
     session: "Session",
     "manage projects": "Manage Projects",
+    "create project": "Create Project",
     "/home": "Home",
     "/buy": "Buy",
     "/portfolio": "Portfolio",

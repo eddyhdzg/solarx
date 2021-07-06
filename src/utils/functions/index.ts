@@ -1,3 +1,7 @@
+import * as dayjs from "dayjs";
+import { Timestamp } from "types";
+export * from "./projects.utils";
+
 export const convertBreadcrumb = (string: string) => {
   return string
     .replace(/-/g, " ")
@@ -28,3 +32,7 @@ export const formatPercentage = (num: number) => {
 export const formatPercentage2Dec = (num: number) => {
   return `${num.toLocaleString(undefined, { maximumFractionDigits: 2 })}%`;
 };
+
+// 4-Jul-2021
+export const fomatTimeStamp = (date: Timestamp) =>
+  dayjs.unix(date.seconds).format("D-MMM-YYYY");

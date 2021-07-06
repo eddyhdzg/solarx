@@ -2,6 +2,7 @@ import Chip from "@material-ui/core/Chip";
 import useStyles from "./filterChips.jss";
 import { UseFormWatch, UseFormReset } from "react-hook-form";
 import { ProjectFiltersSchema } from "hooks";
+import { stringToBoolean, isBoolean } from "utils";
 
 interface IFilterChipsProps {
   watch: UseFormWatch<ProjectFiltersSchema>;
@@ -48,10 +49,12 @@ export default function FilterChips({ watch, reset }: IFilterChipsProps) {
         </li>
       )}
 
-      {watchAllField.funded && (
+      {isBoolean(watchAllField.funded) && (
         <li>
           <Chip
-            label={watchAllField.funded === "1" ? "Funded" : "Not Funded"}
+            label={
+              stringToBoolean(watchAllField.funded) ? "Funded" : "Not Funded"
+            }
             onDelete={handleDelete("funded")}
             className={classes.chip}
           />

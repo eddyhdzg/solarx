@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -21,7 +21,10 @@ const schema: yup.SchemaOf<ProjectFiltersSchema> = yup
   .defined();
 
 interface useProjectFiltersProps {
-  setFilter: (columnId: string, filterValue: string | undefined) => void;
+  setFilter: (
+    columnId: string,
+    filterValue: string | boolean | undefined
+  ) => void;
 }
 
 export default function useProjectFilters({
@@ -39,14 +42,7 @@ export default function useProjectFilters({
     }
   );
 
-  const watchAllFields = form.watch();
-  const id = useMemo(() => watchAllFields.id, [watchAllFields.id]);
-  const name = useMemo(() => watchAllFields.name, [watchAllFields.name]);
-  // const location = useMemo(
-  //   () => watchAllFields.location,
-  //   [watchAllFields.location]
-  // );
-  // const funded = useMemo(() => watchAllFields.funded, [watchAllFields.funded]);
+  const { id, name, location, funded } = form.watch();
 
   useEffect(() => {
     setFilter("id", id);
@@ -56,13 +52,13 @@ export default function useProjectFilters({
     setFilter("name", name);
   }, [name, setFilter]);
 
-  // useEffect(() => {
-  //   setFilter("location", location);
-  // }, [location, setFilter]);
+  useEffect(() => {
+    setFilter("location", location);
+  }, [location, setFilter]);
 
-  // useEffect(() => {
-  //   setFilter("funded", funded);
-  // }, [funded, setFilter]);
+  useEffect(() => {
+    setFilter("funded", funded);
+  }, [funded, setFilter]);
 
   return form;
 }

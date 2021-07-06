@@ -1,4 +1,5 @@
 import { Switch, Route } from "react-router-dom";
+import Projects from "./projects/Projects";
 import CreateProject from "./createProject/CreateProject";
 import EditProject from "./editProject/EditProject";
 
@@ -6,7 +7,7 @@ const AdminRoute = () => {
   return (
     <Switch>
       <Route exact path="/admin/projects">
-        Projects
+        <Projects />
       </Route>
       <Route exact path="/admin/projects/create-project">
         <CreateProject />

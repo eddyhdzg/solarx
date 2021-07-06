@@ -8,9 +8,8 @@ import {
   TablePagination,
   Paper,
 } from "@material-ui/core";
-import TablePaginationActions from "../tablePaginationActions/TablePaginationActions";
+import { TablePaginationActions } from "components";
 import useStyles from "./projectsTable.jss";
-import React from "react";
 
 export default function ProjectsTable({
   getTableProps,

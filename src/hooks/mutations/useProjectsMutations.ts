@@ -1,5 +1,5 @@
 import { useFirestore } from "reactfire";
-import { Project } from "types";
+import { Project, Timestamp } from "types";
 import { useProjectFormSchema } from "../forms/schema.project";
 
 export default function useProjectsMutations() {
@@ -9,7 +9,7 @@ export default function useProjectsMutations() {
   const createProject = ({ state, ...data }: useProjectFormSchema) => {
     const project: Project = {
       ...data,
-      created: serverTimestamp() as unknown as Date,
+      created: serverTimestamp() as Timestamp,
       coverImage: null,
       images: [],
       sharesSold: 0,
@@ -24,8 +24,6 @@ export default function useProjectsMutations() {
     id: string | undefined,
     { state, ...data }: useProjectFormSchema
   ) => {
-    console.log(data);
-
     const project: Project = {
       ...data,
       state: state?.name,

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import {
   useProjectFilters,
-  useProjectsNonDeleted,
+  useProjects,
   useProjectsColumns,
   useFuzzyGlobalFilter,
 } from "hooks";
@@ -15,13 +15,13 @@ import {
 import { ProjectsTableLayout } from "tables";
 
 const Projects = () => {
-  const { data: projects } = useProjectsNonDeleted();
-  const { publicColumns } = useProjectsColumns();
+  const { data: projects } = useProjects();
+  const { privateColumns } = useProjectsColumns();
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter();
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {
-      columns: publicColumns,
+      columns: privateColumns,
       data,
       initialState: {
         hiddenColumns: ["id"],
@@ -34,6 +34,7 @@ const Projects = () => {
     useSortBy,
     usePagination
   ) as any;
+
   const { control, reset, watch } = useProjectFilters({ setFilter });
 
   return (

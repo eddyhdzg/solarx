@@ -2,7 +2,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    projects_root: {
+    projectTableLayout_root: {
       marginBottom: theme.spacing(1),
       [theme.breakpoints.up("sm")]: {
         display: "flex",
@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme: Theme) =>
         justifyContent: "flex-end",
       },
     },
-    projects_filters: {
+    projectTableLayout_filters: {
       display: "flex",
       alignItems: "center",
       "&>:not(:last-child)": {
