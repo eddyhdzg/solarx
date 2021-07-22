@@ -5,11 +5,10 @@ import {
   TableHead,
   TableRow,
   TableFooter,
-  TablePagination,
   Paper,
 } from "@material-ui/core";
-import { TablePaginationActions } from "components";
 import useStyles from "./projectsTable.jss";
+import ProjectsTablePagination from "../projectsTablePagination/ProjectsTablePagination";
 
 export default function ProjectsTable({
   getTableProps,
@@ -20,23 +19,9 @@ export default function ProjectsTable({
   page,
   gotoPage,
   setPageSize,
-  state: { pageIndex, pageSize },
+  state,
 }: any) {
   const classes = useStyles();
-
-  const handleChangePage = (
-    _: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    gotoPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setPageSize(parseInt(event.target.value, 10));
-    gotoPage(0);
-  };
 
   return (
     <>
@@ -93,21 +78,11 @@ export default function ProjectsTable({
           </TableBody>
           <TableFooter>
             <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                count={rows.length}
-                rowsPerPage={pageSize}
-                page={pageIndex}
-                SelectProps={{
-                  inputProps: { "aria-label": "rows per page" },
-                  native: true,
-                }}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-                style={{
-                  borderBottom: "none",
-                }}
+              <ProjectsTablePagination
+                rows={rows}
+                gotoPage={gotoPage}
+                setPageSize={setPageSize}
+                state={state}
               />
             </TableRow>
           </TableFooter>

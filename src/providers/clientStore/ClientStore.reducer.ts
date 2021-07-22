@@ -13,7 +13,10 @@ const reducer = (draft: ClientState, action: Actions) => {
       draft.locale = action.payload;
       break;
     case "PROJECTS_TOGGLE_TYPE":
-      draft.projectType = action.payload;
+      draft.projects.projectType = action.payload;
+      break;
+    case "PROJECTS_CHANGE_PAGESIZE":
+      draft.projects.pageSize = action.payload;
       break;
     default:
       throw new Error("Invalid action type");

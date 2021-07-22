@@ -19,9 +19,14 @@ export interface ProjectsToggleType {
   type: "PROJECTS_TOGGLE_TYPE";
   payload: ProjectsType;
 }
+export interface ProjectsChangePageSize {
+  type: "PROJECTS_CHANGE_PAGESIZE";
+  payload: number;
+}
 
 export type Actions =
   | ThemeSetTheme
   | DrawerToggleDrawer
   | LocaleToggleLocale
-  | ProjectsToggleType;
+  | ProjectsToggleType
+  | ProjectsChangePageSize;

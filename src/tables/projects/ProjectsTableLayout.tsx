@@ -27,18 +27,18 @@ export default function ProjectsTableLayout({
   table,
 }: IProjectsTableLayoutProps) {
   const classes = useStyles();
-
-  const { dispatch, projectType } = useStore(
-    ({ dispatch, projectType }) => ({ dispatch, projectType }),
+  const { dispatch, projects } = useStore(
+    ({ dispatch, projects }) => ({ dispatch, projects }),
     shallow
   );
 
   const handleProjectTypeChange = () => {
     dispatch({
       type: "PROJECTS_TOGGLE_TYPE",
-      payload: projectType === "cards" ? "table" : "cards",
+      payload: projects?.projectType === "cards" ? "table" : "cards",
     });
   };
+
   return (
     <>
       <div className={classes.projectTableLayout_root}>
@@ -49,19 +49,25 @@ export default function ProjectsTableLayout({
             setGlobalFilter={setGlobalFilter}
           />
           <FilterMenu control={control} reset={reset} />
-          <Tooltip title={projectType === "cards" ? "Cards" : "Table"}>
+          <Tooltip
+            title={projects?.projectType === "cards" ? "Cards" : "Table"}
+          >
             <IconButton
               aria-label="project list type"
               onClick={handleProjectTypeChange}
             >
-              {projectType === "cards" ? <ViewModuleIcon /> : <ViewListIcon />}
+              {projects?.projectType === "cards" ? (
+                <ViewModuleIcon />
+              ) : (
+                <ViewListIcon />
+              )}
             </IconButton>
           </Tooltip>
         </div>
       </div>
 
-      {projectType === "cards" ? (
-        <ProjectsCards projects={table.rows} />
+      {projects?.projectType === "cards" ? (
+        <ProjectsCards {...table} />
       ) : (
         <ProjectsTable {...table} />
       )}

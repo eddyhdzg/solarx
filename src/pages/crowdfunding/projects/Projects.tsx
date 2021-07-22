@@ -4,6 +4,7 @@ import {
   useProjectsNonDeleted,
   useProjectsColumns,
   useFuzzyGlobalFilter,
+  useStore,
 } from "hooks";
 import {
   useTable,
@@ -13,18 +14,25 @@ import {
   usePagination,
 } from "react-table";
 import { ProjectsTableLayout } from "tables";
+import shallow from "zustand/shallow";
 
 const Projects = () => {
   const { data: projects } = useProjectsNonDeleted();
   const { publicColumns } = useProjectsColumns();
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter();
+  const {
+    projects: { pageSize },
+  } = useStore(({ projects }) => ({ projects }), shallow);
+
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {
       columns: publicColumns,
       data,
       initialState: {
-        hiddenColumns: ["id"],
+        // hiddenColumns: ["id"],
+        // @ts-ignore
+        pageSize,
       },
       // @ts-ignore
       globalFilter,
