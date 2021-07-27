@@ -1,20 +1,30 @@
 import { useMemo } from "react";
-import { Project } from "types";
-import { formatMoney, formatPercentage2Dec, fomatTimeStamp } from "utils";
-import { getProgress, getPanelsRatio, sortShares } from "utils";
+import { Project, ProjectSection } from "types";
+import {
+  formatMoney,
+  formatPercentage2Dec,
+  fomatTimeStamp,
+  getProgress,
+  getPanelsRatio,
+  sortShares,
+} from "utils";
 import { Chip, IconButton } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Link } from "react-router-dom";
 import useStyles from "./useProjectsColumns.jss";
 
-interface IuseProjectsColumns {
+interface IColumns {
   publicColumns: any;
   privateColumns: any;
 }
 
-const useProjectsColumns = () => {
+interface IuseProjectsColumnsArgs {
+  section: ProjectSection;
+}
+
+const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
   const classes = useStyles();
-  const columns: IuseProjectsColumns = useMemo(() => {
+  const columns: IColumns = useMemo(() => {
     const commonColumns = [
       {
         id: "id",
@@ -143,7 +153,7 @@ const useProjectsColumns = () => {
             <IconButton
               aria-label="goto-edit-project"
               component={Link}
-              to={`/admin/projects/edit-project/${value}`}
+              to={`/${section}/projects/${value}`}
             >
               <ArrowForwardIcon />
             </IconButton>
@@ -160,6 +170,7 @@ const useProjectsColumns = () => {
 
     return { publicColumns, privateColumns };
   }, [
+    section,
     classes.useProjectsColumns_alignRight,
     classes.useProjectsColumns_chip,
     classes.useProjectsColumns_noPadding,

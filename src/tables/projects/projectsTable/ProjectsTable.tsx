@@ -10,6 +10,18 @@ import {
 import useStyles from "./projectsTable.jss";
 import ProjectsTablePagination from "../projectsTablePagination/ProjectsTablePagination";
 
+interface IProjectsTableProps {
+  getTableProps: any;
+  getTableBodyProps: any;
+  headerGroups: any;
+  rows: any;
+  prepareRow: any;
+  page: any;
+  gotoPage: any;
+  setPageSize: any;
+  state: any;
+}
+
 export default function ProjectsTable({
   getTableProps,
   getTableBodyProps,
@@ -20,7 +32,7 @@ export default function ProjectsTable({
   gotoPage,
   setPageSize,
   state,
-}: any) {
+}: IProjectsTableProps) {
   const classes = useStyles();
 
   return (

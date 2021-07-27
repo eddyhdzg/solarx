@@ -14,6 +14,10 @@ import SavingsOutlinedIcon from "@material-ui/icons/SavingsOutlined";
 import { Link } from "react-router-dom";
 import GradientLinearProgress from "../gradientLinearProgress/GradientLinearProgress";
 
+interface IProjectCardProps extends Project {
+  url: string;
+}
+
 export default function ProjectCard({
   id,
   city,
@@ -24,27 +28,30 @@ export default function ProjectCard({
   totalShares = 0,
   ror,
   coverImage,
-}: Project) {
+  url = "/crowdfunding/projects/",
+}: IProjectCardProps) {
   const classes = useStyles();
   const progress = Math.floor((sharesSold / totalShares) * 100);
   const [loading, setLoading] = useState(true);
 
   return (
     <Card className={classes.projectCard_root}>
-      <CardActionArea component={Link} to={`/crowdfunding/projects/${id}`}>
+      <CardActionArea component={Link} to={url}>
         <Skeleton
           animation="wave"
           variant="rect"
           height={160}
-          style={loading ? {} : { display: "none" }}
+          className={loading ? undefined : classes.projectCard_media__loaded}
         />
         <CardMedia
           component="img"
           src={coverImage || undefined}
           alt={`project-${name}-img`}
-          style={loading ? { display: "none" } : {}}
           onLoad={() => setLoading(false)}
-          className={classes.projectCard_media}
+          className={[
+            classes.projectCard_media,
+            loading ? classes.projectCard_media__loaded : undefined,
+          ].join(" ")}
         />
         <CardContent>
           <div className={classes.projectCard_header}>

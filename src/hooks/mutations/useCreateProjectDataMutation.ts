@@ -1,36 +1,37 @@
 import { useFirestore } from "reactfire";
 import { Project, Timestamp } from "types";
-import { useProjectFormSchema } from "../forms/schema.project";
+import { IProjectDataFormSchema } from "hooks";
 
-export default function useProjectsMutations() {
+export default function useCreateProjectDataMutation() {
   const projectsRef = useFirestore().collection("projects");
   const { serverTimestamp } = useFirestore.FieldValue;
 
-  const createProject = ({ state, ...data }: useProjectFormSchema) => {
+  const createProjectDataMutation = ({
+    state,
+    ...data
+  }: IProjectDataFormSchema) => {
     const project: Project = {
       ...data,
       created: serverTimestamp() as Timestamp,
-      coverImage: null,
-      images: [],
       sharesSold: 0,
       state: state?.name,
-      softDelete: false,
+      coverImage: null,
     };
 
     return projectsRef.add(project);
   };
 
-  const editProject = (
+  const editProjectDataMutation = (
     id: string | undefined,
-    { state, ...data }: useProjectFormSchema
+    { state, ...formData }: IProjectDataFormSchema
   ) => {
     const project: Project = {
-      ...data,
+      ...formData,
       state: state?.name,
     };
 
     return projectsRef.doc(id).update(project);
   };
 
-  return { createProject, editProject };
+  return { createProjectDataMutation, editProjectDataMutation };
 }

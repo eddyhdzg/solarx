@@ -44,7 +44,7 @@ const ProjectGalllery: React.FC<IProjectGallery> = ({ images = [] }) => {
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
-        style={{ minHeight: 360 }}
+        className={classes.projectGallery_swipeableViews}
       >
         {images?.map((img, index) => (
           <div key={img}>

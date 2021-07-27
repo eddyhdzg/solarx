@@ -1,1 +1,2 @@
-export { default as useProjectsMutations } from "./useProjectsMutations";
+export { default as useCreateProjectDataMutation } from "./useCreateProjectDataMutation";
+export { default as useCreateProjectMediaMutation } from "./useCreateProjectMediaMutation";

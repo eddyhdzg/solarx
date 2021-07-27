@@ -2,13 +2,24 @@ import { TablePagination } from "@material-ui/core";
 import { TablePaginationActions } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
+import useStyles from "./projectsTablePagination.jss";
+
+interface IProjectsTablePaginationProps {
+  rows: any;
+  gotoPage: any;
+  setPageSize: any;
+  state: any;
+  component?: "td" | "div";
+}
 
 export default function ProjectsTablePagination({
   rows,
   gotoPage,
   setPageSize,
   state: { pageIndex, pageSize },
-}: any) {
+  component = "td",
+}: IProjectsTablePaginationProps) {
+  const classes = useStyles();
   const { dispatch } = useStore(({ dispatch }) => ({ dispatch }), shallow);
 
   const handleChangePage = (
@@ -35,17 +46,15 @@ export default function ProjectsTablePagination({
       page={pageIndex}
       rowsPerPage={pageSize}
       onChangePage={handleChangePage}
-      // rowsPerPageOptions={[5, 10, 25]}
-      rowsPerPageOptions={[1, 2, 3]}
+      rowsPerPageOptions={[5, 10, 25]}
       SelectProps={{
         inputProps: { "aria-label": "rows per page" },
         native: true,
       }}
       onChangeRowsPerPage={handleChangeRowsPerPage}
       ActionsComponent={TablePaginationActions}
-      style={{
-        borderBottom: "none",
-      }}
+      component={component}
+      className={classes.tablePagination_root}
     />
   );
 }

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import useFormPersist from "react-hook-form-persist";
+import { useFormPersist } from "../";
 
 export interface ProjectFiltersSchema {
   id: string;

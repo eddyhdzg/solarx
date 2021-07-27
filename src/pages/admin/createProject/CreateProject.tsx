@@ -1,27 +1,62 @@
-import { useCreateProjectForm } from "hooks";
+import {
+  useCreateProjectDataForm,
+  useCreateProjectDataMutation,
+  useCreateProjectMediaMutation,
+} from "hooks";
 import ProjectForm from "../forms/projectForm/ProjectForm";
+import { useSnackbar } from "notistack";
+import { FormProvider } from "react-hook-form";
 
 export default function CreateProject() {
-  const {
-    control,
-    watch,
-    setValue,
-    formState,
-    trigger,
-    clearErrors,
-    onSubmit,
-  } = useCreateProjectForm();
+  const methods = useCreateProjectDataForm();
+  const { createProjectDataMutation } = useCreateProjectDataMutation();
+  const { createProjectMediaMutation } = useCreateProjectMediaMutation();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const onSubmit = methods.handleSubmit((data, createDataEvent) => {
+    createDataEvent?.preventDefault();
+
+    const { coverImage, ...createProjectData } = data;
+
+    createProjectDataMutation(createProjectData)
+      .then((res) => {
+        enqueueSnackbar("Project Added! 🔥", { variant: "success" });
+
+        if (coverImage?.length) {
+          createProjectMediaMutation(res.id, { coverImage })
+            .then(() => {
+              enqueueSnackbar("Media Added! 🔥", { variant: "success" });
+            })
+            .catch(() => {
+              enqueueSnackbar("Media Added Error 😔", { variant: "error" });
+            })
+            .finally(() => {
+              methods.reset(
+                {},
+                {
+                  keepDefaultValues: true,
+                  keepTouched: false,
+                }
+              );
+            });
+        } else {
+          methods.reset(
+            {},
+            {
+              keepDefaultValues: true,
+              keepTouched: false,
+            }
+          );
+        }
+      })
+      .catch(() => {
+        enqueueSnackbar("Project Added Error 😔", { variant: "error" });
+      });
+  });
 
   return (
-    <ProjectForm
-      control={control}
-      watch={watch}
-      setValue={setValue}
-      formState={formState}
-      trigger={trigger}
-      clearErrors={clearErrors}
-      onSubmit={onSubmit}
-      title="Create"
-    />
+    <FormProvider {...methods}>
+      <ProjectForm onSubmit={onSubmit} title="Create" />
+    </FormProvider>
   );
 }

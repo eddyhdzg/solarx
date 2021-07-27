@@ -1,6 +1,7 @@
 import * as dayjs from "dayjs";
 import { Timestamp } from "types";
 export * from "./projects.utils";
+export * from "./images.utils";
 
 export const convertBreadcrumb = (string: string) => {
   return string

@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "block",
       width: "100%",
     },
+    projectCard_media__loaded: {
+      display: "none",
+    },
     projectCard_header: {
       marginBottom: theme.spacing(3),
     },
@@ -56,7 +59,6 @@ const useStyles = makeStyles((theme: Theme) =>
       whiteSpace: "nowrap",
       textOverflow: "ellipsis",
     },
-
     projectCard_button: {
       marginLeft: "auto",
       textTransform: "none",

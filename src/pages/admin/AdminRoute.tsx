@@ -12,7 +12,7 @@ const AdminRoute = () => {
       <Route exact path="/admin/projects/create-project">
         <CreateProject />
       </Route>
-      <Route exact path="/admin/projects/edit-project/:id">
+      <Route exact path="/admin/projects/:id">
         <EditProject />
       </Route>
     </Switch>

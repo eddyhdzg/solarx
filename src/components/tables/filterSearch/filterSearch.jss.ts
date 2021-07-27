@@ -35,7 +35,6 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     filterSearch_inputRoot: {
       color: "inherit",
-      width: "100%",
     },
     filterSearch_inputInput: {
       padding: theme.spacing(1, 4),

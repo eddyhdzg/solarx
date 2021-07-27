@@ -18,7 +18,7 @@ import shallow from "zustand/shallow";
 
 const Projects = () => {
   const { data: projects } = useProjectsNonDeleted();
-  const { publicColumns } = useProjectsColumns();
+  const { publicColumns } = useProjectsColumns({ section: "crowdfunding" });
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter();
   const {
@@ -51,6 +51,7 @@ const Projects = () => {
       watch={watch}
       setGlobalFilter={setGlobalFilter}
       table={table}
+      section="crowdfunding"
     />
   );
 };

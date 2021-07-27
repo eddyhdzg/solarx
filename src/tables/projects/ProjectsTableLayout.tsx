@@ -1,5 +1,5 @@
 import ProjectsTable from "./projectsTable/ProjectsTable";
-import ProjectsCards from "./projectsCards/ProjectsCards";
+import ProjectCards from "./projectCards/ProjectCards";
 import FilterChips from "./filterChips/FilterChips";
 import FilterMenu from "./filterMenu/FilterMenu";
 import { IconButton, Tooltip } from "@material-ui/core";
@@ -10,6 +10,7 @@ import useStyles from "./projectsTableLayout.jss";
 import { Control, UseFormReset, UseFormWatch } from "react-hook-form";
 import { ProjectFiltersSchema, useStore } from "hooks";
 import shallow from "zustand/shallow";
+import { ProjectSection } from "types";
 
 interface IProjectsTableLayoutProps {
   control: Control<ProjectFiltersSchema>;
@@ -17,6 +18,7 @@ interface IProjectsTableLayoutProps {
   watch: UseFormWatch<ProjectFiltersSchema>;
   setGlobalFilter: any;
   table: any;
+  section: ProjectSection;
 }
 
 export default function ProjectsTableLayout({
@@ -25,6 +27,7 @@ export default function ProjectsTableLayout({
   watch,
   setGlobalFilter,
   table,
+  section = "crowdfunding",
 }: IProjectsTableLayoutProps) {
   const classes = useStyles();
   const { dispatch, projects } = useStore(
@@ -67,7 +70,7 @@ export default function ProjectsTableLayout({
       </div>
 
       {projects?.projectType === "cards" ? (
-        <ProjectsCards {...table} />
+        <ProjectCards {...table} section={section} />
       ) : (
         <ProjectsTable {...table} />
       )}

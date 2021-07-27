@@ -4,6 +4,7 @@ export type Timestamp = firebase.firestore.Timestamp;
 
 export interface Project {
   coverImage?: string | null;
+  // coverImage?: string ;
   id?: string;
   businessType?: string;
   city?: string;
@@ -21,3 +22,7 @@ export interface Project {
 }
 
 export type ProjectsType = "cards" | "table";
+
+export type ProjectSection = "crowdfunding" | "admin";
+
+export type ProjectForms = "Edit" | "Create";

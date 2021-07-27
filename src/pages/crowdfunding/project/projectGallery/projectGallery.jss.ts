@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       position: "relative",
     },
+    projectGallery_swipeableViews: {
+      minHeight: 360,
+    },
     projectGallery_img: {
       height: 360,
       display: "block",
