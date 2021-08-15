@@ -9,11 +9,16 @@ interface IDropzoneProps extends DropzoneOptions {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const Dropzone = ({ onChange, ...options }: IDropzoneProps) => {
+const Dropzone = ({ onChange, multiple, ...options }: IDropzoneProps) => {
   const classes = useStyles();
   const { getRootProps, getInputProps } = useDropzone({
+    multiple,
     ...options,
   });
+
+  const text = multiple
+    ? "Drag 'n' drop some files here, or click to select files"
+    : "Drag 'n' drop some a file here, or click to select a file";
 
   return (
     <div
@@ -23,7 +28,7 @@ const Dropzone = ({ onChange, ...options }: IDropzoneProps) => {
       <input {...getInputProps({ onChange })} />
       <CloudUploadIcon className={classes.dropzone_icon} />
       <Typography variant="body2" component="p" color="textSecondary">
-        Drag 'n' drop some files here, or click to select files
+        {text}
       </Typography>
     </div>
   );
@@ -33,28 +38,29 @@ interface IDropzoneFieldProps extends DropzoneOptions {
   name: string;
 }
 
-const DropzoneField = ({ name, multiple, ...rest }: IDropzoneFieldProps) => {
+const DropzoneField = ({ name, ...rest }: IDropzoneFieldProps) => {
   const { control } = useFormContext();
 
   return (
-    <Controller
-      render={({ field: { onChange, ref, ...field } }) => (
-        <Dropzone
-          multiple={multiple}
-          onDrop={(e) => {
-            return onChange(e);
-          }}
-          onFileDialogCancel={() => {
-            return onChange([]);
-          }}
-          {...field}
-          {...rest}
-        />
-      )}
-      name={name}
-      control={control}
-      defaultValue={null}
-    />
+    <>
+      <Controller
+        render={({ field: { onChange, ref, ...field } }) => (
+          <Dropzone
+            onDrop={(e) => {
+              return onChange(e);
+            }}
+            onFileDialogCancel={() => {
+              return onChange([]);
+            }}
+            {...field}
+            {...rest}
+          />
+        )}
+        name={name}
+        control={control}
+        defaultValue={null}
+      />
+    </>
   );
 };
 

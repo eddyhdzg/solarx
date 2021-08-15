@@ -27,7 +27,7 @@ export default function useCreateProjectDataMutation() {
   ) => {
     const project: Project = {
       ...formData,
-      state: state?.name,
+      ...(state && { state: state?.name }),
     };
 
     return projectsRef.doc(id).update(project);

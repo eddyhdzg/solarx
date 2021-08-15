@@ -1,16 +1,13 @@
-import firebase from "firebase";
-
-export type Timestamp = firebase.firestore.Timestamp;
+import { Timestamp } from "./firebase.types";
 
 export interface Project {
-  coverImage?: string | null;
-  // coverImage?: string ;
   id?: string;
   businessType?: string;
   city?: string;
   company?: string;
   created?: Timestamp;
-  images?: string[];
+  coverImage?: string | null;
+  images?: string[] | null;
   name?: string;
   ppa?: number;
   ror?: number;

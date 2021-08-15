@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     imagesPreview_li: {
       display: "inline-flex",
-      borderRadius: theme.spacing(1),
+      borderRadius: theme.spacing(0.5),
       borderWidth: "1px",
       borderStyle: "solid",
       borderColor: theme.palette.divider,
@@ -28,11 +28,9 @@ const useStyles = makeStyles((theme: Theme) =>
       textOverflow: "ellipsis",
     },
     imagesPreview_img: {
-      height: "100%",
-      width: "100%",
-      maxHeight: 60,
-      maxWidth: 120,
-      objectFit: "contain",
+      height: "60px",
+      width: "120px",
+      objectFit: "cover",
       marginRight: theme.spacing(1),
     },
   })

@@ -16,14 +16,14 @@ export default function CreateProject() {
   const onSubmit = methods.handleSubmit((data, createDataEvent) => {
     createDataEvent?.preventDefault();
 
-    const { coverImage, ...createProjectData } = data;
+    const { coverImage, images, ...createProjectData } = data;
 
     createProjectDataMutation(createProjectData)
       .then((res) => {
         enqueueSnackbar("Project Added! 🔥", { variant: "success" });
 
-        if (coverImage?.length) {
-          createProjectMediaMutation(res.id, { coverImage })
+        if (coverImage?.length || images?.length) {
+          createProjectMediaMutation(res.id, { coverImage, images })
             .then(() => {
               enqueueSnackbar("Media Added! 🔥", { variant: "success" });
             })

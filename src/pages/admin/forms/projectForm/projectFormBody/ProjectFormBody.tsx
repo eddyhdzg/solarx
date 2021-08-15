@@ -33,7 +33,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
     control,
     setValue,
     watch,
-    formState: { isValid, isDirty },
+    formState: { isValid, isDirty, dirtyFields, errors },
   } = useFormContext<IProjectFormSchema>();
   const [formState] = watch(["state"]);
 
@@ -442,6 +442,25 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             </Typography>
           </div>
           <Grid container spacing={3}>
+            <GridItem
+              xxs={12}
+              xs={12}
+              className={classes.projectFormBody_noBottomPadding}
+            >
+              <Typography
+                variant="caption"
+                gutterBottom
+                classes={{
+                  root: dirtyFields.coverImage
+                    ? errors.coverImage
+                      ? classes.projectFormBody_text__success
+                      : classes.projectFormBody_text__success
+                    : undefined,
+                }}
+              >
+                Cover Image
+              </Typography>
+            </GridItem>
             <GridItem xs={6}>
               <DropzoneField
                 name="coverImage"
@@ -450,6 +469,25 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             </GridItem>
             <GridItem xs={6}>
               <ImagesPreview name="coverImage" />
+            </GridItem>
+            <GridItem
+              xxs={12}
+              xs={12}
+              className={classes.projectFormBody_noBottomPadding}
+            >
+              <Typography variant="caption" gutterBottom>
+                Images
+              </Typography>
+            </GridItem>
+            <GridItem xs={6}>
+              <DropzoneField
+                name="images"
+                accept={["image/jpg", "image/jpeg", "image/gif", "image/png"]}
+                multiple
+              />
+            </GridItem>
+            <GridItem xs={6}>
+              <ImagesPreview name="images" />
             </GridItem>
           </Grid>
         </div>

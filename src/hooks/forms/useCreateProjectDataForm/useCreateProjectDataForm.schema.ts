@@ -1,9 +1,7 @@
 import * as yup from "yup";
-import { Project } from "types";
+import { Project, TImages } from "types";
 import { MexicanState } from "constant";
-import { FileWithPath } from "react-dropzone";
 // import { checkAspectRatio } from "utils";
-
 // const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
@@ -16,7 +14,8 @@ export interface IProjectDataFormSchema
 }
 
 export interface IProjectMediaFormSchema {
-  coverImage: FileWithPath[] | null | undefined;
+  coverImage: TImages;
+  images: TImages;
 }
 
 export interface IProjectFormSchema
@@ -34,7 +33,8 @@ export const projectFormDefaultValues: IProjectFormSchema = {
   totalShares: 1,
   ppa: 0,
   softDelete: false,
-  coverImage: null,
+  coverImage: [],
+  images: [],
 };
 
 export const createProjectFormSchema: yup.SchemaOf<IProjectFormSchema> =
@@ -51,7 +51,7 @@ export const createProjectFormSchema: yup.SchemaOf<IProjectFormSchema> =
       .default("")
       .required("Value is required"),
     city: yup.string().nullable().default("").required("Value is required"),
-    company: yup.string().default("").required("Value is required"),
+    company: yup.string().nullable().default("").required("Value is required"),
     businessType: yup
       .string()
       .nullable()
@@ -89,6 +89,17 @@ export const createProjectFormSchema: yup.SchemaOf<IProjectFormSchema> =
           !value?.length || Boolean(SUPPORTED_FORMATS.includes(value[0].type))
         );
       }),
+    images: yup.mixed(),
+    // .test("coverImage", "File too large", (value: FileList) => {
+    //   return (
+    //     !value?.length || Boolean(value?.length && value[0].size <= FILE_SIZE)
+    //   );
+    // })
+    // .test("fileFormat", "Unsupported Format", (value: FileList) => {
+    //   return (
+    //     !value?.length || Boolean(SUPPORTED_FORMATS.includes(value[0].type))
+    //   );
+    // }),
     // .test("fileAspectRatio", "Aspect Ratio is not 3x1", (value: FileList) => {
     //   if (!value?.length) return true;
 

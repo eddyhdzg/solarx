@@ -1,4 +1,9 @@
-import { useEditProjectForm, useProject } from "hooks";
+import {
+  IProjectDataFormSchema,
+  IProjectMediaFormSchema,
+  useEditProjectForm,
+  useProject,
+} from "hooks";
 import { useEffect } from "react";
 import {
   projectFormDefaultValues,
@@ -11,6 +16,7 @@ import { mexicanStates } from "constant";
 import { useParams } from "react-router-dom";
 import { FormProvider } from "react-hook-form";
 import { useSnackbar } from "notistack";
+import { getDirtyValues } from "utils";
 
 interface ProjectID {
   id?: string;
@@ -38,40 +44,61 @@ export default function EditProject() {
           totalShares: data?.totalShares,
           ppa: data?.ppa,
           softDelete: data?.softDelete,
-          coverImage: null,
+          coverImage: data?.coverImage ? [data?.coverImage] : [],
+          images: data?.images?.length ? data?.images : [],
         };
 
     methods.reset(defaultValues);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, data]);
 
+  console.log(methods.watch("coverImage"));
+
   const { editProjectDataMutation } = useCreateProjectDataMutation();
   const { editProjectMediaMutation } = useCreateProjectMediaMutation();
   const { enqueueSnackbar } = useSnackbar();
 
-  const onSubmit = methods.handleSubmit(({ coverImage, ...rest }, e) => {
+  console.log(methods.watch("coverImage"));
+
+  const onSubmit = methods.handleSubmit((values, e) => {
     e?.preventDefault();
 
-    editProjectDataMutation(id, rest)
-      .then(() => {
-        enqueueSnackbar("Project Edited! 🔥", { variant: "success" });
-        methods.reset({}, { keepValues: true });
-      })
-      .catch(() => {
-        enqueueSnackbar("Project Edited Error 😔", { variant: "error" });
-      });
+    const dirtyDataValues = getDirtyValues(
+      methods?.formState?.dirtyFields,
+      values,
+      [],
+      ["coverImage", "images"]
+    ) as IProjectDataFormSchema;
 
-    editProjectMediaMutation(id, { coverImage })
-      .then(() => {
-        enqueueSnackbar("Media Edited! 🔥", { variant: "success" });
-        methods.reset({}, { keepValues: true });
-      })
-      .catch(() => {
-        enqueueSnackbar("Media Edited 😔", { variant: "error" });
-      });
+    const dirtyMediaValues = getDirtyValues(
+      methods?.formState?.dirtyFields,
+      values,
+      ["coverImage", "images"],
+      []
+    ) as IProjectMediaFormSchema;
+
+    if (Object.keys(dirtyDataValues).length) {
+      editProjectDataMutation(id, dirtyDataValues)
+        .then(() => {
+          enqueueSnackbar("Project Edited! 🔥", { variant: "success" });
+          methods.reset({}, { keepValues: true });
+        })
+        .catch(() => {
+          enqueueSnackbar("Project Edited Error 😔", { variant: "error" });
+        });
+    }
+
+    if (Object.keys(dirtyMediaValues).length) {
+      editProjectMediaMutation(id, { ...dirtyMediaValues })
+        .then(() => {
+          enqueueSnackbar("Media Edited! 🔥", { variant: "success" });
+          methods.reset({}, { keepValues: true });
+        })
+        .catch(() => {
+          enqueueSnackbar("Media Edited Error 😔", { variant: "error" });
+        });
+    }
   });
-
-  console.log(status);
 
   return (
     <FormProvider {...methods}>

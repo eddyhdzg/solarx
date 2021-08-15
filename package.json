@@ -33,6 +33,7 @@
     "react-use-clipboard": "^1.0.7",
     "reactfire": "^3.0.0-canary.8188802",
     "typescript": "^4.2.4",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
@@ -77,6 +78,7 @@
     "@types/react-copy-to-clipboard": "^5.0.0",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-swipeable-views": "^0.13.0",
-    "@types/react-table": "^7.7.1"
+    "@types/react-table": "^7.7.1",
+    "@types/uuid": "^8.3.1"
   }
 }

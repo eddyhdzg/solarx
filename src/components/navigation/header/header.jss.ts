@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(2),
       marginRight: "env(safe-area-inset-right)",
     },
+    header_divider: {
+      padding: 1,
+    },
   })
 );
 

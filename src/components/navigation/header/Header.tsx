@@ -50,7 +50,7 @@ const Header: React.FC<IHeaderProps> = ({ open, toggleDrawer }) => {
           </div>
         </div>
       </Toolbar>
-      <Divider />
+      <Divider className={classes.header_divider} />
     </AppBar>
   );
 };

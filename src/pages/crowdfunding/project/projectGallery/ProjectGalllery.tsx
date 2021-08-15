@@ -12,7 +12,7 @@ type IProjectGallery = Pick<Project, "images">;
 const ProjectGalllery: React.FC<IProjectGallery> = ({ images = [] }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = images.length || 0;
+  const maxSteps = images?.length || 0;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

@@ -26,17 +26,23 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "flex",
       justifyContent: "flex-end",
     },
+    projectFormBody_text__success: {
+      color: theme.palette.success.main,
+    },
     projectFormBody_textField__success: {
       "& input:valid + fieldset": {
-        borderColor: "green",
+        borderColor: theme.palette.success.dark,
         borderWidth: 2,
       },
     },
     projectFormBody_select__success: {
       "& input:valid + div + fieldset": {
-        borderColor: "green",
+        borderColor: theme.palette.success.dark,
         borderWidth: 2,
       },
+    },
+    projectFormBody_noBottomPadding: {
+      paddingBottom: 0,
     },
   })
 );
