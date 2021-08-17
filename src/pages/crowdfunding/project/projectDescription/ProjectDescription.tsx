@@ -15,18 +15,18 @@ export default function ProjectDescription({
   sharePrice = 0,
 }: IProjectDescription) {
   const classes = useStyles();
+  const percentage = (sharesSold / totalShares) * 100;
+
   return (
     <>
       <div className={classes.project_subSection}>
         <div className={classes.project_progressText}>
-          <Typography variant="h4">
-            {formatPercentage((sharesSold / totalShares) * 100)}
-          </Typography>
+          <Typography variant="h4">{formatPercentage(percentage)}</Typography>
           <Typography variant="body1" color="textSecondary">
             {formatNumber(sharesSold)} / {formatNumber(totalShares)} Shares
           </Typography>
         </div>
-        <GradientLinearProgress value={40} />
+        <GradientLinearProgress value={percentage} />
       </div>
       <div className={classes.project_subSection}>
         <Typography variant="h5">

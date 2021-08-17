@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     gradientLinearProgress_progressBarRoot: {
-      height: "8px",
+      height: theme.spacing(1),
       borderRadius: 5,
     },
     gradientLinearProgress_progressBarColorPrimary: {

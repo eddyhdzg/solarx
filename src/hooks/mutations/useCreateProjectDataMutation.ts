@@ -16,6 +16,7 @@ export default function useCreateProjectDataMutation() {
       sharesSold: 0,
       state: state?.name,
       coverImage: null,
+      images: [],
     };
 
     return projectsRef.add(project);

@@ -6,7 +6,7 @@ import { TImagesPreview } from "types/firebase.types";
 
 export default function ImagesPreview({ name }: FieldValues) {
   const { watch } = useFormContext<IProjectFormSchema>();
-  const [coverImage] = watch([name]) as [TImagesPreview];
+  const [imageArray] = watch([name]) as [TImagesPreview];
   const [files, setFiles] = useState<TImagesPreview>([]);
   const [pastFiles, setPastFiles] = useState<TImagesPreview>([]);
   const classes = useStyles();
@@ -15,8 +15,8 @@ export default function ImagesPreview({ name }: FieldValues) {
     setPastFiles(files);
 
     setFiles(
-      coverImage?.length
-        ? coverImage.map((file) => {
+      imageArray?.length
+        ? imageArray.map((file) => {
             if (typeof file === "string") {
               return file;
             }
@@ -37,7 +37,7 @@ export default function ImagesPreview({ name }: FieldValues) {
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coverImage]);
+  }, [imageArray]);
 
   useEffect(
     () => () => {

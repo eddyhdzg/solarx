@@ -45,20 +45,16 @@ export default function EditProject() {
           ppa: data?.ppa,
           softDelete: data?.softDelete,
           coverImage: data?.coverImage ? [data?.coverImage] : [],
-          images: data?.images?.length ? data?.images : [],
+          images: data?.images ? data?.images : [],
         };
 
     methods.reset(defaultValues);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, data]);
 
-  console.log(methods.watch("coverImage"));
-
   const { editProjectDataMutation } = useCreateProjectDataMutation();
   const { editProjectMediaMutation } = useCreateProjectMediaMutation();
   const { enqueueSnackbar } = useSnackbar();
-
-  console.log(methods.watch("coverImage"));
 
   const onSubmit = methods.handleSubmit((values, e) => {
     e?.preventDefault();
@@ -89,7 +85,7 @@ export default function EditProject() {
     }
 
     if (Object.keys(dirtyMediaValues).length) {
-      editProjectMediaMutation(id, { ...dirtyMediaValues })
+      editProjectMediaMutation(id, dirtyMediaValues)
         .then(() => {
           enqueueSnackbar("Media Edited! 🔥", { variant: "success" });
           methods.reset({}, { keepValues: true });

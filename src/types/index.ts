@@ -3,3 +3,4 @@ export * from "./locales.types";
 export * from "./projects.types";
 export * from "./routes.types";
 export * from "./theme.types";
+export * from "./users.types";

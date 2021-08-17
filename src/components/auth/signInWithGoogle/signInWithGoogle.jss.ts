@@ -2,7 +2,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    accountButton_test: {
+    accountButton_styledFirebaseAuth: {
       maxHeight: theme.spacing(5),
       "& .firebaseui-card-content": {
         padding: 0,

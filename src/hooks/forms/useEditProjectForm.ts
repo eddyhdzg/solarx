@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  createProjectFormSchema,
+  projectFormSchema,
   IProjectFormSchema,
   projectFormDefaultValues,
 } from "./useCreateProjectDataForm/useCreateProjectDataForm.schema";
 
 export default function useEditProjectForm() {
   const form = useForm<IProjectFormSchema>({
-    resolver: yupResolver(createProjectFormSchema),
+    resolver: yupResolver(projectFormSchema),
     mode: "onTouched",
     defaultValues: projectFormDefaultValues,
   });

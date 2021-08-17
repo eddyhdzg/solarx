@@ -3,14 +3,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormPersist } from "hooks";
 
 import {
-  createProjectFormSchema,
+  projectFormSchema,
   IProjectFormSchema,
   projectFormDefaultValues,
 } from "./useCreateProjectDataForm.schema";
 
 export default function useCreateProjectDataForm() {
   const form = useForm<IProjectFormSchema>({
-    resolver: yupResolver(createProjectFormSchema),
+    resolver: yupResolver(projectFormSchema),
     mode: "onChange",
     defaultValues: projectFormDefaultValues,
   });
@@ -21,7 +21,7 @@ export default function useCreateProjectDataForm() {
     {
       storage: window.localStorage,
       defaultValues: projectFormDefaultValues,
-      exclude: ["coverImage"],
+      exclude: ["coverImage", "images"],
     }
   );
 

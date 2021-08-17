@@ -475,7 +475,17 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               xs={12}
               className={classes.projectFormBody_noBottomPadding}
             >
-              <Typography variant="caption" gutterBottom>
+              <Typography
+                variant="caption"
+                gutterBottom
+                classes={{
+                  root: dirtyFields.images
+                    ? errors.images
+                      ? classes.projectFormBody_text__success
+                      : classes.projectFormBody_text__success
+                    : undefined,
+                }}
+              >
                 Images
               </Typography>
             </GridItem>

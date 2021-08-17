@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     projectCardSummary_input: {
       width: "100%",
-      maxWidth: "120px",
+      maxWidth: theme.spacing(15),
       [theme.breakpoints.only("xxs")]: {
         marginBottom: theme.spacing(1),
       },

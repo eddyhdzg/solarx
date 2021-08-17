@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
       textOverflow: "ellipsis",
     },
     imagesPreview_img: {
-      height: "60px",
-      width: "120px",
+      height: theme.spacing(8),
+      width: theme.spacing(16),
       objectFit: "cover",
       marginRight: theme.spacing(1),
     },

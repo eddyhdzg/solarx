@@ -30,7 +30,7 @@ const SignInWithGoogle = () => {
     <StyledFirebaseAuth
       uiConfig={uiConfig}
       firebaseAuth={auth()}
-      className={classes.accountButton_test}
+      className={classes.accountButton_styledFirebaseAuth}
     />
   );
 };

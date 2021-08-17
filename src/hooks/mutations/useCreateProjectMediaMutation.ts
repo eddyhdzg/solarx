@@ -10,6 +10,7 @@ export default function useCreateProjectMediaMutation() {
     { coverImage, images }: IProjectMediaFormSchema
   ) => {
     let coverImagePromise: Promise<void> | undefined;
+    let imagesPromises: Promise<void> | undefined;
 
     // Modify Cover Image
     if (coverImage !== undefined) {
@@ -33,7 +34,34 @@ export default function useCreateProjectMediaMutation() {
       }
     }
 
-    const results = await Promise.all([coverImagePromise]);
+    // Images
+    if (images !== undefined) {
+      const imagesRef = storage.ref("projects").child(id).child("images");
+      if (images?.length) {
+        const fileUploads = images.map(async (file, index) => {
+          if (typeof file === "string") return undefined;
+          return imagesRef.child(`${index}`).put(file);
+        });
+
+        const uploadRequests = await Promise.all(fileUploads);
+        const fileURLReqs = uploadRequests.map((f) => {
+          return f?.ref?.getDownloadURL() || undefined;
+        });
+
+        const fileUrls: (string | undefined)[] = await Promise.all(fileURLReqs);
+        const filteredFileUrls = fileUrls.filter(
+          (url) => url !== undefined
+        ) as string[];
+
+        imagesPromises = firestoreProjectsRef
+          .doc(id)
+          .update({ images: filteredFileUrls });
+      } else {
+        imagesPromises = firestoreProjectsRef.doc(id).update({ images: [] });
+      }
+    }
+
+    const results = await Promise.all([coverImagePromise, imagesPromises]);
     return results;
   };
 
