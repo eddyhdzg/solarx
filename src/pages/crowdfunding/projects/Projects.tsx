@@ -15,12 +15,13 @@ import {
 } from "react-table";
 import { ProjectsTableLayout } from "tables";
 import shallow from "zustand/shallow";
+import { projectSearchFilters } from "constant";
 
 const Projects = () => {
   const { data: projects } = useProjectsNonDeleted();
   const { publicColumns } = useProjectsColumns({ section: "crowdfunding" });
   const data = useMemo(() => projects, [projects]);
-  const globalFilter = useFuzzyGlobalFilter();
+  const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);
   const {
     projects: { pageSize },
   } = useStore(({ projects }) => ({ projects }), shallow);

@@ -7,7 +7,7 @@ import {
   ListItemText,
   Typography,
 } from "@material-ui/core";
-import { routesTree } from "constant";
+import { routesTree } from "routes";
 import { useCopywriting } from "hooks";
 import useStyles from "./subSidenav.jss";
 import { NavLink } from "react-router-dom";

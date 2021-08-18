@@ -15,3 +15,9 @@ export type UserRole =
   | AdminUser
   | EditorUser
   | SuperUser;
+
+export interface User {
+  id: string;
+  name: string;
+  role: UserRole;
+}

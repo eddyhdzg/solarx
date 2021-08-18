@@ -6,7 +6,7 @@ import {
   ListItem,
   ListItemText,
 } from "@material-ui/core";
-import { routesTree } from "constant";
+import { routesTree } from "routes";
 import { TBaseRoutes } from "types";
 import { useBreadcrumbs, useCopywriting } from "hooks";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";

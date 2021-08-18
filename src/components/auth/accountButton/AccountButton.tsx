@@ -66,7 +66,7 @@ const AccountButton: React.FC = () => {
         alignItems: "center",
       }}
     >
-      {!signinResult.signedIn && <SignInWithGoogle />}
+      {!signinResult?.signedIn && <SignInWithGoogle />}
 
       <IconButton
         aria-label="account of current user"
@@ -76,7 +76,7 @@ const AccountButton: React.FC = () => {
         onClick={handleToggle}
         className={[
           classes.accountButton_iconButton,
-          !signinResult.signedIn && classes.accountButton_hide,
+          !signinResult?.signedIn && classes.accountButton_hide,
         ].join(" ")}
       >
         <Avatar
@@ -92,7 +92,7 @@ const AccountButton: React.FC = () => {
         transition
         disablePortal
         className={
-          !signinResult.signedIn ? classes.accountButton_hide : undefined
+          !signinResult?.signedIn ? classes.accountButton_hide : undefined
         }
       >
         {({ TransitionProps, placement }) => (

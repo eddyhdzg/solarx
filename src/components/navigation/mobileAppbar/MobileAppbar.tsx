@@ -4,7 +4,7 @@ import {
   BottomNavigationAction,
   BottomNavigationProps,
 } from "@material-ui/core";
-import { routesTree } from "constant";
+import { routesTree } from "routes";
 import { TBaseRoutes } from "types";
 import useStyles from "./mobileAppbar.jss";
 import { useLocation, NavLink } from "react-router-dom";

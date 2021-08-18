@@ -1,7 +1,6 @@
 import { Locales, ThemeType } from "types";
 
 export * from "./projects.constant";
-export * from "./routes.constant";
 export * from "./mexicanCities.constant";
 export * from "./mexicanStates.constant";
 export const drawerWidth = 312;

@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemIcon } from "@material-ui/core";
 import { Tooltip } from "components";
-import { routesTree } from "constant";
+import { routesTree } from "routes";
 import { useCopywriting } from "hooks";
 import useStyles from "./sidenav.jss";
 import logo from "assets/images/Logo.svg";

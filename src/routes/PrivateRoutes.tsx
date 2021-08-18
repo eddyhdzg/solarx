@@ -1,7 +1,7 @@
 import { Redirect, Route, Switch } from "react-router";
 import { useTheme, useMediaQuery } from "@material-ui/core";
 import { MobileSubSidenav, Layout } from "components";
-import { routesTree } from "constant";
+import { routesTree } from "./routerTree";
 import PrivateRoute from "./PrivateRoute";
 
 export default function PrivateRoutes() {

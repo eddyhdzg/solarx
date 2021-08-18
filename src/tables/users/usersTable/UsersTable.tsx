@@ -7,10 +7,10 @@ import {
   TableFooter,
   Paper,
 } from "@material-ui/core";
-import useStyles from "./projectsTable.jss";
-import ProjectsTablePagination from "../projectsTablePagination/ProjectsTablePagination";
+import UsersTablePagination from "../usersTablePagination/UsersTablePagination";
+import useStyles from "./usersTable.jss";
 
-interface IProjectsTableProps {
+interface IUsersTableProps {
   getTableProps: any;
   getTableBodyProps: any;
   headerGroups: any;
@@ -22,7 +22,7 @@ interface IProjectsTableProps {
   state: any;
 }
 
-export default function ProjectsTable({
+export default function UsersTable({
   getTableProps,
   getTableBodyProps,
   headerGroups,
@@ -32,11 +32,10 @@ export default function ProjectsTable({
   gotoPage,
   setPageSize,
   state,
-}: IProjectsTableProps) {
+}: IUsersTableProps) {
   const classes = useStyles();
-
   return (
-    <Paper elevation={3} className={classes.projectsTable_paper}>
+    <Paper elevation={3} className={classes.usersTable_paper}>
       <Table {...getTableProps()}>
         <TableHead>
           {headerGroups.map((headerGroup: any) => (
@@ -89,7 +88,7 @@ export default function ProjectsTable({
         </TableBody>
         <TableFooter>
           <TableRow>
-            <ProjectsTablePagination
+            <UsersTablePagination
               rows={rows}
               gotoPage={gotoPage}
               setPageSize={setPageSize}
