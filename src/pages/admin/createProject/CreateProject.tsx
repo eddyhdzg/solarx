@@ -3,7 +3,7 @@ import {
   useCreateProjectDataMutation,
   useCreateProjectMediaMutation,
 } from "hooks";
-import ProjectForm from "../forms/projectForm/ProjectForm";
+import ProjectForm from "forms/projectForm/ProjectForm";
 import { useSnackbar } from "notistack";
 import { FormProvider } from "react-hook-form";
 

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   mobileAppbar_icon: {
     [theme.breakpoints.only("xxs")]: {
-      fontSize: "1rem",
+      fontSize: "1.25rem",
     },
   },
   mobileAppbar_button: {

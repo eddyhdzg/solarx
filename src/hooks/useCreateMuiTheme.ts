@@ -90,11 +90,11 @@ const useCreateMuiTheme = () => {
         fontWeight: 700,
       },
       subtitle1: {
-        fontWeight: 600,
+        fontWeight: 700,
         lineHeight: "1.5rem",
       },
       subtitle2: {
-        fontWeight: 500,
+        fontWeight: 600,
         lineHeight: "1.5rem",
       },
     },

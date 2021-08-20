@@ -12,8 +12,12 @@ import { useUsersColumns } from "hooks";
 
 export default function Users() {
   const { data: users } = useUsers();
+
   const usersColumns: any = useUsersColumns();
-  const usersFilters = useMemo(() => ["id", "name", "role"], []);
+  const usersFilters = useMemo(
+    () => ["uid", "displayName", "email", "role"],
+    []
+  );
   const globalFilter = useFuzzyGlobalFilter(usersFilters);
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {

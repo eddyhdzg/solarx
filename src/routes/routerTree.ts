@@ -7,7 +7,7 @@ import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import Loader from "pages/loader";
 import Preferences from "pages/more/preferences/Preferences";
-import { CrowdfundingRoute, AdminRoute } from "pages/pages";
+import { CrowdfundingRoute, AdminRoute, AccountInformation } from "pages/pages";
 
 export type RoutesTree = {
   [key in TBaseRoutes]: {
@@ -101,6 +101,11 @@ export const routesTree: RoutesTree = {
       {
         subHeader: "account",
         subRoutes: [
+          {
+            title: "account-information",
+            subRoute: "/account-information",
+            component: AccountInformation,
+          },
           {
             title: "preferences",
             subRoute: "/preferences",

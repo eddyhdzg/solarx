@@ -1,36 +1,59 @@
 import { useMemo } from "react";
 import { RoleSelect } from "components";
 import { User, UserRole } from "types";
+import useStyles from "../useProjectsColumns/useProjectsColumns.jss";
+import { Avatar } from "@material-ui/core";
 
 interface Row {
   original: User;
 }
 
 const useUsersColumns = () => {
+  const classes = useStyles();
   const columns = useMemo(() => {
     const adminUsers = [
       {
-        id: "id",
-        Header: "id",
-        accessor: "id",
+        id: "avatar",
+        Header: "Avatar",
+        accessor: "avatar",
+        Cell: ({ value }: { value: string }) => {
+          return <Avatar alt="avatar" src={value || undefined} />;
+        },
       },
       {
-        id: "name",
+        id: "uid",
+        Header: "uid",
+        accessor: "uid",
+      },
+      {
+        id: "email",
+        Header: "Email",
+        accessor: "email",
+      },
+      {
+        id: "displayName",
         Header: "Name",
-        accessor: "name",
+        accessor: "displayName",
       },
       {
         id: "role",
         Header: "Role",
         accessor: "role",
         Cell: ({ value, row }: { value: UserRole; row: Row }) => {
-          return <RoleSelect id={row?.original?.id} role={value} />;
+          return <RoleSelect id={row?.original?.uid} role={value} />;
         },
+        className: [
+          classes.useProjectsColumns_noPadding,
+          classes.useProjectsColumns_alignRight,
+        ].join(" "),
       },
     ];
 
     return adminUsers;
-  }, []);
+  }, [
+    classes.useProjectsColumns_alignRight,
+    classes.useProjectsColumns_noPadding,
+  ]);
 
   return columns;
 };

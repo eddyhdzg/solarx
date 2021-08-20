@@ -11,7 +11,7 @@ import {
   useCreateProjectDataMutation,
   useCreateProjectMediaMutation,
 } from "hooks";
-import ProjectForm from "../forms/projectForm/ProjectForm";
+import ProjectForm from "forms/projectForm/ProjectForm";
 import { mexicanStates } from "constant";
 import { useParams } from "react-router-dom";
 import { FormProvider } from "react-hook-form";

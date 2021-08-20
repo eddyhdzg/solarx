@@ -6,6 +6,6 @@ export default function useUsers() {
 
   return useFirestoreCollectionData<User>(usersRef, {
     initialData: [],
-    idField: "id",
+    idField: "uid",
   });
 }

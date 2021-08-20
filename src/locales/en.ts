@@ -44,6 +44,7 @@ const en: {
     more: "More",
     account: "Account",
     preferences: "Preferences",
+    "account-information": "Acount Information",
     session: "Session",
     "manage projects": "Manage Projects",
     "create project": "Create Project",

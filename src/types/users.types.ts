@@ -17,7 +17,9 @@ export type UserRole =
   | SuperUser;
 
 export interface User {
-  id: string;
-  name: string;
-  role: UserRole;
+  avatar?: string;
+  displayName?: string;
+  email?: string;
+  uid?: string;
+  role?: UserRole;
 }

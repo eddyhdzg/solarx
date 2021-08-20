@@ -21,3 +21,17 @@ exports.updateRole = functions.firestore
         console.log(error);
       });
   });
+
+export const addUser = functions.auth.user().onCreate((user) => {
+  const { uid, displayName, email, photoURL } = user;
+
+  const newUser = {
+    avatar: photoURL,
+    uid,
+    displayName,
+    email,
+    role: "default",
+  };
+
+  return admin.firestore().collection("users").doc(uid).set(newUser);
+});
