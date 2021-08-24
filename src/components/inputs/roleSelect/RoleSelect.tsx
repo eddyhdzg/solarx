@@ -37,7 +37,7 @@ export default function RoleSelect({ id, role = "default" }: IRoleSelectProps) {
           </optgroup>
           <optgroup label="SolarX Team">
             <option value="admin">Admin</option>
-            <option value="editor">Editor</option>
+            <option value="moderator">Moderator</option>
             <option value="superUser" disabled>
               Super User
             </option>

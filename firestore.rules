@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOneOfRoles(array) {
+      return request.auth.token.role in array;
+    }
+
+    function updateOnlyFields(allowedFields) {
+      return request.resource.data.diff(resource.data).changedKeys().hasOnly(allowedFields)
+    }
+
+    function myDocument(userId) {
+      return request.auth.uid == userId
+    }
+
+    match /{document=**} {
+      allow read, write: if false
+    }
+
+    match /users/{userId} {
+      allow read: if true;
+      allow update: if (myDocument(userId) && updateOnlyFields(['displayName']));
+      allow update: if (isOneOfRoles(['moderator', 'superUser']) && updateOnlyFields(['role']));
+    }
+
+    match /projects/{projectId} {
+      allow read: if ((resource.data.softDelete == false) || isOneOfRoles(['admin', 'moderator', 'superUser']));
+      allow write: if (isOneOfRoles(['moderator', 'superUser']));
+    }
+  }
+}
+
+
