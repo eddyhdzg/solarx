@@ -1,7 +1,7 @@
-import firebase from "firebase";
+import { Timestamp as Test } from "firebase/firestore";
 import { FileWithPath } from "react-dropzone";
 
-export type Timestamp = firebase.firestore.Timestamp;
+export type Timestamp = Test;
 
 export interface FilePreview extends FileWithPath {
   preview: string;

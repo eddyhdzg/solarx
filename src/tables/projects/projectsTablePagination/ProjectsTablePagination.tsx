@@ -45,7 +45,6 @@ export default function ProjectsTablePagination({
       count={rows.length}
       page={pageIndex}
       rowsPerPage={pageSize}
-      onChangePage={handleChangePage}
       rowsPerPageOptions={[5, 10, 25]}
       SelectProps={{
         inputProps: { "aria-label": "rows per page" },
@@ -55,6 +54,7 @@ export default function ProjectsTablePagination({
       ActionsComponent={TablePaginationActions}
       component={component}
       className={classes.tablePagination_root}
+      onPageChange={handleChangePage}
     />
   );
 }

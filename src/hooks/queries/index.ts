@@ -1,5 +1,5 @@
 export { default as useProject } from "./useProject";
-export { default as useProjects } from "./useProjects";
-export { default as useProjectsNonDeleted } from "./useProjectsNonDeleted";
+export { default as usePrivateProjects } from "./usePrivateProjects";
+export { default as usePublicProjects } from "./usePublicProjects";
 export { default as useFirestoreUser } from "./useFirestoreUser";
-export { default as useUsers } from "./useUsers";
+export { default as useFirestoreUsers } from "./useFirestoreUsers";

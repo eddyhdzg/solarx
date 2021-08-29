@@ -1,10 +1,17 @@
 import { useFirestore } from "reactfire";
 import { Project, Timestamp } from "types";
 import { IProjectDataFormSchema } from "hooks";
+import {
+  collection,
+  serverTimestamp,
+  addDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 
 export default function useCreateProjectDataMutation() {
-  const projectsRef = useFirestore().collection("projects");
-  const { serverTimestamp } = useFirestore.FieldValue;
+  const firestore = useFirestore();
+  const projectsCollection = collection(firestore, "projects");
 
   const createProjectDataMutation = ({
     state,
@@ -19,11 +26,11 @@ export default function useCreateProjectDataMutation() {
       images: [],
     };
 
-    return projectsRef.add(project);
+    return addDoc(projectsCollection, project);
   };
 
   const editProjectDataMutation = (
-    id: string | undefined,
+    id: string,
     { state, ...formData }: IProjectDataFormSchema
   ) => {
     const project: Project = {
@@ -31,7 +38,9 @@ export default function useCreateProjectDataMutation() {
       ...(state && { state: state?.name }),
     };
 
-    return projectsRef.doc(id).update(project);
+    const projectDocRef = doc(firestore, "projects", id);
+
+    return updateDoc(projectDocRef, { project });
   };
 
   return { createProjectDataMutation, editProjectDataMutation };

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import {
   useProjectFilters,
-  useProjects,
+  usePrivateProjects,
   useProjectsColumns,
   useFuzzyGlobalFilter,
   useStore,
@@ -18,7 +18,7 @@ import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
 
 const Projects = () => {
-  const { data: projects } = useProjects();
+  const { data: projects } = usePrivateProjects();
   const { privateColumns } = useProjectsColumns({ section: "admin" });
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);

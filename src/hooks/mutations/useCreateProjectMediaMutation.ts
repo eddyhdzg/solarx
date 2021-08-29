@@ -1,9 +1,62 @@
+import { doc, updateDoc } from "firebase/firestore";
 import { IProjectMediaFormSchema } from "hooks";
 import { useFirestore, useStorage } from "reactfire";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 export default function useCreateProjectMediaMutation() {
   const storage = useStorage();
-  const firestoreProjectsRef = useFirestore().collection("projects");
+  const firestore = useFirestore();
+
+  const uploadCoverImage = async (
+    id: string,
+    coverImage: IProjectMediaFormSchema["coverImage"]
+  ) => {
+    const projectFirestoreDocRef = doc(firestore, "projects", id);
+    if (coverImage?.length) {
+      const coverImageStorageRef = ref(storage, `projects/${id}/coverImage`);
+      const fileToUpload = coverImage[0];
+      if (typeof fileToUpload === "string") {
+        return undefined;
+      }
+      await uploadBytesResumable(coverImageStorageRef, fileToUpload);
+      const coverImageUrl = await getDownloadURL(coverImageStorageRef);
+      updateDoc(projectFirestoreDocRef, { coverImage: coverImageUrl });
+    } else {
+      updateDoc(projectFirestoreDocRef, { coverImage: null });
+    }
+  };
+
+  const uploadImages = async (
+    id: string,
+    images: IProjectMediaFormSchema["images"]
+  ) => {
+    const projectFirestoreDocRef = doc(firestore, "projects", id);
+    if (images?.length) {
+      const imagesStorageRef = ref(storage, `projects/${id}/images`);
+      const fileUploads = images.map(async (file, index) => {
+        if (typeof file === "string") {
+          return undefined;
+        }
+        return uploadBytesResumable(ref(imagesStorageRef, `${index}`), file);
+      });
+
+      const uploadRequests = await Promise.all(fileUploads);
+      const fileURLReqs = uploadRequests.map((f, index) => {
+        return f
+          ? getDownloadURL(ref(imagesStorageRef, `${index}`))
+          : undefined;
+      });
+
+      const fileUrls: (string | undefined)[] = await Promise.all(fileURLReqs);
+      const filteredFileUrls = fileUrls.filter(
+        (url) => url !== undefined
+      ) as string[];
+
+      updateDoc(projectFirestoreDocRef, { images: filteredFileUrls });
+    } else {
+      updateDoc(projectFirestoreDocRef, { images: [] });
+    }
+  };
 
   const createProjectMediaMutation = async (
     id: string,
@@ -11,54 +64,14 @@ export default function useCreateProjectMediaMutation() {
   ) => {
     let coverImagePromise: Promise<void> | undefined;
     let imagesPromises: Promise<void> | undefined;
-
     // Modify Cover Image
     if (coverImage !== undefined) {
-      const coverImageRef = storage
-        .ref("projects")
-        .child(id)
-        .child("coverImage");
-      if (coverImage?.length) {
-        const fileToUpload = coverImage[0];
-        if (typeof fileToUpload === "string")
-          return new Error("File type error");
-        const uploadCoverImage = await coverImageRef.put(fileToUpload);
-        const coverImageUrl = await uploadCoverImage.ref.getDownloadURL();
-        coverImagePromise = firestoreProjectsRef
-          .doc(id)
-          .update({ coverImage: coverImageUrl });
-      } else {
-        coverImagePromise = firestoreProjectsRef
-          .doc(id)
-          .update({ coverImage: null });
-      }
+      coverImagePromise = uploadCoverImage(id, coverImage);
     }
 
     // Images
     if (images !== undefined) {
-      const imagesRef = storage.ref("projects").child(id).child("images");
-      if (images?.length) {
-        const fileUploads = images.map(async (file, index) => {
-          if (typeof file === "string") return undefined;
-          return imagesRef.child(`${index}`).put(file);
-        });
-
-        const uploadRequests = await Promise.all(fileUploads);
-        const fileURLReqs = uploadRequests.map((f) => {
-          return f?.ref?.getDownloadURL() || undefined;
-        });
-
-        const fileUrls: (string | undefined)[] = await Promise.all(fileURLReqs);
-        const filteredFileUrls = fileUrls.filter(
-          (url) => url !== undefined
-        ) as string[];
-
-        imagesPromises = firestoreProjectsRef
-          .doc(id)
-          .update({ images: filteredFileUrls });
-      } else {
-        imagesPromises = firestoreProjectsRef.doc(id).update({ images: [] });
-      }
+      imagesPromises = uploadImages(id, images);
     }
 
     const results = await Promise.all([coverImagePromise, imagesPromises]);
@@ -75,51 +88,12 @@ export default function useCreateProjectMediaMutation() {
 
     // Modify Cover Image
     if (coverImage !== undefined) {
-      const coverImageRef = storage
-        .ref("projects")
-        .child(id)
-        .child("coverImage");
-      if (coverImage?.length) {
-        const fileToUpload = coverImage[0];
-        if (typeof fileToUpload === "string")
-          return new Error("File type error");
-        const uploadCoverImage = await coverImageRef.put(fileToUpload);
-        const coverImageUrl = await uploadCoverImage.ref.getDownloadURL();
-        coverImagePromise = firestoreProjectsRef
-          .doc(id)
-          .update({ coverImage: coverImageUrl });
-      } else {
-        coverImagePromise = firestoreProjectsRef
-          .doc(id)
-          .update({ coverImage: null });
-      }
+      coverImagePromise = uploadCoverImage(id, coverImage);
     }
 
     // Images
     if (images !== undefined) {
-      const imagesRef = storage.ref("projects").child(id).child("images");
-      if (images?.length) {
-        const fileUploads = images.map(async (file, index) => {
-          if (typeof file === "string") return undefined;
-          return imagesRef.child(`${index}`).put(file);
-        });
-
-        const uploadRequests = await Promise.all(fileUploads);
-        const fileURLReqs = uploadRequests.map((f) => {
-          return f?.ref?.getDownloadURL() || undefined;
-        });
-
-        const fileUrls: (string | undefined)[] = await Promise.all(fileURLReqs);
-        const filteredFileUrls = fileUrls.filter(
-          (url) => url !== undefined
-        ) as string[];
-
-        imagesPromises = firestoreProjectsRef
-          .doc(id)
-          .update({ images: filteredFileUrls });
-      } else {
-        imagesPromises = firestoreProjectsRef.doc(id).update({ images: [] });
-      }
+      imagesPromises = uploadImages(id, images);
     }
 
     const results = await Promise.all([coverImagePromise, imagesPromises]);

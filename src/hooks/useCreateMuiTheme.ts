@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
+import { createTheme, responsiveFontSizes } from "@material-ui/core";
 import { usePalette } from "hooks";
 import createBreakpoints from "theme/createBreakpoints";
 import yellow from "@material-ui/core/colors/yellow";
@@ -100,7 +100,7 @@ const useCreateMuiTheme = () => {
     },
   };
 
-  const muiTheme = createMuiTheme(theme, {
+  const muiTheme = createTheme(theme, {
     ...customTheme,
   });
 

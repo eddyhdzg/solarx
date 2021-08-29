@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { RoleSelect } from "components";
-import { User, UserRole } from "types";
+import { FirestoreUser, UserRole } from "types";
 import useStyles from "../useProjectsColumns/useProjectsColumns.jss";
 import { Avatar } from "@material-ui/core";
 
 interface Row {
-  original: User;
+  original: FirestoreUser;
 }
 
 const useUsersColumns = () => {

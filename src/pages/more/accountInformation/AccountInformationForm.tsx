@@ -7,13 +7,13 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Button, GridItem } from "components";
-import { User } from "types";
+import { FirestoreUser } from "types";
 import useStyles from "./accountInformation.jss";
 import { IFirestoreUserFormSchema, useEditFirestoreUserMutation } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface IAccountInformationFormProps {
-  firestoreUser: User;
+  firestoreUser: FirestoreUser;
 }
 
 export default function AccountInformationForm({
@@ -29,7 +29,7 @@ export default function AccountInformationForm({
 
   const onSubmit = handleSubmit((values, e) => {
     e?.preventDefault();
-    handleFirestoreUserMutaion(firestoreUser?.uid, values);
+    handleFirestoreUserMutaion(firestoreUser?.uid || "", values);
   });
 
   return (

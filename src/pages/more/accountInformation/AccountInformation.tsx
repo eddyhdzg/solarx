@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useUser } from "reactfire";
 import {
   useFirestoreUser,
   useEditFirestoreUser,
@@ -11,9 +10,8 @@ import { FormProvider } from "react-hook-form";
 import AccountInformationForm from "./AccountInformationForm";
 
 export default function AccountInformation() {
-  const user = useUser();
   const { data: signinResult } = useSigninCheck();
-  const { data, status } = useFirestoreUser(user?.data?.uid);
+  const { data, status } = useFirestoreUser();
   const methods = useEditFirestoreUser();
 
   useEffect(() => {

@@ -16,7 +16,9 @@ export default function RoleSelect({ id, role = "default" }: IRoleSelectProps) {
   const { handleRoleMutaion } = useEditRole();
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    handleRoleMutaion(id, event.target.value as UserRole);
+    if (id) {
+      handleRoleMutaion(id, event.target.value as UserRole);
+    }
   };
 
   return (

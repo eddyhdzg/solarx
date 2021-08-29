@@ -1,16 +1,14 @@
-import firebase from "firebase/app";
 import { useAuth } from "reactfire";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 export default function useCustomAuth() {
   const auth = useAuth();
 
-  const googleProvider =
-    new firebase.auth.GoogleAuthProvider().setCustomParameters({
+  const signIn = async () => {
+    const provider = new GoogleAuthProvider().setCustomParameters({
       prompt: "select_account",
     });
-
-  const signIn = async () => {
-    await auth.signInWithPopup(googleProvider);
+    await signInWithPopup(auth, provider);
   };
 
   const signOut = async () => {

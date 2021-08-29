@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { UsersTableLayout } from "tables";
-import { useFuzzyGlobalFilter, useUsers } from "hooks";
+import { useFuzzyGlobalFilter, useFirestoreUsers } from "hooks";
 import {
   useTable,
   useSortBy,
@@ -11,7 +11,7 @@ import {
 import { useUsersColumns } from "hooks";
 
 export default function Users() {
-  const { data: users } = useUsers();
+  const { data: firestoreUsers } = useFirestoreUsers();
 
   const usersColumns: any = useUsersColumns();
   const usersFilters = useMemo(
@@ -22,7 +22,7 @@ export default function Users() {
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {
       columns: usersColumns,
-      data: users,
+      data: firestoreUsers,
       initialState: {
         // @ts-ignore
         // pageSize,

@@ -1,16 +1,18 @@
 import { useFirestore } from "reactfire";
-import { User } from "types";
+import { FirestoreUser } from "types";
 import { useSnackbar } from "notistack";
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function useEditFirestoreUserMutation() {
-  const usersRef = useFirestore().collection("users");
+  const firestore = useFirestore();
   const { enqueueSnackbar } = useSnackbar();
 
-  const editFirestoreUserMutation = (id?: string, data?: User) => {
-    return usersRef.doc(id).update({ ...data });
+  const editFirestoreUserMutation = (id: string, data?: FirestoreUser) => {
+    const userRef = doc(firestore, "users", id);
+    return updateDoc(userRef, { ...data });
   };
 
-  const handleFirestoreUserMutaion = (id?: string, data?: User) => {
+  const handleFirestoreUserMutaion = (id: string, data?: FirestoreUser) => {
     editFirestoreUserMutation(id, data)
       .then(() => {
         enqueueSnackbar("User Edited! 🔥", { variant: "success" });

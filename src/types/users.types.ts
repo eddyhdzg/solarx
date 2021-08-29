@@ -16,7 +16,7 @@ export type UserRole =
   | ModeratorUser
   | SuperUser;
 
-export interface User {
+export interface FirestoreUser {
   avatar?: string;
   displayName?: string;
   email?: string;

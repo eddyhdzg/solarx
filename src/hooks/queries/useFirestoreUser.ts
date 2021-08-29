@@ -1,12 +1,20 @@
-import { useFirestore, useFirestoreDocData } from "reactfire";
-import { User } from "types";
+import { doc } from "firebase/firestore";
+import { useFirestore, useFirestoreDocData, useUser } from "reactfire";
+import { FirestoreUser } from "types";
 
-export default function useFirestoreUser(uid: User["uid"]) {
-  const userRef = useFirestore()
-    .collection("users")
-    .doc(uid || "null");
+export default function useFirestoreUser() {
+  const { data } = useUser();
+  const firestore = useFirestore();
+  const userRef = doc(firestore, "users", data?.uid || "null");
 
-  return useFirestoreDocData<User>(userRef, {
+  return useFirestoreDocData<FirestoreUser>(userRef, {
     idField: "uid",
+    initialData: {
+      avatar: "",
+      displayName: "",
+      email: "",
+      uid: "",
+      role: null,
+    },
   });
 }

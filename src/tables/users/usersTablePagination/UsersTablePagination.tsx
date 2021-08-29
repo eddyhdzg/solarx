@@ -45,7 +45,7 @@ export default function UsersTablePagination({
       count={rows.length}
       page={pageIndex}
       rowsPerPage={pageSize}
-      onChangePage={handleChangePage}
+      onPageChange={handleChangePage}
       rowsPerPageOptions={[5, 10, 25]}
       SelectProps={{
         inputProps: { "aria-label": "rows per page" },

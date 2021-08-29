@@ -15,7 +15,7 @@ interface ProjectID {
 export default function Project() {
   const { id } = useParams<ProjectID>();
   const classes = useStyles();
-  const { status, data } = useProject(id);
+  const { status, data } = useProject(id || "");
 
   if (status === "loading") {
     return <CenterLoader />;

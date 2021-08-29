@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import {
   useProjectFilters,
-  useProjectsNonDeleted,
+  usePublicProjects,
   useProjectsColumns,
   useFuzzyGlobalFilter,
   useStore,
@@ -18,7 +18,7 @@ import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
 
 const Projects = () => {
-  const { data: projects } = useProjectsNonDeleted();
+  const { data: projects } = usePublicProjects();
   const { publicColumns } = useProjectsColumns({ section: "crowdfunding" });
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);

@@ -24,7 +24,7 @@ interface ProjectID {
 
 export default function EditProject() {
   const { id } = useParams<ProjectID>();
-  const { data, status } = useProject(id);
+  const { data, status } = useProject(id || "");
   const methods = useEditProjectForm();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function EditProject() {
     ) as IProjectMediaFormSchema;
 
     if (Object.keys(dirtyDataValues).length) {
-      editProjectDataMutation(id, dirtyDataValues)
+      editProjectDataMutation(id || "", dirtyDataValues)
         .then(() => {
           enqueueSnackbar("Project Edited! 🔥", { variant: "success" });
           methods.reset({}, { keepValues: true });
