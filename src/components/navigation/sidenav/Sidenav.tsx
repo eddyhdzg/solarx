@@ -1,7 +1,6 @@
 import { List, ListItem, ListItemIcon } from "@material-ui/core";
 import { Tooltip } from "components";
-import { routesTree } from "routes";
-import { useCopywriting } from "hooks";
+import { useCopywriting, useRouterTree } from "hooks";
 import useStyles from "./sidenav.jss";
 import logo from "assets/images/Logo.svg";
 import { Link, NavLink, useLocation } from "react-router-dom";
@@ -12,7 +11,8 @@ import shallow from "zustand/shallow";
 const Sidenav: React.FC = () => {
   const classes = useStyles();
   const copy = useCopywriting();
-  const routes = Object.entries(routesTree);
+  const routerTree = useRouterTree();
+  const routes = Object.entries(routerTree);
   const more = [routes.pop()!];
   const { pathname } = useLocation();
 

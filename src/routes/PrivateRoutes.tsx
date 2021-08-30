@@ -1,17 +1,18 @@
 import { Redirect, Route, Switch } from "react-router";
 import { useTheme, useMediaQuery } from "@material-ui/core";
-import { MobileSubSidenav, Layout } from "components";
-import { routesTree } from "./routerTree";
 import PrivateRoute from "./PrivateRoute";
+import { MobileSubSidenav, Layout } from "components";
+import { useRouterTree } from "hooks";
 
 export default function PrivateRoutes() {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const routerTree = useRouterTree();
 
   return (
     <Layout>
       <Switch>
-        {Object.entries(routesTree).map(([path, { sections }]) => (
+        {Object.entries(routerTree).map(([path, { sections }]) => (
           <Route key={path} path={path}>
             <Switch>
               {sections.map(({ subRoutes }) =>

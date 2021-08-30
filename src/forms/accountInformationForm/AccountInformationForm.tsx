@@ -8,9 +8,9 @@ import {
 } from "@material-ui/core";
 import { Button, GridItem } from "components";
 import { FirestoreUser } from "types";
-import useStyles from "./accountInformation.jss";
 import { IFirestoreUserFormSchema, useEditFirestoreUserMutation } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
+import useStyles from "./accountInformation.jss";
 
 interface IAccountInformationFormProps {
   firestoreUser: FirestoreUser;

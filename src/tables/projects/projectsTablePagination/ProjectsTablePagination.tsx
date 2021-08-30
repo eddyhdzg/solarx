@@ -50,7 +50,7 @@ export default function ProjectsTablePagination({
         inputProps: { "aria-label": "rows per page" },
         native: true,
       }}
-      onChangeRowsPerPage={handleChangeRowsPerPage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
       ActionsComponent={TablePaginationActions}
       component={component}
       className={classes.tablePagination_root}

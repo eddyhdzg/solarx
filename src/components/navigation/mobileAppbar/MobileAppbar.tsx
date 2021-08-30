@@ -4,11 +4,10 @@ import {
   BottomNavigationAction,
   BottomNavigationProps,
 } from "@material-ui/core";
-import { routesTree } from "routes";
 import { TBaseRoutes } from "types";
 import useStyles from "./mobileAppbar.jss";
 import { useLocation, NavLink } from "react-router-dom";
-import { useRouterMemo } from "hooks";
+import { useRouterMemo, useRouterTree } from "hooks";
 import shallow from "zustand/shallow";
 
 const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
@@ -18,6 +17,7 @@ const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
     ({ routerMemo }) => ({ routerMemo }),
     shallow
   );
+  const routerTree = useRouterTree();
 
   const getMemoryRoute = (baseRoute: TBaseRoutes) => {
     if (pathname.includes(baseRoute)) {
@@ -33,7 +33,7 @@ const MobileAppbar: React.FC<BottomNavigationProps> = (props) => {
         value={pathname}
         className={classes.mobileAppbar_bottomNavigation}
       >
-        {Object.entries(routesTree).map(([route, { icon: Icon }]) => (
+        {Object.entries(routerTree).map(([route, { icon: Icon }]) => (
           <BottomNavigationAction
             key={route}
             component={NavLink}

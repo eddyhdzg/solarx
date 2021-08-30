@@ -5,12 +5,11 @@ import {
   firestoreUserFormDefaultValues,
   IFirestoreUserFormSchema,
 } from "hooks";
-import { useSigninCheck } from "reactfire";
 import { FormProvider } from "react-hook-form";
-import AccountInformationForm from "./AccountInformationForm";
+import AccountInformationForm from "forms/accountInformationForm/AccountInformationForm";
+import { AuthWrapper } from "components";
 
-export default function AccountInformation() {
-  const { data: signinResult } = useSigninCheck();
+function AccountInformation() {
   const { data, status } = useFirestoreUser();
   const methods = useEditFirestoreUser();
 
@@ -22,16 +21,19 @@ export default function AccountInformation() {
         };
 
     methods.reset(defaultValues);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, data]);
-
-  if (!signinResult?.signedIn) {
-    return <h1>Please Log In</h1>;
-  }
+  }, [status, data, methods]);
 
   return (
     <FormProvider {...methods}>
       <AccountInformationForm firestoreUser={data} />
     </FormProvider>
+  );
+}
+
+export default function AccountInformationPage() {
+  return (
+    <AuthWrapper>
+      <AccountInformation />
+    </AuthWrapper>
   );
 }

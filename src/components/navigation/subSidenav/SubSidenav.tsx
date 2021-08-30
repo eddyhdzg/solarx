@@ -7,8 +7,8 @@ import {
   ListItemText,
   Typography,
 } from "@material-ui/core";
-import { routesTree } from "routes";
-import { useCopywriting } from "hooks";
+
+import { useCopywriting, useRouterTree } from "hooks";
 import useStyles from "./subSidenav.jss";
 import { NavLink } from "react-router-dom";
 import { useBreadcrumbs } from "hooks";
@@ -19,6 +19,7 @@ const SubSidenav: FC = () => {
   const copy = useCopywriting();
   const breadcrumbs = useBreadcrumbs();
   const route = breadcrumbs[0]?.href as TBaseRoutes | undefined;
+  const routerTree = useRouterTree();
 
   return (
     <>
@@ -32,7 +33,7 @@ const SubSidenav: FC = () => {
           <Divider />
 
           <div className={classes.desktopAppbar_lists}>
-            {routesTree[route]?.sections?.map(
+            {routerTree[route]?.sections?.map(
               ({ subHeader, subRoutes }, index) => {
                 return (
                   <Fragment key={subHeader}>
@@ -58,7 +59,7 @@ const SubSidenav: FC = () => {
                         );
                       })}
                     </List>
-                    {index < routesTree[route]?.sections?.length - 1 && (
+                    {index < routerTree[route]?.sections?.length - 1 && (
                       <Divider />
                     )}
                   </Fragment>

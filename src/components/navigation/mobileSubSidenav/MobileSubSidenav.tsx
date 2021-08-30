@@ -6,9 +6,8 @@ import {
   ListItem,
   ListItemText,
 } from "@material-ui/core";
-import { routesTree } from "routes";
 import { TBaseRoutes } from "types";
-import { useBreadcrumbs, useCopywriting } from "hooks";
+import { useBreadcrumbs, useCopywriting, useRouterTree } from "hooks";
 import ChevronRightRoundedIcon from "@material-ui/icons/ChevronRightRounded";
 import { NavLink } from "react-router-dom";
 import useStyles from "./mobileSubSidenav.jss";
@@ -18,11 +17,12 @@ export default function MobileSubSidenav() {
   const breadcrumbs = useBreadcrumbs();
   const route = breadcrumbs[0]?.href as TBaseRoutes | undefined;
   const copy = useCopywriting();
+  const routerTree = useRouterTree();
 
   return (
     <div className={classes.mobileSubSidenav_root}>
       {route &&
-        routesTree[route]?.sections?.map(({ subHeader, subRoutes }, index) => {
+        routerTree[route]?.sections?.map(({ subHeader, subRoutes }, index) => {
           return (
             <Fragment key={subHeader}>
               <List>
@@ -48,7 +48,7 @@ export default function MobileSubSidenav() {
                   );
                 })}
               </List>
-              {index < routesTree[route]?.sections?.length - 1 && <Divider />}
+              {index < routerTree[route]?.sections?.length - 1 && <Divider />}
             </Fragment>
           );
         })}
