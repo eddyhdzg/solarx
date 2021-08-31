@@ -1,5 +1,9 @@
-import { createTheme, responsiveFontSizes } from "@material-ui/core";
-import { usePalette } from "hooks";
+import {
+  createTheme,
+  PaletteType,
+  responsiveFontSizes,
+  ThemeOptions,
+} from "@material-ui/core";
 import createBreakpoints from "theme/createBreakpoints";
 import yellow from "@material-ui/core/colors/yellow";
 
@@ -7,6 +11,10 @@ export interface CustomTheme {
   custom: {
     gradient: string;
     login: string;
+    glassBackground: {
+      backgroundColor: string;
+      backdropFilter: string;
+    };
   };
 }
 
@@ -15,13 +23,17 @@ export const customTheme: CustomTheme = {
     gradient: "linear-gradient(60deg, #FBDE51, #F2805A)",
     // gradient2: "linear-gradient(60deg, #EBCE41, #E2704A)",
     login: "linear-gradient(135deg,rgb(48, 50, 54), rgb(31, 32, 35))",
+    glassBackground: {
+      backgroundColor: "rgba(31, 31, 31, 0.90)",
+      backdropFilter: "blur(10px)",
+    },
   },
 };
 
 const useCreateMuiTheme = () => {
-  const palette = usePalette();
+  const palette: PaletteType = "dark";
 
-  const theme = {
+  const theme: ThemeOptions = {
     overrides: {
       MuiCssBaseline: {
         "@global": {
@@ -42,6 +54,11 @@ const useCreateMuiTheme = () => {
               backgroundColor: "rgba(255, 250, 130, 0.24)",
             },
           },
+        },
+      },
+      MuiButton: {
+        root: {
+          textTransform: "capitalize",
         },
       },
     },
@@ -84,10 +101,10 @@ const useCreateMuiTheme = () => {
         fontWeight: 700,
       },
       h5: {
-        fontWeight: 700,
+        fontWeight: 600,
       },
       h6: {
-        fontWeight: 700,
+        fontWeight: 600,
       },
       subtitle1: {
         fontWeight: 700,

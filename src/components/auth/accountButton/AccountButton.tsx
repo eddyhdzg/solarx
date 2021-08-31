@@ -60,12 +60,7 @@ const AccountButton: React.FC = () => {
   }, [open, anchorRef]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
+    <div>
       {!signinResult?.signedIn && <SignInWithGoogle />}
 
       <IconButton

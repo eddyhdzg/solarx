@@ -40,7 +40,7 @@ export default function useCreateProjectDataMutation() {
 
     const projectDocRef = doc(firestore, "projects", id);
 
-    return updateDoc(projectDocRef, { project });
+    return updateDoc(projectDocRef, { ...project });
   };
 
   return { createProjectDataMutation, editProjectDataMutation };

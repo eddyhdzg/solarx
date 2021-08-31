@@ -94,7 +94,7 @@ export default function ProjectCard({
             </div>
           </div>
           <div className={classes.projectCard_progress}>
-            <Typography variant="body1">{progress}% founded</Typography>
+            <Typography variant="body1">{progress}% funded</Typography>
             <Typography variant="caption" color="textSecondary">
               {sharesSold.toLocaleString()} / {totalShares.toLocaleString()}{" "}
               shares

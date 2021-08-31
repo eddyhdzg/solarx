@@ -1,6 +1,6 @@
 import FirebaseProvider from "./firebaseProvider/FirebaseProvider";
 import ThemeProvider from "./ThemeProvider";
-import RouterMemo from "../routes/RouterMemo";
+import RouterMemo from "router/RouterMemo";
 import SnackbarProvider from "./SnackbarProvider";
 import { BrowserRouter } from "react-router-dom";
 

@@ -9,35 +9,24 @@ interface IFilterSearchProps {
   onReset: () => void;
 }
 
-const FilterSearch = ({ value, onChange, onReset }: IFilterSearchProps) => {
+const FilterSearch = ({ value, onReset, ...props }: IFilterSearchProps) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.filterSearch_search}>
-      <div className={classes.filterSearch_searchIcon}>
-        <SearchIcon />
-      </div>
-      <InputBase
-        placeholder="Search…"
-        classes={{
-          root: classes.filterSearch_inputRoot,
-          input: classes.filterSearch_inputInput,
-        }}
-        inputProps={{ "aria-label": "search-projects" }}
-        value={value}
-        onChange={onChange}
-      />
-      {value && (
-        <IconButton
-          className={classes.filterSearch_clearIcon}
-          onClick={onReset}
-          size="small"
-          tabIndex="-1"
-        >
-          <ClearRoundedIcon />
-        </IconButton>
-      )}
-    </div>
+    <InputBase
+      classes={classes}
+      placeholder={"Search..."}
+      startAdornment={<SearchIcon />}
+      value={value}
+      endAdornment={
+        value && (
+          <IconButton onClick={onReset} size="small">
+            <ClearRoundedIcon />
+          </IconButton>
+        )
+      }
+      {...props}
+    />
   );
 };
 

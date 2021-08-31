@@ -1,11 +1,10 @@
+import { useEffect } from "react";
 import {
+  useHeader,
   IProjectDataFormSchema,
   IProjectMediaFormSchema,
   useEditProjectForm,
   useProject,
-} from "hooks";
-import { useEffect } from "react";
-import {
   projectFormDefaultValues,
   IProjectFormSchema,
   useCreateProjectDataMutation,
@@ -17,12 +16,29 @@ import { useParams } from "react-router-dom";
 import { FormProvider } from "react-hook-form";
 import { useSnackbar } from "notistack";
 import { getDirtyValues } from "utils";
+import { Seo, PageTitle } from "components";
 
 interface ProjectID {
   id?: string;
 }
 
-export default function EditProject() {
+export default function EditPorjectPage() {
+  const { onChangeRoute } = useHeader();
+
+  useEffect(() => {
+    onChangeRoute({ text: "projects", url: "/admin/projects" });
+  }, [onChangeRoute]);
+
+  return (
+    <>
+      <Seo title="Edit project" description="Edit a crowdfunding project." />
+      <PageTitle>Edit project</PageTitle>
+      <EditProject />
+    </>
+  );
+}
+
+function EditProject() {
   const { id } = useParams<ProjectID>();
   const { data, status } = useProject(id || "");
   const methods = useEditProjectForm();

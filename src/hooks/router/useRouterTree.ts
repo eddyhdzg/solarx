@@ -1,197 +1,68 @@
-import {
-  CrowdfundingRoute,
-  AdminRoute,
-  AccountInformation,
-  Loader,
-  Preferences,
-} from "pages";
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { useIsAdmin } from "hooks";
+import { AdminRoute, CrowdfundingRoute, MoreRoute } from "router";
+// import { LoaderPage } from "pages";
 // Icons
-import MenuBookRoundedIcon from "@material-ui/icons/MenuBookRounded";
+// import MenuBookRoundedIcon from "@material-ui/icons/MenuBookRounded";
 import AdminPanelSettingsOutlinedIcon from "@material-ui/icons/AdminPanelSettingsOutlined";
-import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
+// import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
+import StoreMallDirectoryRounded from "@material-ui/icons/StoreMallDirectoryRounded";
 import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
 
-export type RoutesTree = {
+export type RouterTree = {
   [key: string]: {
     title: string;
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-    sections: {
-      subHeader: string;
-      subRoutes: {
-        title: string;
-        subRoute: string;
-        component(): JSX.Element;
-        isPrivate?: boolean;
-      }[];
-    }[];
+    component(): JSX.Element;
   };
 };
 
 const useRouterTree = () => {
-  const { isAdmin } = useIsAdmin();
+  const { isAdmin, status } = useIsAdmin();
 
-  const routesTree: RoutesTree = {
-    "/portfolio": {
-      title: "portfolio",
-      icon: MenuBookRoundedIcon,
-      sections: [
-        {
-          subHeader: "category C",
-          subRoutes: [
-            {
-              title: "link c 1",
-              subRoute: "/link-c-1",
-              component: Loader,
-            },
-          ],
-        },
-        {
-          subHeader: "category D",
-          subRoutes: [
-            {
-              title: "link d 1",
-              subRoute: "/link-d-1",
-              component: Loader,
-            },
-          ],
-        },
-      ],
-    },
+  const routerTree: RouterTree = {
+    // "/portfolio": {
+    //   title: "portfolio",
+    //   icon: MenuBookRoundedIcon,
+    //   component: LoaderPage,
+    // },
     "/crowdfunding": {
       title: "crowdfunding",
-      icon: BusinessRoundedIcon,
-      sections: [
-        {
-          subHeader: "projects",
-          subRoutes: [
-            {
-              title: "projects",
-              subRoute: "/projects",
-              component: CrowdfundingRoute,
-            },
-          ],
-        },
-      ],
+      icon: StoreMallDirectoryRounded,
+      component: CrowdfundingRoute,
     },
     "/more": {
       title: "more",
       icon: MoreHorizRoundedIcon,
-      sections: [
-        {
-          subHeader: "account",
-          subRoutes: [
-            {
-              title: "account-information",
-              subRoute: "/account-information",
-              component: AccountInformation,
-            },
-            {
-              title: "preferences",
-              subRoute: "/preferences",
-              component: Preferences,
-            },
-          ],
-        },
-      ],
+      component: MoreRoute,
     },
   };
 
-  const adminRoutesTree: RoutesTree = {
-    "/portfolio": {
-      title: "portfolio",
-      icon: MenuBookRoundedIcon,
-      sections: [
-        {
-          subHeader: "category C",
-          subRoutes: [
-            {
-              title: "link c 1",
-              subRoute: "/link-c-1",
-              component: Loader,
-            },
-          ],
-        },
-        {
-          subHeader: "category D",
-          subRoutes: [
-            {
-              title: "link d 1",
-              subRoute: "/link-d-1",
-              component: Loader,
-            },
-          ],
-        },
-      ],
-    },
+  const adminRouterTree: RouterTree = {
+    // "/portfolio": {
+    //   title: "portfolio",
+    //   icon: MenuBookRoundedIcon,
+    //   component: LoaderPage,
+    // },
     "/crowdfunding": {
       title: "crowdfunding",
-      icon: BusinessRoundedIcon,
-      sections: [
-        {
-          subHeader: "projects",
-          subRoutes: [
-            {
-              title: "projects",
-              subRoute: "/projects",
-              component: CrowdfundingRoute,
-            },
-          ],
-        },
-      ],
+      icon: StoreMallDirectoryRounded,
+      component: CrowdfundingRoute,
     },
     "/admin": {
       title: "admin",
       icon: AdminPanelSettingsOutlinedIcon,
-      sections: [
-        {
-          subHeader: "projects",
-          subRoutes: [
-            {
-              title: "manage projects",
-              subRoute: "/projects",
-              component: AdminRoute,
-            },
-            {
-              title: "create project",
-              subRoute: "/projects/create-project",
-              component: AdminRoute,
-            },
-            {
-              title: "users",
-              subRoute: "/users",
-              component: AdminRoute,
-            },
-          ],
-        },
-      ],
+      component: AdminRoute,
     },
     "/more": {
       title: "more",
       icon: MoreHorizRoundedIcon,
-      sections: [
-        {
-          subHeader: "account",
-          subRoutes: [
-            {
-              title: "account-information",
-              subRoute: "/account-information",
-              component: AccountInformation,
-            },
-            {
-              title: "preferences",
-              subRoute: "/preferences",
-              component: Preferences,
-            },
-          ],
-        },
-      ],
+      component: MoreRoute,
     },
   };
 
-  return isAdmin ? adminRoutesTree : routesTree;
+  return { routerTree: isAdmin ? adminRouterTree : routerTree, status };
 };
 
 export default useRouterTree;

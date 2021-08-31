@@ -6,9 +6,7 @@ export type RouterMemoState = {
 
 export const initialRouterMemoState: RouterMemoState = {
   routerMemo: {
-    // "/home": "/home",
     "/portfolio": "/portfolio",
-    // "/trading": "/trading",
     "/admin": "/admin",
     "/crowdfunding": "/crowdfunding",
     "/more": "/more",

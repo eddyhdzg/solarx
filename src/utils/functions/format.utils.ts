@@ -35,3 +35,7 @@ export const formatPercentage2Dec = (num: number) => {
 // 4-Jul-2021
 export const fomatTimeStamp = (date: Timestamp) =>
   dayjs.unix(date.seconds).format("D-MMM-YYYY");
+
+export const fomatNumInYears = (num: number) => {
+  return `${num.toLocaleString(undefined, { maximumFractionDigits: 1 })} years`;
+};

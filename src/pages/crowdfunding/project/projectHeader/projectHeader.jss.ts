@@ -2,21 +2,29 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    projectHeader_header: {
+    projectHeader_root: {
       display: "flex",
-      alignItems: "flex-end",
       justifyContent: "space-between",
+      alignItems: "flex-end",
+    },
+    projectHeader_title: {
+      marginBottom: theme.spacing(1.5),
+    },
+    projectHeader_chips: {
+      display: "flex",
       flexWrap: "wrap",
+      "& > *": {
+        margin: theme.spacing(0.5),
+        [theme.breakpoints.only("xxs")]: {
+          fontSize: "10px",
+        },
+        [theme.breakpoints.only("xs")]: {
+          fontSize: "11px",
+        },
+      },
     },
-    projectHeader_buttonsContainer: {
-      marginTop: theme.spacing(1),
-      marginLeft: "auto",
-    },
-    projectHeader_shareButton: {
-      marginRight: theme.spacing(2),
-    },
-    projectHeader_icon: {
-      marginLeft: theme.spacing(1),
+    projectHeader_button: {
+      marginLeft: theme.spacing(0.5),
     },
   })
 );

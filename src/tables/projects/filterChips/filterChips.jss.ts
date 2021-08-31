@@ -8,6 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
       listStyle: "none",
       padding: 0,
       margin: 0,
+      [theme.breakpoints.up("sm")]: {
+        marginRight: 8,
+      },
     },
     chip: {
       margin: theme.spacing(0.5),

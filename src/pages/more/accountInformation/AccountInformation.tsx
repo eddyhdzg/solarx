@@ -4,10 +4,30 @@ import {
   useEditFirestoreUser,
   firestoreUserFormDefaultValues,
   IFirestoreUserFormSchema,
+  useHeader,
 } from "hooks";
 import { FormProvider } from "react-hook-form";
 import AccountInformationForm from "forms/accountInformationForm/AccountInformationForm";
-import { AuthWrapper } from "components";
+import { AuthWrapper, PageTitle, Seo } from "components";
+
+export default function AccountInformationPage() {
+  const { onChangeRoute } = useHeader();
+
+  useEffect(() => {
+    onChangeRoute({ text: "more", url: "/more" });
+  }, [onChangeRoute]);
+
+  return (
+    <AuthWrapper>
+      <Seo
+        title="Account information"
+        description="Edit your account information."
+      />
+      <PageTitle>Account information</PageTitle>
+      <AccountInformation />
+    </AuthWrapper>
+  );
+}
 
 function AccountInformation() {
   const { data, status } = useFirestoreUser();
@@ -27,13 +47,5 @@ function AccountInformation() {
     <FormProvider {...methods}>
       <AccountInformationForm firestoreUser={data} />
     </FormProvider>
-  );
-}
-
-export default function AccountInformationPage() {
-  return (
-    <AuthWrapper>
-      <AccountInformation />
-    </AuthWrapper>
   );
 }

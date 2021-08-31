@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
-import { Container, Grid } from "@material-ui/core";
-import ProjectDescription from "./projectDescription/ProjectDescription";
+import { Grid } from "@material-ui/core";
 import ProjectHeader from "./projectHeader/ProjectHeader";
 import useStyles from "./project.jss";
-import ProjectCardTabulator from "./projectCardTabulator/ProjectCardTabulator";
-import ProjectGalllery from "./projectGallery/ProjectGalllery";
-import { useProject } from "hooks";
-import { CenterLoader, ProjectDataList } from "components";
+import ProjectCard from "./projectCard/ProjectCard";
+import ProjectGalllery from "./projectGallery/ProjectGallery";
+import { useProject, useHeader } from "hooks";
+import { CenterLoader, Seo } from "components";
+import { useEffect } from "react";
+import ProjectTabs from "./projectTabs/ProjectTabs";
 
 interface ProjectID {
   id?: string;
@@ -16,41 +17,69 @@ export default function Project() {
   const { id } = useParams<ProjectID>();
   const classes = useStyles();
   const { status, data } = useProject(id || "");
+  const { onChangeRoute } = useHeader();
+
+  useEffect(() => {
+    onChangeRoute({ text: "crowdfunding", url: "/crowdfunding" });
+  }, [onChangeRoute]);
 
   if (status === "loading") {
     return <CenterLoader />;
   }
 
   return (
-    <Container disableGutters>
-      <div className={classes.project_mb2}>
-        <ProjectHeader
-          id={data?.id}
-          name={data?.name}
-          city={data?.city}
-          state={data?.state}
-        />
+    <>
+      <Seo
+        title={data?.name || "Project"}
+        description="Project information page."
+      />
+      <div>
+        <Grid container spacing={2} className={classes.project_mb1}>
+          <Grid item xs={12} lg={8}>
+            <ProjectHeader
+              id={data?.id}
+              name={data?.name}
+              city={data?.city}
+              state={data?.state}
+              businessType={data?.businessType}
+              company={data?.company}
+            />
+          </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={8}>
+            <ProjectGalllery images={data?.images} />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <ProjectCard
+              sharesSold={data?.sharesSold}
+              totalShares={data?.totalShares}
+              sharePrice={data?.sharePrice}
+              roi={data?.ror}
+              investors={42}
+            />
+          </Grid>
+        </Grid>
       </div>
-      <Grid container spacing={3}>
-        <Grid item xs={12} lg={7}>
-          <ProjectGalllery images={data?.images} />
-          <ProjectDescription
-            sharesSold={data?.sharesSold}
-            totalShares={data?.totalShares}
-            sharePrice={data?.sharePrice}
-          />
-          <ProjectDataList
-            sharePrice={data?.sharePrice}
-            ror={data?.ror}
-            ppa={data?.ppa}
-            company={data?.company}
-            businessType={data?.businessType}
-          />
+      <Section>
+        <Grid container spacing={3}>
+          <Grid
+            item
+            xs={12}
+            lg={8}
+            className={classes.project_tabsContainerWrapper}
+          >
+            <div className={classes.project_tabsContainer}>
+              <ProjectTabs />
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={12} lg={5}>
-          <ProjectCardTabulator />
-        </Grid>
-      </Grid>
-    </Container>
+      </Section>
+    </>
   );
 }
+
+const Section: React.FC = ({ children }) => {
+  const classes = useStyles();
+  return <div className={classes.project_section}>{children}</div>;
+};

@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { Seo, PageTitle } from "components";
+import { useHeader } from "hooks";
 import {
   useCreateProjectDataForm,
   useCreateProjectDataMutation,
@@ -7,7 +10,25 @@ import ProjectForm from "forms/projectForm/ProjectForm";
 import { useSnackbar } from "notistack";
 import { FormProvider } from "react-hook-form";
 
-export default function CreateProject() {
+export default function CreateProjectPage() {
+  const { onChangeRoute } = useHeader();
+
+  useEffect(() => {
+    onChangeRoute({ text: "projects", url: "/admin/projects" });
+  }, [onChangeRoute]);
+  return (
+    <>
+      <Seo
+        title="Create project"
+        description="Create a crowdfunding project."
+      />
+      <PageTitle>Create project</PageTitle>
+      <CreateProject />
+    </>
+  );
+}
+
+function CreateProject() {
   const methods = useCreateProjectDataForm();
   const { createProjectDataMutation } = useCreateProjectDataMutation();
   const { createProjectMediaMutation } = useCreateProjectMediaMutation();

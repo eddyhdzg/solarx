@@ -5,40 +5,20 @@ import {
   alpha,
 } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    filterSearch_search: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      position: "relative",
-      borderRadius: theme.shape.borderRadius,
+export const useStyles = makeStyles((theme: Theme) => {
+  const space = theme.spacing(0.5);
+
+  return createStyles({
+    root: {
       backgroundColor: alpha(theme.palette.common.white, 0.15),
       "&:hover": {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
       },
-      marginLeft: 0,
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        marginLeft: theme.spacing(1),
-        width: "auto",
-      },
+      borderRadius: theme.shape.borderRadius,
+      padding: `${space}px ${space * 2}px`,
     },
-    filterSearch_searchIcon: {
-      padding: theme.spacing(0, 1),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    filterSearch_inputRoot: {
-      color: "inherit",
-    },
-    filterSearch_inputInput: {
-      padding: theme.spacing(1, 4),
-      paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
+    input: {
+      fontSize: 16,
       transition: theme.transitions.create("width"),
       width: "100%",
       [theme.breakpoints.up("sm")]: {
@@ -47,12 +27,22 @@ export const useStyles = makeStyles((theme: Theme) =>
           width: "20ch",
         },
       },
+      paddingRight: theme.spacing(3),
     },
-    filterSearch_clearIcon: {
-      position: "absolute",
-      right: theme.spacing(0.25),
+    adornedStart: {
+      "& > *:first-child": {
+        fontSize: 20,
+        color: theme.palette.text.secondary,
+        marginRight: space,
+      },
     },
-  })
-);
+    adornedEnd: {
+      "& > *:last-child": {
+        position: "absolute",
+        right: theme.spacing(0.25),
+      },
+    },
+  });
+});
 
 export default useStyles;

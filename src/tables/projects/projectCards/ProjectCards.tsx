@@ -30,7 +30,7 @@ export default function ProjectCards({
           <ProjectCard
             key={project.original.id}
             {...project.original}
-            url={`/${section}/projects/${project.original.id}`}
+            url={`/${section}/${project.original.id}`}
           />
         ))}
       </div>

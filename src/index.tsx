@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import Router from "routes/Router";
+import Router from "router/Router";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { ProvidersWrapper } from "providers";
 

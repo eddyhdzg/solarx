@@ -36,10 +36,6 @@ export default function AccountInformationForm({
     <form noValidate autoComplete="off" onSubmit={onSubmit}>
       <Paper elevation={3} className={classes.accountInformation_paper}>
         <div className={classes.accountInformation_body}>
-          <Typography variant="h4" component="h2">
-            Account Information
-          </Typography>
-
           <div className={classes.accountInformation_section}>
             <Typography variant="h6" component="h6" className={classes.mb2}>
               Unchangable Information

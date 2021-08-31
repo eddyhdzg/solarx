@@ -4,3 +4,6 @@ export { default as ProjectCard } from "./projectCard/ProjectCard";
 export { default as ProjectDataList } from "./projectDataList/ProjectDataList";
 export { default as Tooltip } from "./Tooltip/Tooltip";
 export { default as SectionBlock } from "./sectionBlock/SectionBlock";
+export { default as PageTitle } from "./pageTitle/PageTitle";
+export { default as SectionButton } from "./sectionButton/SectionButton";
+export { default as ColorChip } from "./colorChip/ColorChip";

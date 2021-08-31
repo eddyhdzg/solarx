@@ -20,6 +20,6 @@ export interface Project {
 
 export type ProjectsType = "cards" | "table";
 
-export type ProjectSection = "crowdfunding" | "admin";
+export type ProjectSection = "crowdfunding" | "admin/projects";
 
 export type ProjectForms = "Edit" | "Create";

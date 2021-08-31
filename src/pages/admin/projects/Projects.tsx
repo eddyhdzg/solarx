@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import {
+  useHeader,
   useProjectFilters,
   usePrivateProjects,
   useProjectsColumns,
@@ -16,10 +17,30 @@ import {
 import { ProjectsTableLayout } from "tables";
 import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
+import { Seo, PageTitle } from "components";
+
+export default function ProjectsPage() {
+  const { onChangeRoute } = useHeader();
+
+  useEffect(() => {
+    onChangeRoute({ text: "admin", url: "/admin" });
+  }, [onChangeRoute]);
+
+  return (
+    <>
+      <Seo
+        title="Administrator projects"
+        description="Projects only administrators can see."
+      />
+      <PageTitle>Administrator projects</PageTitle>
+      <Projects />
+    </>
+  );
+}
 
 const Projects = () => {
   const { data: projects } = usePrivateProjects();
-  const { privateColumns } = useProjectsColumns({ section: "admin" });
+  const { privateColumns } = useProjectsColumns({ section: "admin/projects" });
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);
   const {
@@ -52,9 +73,7 @@ const Projects = () => {
       watch={watch}
       setGlobalFilter={setGlobalFilter}
       table={table}
-      section="admin"
+      section="admin/projects"
     />
   );
 };
-
-export default Projects;

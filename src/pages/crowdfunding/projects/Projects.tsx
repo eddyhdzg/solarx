@@ -1,5 +1,6 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import {
+  useHeader,
   useProjectFilters,
   usePublicProjects,
   useProjectsColumns,
@@ -16,6 +17,23 @@ import {
 import { ProjectsTableLayout } from "tables";
 import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
+import { Seo, PageTitle } from "components";
+
+export default function ProjectsPage() {
+  const { onChangeRoute } = useHeader();
+
+  useEffect(() => {
+    onChangeRoute({ text: undefined, url: undefined });
+  }, [onChangeRoute]);
+
+  return (
+    <>
+      <Seo title="Crowdfunding projects" description="Crowdfunding projects." />
+      <PageTitle>Crowdfunding projects</PageTitle>
+      <Projects />
+    </>
+  );
+}
 
 const Projects = () => {
   const { data: projects } = usePublicProjects();
@@ -56,5 +74,3 @@ const Projects = () => {
     />
   );
 };
-
-export default Projects;

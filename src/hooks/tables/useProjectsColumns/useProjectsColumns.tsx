@@ -112,7 +112,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             <IconButton
               aria-label="goto-project"
               component={Link}
-              to={`/crowdfunding/projects/${value}`}
+              to={`/crowdfunding/${value}`}
             >
               <ArrowForwardIcon />
             </IconButton>
@@ -153,7 +153,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             <IconButton
               aria-label="goto-edit-project"
               component={Link}
-              to={`/${section}/projects/${value}`}
+              to={`/${section}/${value}`}
             >
               <ArrowForwardIcon />
             </IconButton>

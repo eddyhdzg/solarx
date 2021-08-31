@@ -1,8 +1,7 @@
-import { Locales, ThemeType } from "types";
+import { BackButton, Locales } from "types";
 
 export type ClientState = {
-  themeType: ThemeType;
-  drawer: boolean;
+  backButton: BackButton;
   locale: Locales;
   projects: {
     pageSize: number;
@@ -11,9 +10,11 @@ export type ClientState = {
 };
 
 export const initialClientState: ClientState = {
-  drawer: true,
+  backButton: {
+    text: undefined,
+    url: undefined,
+  },
   locale: "en",
-  themeType: "dark",
   projects: {
     pageSize: 10,
     projectType: "cards",
