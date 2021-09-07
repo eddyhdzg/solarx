@@ -28,11 +28,11 @@ export const projectFormDefaultValues: IProjectFormSchema = {
   city: "",
   company: "",
   businessType: "",
-  ror: 0,
+  roi: 0,
   sharePrice: 1,
   totalShares: 1,
   ppa: 0,
-  softDelete: false,
+  archived: false,
   coverImage: [],
   images: [],
 };
@@ -57,7 +57,7 @@ export const projectFormSchema: yup.SchemaOf<IProjectFormSchema> = yup.object({
     .default("")
     .required("Value is required"),
   // Numbers
-  ror: yup
+  roi: yup
     .number()
     .default(0)
     .min(0, "Min value is 0")
@@ -74,7 +74,7 @@ export const projectFormSchema: yup.SchemaOf<IProjectFormSchema> = yup.object({
     .min(1, "Min value is 1")
     .required("Value is required"),
   ppa: yup.number().default(0).min(0, "Min value is 0"),
-  softDelete: yup.boolean().required(),
+  archived: yup.boolean().required(),
   // Media
   coverImage: yup.mixed(),
   // .test("coverImage", "File too large", (value: FileList) => {

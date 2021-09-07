@@ -12,6 +12,7 @@ import useStyles from "./projectCard.jss";
 import {
   formatMoney,
   formatPercentage,
+  formatPercentage2Dec,
   formatNumber,
   fomatNumInYears,
 } from "utils";
@@ -77,7 +78,7 @@ export default function ProjectCard({
           </div>
           <div>
             <Typography variant="h6">
-              {formatPercentage(roi)}{" "}
+              {formatPercentage2Dec(roi)}{" "}
               <span className={classes.projectCard_text}>
                 (
                 {fomatNumInYears(
@@ -88,7 +89,7 @@ export default function ProjectCard({
             </Typography>
 
             <Typography variant="body2" color="textSecondary">
-              ROI
+              Rate On Investment
             </Typography>
           </div>
 
@@ -147,7 +148,7 @@ export default function ProjectCard({
               variant="subtitle1"
               className={classes.projectCard_typographySubtitle1}
             >
-              {formatMoney(sharePrice * roi * 0.01 * shares)}
+              {formatMoney(sharePrice * roi * 0.01)}
             </Typography>
           </li>
         </ul>

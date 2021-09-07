@@ -55,11 +55,11 @@ function EditProject() {
           city: data?.city,
           company: data?.company,
           businessType: data?.businessType,
-          ror: data?.ror,
+          roi: data?.roi,
           sharePrice: data?.sharePrice,
           totalShares: data?.totalShares,
           ppa: data?.ppa,
-          softDelete: data?.softDelete,
+          archived: data?.archived,
           coverImage: data?.coverImage ? [data?.coverImage] : [],
           images: data?.images ? data?.images : [],
         };

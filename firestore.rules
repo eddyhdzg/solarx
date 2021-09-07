@@ -24,7 +24,7 @@ service cloud.firestore {
     }
 
     match /projects/{projectId} {
-      allow read: if ((resource.data.softDelete == false) || isOneOfRoles(['admin', 'moderator', 'superUser']));
+      allow read: if ((resource.data.archived == false) || isOneOfRoles(['admin', 'moderator', 'superUser']));
       allow write: if (isOneOfRoles(['moderator', 'superUser']));
     }
   }

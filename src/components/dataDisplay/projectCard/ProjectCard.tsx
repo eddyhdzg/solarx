@@ -26,7 +26,7 @@ export default function ProjectCard({
   sharesSold = 0,
   sharePrice = 0,
   totalShares = 0,
-  ror,
+  roi,
   coverImage,
   url = "/crowdfunding/projects/",
 }: IProjectCardProps) {
@@ -85,10 +85,10 @@ export default function ProjectCard({
                   variant="subtitle1"
                   className={classes.projectCard_subtitle}
                 >
-                  {ror}%
+                  {roi}%
                 </Typography>
                 <Typography variant="caption" color="textSecondary" noWrap>
-                  RoR (rate of return)
+                  ROI (Return On Investment)
                 </Typography>
               </div>
             </div>

@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     header_accountButton: {
-      marginLeft: theme.spacing(2),
+      marginLeft: theme.spacing(1),
       marginRight: "env(safe-area-inset-right)",
     },
   })

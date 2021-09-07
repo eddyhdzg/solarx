@@ -16,3 +16,8 @@ export const getDirtyValues = (
       .map((key) => [key, values[key]])
   );
 };
+
+export const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+  // @ts-ignore
+  if (e?.code === "Enter") e.preventDefault();
+};

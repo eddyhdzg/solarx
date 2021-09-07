@@ -5,7 +5,7 @@ import { Project } from "types";
 export default function usePublicProjects() {
   const firestore = useFirestore();
   const projectsRef = collection(firestore, "projects");
-  const projectsQuery = query(projectsRef, where("softDelete", "==", false));
+  const projectsQuery = query(projectsRef, where("archived", "==", false));
 
   return useFirestoreCollectionData<Project>(projectsQuery, {
     initialData: [],

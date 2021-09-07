@@ -10,10 +10,10 @@ export interface Project {
   images?: string[] | null;
   name?: string;
   ppa?: number;
-  ror?: number;
+  roi?: number;
   sharesSold?: number;
   sharePrice?: number;
-  softDelete?: boolean;
+  archived?: boolean;
   state?: string;
   totalShares?: number;
 }

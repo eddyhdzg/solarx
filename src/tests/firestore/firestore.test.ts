@@ -117,22 +117,20 @@ describe("Firestore Security Rules", () => {
   it("Can read a project if is public", async () => {
     const db = getFirestore(null);
 
-    const testQuery = db
-      .collection("projects")
-      .where("softDelete", "==", false);
+    const testQuery = db.collection("projects").where("archived", "==", false);
 
     await firebase.assertSucceeds(testQuery.get());
   });
 
   it("Can't read a project if is not public", async () => {
     const db = getFirestore(null);
-    const testQuery = db.collection("projects").where("softDelete", "==", true);
+    const testQuery = db.collection("projects").where("archived", "==", true);
     await firebase.assertFails(testQuery.get());
   });
 
   it("Can read a project if is not public and is an admin", async () => {
     const db = getFirestore(adminAuth);
-    const testQuery = db.collection("projects").where("softDelete", "==", true);
+    const testQuery = db.collection("projects").where("archived", "==", true);
     await firebase.assertSucceeds(testQuery.get());
   });
 
@@ -152,7 +150,7 @@ describe("Firestore Security Rules", () => {
     const admin = getAdminFirestore();
     const projectId = "public_project";
     const setupDoc = admin.collection("projects").doc(projectId);
-    await setupDoc.set({ softDelete: false });
+    await setupDoc.set({ archived: false });
     const db = getFirestore(null);
     const testRead = db.collection("projects").doc(projectId);
     await firebase.assertSucceeds(testRead.get());

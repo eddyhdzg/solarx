@@ -1,6 +1,7 @@
 import { Grid } from "@material-ui/core";
 import ProjectFormBody from "./projectFormBody/ProjectFormBody";
 import { ProjectForms } from "types";
+import { checkKeyDown } from "utils";
 
 interface IProjectForm {
   onSubmit: () => void;
@@ -9,7 +10,12 @@ interface IProjectForm {
 
 export default function ProjectForm({ onSubmit, title }: IProjectForm) {
   return (
-    <form noValidate autoComplete="off" onSubmit={onSubmit}>
+    <form
+      noValidate
+      autoComplete="off"
+      onSubmit={onSubmit}
+      onKeyDown={(e) => checkKeyDown(e)}
+    >
       <Grid container spacing={3}>
         {/* <Grid item xs={12} lg={3} /> */}
         <Grid item xs={12} lg={9}>

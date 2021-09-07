@@ -25,14 +25,18 @@ interface useProjectFiltersProps {
     columnId: string,
     filterValue: string | boolean | undefined
   ) => void;
+  length?: number;
 }
 
 export default function useProjectFilters({
   setFilter,
+  length,
 }: useProjectFiltersProps) {
   const form = useForm<ProjectFiltersSchema>({
     resolver: yupResolver(schema),
   });
+
+  const { id, name, location, funded } = form.watch();
 
   useFormPersist(
     "projectFilters",
@@ -42,23 +46,21 @@ export default function useProjectFilters({
     }
   );
 
-  const { id, name, location, funded } = form.watch();
-
   useEffect(() => {
     setFilter("id", id);
-  }, [id, setFilter]);
+  }, [id, setFilter, length]);
 
   useEffect(() => {
     setFilter("name", name);
-  }, [name, setFilter]);
+  }, [name, setFilter, length]);
 
   useEffect(() => {
     setFilter("location", location);
-  }, [location, setFilter]);
+  }, [location, setFilter, length]);
 
   useEffect(() => {
     setFilter("funded", funded);
-  }, [funded, setFilter]);
+  }, [funded, setFilter, length]);
 
   return form;
 }

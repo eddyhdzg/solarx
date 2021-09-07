@@ -3,8 +3,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     projectCard_root: {
-      maxWidth: theme.spacing(55),
-      margin: "auto",
+      maxWidth: theme.spacing(60),
       borderRadius: 10,
       backgroundColor: "#1B1B1B",
       borderStyle: "solid",
@@ -13,6 +12,9 @@ const useStyles = makeStyles((theme: Theme) =>
       boxShadow:
         "0px 15px 29px rgba(0, 0, 0, 0.21), 0px 1.87823px 3.63125px rgba(0, 0, 0, 0.105)",
       zIndex: 1,
+      [theme.breakpoints.down("md")]: {
+        margin: "auto",
+      },
     },
     projectCard_content: {
       padding: theme.spacing(4),
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
       listStyle: "none",
     },
     projectCard_text: {
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: 500,
     },
     projectCard_li: {

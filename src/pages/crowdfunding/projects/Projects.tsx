@@ -18,6 +18,7 @@ import { ProjectsTableLayout } from "tables";
 import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
 import { Seo, PageTitle } from "components";
+import { fuzzyTextFilterFn } from "utils";
 
 export default function ProjectsPage() {
   const { onChangeRoute } = useHeader();
@@ -44,24 +45,37 @@ const Projects = () => {
     projects: { pageSize },
   } = useStore(({ projects }) => ({ projects }), shallow);
 
+  const filterTypes = useMemo(
+    () => ({
+      fuzzyText: fuzzyTextFilterFn,
+    }),
+    []
+  );
+
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {
       columns: publicColumns,
       data,
       initialState: {
-        // hiddenColumns: ["id"],
+        hiddenColumns: ["id"],
         // @ts-ignore
         pageSize,
       },
       // @ts-ignore
       globalFilter,
+      // @ts-ignore
+      filterTypes,
     },
     useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
   ) as any;
-  const { control, reset, watch } = useProjectFilters({ setFilter });
+
+  const { control, reset, watch } = useProjectFilters({
+    setFilter,
+    length: table?.data?.length,
+  });
 
   return (
     <ProjectsTableLayout

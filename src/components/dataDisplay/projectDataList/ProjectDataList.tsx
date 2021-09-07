@@ -23,13 +23,13 @@ interface ProjectDataListItem {
 
 export default function ProjectDataList({
   sharePrice = 0,
-  ror = 0,
+  roi = 0,
   ppa = 0,
   company,
   businessType,
 }: {
   sharePrice?: number;
-  ror?: number;
+  roi?: number;
   ppa?: number;
   company?: string;
   businessType?: string;
@@ -45,8 +45,8 @@ export default function ProjectDataList({
       },
       {
         icon: SavingsOutlinedIcon,
-        text: ror,
-        caption: "RoR (rate of return)",
+        text: roi,
+        caption: "ROI (Return On Investment)",
       },
       {
         icon: PaidIcon,
@@ -65,7 +65,7 @@ export default function ProjectDataList({
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut urna risus, pretium in ante id, lacinia hendrerit nisi.",
       },
     ];
-  }, [sharePrice, ror, ppa]);
+  }, [sharePrice, roi, ppa]);
 
   const projectDataList2: ProjectDataListItem[] = useMemo(() => {
     return [

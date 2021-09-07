@@ -253,14 +253,14 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             </GridItem>
             <GridItem xs={6}>
               <Controller
-                name="softDelete"
+                name="archived"
                 control={control}
                 render={({ field }) => (
                   <FormControlLabel
                     control={
-                      <Switch name="project-softDelete" checked={field.value} />
+                      <Switch name="project-archived" checked={field.value} />
                     }
-                    label="Soft Delete"
+                    label="Archived"
                     labelPlacement="start"
                     {...field}
                   />
@@ -280,13 +280,13 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
           <Grid container spacing={3}>
             <GridItem xs={6}>
               <Controller
-                name="ror"
+                name="roi"
                 control={control}
                 defaultValue={1}
                 render={({ field: { onChange, ...field }, fieldState }) => (
                   <TextField
-                    id="project-ror"
-                    label="RoR"
+                    id="project-roi"
+                    label="ROI"
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {

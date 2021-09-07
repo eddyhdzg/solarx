@@ -55,7 +55,7 @@ export default function Project() {
               sharesSold={data?.sharesSold}
               totalShares={data?.totalShares}
               sharePrice={data?.sharePrice}
-              roi={data?.ror}
+              roi={data?.roi}
               investors={42}
             />
           </Grid>

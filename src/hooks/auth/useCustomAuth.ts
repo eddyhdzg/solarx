@@ -8,7 +8,9 @@ export default function useCustomAuth() {
     const provider = new GoogleAuthProvider().setCustomParameters({
       prompt: "select_account",
     });
-    await signInWithPopup(auth, provider);
+    await signInWithPopup(auth, provider).catch((e) => {
+      console.log(e);
+    });
   };
 
   const signOut = async () => {

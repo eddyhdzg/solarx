@@ -11,6 +11,7 @@ import { FirestoreUser } from "types";
 import { IFirestoreUserFormSchema, useEditFirestoreUserMutation } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 import useStyles from "./accountInformation.jss";
+import { checkKeyDown } from "utils";
 
 interface IAccountInformationFormProps {
   firestoreUser: FirestoreUser;
@@ -33,12 +34,17 @@ export default function AccountInformationForm({
   });
 
   return (
-    <form noValidate autoComplete="off" onSubmit={onSubmit}>
+    <form
+      noValidate
+      autoComplete="off"
+      onSubmit={onSubmit}
+      onKeyDown={(e) => checkKeyDown(e)}
+    >
       <Paper elevation={3} className={classes.accountInformation_paper}>
         <div className={classes.accountInformation_body}>
           <div className={classes.accountInformation_section}>
             <Typography variant="h6" component="h6" className={classes.mb2}>
-              Unchangable Information
+              Private Information
             </Typography>
             <Grid container spacing={3}>
               <GridItem xxs={12} xs={12} sm={6} zeroMinWidth>
@@ -58,7 +64,7 @@ export default function AccountInformationForm({
           <Divider />
           <div className={classes.accountInformation_section}>
             <Typography variant="h6" component="h6">
-              Profile
+              Public Information
             </Typography>
             <Typography
               variant="caption"

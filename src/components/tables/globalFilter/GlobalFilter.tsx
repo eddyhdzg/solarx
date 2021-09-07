@@ -7,11 +7,11 @@ export default function GlobalFilter({ globalFilter, setGlobalFilter }: any) {
 
   const globalSearchChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
-  }, 100);
+  }, 200);
 
   const globalSearchReset = useAsyncDebounce(() => {
     setGlobalFilter("");
-  }, 100);
+  }, 200);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);

@@ -35,11 +35,13 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         id: "name",
         Header: "Project Name",
         accessor: "name",
+        filter: "fuzzyText",
       },
       {
         id: "location",
         Header: "Location",
         accessor: ({ city, state }: Project) => `${city}, ${state}`,
+        filter: "fuzzyText",
       },
       {
         id: "funded",
@@ -64,13 +66,13 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         Header: "Share Price",
         accessor: ({ sharePrice }: Project) => sharePrice ?? 0,
         className: classes.useProjectsColumns_alignRight,
-        Cell: ({ value }: { value: Project["sharePrice"] }) =>
-          formatMoney(value ?? 0),
+        Cell: ({ value = 0 }: { value: Project["sharePrice"] }) =>
+          formatMoney(value),
       },
       {
-        id: "ror",
-        Header: "RoR (rate of return)",
-        accessor: ({ ror }: Project) => formatPercentage2Dec(ror ?? 0),
+        id: "roi",
+        Header: "ROI (Return On Investment)",
+        accessor: ({ roi = 0 }: Project) => formatPercentage2Dec(roi),
         className: classes.useProjectsColumns_alignRight,
       },
       {
@@ -130,14 +132,14 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     const privateColumns = [
       ...commonColumns,
       {
-        Header: "Soft Delete",
-        accessor: "softDelete",
+        Header: "Archived",
+        accessor: "archived",
         Cell: ({ value }: { value: boolean }) =>
           value ? (
             <Chip
               color="secondary"
               size="small"
-              label="Deleted"
+              label="Archived"
               className={classes.useProjectsColumns_chip}
             />
           ) : (
