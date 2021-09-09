@@ -1,5 +1,6 @@
 import * as dayjs from "dayjs";
 import { Timestamp } from "types";
+import i18next from "i18next";
 
 export const convertBreadcrumb = (string: string) => {
   return string
@@ -37,5 +38,7 @@ export const fomatTimeStamp = (date: Timestamp) =>
   dayjs.unix(date.seconds).format("D-MMM-YYYY");
 
 export const fomatNumInYears = (num: number) => {
-  return `${num.toLocaleString(undefined, { maximumFractionDigits: 1 })} years`;
+  return `${num.toLocaleString(undefined, {
+    maximumFractionDigits: 1,
+  })} ${i18next.t("dates.year", { count: num })}`;
 };

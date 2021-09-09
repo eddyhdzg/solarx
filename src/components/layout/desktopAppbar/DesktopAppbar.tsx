@@ -2,10 +2,8 @@ import { NavLink } from "react-router-dom";
 import { Drawer, List, ListItem, ListItemIcon } from "@material-ui/core";
 import { TBaseRoutes } from "types";
 import { RouterTree } from "hooks/router/useRouterTree";
-import { useCopywriting } from "hooks";
 import { Tooltip } from "components";
 import useStyles from "./desktopAppbar.jss";
-
 import logo from "assets/images/Logo.svg";
 
 interface IDesktopAppbarProps {
@@ -18,7 +16,6 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
   getMemoryRoute,
 }: IDesktopAppbarProps) => {
   const classes = useStyles();
-  const copy = useCopywriting();
   const routes = Object.entries(routerTree);
   const more = [routes.pop()!];
 
@@ -31,7 +28,6 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
       }}
       elevation={3}
     >
-      <div className={classes.desktopAppbar_toolbar} />
       <div className={classes.desktopAppbar_content}>
         <div>
           <List className={classes.desktopAppbar_ul}>
@@ -46,11 +42,7 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
               </ListItemIcon>
             </ListItem>
             {routes.map(([route, { icon: Icon, title }]) => (
-              <Tooltip
-                key={route}
-                title={copy?.router[title]}
-                placement="right"
-              >
+              <Tooltip key={route} title={title} placement="right">
                 <ListItem
                   button
                   component={NavLink}
@@ -69,11 +61,7 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
         <div>
           <List>
             {more?.map(([route, { icon: Icon, title }]) => (
-              <Tooltip
-                key={route}
-                title={copy?.router[title]}
-                placement="right"
-              >
+              <Tooltip key={route} title={title} placement="right">
                 <ListItem
                   button
                   component={NavLink}

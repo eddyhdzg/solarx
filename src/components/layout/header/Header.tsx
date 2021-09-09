@@ -6,6 +6,7 @@ import useStyles from "./header.jss";
 import shallow from "zustand/shallow";
 import { useStore } from "hooks";
 import { Link } from "react-router-dom";
+import HideOnScroll from "../hideOnScroll/HideOnScroll";
 
 const Header: React.FC = () => {
   const classes = useStyles();
@@ -15,29 +16,35 @@ const Header: React.FC = () => {
   );
 
   return (
-    <AppBar position="fixed" className={classes.header_appBar} color="default">
-      <Toolbar className={classes.header_toolbar}>
-        <div>
-          <div className={classes.header_accountButton}>
-            {backButton.text && backButton.url && (
-              <Button
-                startIcon={<ArrowBackRoundedIcon />}
-                component={Link}
-                to={backButton.url}
-                color="primary"
-              >
-                {backButton.text}
-              </Button>
-            )}
+    <HideOnScroll>
+      <AppBar
+        position="fixed"
+        className={classes.header_appBar}
+        color="default"
+      >
+        <Toolbar className={classes.header_toolbar}>
+          <div className={classes.header_backButton}>
+            <div>
+              {backButton.text && backButton.url && (
+                <Button
+                  startIcon={<ArrowBackRoundedIcon />}
+                  component={Link}
+                  to={backButton.url}
+                  color="primary"
+                >
+                  {backButton.text}
+                </Button>
+              )}
+            </div>
           </div>
-        </div>
-        <div className={classes.header_buttons}>
-          <div className={classes.header_accountButton}>
-            <AccountButton />
+          <div className={classes.header_actions}>
+            <div className={classes.header_accountButton}>
+              <AccountButton />
+            </div>
           </div>
-        </div>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+    </HideOnScroll>
   );
 };
 

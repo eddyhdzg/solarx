@@ -6,7 +6,6 @@ export * from "./router";
 export * from "./tables";
 export * from "./utils";
 
-export { default as useCopywriting } from "./useCopywriting";
 export { default as useCreateMuiTheme } from "./useCreateMuiTheme";
 export { default as useQueryParams } from "./useQueryParams";
 export { default as useRouterMemo } from "./useRouterMemo";

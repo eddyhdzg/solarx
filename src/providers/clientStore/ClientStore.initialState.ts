@@ -7,6 +7,9 @@ export type ClientState = {
     pageSize: number;
     projectType: "cards" | "table";
   };
+  users: {
+    pageSize: number;
+  };
 };
 
 export const initialClientState: ClientState = {
@@ -18,5 +21,8 @@ export const initialClientState: ClientState = {
   projects: {
     pageSize: 10,
     projectType: "cards",
+  },
+  users: {
+    pageSize: 10,
   },
 };

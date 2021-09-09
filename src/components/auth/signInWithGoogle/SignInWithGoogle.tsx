@@ -2,8 +2,10 @@ import { Button, Typography } from "@material-ui/core";
 import { useCustomAuth } from "hooks";
 import GoogleIcon from "@material-ui/icons/Google";
 import useStyles from "./signInWithGoogle.jss";
+import { useTranslation } from "react-i18next";
 
 const SignInWithGoogle = () => {
+  const { t } = useTranslation();
   const { signIn } = useCustomAuth();
   const classes = useStyles();
   return (
@@ -18,7 +20,7 @@ const SignInWithGoogle = () => {
         noWrap
         className={classes.accountButton_text}
       >
-        Sign in with Google
+        {t("auth.signInWithGoogle")}
       </Typography>
     </Button>
   );

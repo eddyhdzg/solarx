@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
       "&:not(:last-child)": {
         marginBottom: theme.spacing(3),
       },
+      textTransform: "capitalize",
     },
     projectCard_buttonGroup: {
       "& > button:not(:first-child)": {

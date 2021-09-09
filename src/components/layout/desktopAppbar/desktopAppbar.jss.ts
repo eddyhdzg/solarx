@@ -4,6 +4,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     desktopAppbar_root: {
       backgroundColor: theme.palette.grey[900],
+      borderColor: "transparent",
+      boxShadow: theme.shadows[3],
     },
     desktopAppbar_content: {
       display: "flex",
@@ -13,18 +15,17 @@ const useStyles = makeStyles((theme: Theme) =>
       width: `calc(56px + env(safe-area-inset-left))`,
       paddingLeft: theme.spacing(0.5),
       paddingRight: theme.spacing(0.5),
+      paddingTop: "env(safe-area-inset-top)",
       paddingBottom: "env(safe-area-inset-bottom)",
       overflowY: "scroll",
+      msOverflowStyle: "none",
+      scrollbarWidth: "none",
+      "&::-webkit-scrollbar": {
+        display: "none",
+      },
     },
     desktopAppbar_icon: {
       minWidth: "auto",
-    },
-    desktopAppbar_toolbar: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: theme.spacing(0, 1),
-      ...theme.mixins.toolbar,
     },
     desktopAppbar_ul: {
       "&> *": {

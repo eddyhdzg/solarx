@@ -12,6 +12,7 @@ import { IFirestoreUserFormSchema, useEditFirestoreUserMutation } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 import useStyles from "./accountInformation.jss";
 import { checkKeyDown } from "utils";
+import { useTranslation } from "react-i18next";
 
 interface IAccountInformationFormProps {
   firestoreUser: FirestoreUser;
@@ -21,6 +22,7 @@ export default function AccountInformationForm({
   firestoreUser,
 }: IAccountInformationFormProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const { handleFirestoreUserMutaion } = useEditFirestoreUserMutation();
   const {
     handleSubmit,
@@ -44,18 +46,24 @@ export default function AccountInformationForm({
         <div className={classes.accountInformation_body}>
           <div className={classes.accountInformation_section}>
             <Typography variant="h6" component="h6" className={classes.mb2}>
-              Private Information
+              {t("pages.more.accountInformation.privateInformation")}
             </Typography>
             <Grid container spacing={3}>
               <GridItem xxs={12} xs={12} sm={6} zeroMinWidth>
                 <Typography noWrap variant="body2">
-                  <strong>Account ID: </strong>
+                  <strong>
+                    {t("pages.more.accountInformation.accountID")}
+                    {": "}
+                  </strong>
                   {firestoreUser?.uid}
                 </Typography>
               </GridItem>
               <GridItem xxs={12} xs={12} sm={6}>
                 <Typography noWrap variant="body2">
-                  <strong>Email: </strong>
+                  <strong>
+                    {t("pages.more.accountInformation.email")}
+                    {": "}
+                  </strong>
                   {firestoreUser?.email}
                 </Typography>
               </GridItem>
@@ -64,7 +72,7 @@ export default function AccountInformationForm({
           <Divider />
           <div className={classes.accountInformation_section}>
             <Typography variant="h6" component="h6">
-              Public Information
+              {t("pages.more.accountInformation.publicInformation")}
             </Typography>
             <Typography
               variant="caption"
@@ -72,11 +80,13 @@ export default function AccountInformationForm({
               className={classes.mb2}
               color="textSecondary"
             >
-              This information will be displayed publicly
+              {t("pages.more.accountInformation.publicInformationDescription")}
             </Typography>
 
             <div className={classes.mb2}>
-              <Typography variant="subtitle2">Avatar</Typography>
+              <Typography variant="subtitle2">
+                {t("pages.more.accountInformation.avatar")}
+              </Typography>
               <Avatar
                 alt="google avatar"
                 src={firestoreUser?.avatar || undefined}
@@ -92,7 +102,7 @@ export default function AccountInformationForm({
                   render={({ field, fieldState }) => (
                     <TextField
                       id="firestoreUser-displayName"
-                      label="Display Name"
+                      label={t("pages.more.accountInformation.displayName")}
                       variant="outlined"
                       fullWidth
                       required
@@ -121,7 +131,7 @@ export default function AccountInformationForm({
             disabled={!isValid || !isDirty}
             type="submit"
           >
-            Edit Account
+            {t("pages.more.accountInformation.editAccount")}
           </Button>
         </div>
       </Paper>

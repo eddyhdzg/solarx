@@ -12,6 +12,7 @@ import { Chip, IconButton } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import { Link } from "react-router-dom";
 import useStyles from "./useProjectsColumns.jss";
+import { useTranslation } from "react-i18next";
 
 interface IColumns {
   publicColumns: any;
@@ -24,28 +25,29 @@ interface IuseProjectsColumnsArgs {
 
 const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const columns: IColumns = useMemo(() => {
     const commonColumns = [
       {
         id: "id",
-        Header: "id",
+        Header: t("projects.id"),
         accessor: "id",
       },
       {
         id: "name",
-        Header: "Project Name",
+        Header: t("projects.projectName"),
         accessor: "name",
         filter: "fuzzyText",
       },
       {
         id: "location",
-        Header: "Location",
+        Header: t("projects.location"),
         accessor: ({ city, state }: Project) => `${city}, ${state}`,
         filter: "fuzzyText",
       },
       {
         id: "funded",
-        Header: "Funded",
+        Header: t("projects.funded"),
         accessor: (row: Project) =>
           (row.sharesSold ?? 0) >= (row.totalShares ?? 0) ? true : false,
         Cell: ({ value }: { value: boolean }) =>
@@ -53,7 +55,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             <Chip
               color="primary"
               size="small"
-              label="Funded"
+              label={t("projects.funded")}
               className={classes.useProjectsColumns_chip}
             />
           ) : (
@@ -63,7 +65,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       },
       {
         id: "sharePrice",
-        Header: "Share Price",
+        Header: t("projects.sharePrice"),
         accessor: ({ sharePrice }: Project) => sharePrice ?? 0,
         className: classes.useProjectsColumns_alignRight,
         Cell: ({ value = 0 }: { value: Project["sharePrice"] }) =>
@@ -71,20 +73,20 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       },
       {
         id: "roi",
-        Header: "ROI (Return On Investment)",
+        Header: t("projects.roi"),
         accessor: ({ roi = 0 }: Project) => formatPercentage2Dec(roi),
         className: classes.useProjectsColumns_alignRight,
       },
       {
         id: "progress",
-        Header: "Progress",
+        Header: t("projects.progress"),
         accessor: ({ sharesSold, totalShares }: Project) =>
           getProgress({ sharesSold, totalShares }),
         className: classes.useProjectsColumns_alignRight,
       },
       {
         id: "shares",
-        Header: "Shares (funded/total)",
+        Header: t("projects.sharesRatio"),
         accessor: ({ sharesSold, totalShares }: Project) =>
           getPanelsRatio({ sharesSold, totalShares }),
         className: classes.useProjectsColumns_alignRight,
@@ -92,12 +94,12 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       },
       {
         id: "ppa",
-        Header: "PPA",
+        Header: t("projects.ppa"),
         accessor: "ppa",
       },
       {
         id: "created",
-        Header: "Created",
+        Header: t("projects.created"),
         accessor: ({ created }: Project) => {
           return created ? fomatTimeStamp(created) : "";
         },
@@ -107,7 +109,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     const publicColumns = [
       ...commonColumns,
       {
-        Header: "Actions",
+        Header: t("table.actions"),
         accessor: ({ id }: Project) => id,
         Cell: ({ value }: { value?: string }) => {
           return (
@@ -132,7 +134,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     const privateColumns = [
       ...commonColumns,
       {
-        Header: "Archived",
+        Header: t("projects.archived"),
         accessor: "archived",
         Cell: ({ value }: { value: boolean }) =>
           value ? (
@@ -148,7 +150,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         sortType: "basic",
       },
       {
-        Header: "Actions",
+        Header: t("table.actions"),
         accessor: ({ id }: Project) => id,
         Cell: ({ value }: { value?: string }) => {
           return (
@@ -176,6 +178,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     classes.useProjectsColumns_alignRight,
     classes.useProjectsColumns_chip,
     classes.useProjectsColumns_noPadding,
+    t,
   ]);
 
   return { ...columns };

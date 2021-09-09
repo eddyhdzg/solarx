@@ -9,26 +9,29 @@ import {
 import ProjectForm from "forms/projectForm/ProjectForm";
 import { useSnackbar } from "notistack";
 import { FormProvider } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export default function CreateProjectPage() {
+  const { t } = useTranslation();
   const { onChangeRoute } = useHeader();
 
   useEffect(() => {
-    onChangeRoute({ text: "projects", url: "/admin/projects" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.projects"), url: "/admin/projects" });
+  }, [onChangeRoute, t]);
   return (
     <>
       <Seo
-        title="Create project"
-        description="Create a crowdfunding project."
+        title={t("pages.admin.createProject.title")}
+        description={t("pages.admin.createProject.description")}
       />
-      <PageTitle>Create project</PageTitle>
+      <PageTitle>{t("pages.admin.createProject.title")}</PageTitle>
       <CreateProject />
     </>
   );
 }
 
 function CreateProject() {
+  const { t } = useTranslation();
   const methods = useCreateProjectDataForm();
   const { createProjectDataMutation } = useCreateProjectDataMutation();
   const { createProjectMediaMutation } = useCreateProjectMediaMutation();
@@ -41,15 +44,17 @@ function CreateProject() {
 
     createProjectDataMutation(createProjectData)
       .then((res) => {
-        enqueueSnackbar("Project Added! 🔥", { variant: "success" });
+        enqueueSnackbar(t("snackbar.projectAdded"), { variant: "success" });
 
         if (coverImage?.length || images?.length) {
           createProjectMediaMutation(res.id, { coverImage, images })
             .then(() => {
-              enqueueSnackbar("Media Added! 🔥", { variant: "success" });
+              enqueueSnackbar(t("snackbar.mediaAdded"), { variant: "success" });
             })
             .catch(() => {
-              enqueueSnackbar("Media Added Error 😔", { variant: "error" });
+              enqueueSnackbar(t("snackbar.mediaNotAdded"), {
+                variant: "error",
+              });
             })
             .finally(() => {
               methods.reset(
@@ -71,7 +76,7 @@ function CreateProject() {
         }
       })
       .catch(() => {
-        enqueueSnackbar("Project Added Error 😔", { variant: "error" });
+        enqueueSnackbar(t("snackbar.projectNotAdded"), { variant: "error" });
       });
   });
 

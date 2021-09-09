@@ -7,6 +7,14 @@ const useStyles = makeStyles((theme: Theme) =>
         marginLeft: theme.spacing(7),
       },
     },
+    layout_notch: {
+      minHeight: "env(safe-area-inset-top)",
+      position: "fixed",
+      top: 0,
+      width: "100%",
+      zIndex: theme.zIndex.drawer - 1,
+      ...theme.custom.glassBackground,
+    },
     layout_content: {
       flexGrow: 1,
       padding: theme.spacing(2),

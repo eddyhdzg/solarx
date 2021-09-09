@@ -14,9 +14,11 @@ import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import useStyles from "./accountButton.jss";
 import { useCustomAuth } from "hooks";
 import SignInWithGoogle from "../signInWithGoogle/SignInWithGoogle";
+import { useTranslation } from "react-i18next";
 
 const AccountButton: React.FC = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const { signOut } = useCustomAuth();
   const { data: signinResult } = useSigninCheck();
   const [open, setOpen] = useState(false);
@@ -109,7 +111,7 @@ const AccountButton: React.FC = () => {
                     <ExitToAppRoundedIcon
                       className={classes.accountButton_icon}
                     />
-                    Logout
+                    {t("forms.signOut")}
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>

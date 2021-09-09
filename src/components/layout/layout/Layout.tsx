@@ -7,6 +7,7 @@ const Layout: React.FC = ({ children }) => {
 
   return (
     <div className={classes.layout_root}>
+      <div className={classes.layout_notch} />
       <Header />
       <Navigation />
       <main className={classes.layout_content}>

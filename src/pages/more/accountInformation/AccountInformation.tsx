@@ -9,21 +9,27 @@ import {
 import { FormProvider } from "react-hook-form";
 import AccountInformationForm from "forms/accountInformationForm/AccountInformationForm";
 import { AuthWrapper, PageTitle, Seo } from "components";
+import { useTranslation } from "react-i18next";
 
 export default function AccountInformationPage() {
   const { onChangeRoute } = useHeader();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    onChangeRoute({ text: "more", url: "/more" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.more"), url: "/more" });
+  }, [onChangeRoute, t]);
 
   return (
     <AuthWrapper>
       <Seo
-        title="Account information"
-        description="Edit your account information."
+        title={t("pages.more.accountInformation.accountInformation")}
+        description={t(
+          "pages.more.accountInformation.accountInformationDescription"
+        )}
       />
-      <PageTitle>Account information</PageTitle>
+      <PageTitle>
+        {t("pages.more.accountInformation.accountInformation")}
+      </PageTitle>
       <AccountInformation />
     </AuthWrapper>
   );

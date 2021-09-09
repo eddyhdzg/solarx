@@ -1,0 +1,183 @@
+{
+  "translation": {
+    "common": {
+      "loadMore": "Cargar más",
+      "loading": "Cargando...",
+      "noUsersFound": "¡No se encontraron usuarios!",
+      "ok": "OK",
+      "yes": "Sí",
+      "no": "No",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "edit": "Editar",
+      "delete": "Borrar",
+      "copyLink": "Copiar enlace",
+      "copied": "¡Copiado!",
+      "copy": "Copiar",
+      "error": "Error"
+    },
+    "pages": {
+      "admin": {
+        "adminHome": {
+          "admin": "admin",
+          "adminDescription": "Sección de administración.",
+          "projects": "proyectos",
+          "users": "usuarios"
+        },
+        "createProject": {
+          "title": "Crear proyecto",
+          "description": "Crea un proyecto de crowdfunding."
+        },
+        "editProject": {
+          "editProject": "Editar proyecto",
+          "editProjectDescription": "Edita un proyecto de crowdfunding."
+        },
+        "projects": {
+          "administratorProjects": "Proyectos de administrador",
+          "administratorProjectsDescription": "Proyectos que solo los administradores pueden ver."
+        },
+        "users": {
+          "users": "usuarios",
+          "usersDescription": "Gestionar usuarios como administrador."
+        }
+      },
+      "crowdfunding": {
+        "projects": {
+          "crowdfundingProjects": "Crowdfunding",
+          "crowdfundingProjectsDescription": "Todos los proyectos de crowdfunding."
+        },
+        "project": {
+          "raisedOf": "levantado de",
+          "monthlyRevenue": "ingreso mensual",
+          "yearlyRevenue": "ingreso anual",
+          "price": "Precio",
+          "goToCheckout": "Ir a pago",
+          "signInToProceedToPayment": "Inicie sesión para proceder al pago",
+          "showAllPhotos": "Ver más photos"
+        }
+      },
+      "more": {
+        "preferences": {
+          "language": "Idioma",
+          "interfaceLanguage": "Idioma de la interfaz",
+          "preferences": "Preferencias",
+          "preferencesDescription": "Preferencias del usuario."
+        },
+        "accountInformation": {
+          "accountInformation": "Información de la cuenta",
+          "accountInformationDescription": "Edite la información de su cuenta.",
+          "privateInformation": "Información privada",
+          "publicInformation": "Información pública",
+          "accountID": "ID de cuenta",
+          "email": "Correo electrónico",
+          "publicInformationDescription": "Esta información se mostrará públicamente",
+          "avatar": "Avatar",
+          "displayName": "Nombre para mostrar",
+          "editAccount": "Editar cuenta",
+          "uid": "uid",
+          "name": "Nombre",
+          "role": "Rol"
+        },
+        "moreHome": {
+          "more": "Más",
+          "moreDescription": "Más sección."
+        }
+      }
+    },
+    "locales": {
+      "english": "English",
+      "en": "English",
+      "spanish": "Español",
+      "es": "Español"
+    },
+    "forms": {
+      "search": "Buscar",
+      "filter": "filtro",
+      "reset": "reset",
+      "id": "ID",
+      "name": "Nombre",
+      "location": "Ubicación",
+      "founded": "Fundada",
+      "notFounded": "No Fundada",
+      "card": "tarjeta",
+      "table": "tabla",
+      "share": "compartir",
+      "copyToClipboard": "Copiar al portapapeles",
+      "copiedToClipboard": "Copiado al portapapeles ✅",
+      "projectForm": {
+        "general": "General",
+        "generalDescription": "Proporcione información básica sobre el proyecto.",
+        "numbers": "Números",
+        "numbersDescription": "Todos los datos numéricos del proyecto.",
+        "media": "Media",
+        "mediaDescription": "Imágenes para mostrar el proyecto.",
+        "coverImage": "Imagen de portada",
+        "images": "Imágenes",
+        "project": "Proyecto"
+      },
+      "DragNDropfile": "Arrastre y suelte un archivo aquí, o haga clic para seleccionar un archivo",
+      "DragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos",
+      "signOut": "Cerrar sesión"
+    },
+    "projects": {
+      "id": "id",
+      "projectName": "Nombre del proyecto",
+      "location": "Ubicación",
+      "funded": "financiado",
+      "notFunded": "No financiado",
+      "sharePrice": "Precio de la acción",
+      "roi": "ROI (Retorno de inversión)",
+      "roiShort": "ROI",
+      "progress": "Progreso",
+      "sharesRatio": "Acciones (financiadas / total)",
+      "shares": "acciones ",
+      "ppa": "PPA",
+      "created": "Creado",
+      "archived": "Archivado",
+      "investors": "Inversionistas",
+      "businessType": "Tipo de empresa",
+      "company": "Empresa",
+      "totalShares": "Total de acciones",
+      "ppaYears": "Años de PPA",
+      "state": "Estado",
+      "city": "Ciudad"
+    },
+    "table": {
+      "actions": "Acciones",
+      "rowsPerPage": "Filas por página:",
+      "displayedRows": "{{from}}-{{to}} de {{count}}"
+    },
+    "dates": {
+      "year": "año",
+      "year_plural": "años",
+      "yearWithCount": "{{count}} año",
+      "yearWithCount_plural": "{{count}} años"
+    },
+    "router": {
+      "admin": "admin",
+      "crowdfunding": "crowdfunding",
+      "more": "más",
+      "project": "proyecto",
+      "projects": "proyectos"
+    },
+    "snackbar": {
+      "userEdited": "Usuario editado! 🔥",
+      "userNotEdited": "Error al editar usuario 😔",
+      "roleEdited": "Rol editado! 🔥",
+      "roleNotEdited": "Error al editar rol 😔",
+      "projectAdded": "Proyecto agregado! 🔥",
+      "projectNotAdded": "Error al agregar proyecto 😔",
+      "projectEdited": "Projecto Editado! 🔥",
+      "projectNotEdited": "Error al editar projecto 😔",
+      "mediaAdded": "Media agregada! 🔥",
+      "mediaNotAdded": "Error al agregar media😔",
+      "mediaEdited": "Media editada! 🔥",
+      "mediaNotEdited": "Error al editar media 😔"
+    },
+    "auth": {
+      "youNeedToBeAnAdmin": "Debes ser un administrador para usar esta ruta",
+      "signIntoUseThisRoute": "Inicia sesión para usar esta ruta",
+      "signInWithGoogle": "Inicia sesión con Google"
+    }
+  }
+}

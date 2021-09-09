@@ -1,10 +1,12 @@
 import { useSigninCheck } from "reactfire";
 import { CenterLoader, MessagePaper } from "components";
+import { useTranslation } from "react-i18next";
 
 export default function AuthWrapper({
   children,
-  fallback = <MessagePaper message="Sign in to use this route" />,
+  fallback,
 }: React.PropsWithChildren<{ fallback?: JSX.Element }>): JSX.Element {
+  const { t } = useTranslation();
   const { status, data: signInCheckResult } = useSigninCheck();
 
   if (!children) {
@@ -16,5 +18,9 @@ export default function AuthWrapper({
     return children as JSX.Element;
   }
 
-  return fallback;
+  return fallback ? (
+    fallback
+  ) : (
+    <MessagePaper message={t("auth.signIntoUseThisRoute")} />
+  );
 }

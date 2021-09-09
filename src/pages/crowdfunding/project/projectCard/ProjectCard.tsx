@@ -21,6 +21,7 @@ import RemoveRoundedIcon from "@material-ui/icons/RemoveRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { GradientLinearProgress } from "components";
 import { Project } from "types";
+import { useTranslation } from "react-i18next";
 
 interface IProjectCardProps
   extends Pick<Project, "sharesSold" | "totalShares" | "sharePrice"> {
@@ -36,6 +37,7 @@ export default function ProjectCard({
   investors = 0,
 }: IProjectCardProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const percentage = (sharesSold / totalShares) * 100;
   const { data: signinResult } = useSigninCheck();
   const [shares, setShares] = useState(1);
@@ -50,10 +52,11 @@ export default function ProjectCard({
         <div>
           <div className={classes.projectCard_progressText}>
             <Typography variant="h5" component="h4">
-              {formatPercentage(percentage)} funded
+              {formatPercentage(percentage)} {t("projects.funded")}
             </Typography>
             <Typography variant="caption" color="textSecondary">
-              {formatNumber(sharesSold)} / {formatNumber(totalShares)} shares
+              {formatNumber(sharesSold)} / {formatNumber(totalShares)}{" "}
+              {t("projects.shares")}
             </Typography>
           </div>
           <div className={classes.projectCard_gradientLinearProgress}>
@@ -64,7 +67,8 @@ export default function ProjectCard({
             color="textSecondary"
             className={classes.projectCard_typographyBody2}
           >
-            {formatMoney(sharePrice * sharesSold)} raised of{" "}
+            {formatMoney(sharePrice * sharesSold)}{" "}
+            {t("pages.crowdfunding.project.raisedOf")}{" "}
             {formatMoney(sharePrice * totalShares)}
           </Typography>
         </div>
@@ -73,7 +77,7 @@ export default function ProjectCard({
           <div>
             <Typography variant="h6">{formatMoney(sharePrice)}</Typography>
             <Typography variant="body2" color="textSecondary">
-              Share price
+              {t("projects.sharePrice")}
             </Typography>
           </div>
           <div>
@@ -89,14 +93,14 @@ export default function ProjectCard({
             </Typography>
 
             <Typography variant="body2" color="textSecondary">
-              Rate On Investment
+              {t("projects.roiShort")}
             </Typography>
           </div>
 
           <div>
             <Typography variant="h6">{formatNumber(investors)}</Typography>
             <Typography variant="body2" color="textSecondary">
-              Investors
+              {t("projects.investors")}
             </Typography>
           </div>
         </div>
@@ -104,7 +108,7 @@ export default function ProjectCard({
         <ul className={classes.projectCard_summary}>
           <li className={classes.projectCard_li}>
             <Typography variant="body2" color="textSecondary">
-              Shares
+              {t("projects.shares")}
             </Typography>
             <ButtonGroup
               color="default"
@@ -130,7 +134,7 @@ export default function ProjectCard({
 
           <li className={classes.projectCard_li}>
             <Typography variant="body2" color="textSecondary">
-              Monthly revenue
+              {t("pages.crowdfunding.project.monthlyRevenue")}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -142,13 +146,13 @@ export default function ProjectCard({
 
           <li className={classes.projectCard_li}>
             <Typography variant="body2" color="textSecondary">
-              Yearly revenue
+              {t("pages.crowdfunding.project.yearlyRevenue")}
             </Typography>
             <Typography
               variant="subtitle1"
               className={classes.projectCard_typographySubtitle1}
             >
-              {formatMoney(sharePrice * roi * 0.01)}
+              {formatMoney(sharePrice * roi * 0.01 * shares)}
             </Typography>
           </li>
         </ul>
@@ -157,7 +161,7 @@ export default function ProjectCard({
         <ul className={classes.projectCard_price}>
           <li className={classes.projectCard_li}>
             <Typography variant="body2" color="textSecondary">
-              Price
+              {t("pages.crowdfunding.project.price")}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -175,8 +179,8 @@ export default function ProjectCard({
           disabled={!signinResult?.signedIn}
         >
           {signinResult?.signedIn
-            ? "Go To Checkout"
-            : "Sign in to proceed to payment"}
+            ? t("pages.crowdfunding.project.goToCheckout")
+            : t("pages.crowdfunding.project.signInToProceedToPayment")}
         </Button>
       </CardActions>
     </Card>

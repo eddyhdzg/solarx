@@ -19,7 +19,10 @@ export const useTabsStyles = makeStyles((theme: Theme) =>
       marginTop: "4px",
       marginBottom: "4px !important",
       padding: "0px 4px",
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("xs")]: {
+        padding: "0px 6px",
+      },
+      [theme.breakpoints.up("sm")]: {
         padding: "0px 8px",
       },
     },
@@ -62,10 +65,9 @@ export const useTabStyles = makeStyles((theme: Theme) =>
         minWidth: theme.spacing(10),
       },
       [theme.breakpoints.up("sm")]: {
-        minWidth: theme.spacing(12),
+        minWidth: theme.spacing(15),
       },
       [theme.breakpoints.up("md")]: {
-        minWidth: theme.spacing(15),
         fontSize: "16px",
       },
     },

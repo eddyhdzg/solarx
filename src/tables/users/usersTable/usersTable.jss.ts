@@ -4,7 +4,10 @@ const useStyles = makeStyles(() => ({
   usersTable_paper: {
     display: "flex",
     whiteSpace: "nowrap",
-    overflow: "scroll",
+    overflow: "auto",
+  },
+  usersTable_header: {
+    textTransform: "capitalize",
   },
 }));
 

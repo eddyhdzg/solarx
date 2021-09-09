@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme: Theme) =>
     accountInformation_paper: {
       maxWidth: "56rem",
       display: "flex",
-      overflow: "scroll",
+      overflow: "auto",
       flexDirection: "column",
     },
     accountInformation_body: {

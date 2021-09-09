@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme: Theme) =>
       position: "relative",
     },
     project_tabsContainer: {
-      width: "fit-content",
+      maxWidth: "100%",
+      width: "max-content",
       [theme.breakpoints.down("md")]: {
         marginLeft: "auto",
         marginRight: "auto",

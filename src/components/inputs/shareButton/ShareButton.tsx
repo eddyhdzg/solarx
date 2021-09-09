@@ -3,11 +3,13 @@ import useClipboard from "react-use-clipboard";
 import { Tooltip, Button } from "@material-ui/core";
 import IosShareRoundedIcon from "@material-ui/icons/IosShareRounded";
 import { useCanUseShareAPI } from "hooks";
+import { useTranslation } from "react-i18next";
 
 export default function ShareButton() {
+  const { t } = useTranslation();
   const location = useLocation();
   const [isCopied, setCopied] = useClipboard(
-    "https://solarx.app" + location.pathname,
+    "https://dashboard.solarx.app" + location.pathname,
     {
       successDuration: 2000,
     }
@@ -16,7 +18,7 @@ export default function ShareButton() {
   const canUseShareAPI = useCanUseShareAPI();
 
   const shareDetails = {
-    url: "https://solarx.app" + location.pathname,
+    url: "https://dashboard.solarx.app" + location.pathname,
     title: "Solar X",
     text: "Invest in Solar Energy",
   };
@@ -25,12 +27,8 @@ export default function ShareButton() {
     if (navigator.share) {
       navigator
         .share(shareDetails)
-        .then(() => {
-          console.log("Sharing successfull");
-        })
-        .catch(() => {
-          console.log("Sharing failed");
-        });
+        .then(() => {})
+        .catch(() => {});
     } else {
       console.log("Sorry! Your browser does not support Web Share API");
     }
@@ -42,18 +40,20 @@ export default function ShareButton() {
       size="small"
       onClick={handleShareButton}
     >
-      Share
+      {t("forms.share")}
     </Button>
   ) : (
     <Tooltip
       arrow
       leaveTouchDelay={3000}
       enterTouchDelay={0}
-      title={isCopied ? "Copied to clipboard ✅" : "Copy to clipboard"}
+      title={
+        isCopied ? t("forms.copiedToClipboard") : t("forms.copyToClipboard")
+      }
       onClick={setCopied}
     >
       <Button startIcon={<IosShareRoundedIcon />} size="small">
-        Share
+        {t("forms.share")}
       </Button>
     </Tooltip>
   );

@@ -1,21 +1,17 @@
 import { FormControl, Select, FormControlProps } from "@material-ui/core";
-import shallow from "zustand/shallow";
-import { useCopywriting, useStore } from "hooks";
 import LanguageIcon from "@material-ui/icons/Language";
 import useStyles from "./localeSelect.jss";
 import { localeOptions } from "constant";
+import { useTranslation } from "react-i18next";
+import { Locales } from "types";
 
 const LocaleSelect: React.FC<FormControlProps> = (props) => {
   const classes = useStyles();
-  const copy = useCopywriting();
-  const { dispatch, locale } = useStore(
-    ({ dispatch, locale }) => ({ dispatch, locale }),
-    shallow
-  );
+  const { t, i18n } = useTranslation();
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const payload = event.target.value as typeof locale;
-    dispatch({ type: "LOCALE_TOGGLE_LOCALE", payload });
+    const newLocale = event.target.value as Locales;
+    i18n.changeLanguage(newLocale);
   };
 
   return (
@@ -23,7 +19,7 @@ const LocaleSelect: React.FC<FormControlProps> = (props) => {
       <LanguageIcon className={classes.localeSelect_icon} />
       <Select
         native
-        value={locale}
+        value={i18n.language}
         onChange={handleChange}
         inputProps={{
           id: "locale-select",
@@ -35,7 +31,7 @@ const LocaleSelect: React.FC<FormControlProps> = (props) => {
         {localeOptions.map((option) => {
           return (
             <option key={option} value={option}>
-              {copy?.pages?.preferences[option]}
+              {t(`locales.${option}`)}
             </option>
           );
         })}

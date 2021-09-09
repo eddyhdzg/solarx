@@ -13,6 +13,7 @@ import shallow from "zustand/shallow";
 import { ProjectSection } from "types";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface IProjectsTableLayoutProps {
   control: Control<ProjectFiltersSchema>;
@@ -32,6 +33,7 @@ export default function ProjectsTableLayout({
   section = "crowdfunding",
 }: IProjectsTableLayoutProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const { dispatch, projects } = useStore(
     ({ dispatch, projects }) => ({ dispatch, projects }),
     shallow
@@ -67,7 +69,7 @@ export default function ProjectsTableLayout({
               : undefined,
           ].join(" ")}
         >
-          Create Project
+          {t("pages.admin.createProject.title")}
         </Button>
 
         <div className={classes.projectTableLayout_root}>
@@ -79,7 +81,14 @@ export default function ProjectsTableLayout({
             />
             <FilterMenu control={control} reset={reset} />
             <Tooltip
-              title={projects?.projectType === "cards" ? "Cards" : "Table"}
+              title={
+                projects?.projectType === "cards"
+                  ? t("forms.card")
+                  : t("forms.table")
+              }
+              classes={{
+                tooltip: classes.projectTableLayout_tooltip,
+              }}
             >
               <IconButton
                 aria-label="project list type"

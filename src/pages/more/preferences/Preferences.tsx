@@ -4,18 +4,23 @@ import { useHeader } from "hooks";
 import LocaleSection from "./subComponents/localeSection/LocaleSection";
 import useStyles from "./preferences.jss";
 import { Grid } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 
 export default function PreferencesPage() {
   const { onChangeRoute } = useHeader();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    onChangeRoute({ text: "more", url: "/more" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.more"), url: "/more" });
+  }, [onChangeRoute, t]);
 
   return (
     <>
-      <Seo title="Preferences" description="User's preferences." />
-      <PageTitle>Preferences</PageTitle>
+      <Seo
+        title={t("pages.more.preferences.preferences")}
+        description={t("pages.more.preferences.preferencesDescription")}
+      />
+      <PageTitle>{t("pages.more.preferences.preferences")}</PageTitle>
       <Preferences />
     </>
   );

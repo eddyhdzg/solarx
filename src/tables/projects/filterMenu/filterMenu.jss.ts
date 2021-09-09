@@ -2,6 +2,9 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    tooltip: {
+      textTransform: "capitalize",
+    },
     menu: {
       padding: theme.spacing(2, 3, 3),
       display: "flex",

@@ -15,6 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
       objectFit: "cover",
       overflow: "hidden",
       width: "100%",
+      WebkitUserSelect: "none",
+      userSelect: "none",
+      MozUserSelect: "none",
+      msUserSelect: "none",
+      userDrag: "none",
+      pointerEvents: "none",
     },
     projectMobileGallery_dots: {
       justifyContent: "center",

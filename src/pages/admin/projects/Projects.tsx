@@ -19,29 +19,33 @@ import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
 import { Seo, PageTitle } from "components";
 import { fuzzyTextFilterFn } from "utils";
+import { useTranslation } from "react-i18next";
+import { ProjectSection } from "types";
 
 export default function ProjectsPage() {
+  const { t } = useTranslation();
   const { onChangeRoute } = useHeader();
 
   useEffect(() => {
-    onChangeRoute({ text: "admin", url: "/admin" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.admin"), url: "/admin" });
+  }, [onChangeRoute, t]);
 
   return (
     <>
       <Seo
-        title="Administrator projects"
-        description="Projects only administrators can see."
+        title={t("pages.admin.projects.administratorProjects")}
+        description={t("pages.admin.projects.administratorProjectsDescription")}
       />
-      <PageTitle>Administrator projects</PageTitle>
+      <PageTitle>{t("pages.admin.projects.administratorProjects")}</PageTitle>
       <Projects />
     </>
   );
 }
 
 const Projects = () => {
+  const section: ProjectSection = "admin/projects";
   const { data: projects } = usePrivateProjects();
-  const { privateColumns } = useProjectsColumns({ section: "admin/projects" });
+  const { privateColumns } = useProjectsColumns({ section });
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);
   const {
@@ -86,7 +90,7 @@ const Projects = () => {
       watch={watch}
       setGlobalFilter={setGlobalFilter}
       table={table}
-      section="admin/projects"
+      section={section}
     />
   );
 };

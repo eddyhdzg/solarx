@@ -4,11 +4,13 @@ import { Project } from "types";
 import CollectionsOutlinedIcon from "@material-ui/icons/CollectionsOutlined";
 import ProjectScrollGallery from "../projectScrollGallery/ProjectScrollGallery";
 import useStyles from "./projectDesktopGallery.jss";
+import { useTranslation } from "react-i18next";
 
 export default function ProjectDesktopGallery({
   images,
 }: Pick<Project, "images">) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => () => {
@@ -71,7 +73,7 @@ export default function ProjectDesktopGallery({
             startIcon={<CollectionsOutlinedIcon />}
             onClick={handleClickOpen()}
           >
-            Show all photos
+            {t("pages.crowdfunding.project.showAllPhotos")}
           </Button>
         )}
       </div>

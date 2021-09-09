@@ -2,8 +2,10 @@ import { useFirestore } from "reactfire";
 import { UserRole } from "types";
 import { useSnackbar } from "notistack";
 import { doc, updateDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 
 export default function useEditRole() {
+  const { t } = useTranslation();
   const firestore = useFirestore();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -19,10 +21,10 @@ export default function useEditRole() {
   const handleRoleMutaion = (id: string, role?: UserRole) => {
     editRoleMutation(id, role)
       .then(() => {
-        enqueueSnackbar("Role Edited! 🔥", { variant: "success" });
+        enqueueSnackbar(t("snackbar.roleEdited"), { variant: "success" });
       })
       .catch(() => {
-        enqueueSnackbar("Role Edition Error 😔", { variant: "error" });
+        enqueueSnackbar(t("snackbar.roleNotEdited"), { variant: "error" });
       });
   };
 

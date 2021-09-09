@@ -17,28 +17,34 @@ import { FormProvider } from "react-hook-form";
 import { useSnackbar } from "notistack";
 import { getDirtyValues } from "utils";
 import { Seo, PageTitle } from "components";
+import { useTranslation } from "react-i18next";
 
 interface ProjectID {
   id?: string;
 }
 
 export default function EditPorjectPage() {
+  const { t } = useTranslation();
   const { onChangeRoute } = useHeader();
 
   useEffect(() => {
-    onChangeRoute({ text: "projects", url: "/admin/projects" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.projects"), url: "/admin/projects" });
+  }, [onChangeRoute, t]);
 
   return (
     <>
-      <Seo title="Edit project" description="Edit a crowdfunding project." />
-      <PageTitle>Edit project</PageTitle>
+      <Seo
+        title={t("pages.admin.editProject.editProject")}
+        description={t("pages.admin.editProject.editProjectDescription")}
+      />
+      <PageTitle>{t("pages.admin.editProject.editProject")}</PageTitle>
       <EditProject />
     </>
   );
 }
 
 function EditProject() {
+  const { t } = useTranslation();
   const { id } = useParams<ProjectID>();
   const { data, status } = useProject(id || "");
   const methods = useEditProjectForm();
@@ -92,22 +98,22 @@ function EditProject() {
     if (Object.keys(dirtyDataValues).length) {
       editProjectDataMutation(id || "", dirtyDataValues)
         .then(() => {
-          enqueueSnackbar("Project Edited! 🔥", { variant: "success" });
+          enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
           methods.reset({}, { keepValues: true });
         })
         .catch(() => {
-          enqueueSnackbar("Project Edited Error 😔", { variant: "error" });
+          enqueueSnackbar(t("snackbar.projectNotEdited"), { variant: "error" });
         });
     }
 
     if (Object.keys(dirtyMediaValues).length) {
       editProjectMediaMutation(id, dirtyMediaValues)
         .then(() => {
-          enqueueSnackbar("Media Edited! 🔥", { variant: "success" });
+          enqueueSnackbar(t("snackbar.mediaEdited"), { variant: "success" });
           methods.reset({}, { keepValues: true });
         })
         .catch(() => {
-          enqueueSnackbar("Media Edited Error 😔", { variant: "error" });
+          enqueueSnackbar(t("snackbar.mediaNotEdited"), { variant: "error" });
         });
     }
   });

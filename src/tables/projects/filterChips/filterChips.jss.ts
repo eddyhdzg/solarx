@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       listStyle: "none",
       padding: 0,
       margin: 0,
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("xs")]: {
         marginRight: 8,
       },
     },

@@ -8,20 +8,22 @@ import { useProject, useHeader } from "hooks";
 import { CenterLoader, Seo } from "components";
 import { useEffect } from "react";
 import ProjectTabs from "./projectTabs/ProjectTabs";
+import { useTranslation } from "react-i18next";
 
 interface ProjectID {
   id?: string;
 }
 
 export default function Project() {
+  const { t } = useTranslation();
   const { id } = useParams<ProjectID>();
   const classes = useStyles();
   const { status, data } = useProject(id || "");
   const { onChangeRoute } = useHeader();
 
   useEffect(() => {
-    onChangeRoute({ text: "crowdfunding", url: "/crowdfunding" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.crowdfunding"), url: "/crowdfunding" });
+  }, [onChangeRoute, t]);
 
   if (status === "loading") {
     return <CenterLoader />;
@@ -30,7 +32,12 @@ export default function Project() {
   return (
     <>
       <Seo
-        title={data?.name || "Project"}
+        title={
+          data?.name ||
+          t("router.project", {
+            postProcess: "capitalize",
+          })
+        }
         description="Project information page."
       />
       <div>

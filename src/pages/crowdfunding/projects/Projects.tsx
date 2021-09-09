@@ -19,9 +19,12 @@ import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
 import { Seo, PageTitle } from "components";
 import { fuzzyTextFilterFn } from "utils";
+import { useTranslation } from "react-i18next";
+import { ProjectSection } from "types";
 
 export default function ProjectsPage() {
   const { onChangeRoute } = useHeader();
+  const { t } = useTranslation();
 
   useEffect(() => {
     onChangeRoute({ text: undefined, url: undefined });
@@ -29,16 +32,24 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <Seo title="Crowdfunding projects" description="Crowdfunding projects." />
-      <PageTitle>Crowdfunding projects</PageTitle>
+      <Seo
+        title={t("pages.crowdfunding.projects.crowdfundingProjects")}
+        description={t(
+          "pages.crowdfunding.projects.crowdfundingProjectsDescription"
+        )}
+      />
+      <PageTitle>
+        {t("pages.crowdfunding.projects.crowdfundingProjects")}
+      </PageTitle>
       <Projects />
     </>
   );
 }
 
 const Projects = () => {
+  const section: ProjectSection = "crowdfunding";
   const { data: projects } = usePublicProjects();
-  const { publicColumns } = useProjectsColumns({ section: "crowdfunding" });
+  const { publicColumns } = useProjectsColumns({ section });
   const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);
   const {
@@ -84,7 +95,7 @@ const Projects = () => {
       watch={watch}
       setGlobalFilter={setGlobalFilter}
       table={table}
-      section="crowdfunding"
+      section={section}
     />
   );
 };

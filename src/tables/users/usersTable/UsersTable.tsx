@@ -7,7 +7,7 @@ import {
   TableFooter,
   Paper,
 } from "@material-ui/core";
-import UsersTablePagination from "../usersTablePagination/UsersTablePagination";
+import { CustomTablePagination } from "components";
 import useStyles from "./usersTable.jss";
 
 interface IUsersTableProps {
@@ -37,7 +37,7 @@ export default function UsersTable({
   return (
     <Paper elevation={3} className={classes.usersTable_paper}>
       <Table {...getTableProps()}>
-        <TableHead>
+        <TableHead className={classes.usersTable_header}>
           {headerGroups.map((headerGroup: any) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (
@@ -88,11 +88,12 @@ export default function UsersTable({
         </TableBody>
         <TableFooter>
           <TableRow>
-            <UsersTablePagination
+            <CustomTablePagination
               rows={rows}
               gotoPage={gotoPage}
               setPageSize={setPageSize}
               state={state}
+              actionType="USERS_CHANGE_PAGESIZE"
             />
           </TableRow>
         </TableFooter>

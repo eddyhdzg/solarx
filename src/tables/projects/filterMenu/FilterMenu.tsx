@@ -16,6 +16,7 @@ import FilterListRoundedIcon from "@material-ui/icons/FilterListRounded";
 import useStyles from "./filterMenu.jss";
 import { Controller, Control, UseFormReset } from "react-hook-form";
 import { ProjectFiltersSchema } from "hooks";
+import { useTranslation } from "react-i18next";
 
 interface IFilterMenuProps {
   control: Control<ProjectFiltersSchema>;
@@ -24,6 +25,7 @@ interface IFilterMenuProps {
 
 export default function FilterMenu({ control, reset }: IFilterMenuProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -41,7 +43,12 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
 
   return (
     <div>
-      <Tooltip title="Filters">
+      <Tooltip
+        title={t("forms.filter")}
+        classes={{
+          tooltip: classes.tooltip,
+        }}
+      >
         <IconButton
           aria-label="project filter menu"
           aria-controls="project-filter-menu"
@@ -69,9 +76,9 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
       >
         <div className={classes.menu}>
           <div className={classes.header}>
-            <Typography variant="button">Filters</Typography>
+            <Typography variant="button">{t("forms.filter")}</Typography>
             <Button color="primary" onClick={handleReset}>
-              Reset
+              {t("forms.reset")}
             </Button>
           </div>
           <form noValidate autoComplete="off">
@@ -83,7 +90,7 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                   render={({ field }) => (
                     <TextField
                       id="id-filter"
-                      label="ID"
+                      label={t("forms.id")}
                       className={classes.field}
                       {...field}
                     />
@@ -97,7 +104,7 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                   render={({ field }) => (
                     <TextField
                       id="name-filter"
-                      label="Name"
+                      label={t("forms.name")}
                       className={classes.field}
                       {...field}
                     />
@@ -112,7 +119,7 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                   render={({ field }) => (
                     <TextField
                       id="location-filter"
-                      label="Location"
+                      label={t("forms.location")}
                       className={classes.field}
                       {...field}
                     />
@@ -122,7 +129,9 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
 
               <Grid item xs={6}>
                 <FormControl className={classes.field}>
-                  <InputLabel htmlFor="funded-filter">Funded</InputLabel>
+                  <InputLabel htmlFor="funded-filter">
+                    {t("forms.founded")}
+                  </InputLabel>
                   <Controller
                     control={control}
                     name="funded"
@@ -136,8 +145,8 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                         {...field}
                       >
                         <option value={""}></option>
-                        <option value={"true"}>Funded</option>
-                        <option value={"false"}>Not Funded</option>
+                        <option value={"true"}>{t("forms.founded")}</option>
+                        <option value={"false"}>{t("forms.notFounded")}</option>
                       </Select>
                     )}
                   />

@@ -3,6 +3,7 @@ import useStyles from "./filterChips.jss";
 import { UseFormWatch, UseFormReset } from "react-hook-form";
 import { ProjectFiltersSchema } from "hooks";
 import { stringToBoolean } from "utils";
+import { useTranslation } from "react-i18next";
 
 interface IFilterChipsProps {
   watch: UseFormWatch<ProjectFiltersSchema>;
@@ -11,6 +12,7 @@ interface IFilterChipsProps {
 
 export default function FilterChips({ watch, reset }: IFilterChipsProps) {
   const watchAllField = watch();
+  const { t } = useTranslation();
   const classes = useStyles();
 
   const handleDelete = (field: string) => () => {
@@ -53,7 +55,9 @@ export default function FilterChips({ watch, reset }: IFilterChipsProps) {
         <li>
           <Chip
             label={
-              stringToBoolean(watchAllField.funded) ? "Funded" : "Not Funded"
+              stringToBoolean(watchAllField.funded)
+                ? t("projects.funded")
+                : t("projects.notFunded")
             }
             onDelete={handleDelete("funded")}
             className={classes.chip}

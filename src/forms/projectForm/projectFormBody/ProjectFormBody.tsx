@@ -21,6 +21,7 @@ import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import useStyles from "./projectFormBody.jss";
 import { IProjectFormSchema } from "hooks";
 import { ProjectForms } from "types";
+import { useTranslation } from "react-i18next";
 
 interface IProjectFormBodyProps {
   title: ProjectForms;
@@ -28,6 +29,7 @@ interface IProjectFormBodyProps {
 
 export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const {
     control,
     setValue,
@@ -42,10 +44,10 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
         <div className={classes.projectFormBody_body}>
           <div className={classes.projectFormBody_header}>
             <Typography variant="h6" component="h6">
-              General
+              {t("forms.projectForm.general")}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              Provide basic information about the project.
+              {t("forms.projectForm.generalDescription")}
             </Typography>
           </div>
           <Grid container spacing={3}>
@@ -57,7 +59,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field, fieldState }) => (
                   <TextField
                     id="project-name"
-                    label="Project Name"
+                    label={t("projects.projectName")}
                     variant="outlined"
                     fullWidth
                     required
@@ -95,7 +97,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="State"
+                        label={t("projects.state")}
                         variant="outlined"
                         fullWidth
                         inputProps={{
@@ -145,7 +147,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="City"
+                        label={t("projects.city")}
                         variant="outlined"
                         fullWidth
                         inputProps={{
@@ -187,7 +189,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field, fieldState }) => (
                   <TextField
                     id="project-company"
-                    label="Company"
+                    label={t("projects.company")}
                     variant="outlined"
                     fullWidth
                     required
@@ -221,7 +223,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        label="Business Type"
+                        label={t("projects.businessType")}
                         variant="outlined"
                         fullWidth
                         inputProps={{
@@ -260,7 +262,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     control={
                       <Switch name="project-archived" checked={field.value} />
                     }
-                    label="Archived"
+                    label={t("projects.archived")}
                     labelPlacement="start"
                     {...field}
                   />
@@ -271,10 +273,10 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
           <Divider className={classes.projectFormBody_divider} />
           <div className={classes.projectFormBody_header}>
             <Typography variant="h6" component="h6">
-              Numbers
+              {t("forms.projectForm.numbers")}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              All numeric data of the project.
+              {t("forms.projectForm.numbersDescription")}
             </Typography>
           </div>
           <Grid container spacing={3}>
@@ -286,7 +288,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field: { onChange, ...field }, fieldState }) => (
                   <TextField
                     id="project-roi"
-                    label="ROI"
+                    label={t("projects.roiShort")}
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -326,7 +328,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field: { onChange, ...field }, fieldState }) => (
                   <TextField
                     id="project-sharePrice"
-                    label="Share Price"
+                    label={t("projects.sharePrice")}
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -367,7 +369,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field: { onChange, ...field }, fieldState }) => (
                   <TextField
                     id="project-totalShares"
-                    label="Total Shares"
+                    label={t("projects.totalShares")}
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -401,7 +403,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field: { onChange, ...field }, fieldState }) => (
                   <TextField
                     id="project-ppa"
-                    label="PPA years"
+                    label={t("projects.ppaYears")}
                     variant="outlined"
                     fullWidth
                     onChange={(e) => {
@@ -434,10 +436,10 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
 
           <div className={classes.projectFormBody_header}>
             <Typography variant="h6" component="h6">
-              Media
+              {t("forms.projectForm.media")}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
-              Images to showcase the project
+              {t("forms.projectForm.mediaDescription")}
             </Typography>
           </div>
           <Grid container spacing={3}>
@@ -457,7 +459,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     : undefined,
                 }}
               >
-                Cover Image
+                {t("forms.projectForm.coverImage")}
               </Typography>
             </GridItem>
             <GridItem xs={6}>
@@ -485,7 +487,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     : undefined,
                 }}
               >
-                Images
+                {t("forms.projectForm.images")}
               </Typography>
             </GridItem>
             <GridItem xs={6}>
@@ -507,7 +509,9 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             disabled={!isValid || !isDirty}
             type="submit"
           >
-            {title} Project
+            {title === "Create"
+              ? t("pages.admin.createProject.title")
+              : t("pages.admin.editProject.editProject")}
           </Button>
         </div>
       </Paper>

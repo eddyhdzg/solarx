@@ -1,0 +1,183 @@
+{
+  "translation": {
+    "common": {
+      "loadMore": "Load More",
+      "loading": "Loading...",
+      "noUsersFound": "No users found!",
+      "ok": "OK",
+      "yes": "Yes",
+      "no": "No",
+      "cancel": "Cancel",
+      "save": "Save",
+      "edit": "Edit",
+      "delete": "Delete",
+      "copyLink": "Copy link",
+      "copied": "Copied!",
+      "copy": "Copy",
+      "error": "Error"
+    },
+    "pages": {
+      "admin": {
+        "adminHome": {
+          "admin": "admin",
+          "adminDescription": "Admin section.",
+          "projects": "projects",
+          "users": "users"
+        },
+        "createProject": {
+          "title": "Create project",
+          "description": "Create a crowdfunding project."
+        },
+        "editProject": {
+          "editProject": "Edit project",
+          "editProjectDescription": "Edit a crowdfunding project."
+        },
+        "projects": {
+          "administratorProjects": "Administrator projects",
+          "administratorProjectsDescription": "Projects only administrators can see."
+        },
+        "users": {
+          "users": "users",
+          "usersDescription": "Manage users as an administrators."
+        }
+      },
+      "crowdfunding": {
+        "projects": {
+          "crowdfundingProjects": "Crowdfunding",
+          "crowdfundingProjectsDescription": "All crowdfunding projects."
+        },
+        "project": {
+          "raisedOf": "raised of",
+          "monthlyRevenue": "monthly revenue",
+          "yearlyRevenue": "yearly revenue",
+          "price": "Price",
+          "goToCheckout": "Go To Checkout",
+          "signInToProceedToPayment": "Sign in to proceed to payment",
+          "showAllPhotos": "Show all photos"
+        }
+      },
+      "more": {
+        "preferences": {
+          "language": "Language",
+          "interfaceLanguage": "Interface language",
+          "preferences": "Preferences",
+          "preferencesDescription": "User's preferences."
+        },
+        "accountInformation": {
+          "accountInformation": "Account information",
+          "accountInformationDescription": "Edit your account information.",
+          "privateInformation": "Private Information",
+          "publicInformation": "Public Information",
+          "accountID": "Account ID",
+          "email": "Email",
+          "publicInformationDescription": "This information will be displayed publicly",
+          "avatar": "Avatar",
+          "displayName": "Display Name",
+          "editAccount": "Edit Account",
+          "uid": "uid",
+          "name": "Name",
+          "role": "Role"
+        },
+        "moreHome": {
+          "more": "More",
+          "moreDescription": "More section."
+        }
+      }
+    },
+    "locales": {
+      "english": "English",
+      "en": "English",
+      "spanish": "Español",
+      "es": "Español"
+    },
+    "forms": {
+      "search": "Search",
+      "filter": "filter",
+      "reset": "reset",
+      "id": "ID",
+      "name": "Name",
+      "location": "Location",
+      "founded": "Founded",
+      "notFounded": "Not Founded",
+      "card": "card",
+      "table": "table",
+      "share": "share",
+      "copyToClipboard": "Copy to clipboard",
+      "copiedToClipboard": "Copied to clipboard ✅",
+      "projectForm": {
+        "general": "General",
+        "generalDescription": "Provide basic information about the project.",
+        "numbers": "Numbers",
+        "numbersDescription": "All numeric data of the project.",
+        "media": "Media",
+        "mediaDescription": "Images to showcase the project.",
+        "coverImage": "Cover Image",
+        "images": "Images",
+        "project": "Project"
+      },
+      "DragNDropfile": "Drag 'n' drop some a file here, or click to select a file",
+      "DragNDropfiles": "Drag 'n' drop some files here, or click to select files",
+      "signOut": "Sign Out"
+    },
+    "projects": {
+      "id": "id",
+      "projectName": "Project Name",
+      "location": "Location",
+      "funded": "funded",
+      "notFunded": "Not Funded",
+      "sharePrice": "Share Price",
+      "roi": "ROI (Return On Investment)",
+      "roiShort": "ROI",
+      "progress": "Progress",
+      "sharesRatio": "Shares (funded/total)",
+      "shares": "shares ",
+      "ppa": "PPA",
+      "created": "Created",
+      "archived": "Archived",
+      "investors": "Investors",
+      "businessType": "Business Type",
+      "company": "Company",
+      "totalShares": "Total Shares",
+      "ppaYears": "PPA years",
+      "state": "State",
+      "city": "City"
+    },
+    "table": {
+      "actions": "Actions",
+      "rowsPerPage": "Rows per page:",
+      "displayedRows": "{{from}}-{{to}} of {{count}}"
+    },
+    "dates": {
+      "year": "year",
+      "year_plural": "years",
+      "yearWithCount": "{{count}} year",
+      "yearWithCount_plural": "{{count}} years"
+    },
+    "router": {
+      "admin": "admin",
+      "crowdfunding": "crowdfunding",
+      "more": "more",
+      "project": "project",
+      "projects": "projects"
+    },
+    "snackbar": {
+      "userEdited": "User Edited! 🔥",
+      "userNotEdited": "User Edition Error 😔",
+      "roleEdited": "Role Edited! 🔥",
+      "roleNotEdited": "Role Edition Error 😔",
+      "projectAdded": "Project Added! 🔥",
+      "projectNotAdded": "Role Added Error 😔",
+      "projectEdited": "Project Edited! 🔥",
+      "projectNotEdited": "Project Edited Error 😔",
+      "mediaAdded": "Media Added! 🔥",
+      "mediaNotAdded": "Media Added Error 😔",
+      "mediaEdited": "Media Edited! 🔥",
+      "mediaNotEdited": "Media Edited Error 😔"
+    },
+    "auth": {
+      "youNeedToBeAnAdmin": "You need to be an admin to use this route",
+      "signIntoUseThisRoute": "Sign in to use this route",
+      "signInWithGoogle": "Sign in with Google"
+    }
+  }
+}

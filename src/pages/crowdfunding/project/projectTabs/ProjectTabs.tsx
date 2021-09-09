@@ -13,9 +13,9 @@ export default function ProjectTabs() {
       value={tabIndex}
       onChange={(_, index) => setTabIndex(index)}
     >
-      <Tab classes={tabItemStyles} disableRipple label="General Info" />
-      <Tab classes={tabItemStyles} disableRipple label="See Graph" />
-      <Tab classes={tabItemStyles} disableRipple label="About" />
+      <Tab classes={tabItemStyles} disableRipple label="Tab1" />
+      <Tab classes={tabItemStyles} disableRipple label="Tab2" />
+      <Tab classes={tabItemStyles} disableRipple label="Tab3" />
     </Tabs>
   );
 }

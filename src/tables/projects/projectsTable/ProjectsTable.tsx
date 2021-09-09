@@ -8,7 +8,7 @@ import {
   Paper,
 } from "@material-ui/core";
 import useStyles from "./projectsTable.jss";
-import ProjectsTablePagination from "../projectsTablePagination/ProjectsTablePagination";
+import { CustomTablePagination } from "components";
 
 interface IProjectsTableProps {
   getTableProps: any;
@@ -38,7 +38,7 @@ export default function ProjectsTable({
   return (
     <Paper elevation={3} className={classes.projectsTable_paper}>
       <Table {...getTableProps()}>
-        <TableHead>
+        <TableHead className={classes.projectsTable_header}>
           {headerGroups.map((headerGroup: any) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (
@@ -89,11 +89,12 @@ export default function ProjectsTable({
         </TableBody>
         <TableFooter>
           <TableRow>
-            <ProjectsTablePagination
+            <CustomTablePagination
               rows={rows}
               gotoPage={gotoPage}
               setPageSize={setPageSize}
               state={state}
+              actionType="PROJECTS_CHANGE_PAGESIZE"
             />
           </TableRow>
         </TableFooter>

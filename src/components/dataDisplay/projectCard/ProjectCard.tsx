@@ -13,6 +13,8 @@ import SellOutlinedIcon from "@material-ui/icons/SellOutlined";
 import SavingsOutlinedIcon from "@material-ui/icons/SavingsOutlined";
 import { Link } from "react-router-dom";
 import GradientLinearProgress from "../gradientLinearProgress/GradientLinearProgress";
+import { useTranslation } from "react-i18next";
+import { formatPercentage2Dec } from "utils";
 
 interface IProjectCardProps extends Project {
   url: string;
@@ -26,11 +28,12 @@ export default function ProjectCard({
   sharesSold = 0,
   sharePrice = 0,
   totalShares = 0,
-  roi,
+  roi = 0,
   coverImage,
   url = "/crowdfunding/projects/",
 }: IProjectCardProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const progress = Math.floor((sharesSold / totalShares) * 100);
   const [loading, setLoading] = useState(true);
 
@@ -74,7 +77,7 @@ export default function ProjectCard({
                   {sharePrice.toLocaleString()} MX
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
-                  Share Price
+                  {t("projects.sharePrice")}
                 </Typography>
               </div>
             </div>
@@ -85,19 +88,21 @@ export default function ProjectCard({
                   variant="subtitle1"
                   className={classes.projectCard_subtitle}
                 >
-                  {roi}%
+                  {formatPercentage2Dec(roi)}
                 </Typography>
                 <Typography variant="caption" color="textSecondary" noWrap>
-                  ROI (Return On Investment)
+                  {t("projects.roi")}
                 </Typography>
               </div>
             </div>
           </div>
           <div className={classes.projectCard_progress}>
-            <Typography variant="body1">{progress}% funded</Typography>
+            <Typography variant="body1">
+              {progress}% {t("projects.funded")}
+            </Typography>
             <Typography variant="caption" color="textSecondary">
               {sharesSold.toLocaleString()} / {totalShares.toLocaleString()}{" "}
-              shares
+              {t("projects.shares")}
             </Typography>
           </div>
           <GradientLinearProgress value={progress} />

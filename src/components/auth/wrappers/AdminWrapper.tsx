@@ -1,14 +1,14 @@
 import { CenterLoader, MessagePaper } from "components";
 import { useIsAdmin } from "hooks";
+import { useTranslation } from "react-i18next";
 
 export default function AdminWrapper({
   children,
-  fallback = (
-    <MessagePaper message="You need to be an admin to use this route" />
-  ),
+  fallback,
 }: React.PropsWithChildren<{
   fallback?: JSX.Element;
 }>): JSX.Element {
+  const { t } = useTranslation();
   const { status, isAdmin } = useIsAdmin();
 
   if (!children) {
@@ -20,5 +20,9 @@ export default function AdminWrapper({
     return children as JSX.Element;
   }
 
-  return fallback;
+  return fallback ? (
+    fallback
+  ) : (
+    <MessagePaper message={t("auth.youNeedToBeAnAdmin")} />
+  );
 }

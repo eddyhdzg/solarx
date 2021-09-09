@@ -8,20 +8,28 @@ import {
   useFilters,
   usePagination,
 } from "react-table";
-import { useHeader, useUsersColumns } from "hooks";
+import { useHeader, useUsersColumns, useStore } from "hooks";
 import { Seo, PageTitle } from "components";
+import shallow from "zustand/shallow";
+import { useTranslation } from "react-i18next";
 
 export default function UsersPage() {
   const { onChangeRoute } = useHeader();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    onChangeRoute({ text: "admin", url: "/admin" });
-  }, [onChangeRoute]);
+    onChangeRoute({ text: t("router.admin"), url: "/admin" });
+  }, [onChangeRoute, t]);
 
   return (
     <>
-      <Seo title="Users" description="Manage users as an administrators." />
-      <PageTitle>Users</PageTitle>
+      <Seo
+        title={t("pages.admin.users.users", {
+          postProcess: "capitalize",
+        })}
+        description={t("pages.admin.users.usersDescription")}
+      />
+      <PageTitle>{t("pages.admin.users.users")}</PageTitle>
       <Users />
     </>
   );
@@ -29,6 +37,9 @@ export default function UsersPage() {
 
 function Users() {
   const { data: firestoreUsers } = useFirestoreUsers();
+  const {
+    users: { pageSize },
+  } = useStore(({ users }) => ({ users }), shallow);
 
   const usersColumns: any = useUsersColumns();
   const usersFilters = useMemo(
@@ -42,7 +53,7 @@ function Users() {
       data: firestoreUsers,
       initialState: {
         // @ts-ignore
-        // pageSize,
+        pageSize,
       },
       // @ts-ignore
       globalFilter,

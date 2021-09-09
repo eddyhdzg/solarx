@@ -35,14 +35,6 @@ const useCreateMuiTheme = () => {
 
   const theme: ThemeOptions = {
     overrides: {
-      MuiCssBaseline: {
-        "@global": {
-          "::selection": {
-            color: "#333333",
-            background: "#FCE882",
-          },
-        },
-      },
       MuiListItem: {
         button: {
           "&.Mui-selected": {
@@ -87,7 +79,7 @@ const useCreateMuiTheme = () => {
     },
     typography: {
       fontFamily:
-        "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+        "'Satoshi-Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
       h1: {
         fontWeight: 700,
       },
@@ -113,6 +105,9 @@ const useCreateMuiTheme = () => {
       subtitle2: {
         fontWeight: 600,
         lineHeight: "1.5rem",
+      },
+      button: {
+        textTransform: "capitalize",
       },
     },
   };

@@ -9,6 +9,7 @@ import AdminPanelSettingsOutlinedIcon from "@material-ui/icons/AdminPanelSetting
 // import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import StoreMallDirectoryRounded from "@material-ui/icons/StoreMallDirectoryRounded";
 import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
+import { useTranslation } from "react-i18next";
 
 export type RouterTree = {
   [key: string]: {
@@ -20,6 +21,7 @@ export type RouterTree = {
 
 const useRouterTree = () => {
   const { isAdmin, status } = useIsAdmin();
+  const { t } = useTranslation();
 
   const routerTree: RouterTree = {
     // "/portfolio": {
@@ -28,12 +30,12 @@ const useRouterTree = () => {
     //   component: LoaderPage,
     // },
     "/crowdfunding": {
-      title: "crowdfunding",
+      title: t("router.crowdfunding"),
       icon: StoreMallDirectoryRounded,
       component: CrowdfundingRoute,
     },
     "/more": {
-      title: "more",
+      title: t("router.more"),
       icon: MoreHorizRoundedIcon,
       component: MoreRoute,
     },
@@ -46,17 +48,17 @@ const useRouterTree = () => {
     //   component: LoaderPage,
     // },
     "/crowdfunding": {
-      title: "crowdfunding",
+      title: t("router.crowdfunding"),
       icon: StoreMallDirectoryRounded,
       component: CrowdfundingRoute,
     },
     "/admin": {
-      title: "admin",
+      title: t("router.admin"),
       icon: AdminPanelSettingsOutlinedIcon,
       component: AdminRoute,
     },
     "/more": {
-      title: "more",
+      title: t("router.more"),
       icon: MoreHorizRoundedIcon,
       component: MoreRoute,
     },

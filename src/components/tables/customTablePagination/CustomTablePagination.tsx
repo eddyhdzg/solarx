@@ -2,24 +2,32 @@ import { TablePagination } from "@material-ui/core";
 import { TablePaginationActions } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
-import useStyles from "./usersTablePagination.jss";
+import { useTranslation } from "react-i18next";
+import useStyles from "./customTablePagination.jss";
+import {
+  UsersChangePageSize,
+  ProjectsChangePageSize,
+} from "providers/clientStore/ClientStore.actions";
 
-interface IUsersTablePaginationProps {
+interface ICustomTablePaginationProps {
   rows: any;
   gotoPage: any;
   setPageSize: any;
   state: any;
+  actionType: UsersChangePageSize["type"] | ProjectsChangePageSize["type"];
   component?: "td" | "div";
 }
 
-export default function UsersTablePagination({
+export default function CustomTablePagination({
   rows,
   gotoPage,
   setPageSize,
   state: { pageIndex, pageSize },
   component = "td",
-}: IUsersTablePaginationProps) {
+  actionType,
+}: ICustomTablePaginationProps) {
   const classes = useStyles();
+  const { t } = useTranslation();
   const { dispatch } = useStore(({ dispatch }) => ({ dispatch }), shallow);
 
   const handleChangePage = (
@@ -34,7 +42,7 @@ export default function UsersTablePagination({
   ) => {
     setPageSize(parseInt(event.target.value, 10));
     dispatch({
-      type: "USERS_CHANGE_PAGESIZE",
+      type: actionType,
       payload: parseInt(event.target.value, 10),
     });
     gotoPage(0);
@@ -45,13 +53,18 @@ export default function UsersTablePagination({
       count={rows.length}
       page={pageIndex}
       rowsPerPage={pageSize}
-      onPageChange={handleChangePage}
       rowsPerPageOptions={[5, 10, 25]}
       SelectProps={{
         inputProps: { "aria-label": "rows per page" },
         native: true,
       }}
+      labelRowsPerPage={t("table.rowsPerPage")}
+      labelDisplayedRows={({ from, to, count }) => {
+        return t("table.displayedRows", { from, to, count });
+      }}
+      onPageChange={handleChangePage}
       onRowsPerPageChange={handleChangeRowsPerPage}
+      onChangePage={handleChangePage}
       ActionsComponent={TablePaginationActions}
       component={component}
       className={classes.tablePagination_root}

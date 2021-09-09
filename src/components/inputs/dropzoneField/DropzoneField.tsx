@@ -3,6 +3,7 @@ import { DropzoneOptions, useDropzone } from "react-dropzone";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Typography } from "@material-ui/core";
 import useStyles from "./dropzoneField.jss";
+import { useTranslation } from "react-i18next";
 
 interface IDropzoneProps extends DropzoneOptions {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -10,14 +11,13 @@ interface IDropzoneProps extends DropzoneOptions {
 
 const Dropzone = ({ onChange, multiple, ...options }: IDropzoneProps) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const { getRootProps, getInputProps } = useDropzone({
     multiple,
     ...options,
   });
 
-  const text = multiple
-    ? "Drag 'n' drop some files here, or click to select files"
-    : "Drag 'n' drop some a file here, or click to select a file";
+  const text = multiple ? t("forms.DragNDropfiles") : t("forms.DragNDropfile");
 
   return (
     <div

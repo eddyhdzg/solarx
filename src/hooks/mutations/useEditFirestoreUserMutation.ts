@@ -2,8 +2,10 @@ import { useFirestore } from "reactfire";
 import { FirestoreUser } from "types";
 import { useSnackbar } from "notistack";
 import { doc, updateDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
 
 export default function useEditFirestoreUserMutation() {
+  const { t } = useTranslation();
   const firestore = useFirestore();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -15,10 +17,10 @@ export default function useEditFirestoreUserMutation() {
   const handleFirestoreUserMutaion = (id: string, data?: FirestoreUser) => {
     editFirestoreUserMutation(id, data)
       .then(() => {
-        enqueueSnackbar("User Edited! 🔥", { variant: "success" });
+        enqueueSnackbar(t("snackbar.userEdited"), { variant: "success" });
       })
       .catch(() => {
-        enqueueSnackbar("User Edition Error 😔", { variant: "error" });
+        enqueueSnackbar(t("snackbar.userNotEdited"), { variant: "error" });
       });
   };
 

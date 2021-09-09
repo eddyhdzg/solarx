@@ -35,6 +35,9 @@ export const useStyles = makeStyles((theme: Theme) =>
     projectTableLayout_button__crowdfunding: {
       display: "none",
     },
+    projectTableLayout_tooltip: {
+      textTransform: "capitalize",
+    },
   })
 );
 

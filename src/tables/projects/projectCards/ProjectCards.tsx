@@ -1,7 +1,6 @@
-import { ProjectCard } from "components";
+import { ProjectCard, CustomTablePagination } from "components";
 import { Row } from "react-table";
 import { Project, ProjectSection } from "types";
-import ProjectsTablePagination from "../projectsTablePagination/ProjectsTablePagination";
 import useStyles from "./projectCards.jss";
 
 interface IProjectCardsProps {
@@ -35,12 +34,13 @@ export default function ProjectCards({
         ))}
       </div>
       <div className={classes.projects_pagination}>
-        <ProjectsTablePagination
+        <CustomTablePagination
           component="div"
           rows={rows}
           gotoPage={gotoPage}
           setPageSize={setPageSize}
           state={state}
+          actionType="PROJECTS_CHANGE_PAGESIZE"
         />
       </div>
     </>
