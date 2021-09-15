@@ -82,6 +82,10 @@
           "more": "Más",
           "moreDescription": "Más sección."
         }
+      },
+      "wallet": {
+        "title": "Wallet",
+        "description": "Sección de la wallet."
       }
     },
     "locales": {
@@ -158,7 +162,8 @@
       "crowdfunding": "crowdfunding",
       "more": "más",
       "project": "proyecto",
-      "projects": "proyectos"
+      "projects": "proyectos",
+      "wallet": "wallet"
     },
     "snackbar": {
       "userEdited": "Usuario editado! 🔥",

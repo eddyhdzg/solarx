@@ -90,20 +90,20 @@ const useCreateMuiTheme = () => {
         fontWeight: 700,
       },
       h4: {
-        fontWeight: 700,
+        // fontWeight: 700,
       },
       h5: {
-        fontWeight: 600,
+        // fontWeight: 600,
       },
       h6: {
-        fontWeight: 600,
+        fontWeight: 700,
       },
       subtitle1: {
         fontWeight: 700,
         lineHeight: "1.5rem",
       },
       subtitle2: {
-        fontWeight: 600,
+        fontWeight: 500,
         lineHeight: "1.5rem",
       },
       button: {

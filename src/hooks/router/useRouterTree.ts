@@ -1,12 +1,11 @@
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { useIsAdmin } from "hooks";
-import { AdminRoute, CrowdfundingRoute, MoreRoute } from "router";
-// import { LoaderPage } from "pages";
+import { AdminRoute, CrowdfundingRoute, MoreRoute, WalletMemo } from "router";
+
 // Icons
-// import MenuBookRoundedIcon from "@material-ui/icons/MenuBookRounded";
+import WalletRoundedIcon from "@material-ui/icons/AccountBalanceWalletRounded";
 import AdminPanelSettingsOutlinedIcon from "@material-ui/icons/AdminPanelSettingsOutlined";
-// import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
 import StoreMallDirectoryRounded from "@material-ui/icons/StoreMallDirectoryRounded";
 import MoreHorizRoundedIcon from "@material-ui/icons/MoreHorizRounded";
 import { useTranslation } from "react-i18next";
@@ -24,11 +23,11 @@ const useRouterTree = () => {
   const { t } = useTranslation();
 
   const routerTree: RouterTree = {
-    // "/portfolio": {
-    //   title: "portfolio",
-    //   icon: MenuBookRoundedIcon,
-    //   component: LoaderPage,
-    // },
+    "/wallet": {
+      title: t("router.wallet"),
+      icon: WalletRoundedIcon,
+      component: WalletMemo,
+    },
     "/crowdfunding": {
       title: t("router.crowdfunding"),
       icon: StoreMallDirectoryRounded,
@@ -42,11 +41,11 @@ const useRouterTree = () => {
   };
 
   const adminRouterTree: RouterTree = {
-    // "/portfolio": {
-    //   title: "portfolio",
-    //   icon: MenuBookRoundedIcon,
-    //   component: LoaderPage,
-    // },
+    "/wallet": {
+      title: t("router.wallet"),
+      icon: WalletRoundedIcon,
+      component: WalletMemo,
+    },
     "/crowdfunding": {
       title: t("router.crowdfunding"),
       icon: StoreMallDirectoryRounded,

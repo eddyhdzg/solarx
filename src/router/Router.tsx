@@ -18,7 +18,7 @@ export default function Router() {
             <Component />
           </Route>
         ))}
-        <Route render={() => <Redirect to="/crowdfunding" />} />
+        <Route render={() => <Redirect to="/wallet" />} />
       </Switch>
     </Layout>
   );
