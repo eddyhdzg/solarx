@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { Seo, PageTitle } from "components";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { Grid } from "@material-ui/core";
-import WalletSummary from "../walletSummary/WalletSummary";
-import WalletShares from "../walletShares/WalletShares";
-import WalletChart from "../walletChart/WalletChart";
+import { useTheme, useMediaQuery } from "@material-ui/core";
+import WalletDesktopLayout from "../walletDesktopLayout/WalletDesktopLayout";
+import WalletMobileLayout from "../walletMobileLayout/WalletMobileLayout";
 
 export default function WalletHome() {
   const { t } = useTranslation();
-
   const { onChangeRoute } = useHeader();
+  const theme = useTheme();
+  const lg = useMediaQuery(theme.breakpoints.up("lg"));
 
   useEffect(() => {
     onChangeRoute({ text: undefined, url: undefined });
@@ -27,23 +27,7 @@ export default function WalletHome() {
           postProcess: "capitalize",
         })}
       </PageTitle>
-
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={8}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <WalletSummary />
-            </Grid>
-            <Grid item xs={12}>
-              <WalletChart />
-            </Grid>
-            <Grid item xs={12}>
-              <WalletShares />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={4}></Grid>
-      </Grid>
+      {lg ? <WalletDesktopLayout /> : <WalletMobileLayout />}
     </>
   );
 }

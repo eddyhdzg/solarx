@@ -7,8 +7,11 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(3),
       borderRadius: theme.spacing(0.5),
     },
+    walletSummary_item: {
+      display: "flex",
+      alignItems: "center",
+    },
     walletSummary_iconWrapper: {
-      color: "#00BFA5",
       backgroundColor: "#2E2E2E",
       borderRadius: theme.spacing(0.5),
       display: "flex",
@@ -16,9 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1.5),
       padding: theme.spacing(1),
     },
-    walletSummary_item: {
-      display: "flex",
-      alignItems: "center",
+    walletSummary_icon__totalBalance: {
+      color: theme.custom.totalBalance,
+    },
+    walletSummary_icon__stocks: {
+      color: theme.custom.stocks,
+    },
+    walletSummary_icon__cash: {
+      color: theme.custom.cash,
     },
   })
 );

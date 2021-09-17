@@ -6,7 +6,7 @@ type ChipColor = "yellow" | "blue" | "green";
 interface IChip {
   color?: ChipColor;
   label?: string;
-  icon: ChipProps["icon"];
+  icon?: ChipProps["icon"];
 }
 
 export default function ColorChip({ color = "yellow", ...rest }: IChip) {

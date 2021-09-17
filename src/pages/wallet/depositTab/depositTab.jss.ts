@@ -2,9 +2,12 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    walletChart_root: {
-      width: "100%",
-      height: theme.spacing(45),
+    depositTab_subtitle: {
+      marginTop: theme.spacing(5),
+      marginBottom: theme.spacing(2),
+    },
+    depositTab_button: {
+      minHeight: theme.spacing(8),
     },
   })
 );

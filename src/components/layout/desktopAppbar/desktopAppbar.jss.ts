@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: theme.spacing(0.5),
       paddingTop: "env(safe-area-inset-top)",
       paddingBottom: "env(safe-area-inset-bottom)",
-      overflowY: "scroll",
+      overflowY: "auto",
       msOverflowStyle: "none",
       scrollbarWidth: "none",
       "&::-webkit-scrollbar": {

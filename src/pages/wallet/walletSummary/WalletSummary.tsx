@@ -17,7 +17,9 @@ export default function WalletSummary() {
           className={classes.walletSummary_item}
         >
           <div className={classes.walletSummary_iconWrapper}>
-            <MonetizationOnOutlinedIcon />
+            <MonetizationOnOutlinedIcon
+              className={classes.walletSummary_icon__totalBalance}
+            />
           </div>
           <div>
             <Typography variant="h6">{formatMoney(10684.16)}</Typography>
@@ -29,7 +31,9 @@ export default function WalletSummary() {
 
         <Grid item xs={12} md={6} lg={4} className={classes.walletSummary_item}>
           <div className={classes.walletSummary_iconWrapper}>
-            <MonetizationOnOutlinedIcon />
+            <MonetizationOnOutlinedIcon
+              className={classes.walletSummary_icon__stocks}
+            />
           </div>
           <div>
             <Typography variant="h6">{formatMoney(10000)}</Typography>
@@ -40,7 +44,9 @@ export default function WalletSummary() {
         </Grid>
         <Grid item xs={12} md={6} lg={4} className={classes.walletSummary_item}>
           <div className={classes.walletSummary_iconWrapper}>
-            <MonetizationOnOutlinedIcon />
+            <MonetizationOnOutlinedIcon
+              className={classes.walletSummary_icon__cash}
+            />
           </div>
           <div>
             <Typography variant="h6">{formatMoney(684.16)}</Typography>

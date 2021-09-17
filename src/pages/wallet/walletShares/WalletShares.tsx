@@ -2,7 +2,7 @@ import { Paper, Typography } from "@material-ui/core";
 import useStyles from "./walleShares.jss";
 import { WalletSharesTable } from "tables";
 
-export default function WalletSummary() {
+export default function WalletShares() {
   const classes = useStyles();
 
   return (

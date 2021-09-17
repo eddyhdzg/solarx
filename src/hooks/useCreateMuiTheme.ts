@@ -15,6 +15,9 @@ export interface CustomTheme {
       backgroundColor: string;
       backdropFilter: string;
     };
+    cash: string;
+    totalBalance: string;
+    stocks: string;
   };
 }
 
@@ -27,6 +30,9 @@ export const customTheme: CustomTheme = {
       backgroundColor: "rgba(31, 31, 31, 0.90)",
       backdropFilter: "blur(10px)",
     },
+    cash: "#00BFA5",
+    totalBalance: "#80B0FF",
+    stocks: yellow[500],
   },
 };
 
@@ -84,27 +90,25 @@ const useCreateMuiTheme = () => {
         fontWeight: 700,
       },
       h2: {
-        fontWeight: 700,
+        fontWeight: 500,
       },
       h3: {
-        fontWeight: 700,
+        fontWeight: 600,
       },
       h4: {
-        // fontWeight: 700,
+        fontWeight: 700,
       },
       h5: {
-        // fontWeight: 600,
+        fontWeight: 500,
       },
       h6: {
         fontWeight: 700,
       },
       subtitle1: {
         fontWeight: 700,
-        lineHeight: "1.5rem",
       },
       subtitle2: {
-        fontWeight: 500,
-        lineHeight: "1.5rem",
+        fontWeight: 600,
       },
       button: {
         textTransform: "capitalize",

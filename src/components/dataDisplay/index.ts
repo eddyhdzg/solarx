@@ -1,3 +1,5 @@
+export { default as ColorChip } from "./colorChip/ColorChip";
+export { default as Dot } from "./dot/Dot";
 export { default as GradientLinearProgress } from "./gradientLinearProgress/GradientLinearProgress";
 export { default as ImagesPreview } from "./imagesPreview/ImagesPreview";
 export { default as ProjectCard } from "./projectCard/ProjectCard";
@@ -6,4 +8,4 @@ export { default as Tooltip } from "./Tooltip/Tooltip";
 export { default as SectionBlock } from "./sectionBlock/SectionBlock";
 export { default as PageTitle } from "./pageTitle/PageTitle";
 export { default as SectionButton } from "./sectionButton/SectionButton";
-export { default as ColorChip } from "./colorChip/ColorChip";
+export { default as SquareChip } from "./squareChip/SquareChip";
