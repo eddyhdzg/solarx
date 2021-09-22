@@ -23,9 +23,10 @@ export default function WalletHome() {
         description={t("pages.wallet.description")}
       />
       <PageTitle>
-        {t("pages.wallet.title", {
+        {/* {t("pages.wallet.title", {
           postProcess: "capitalize",
-        })}
+        })} */}
+        {String(process.env?.REACT_APP_ENV)}
       </PageTitle>
       {lg ? <WalletDesktopLayout /> : <WalletMobileLayout />}
     </>

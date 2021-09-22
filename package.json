@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "solarx-dashboard",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -49,8 +49,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:dev": "env-cmd -f .env.dev react-scripts build",
+    "build:prod": "env-cmd -f .env.prod react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "hosting:dev": "env-cmd -f .env.dev npm run build && firebase deploy --only hosting:dashboard -P dev",
+    "hosting:prod": "env-cmd -f .env.prod npm run build && firebase deploy --only hosting:dashboard -P prod"
   },
   "eslintConfig": {
     "extends": [
@@ -84,6 +87,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/react-table": "^7.7.1",
+    "env-cmd": "^10.1.0",
     "jest": "^26.6.0"
   }
 }
