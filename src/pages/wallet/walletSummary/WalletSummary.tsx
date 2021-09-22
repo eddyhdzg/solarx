@@ -36,7 +36,7 @@ export default function WalletSummary() {
             />
           </div>
           <div>
-            <Typography variant="h6">{formatMoney(10000)}</Typography>
+            <Typography variant="h6">{formatMoney(10200)}</Typography>
             <Typography variant="body2" color="textSecondary">
               Stocks
             </Typography>

@@ -19,7 +19,8 @@ export default function WalletHome() {
   return (
     <>
       <Seo
-        title={t("pages.wallet.title")}
+        // title={t("pages.wallet.title")}
+        title={String(process.env?.REACT_APP_ENV)}
         description={t("pages.wallet.description")}
       />
       <PageTitle>

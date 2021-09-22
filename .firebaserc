@@ -1,5 +1,23 @@
 {
   "projects": {
-    "default": "solarx-firebase"
+    "default": "solarx-dev",
+    "dev": "solarx-dev",
+    "prod": "solarx-prod"
+  },
+  "targets": {
+    "solarx-dev": {
+      "hosting": {
+        "dashboard": [
+          "solarx-dev-dashboard"
+        ]
+      }
+    },
+    "solarx-prod": {
+      "hosting": {
+        "dashboard": [
+          "solarx-prod-dashboard"
+        ]
+      }
+    }
   }
 }

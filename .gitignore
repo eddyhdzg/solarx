@@ -30,5 +30,6 @@ ui-debug.log
 .firebase
 
 # env
-.env.dev
-.env.prod
+# .env
+# .env.dev
+# .env.prod
