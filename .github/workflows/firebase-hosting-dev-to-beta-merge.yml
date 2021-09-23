@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 # BETA
 
-name: Deploy to Firebase Hosting on merge PROD
+name: Deploy to Firebase Hosting on merge from Dev to Beta
 "on":
   push:
     branches:

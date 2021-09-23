@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 # DEV
 
-name: Deploy to Firebase Hosting on merge DEV
+name: Deploy to Firebase Hosting on merge from Staging to Dev
 "on":
   push:
     branches:
