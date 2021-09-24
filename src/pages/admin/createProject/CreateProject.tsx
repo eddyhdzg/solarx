@@ -62,6 +62,7 @@ function CreateProject() {
                 {
                   keepDefaultValues: true,
                   keepTouched: false,
+                  keepDirty: false,
                 }
               );
             });
@@ -71,6 +72,7 @@ function CreateProject() {
             {
               keepDefaultValues: true,
               keepTouched: false,
+              keepDirty: false,
             }
           );
         }

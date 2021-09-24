@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+// import { FirestoreUser, UserRole } from "../../src/types";
 
 admin.initializeApp();
 
@@ -15,7 +16,7 @@ exports.updateRole = functions.firestore
       return null;
     }
 
-    const customClaims = {
+    const customClaims: { role: any } = {
       role: newValue.role,
     };
 
@@ -25,11 +26,11 @@ exports.updateRole = functions.firestore
 export const addUser = functions.auth.user().onCreate((user) => {
   const { uid, displayName, email, photoURL } = user;
 
-  const newUser = {
+  const newUser: any = {
     avatar: photoURL,
     displayName,
     email,
-    role: "default",
+    role: "DEFAULT",
   };
 
   return admin.firestore().collection("users").doc(uid).set(newUser);

@@ -2,7 +2,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { UserRole } from "types";
-import { useEditRole } from "hooks";
+import { useEditRole, useRole } from "hooks";
 import useStyles from "./roleSelect.jss";
 
 interface IRoleSelectProps {
@@ -10,10 +10,11 @@ interface IRoleSelectProps {
   role?: UserRole;
 }
 
-export default function RoleSelect({ id, role = "default" }: IRoleSelectProps) {
+export default function RoleSelect({ id, role = "DEFAULT" }: IRoleSelectProps) {
   const classes = useStyles();
   const customId = `role-select-${id}`;
   const { handleRoleMutaion } = useEditRole();
+  const userRole = useRole();
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     if (id) {
@@ -30,17 +31,17 @@ export default function RoleSelect({ id, role = "default" }: IRoleSelectProps) {
           id={customId}
           value={role}
           onChange={handleChange}
-          disabled={role === "superUser"}
+          disabled={userRole === "ADMIN" || role === "SUPER_USER"}
         >
           <option aria-label="None" value="" />
           <optgroup label="Customers">
-            <option value="default">Default</option>
-            <option value="beta">Beta</option>
+            <option value="DEFAULT">Default</option>
+            <option value="BETA">Beta</option>
           </optgroup>
           <optgroup label="SolarX Team">
-            <option value="admin">Admin</option>
-            <option value="moderator">Moderator</option>
-            <option value="superUser" disabled>
+            <option value="ADMIN">Admin</option>
+            <option value="MODERATOR">Moderator</option>
+            <option value="SUPER_USER" disabled>
               Super User
             </option>
           </optgroup>

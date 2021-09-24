@@ -19,13 +19,13 @@ service cloud.firestore {
 
     match /users/{userId} {
       allow read: if true;
-      allow update: if (myDocument(userId) && updateOnlyFields(['displayName']));
-      allow update: if (isOneOfRoles(['moderator', 'superUser']) && updateOnlyFields(['role']));
+      allow update: if (myDocument(userId) && updateOnlyFields(['avatar','displayName']));
+      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && updateOnlyFields(['role']));
     }
 
     match /projects/{projectId} {
-      allow read: if ((resource.data.archived == false) || isOneOfRoles(['admin', 'moderator', 'superUser']));
-      allow write: if (isOneOfRoles(['moderator', 'superUser']));
+      allow read: if true;
+      allow write: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']));
     }
   }
 }

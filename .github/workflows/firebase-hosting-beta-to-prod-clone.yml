@@ -1,10 +1,18 @@
-# BETA
+# PROD
+# cron
+# Minute 0
+# Hour 17 UTC or 12 CT
+# Day first Monday of each month
+# Month
+# day (week)
 
-name: Deploy to Firebase Hosting on merge from Dev to Beta
+name: Deploy to Firebase Hosting on schedule from Beta to Prod
 "on":
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 17 4 10 *"
+    - cron: "0 17 1 11 *"
+    - cron: "0 17 6 12 *"
+    - cron: "0 17 3 1 *"
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -15,5 +23,5 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_SOLARX_PROD }}"
-          channelId: beta
+          channelId: live
           projectId: solarx-prod

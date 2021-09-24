@@ -11,8 +11,8 @@ export default function useEditRole() {
 
   const editRoleMutation = (id: string, role?: UserRole) => {
     const userRef = doc(firestore, "users", id);
-    const newRole = {
-      role: role ? role : "default",
+    const newRole: { role: UserRole } = {
+      role: role ? role : "DEFAULT",
     };
 
     return updateDoc(userRef, { ...newRole });

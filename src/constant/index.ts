@@ -7,21 +7,21 @@ export const themeOptions: ThemeType[] = ["light", "dark", "system"];
 export const localeOptions: Locales[] = ["en", "es"];
 
 export const betaArray = new Set([
-  "beta",
-  "admin",
-  "moderator",
-  "superUser",
+  "BETA",
+  "ADMIN",
+  "MODERATOR",
+  "SUPER_USER",
 ]) as Set<UserRole>;
 
 export const adminArray = new Set([
-  "admin",
-  "moderator",
-  "superUser",
+  "ADMIN",
+  "MODERATOR",
+  "SUPER_USER",
 ]) as Set<UserRole>;
 
 export const moderatorArray = new Set([
-  "moderator",
-  "superUser",
+  "MODERATOR",
+  "SUPER_USER",
 ]) as Set<UserRole>;
 
-export const superUserArray = new Set(["superUser"]) as Set<UserRole>;
+export const superUserArray = new Set(["SUPER_USER"]) as Set<UserRole>;
