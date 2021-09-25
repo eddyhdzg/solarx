@@ -34,3 +34,68 @@ ul {
   margin: 0;
   list-style: none;
 }
+
+table .alignRight {
+  text-align: right;
+}
+
+.MuiGrid-grid-xxs-1 {
+  flex-grow: 0;
+  max-width: calc(1 / 12 * 100%);
+  flex-basis: calc(1 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-2 {
+  flex-grow: 0;
+  max-width: calc(2 / 12 * 100%);
+  flex-basis: calc(2 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-3 {
+  flex-grow: 0;
+  max-width: calc(3 / 12 * 100%);
+  flex-basis: calc(3 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-4 {
+  flex-grow: 0;
+  max-width: calc(4 / 12 * 100%);
+  flex-basis: calc(4 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-5 {
+  flex-grow: 0;
+  max-width: calc(5 / 12 * 100%);
+  flex-basis: calc(5 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-6 {
+  flex-grow: 0;
+  max-width: calc(6 / 12 * 100%);
+  flex-basis: calc(6 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-7 {
+  flex-grow: 0;
+  max-width: calc(7 / 12 * 100%);
+  flex-basis: calc(7 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-8 {
+  flex-grow: 0;
+  max-width: calc(8 / 12 * 100%);
+  flex-basis: calc(8 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-9 {
+  flex-grow: 0;
+  max-width: calc(9 / 12 * 100%);
+  flex-basis: calc(9 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-10 {
+  flex-grow: 0;
+  max-width: calc(10 / 12 * 100%);
+  flex-basis: calc(10 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-11 {
+  flex-grow: 0;
+  max-width: calc(11 / 12 * 100%);
+  flex-basis: calc(11 / 12 * 100%);
+}
+.MuiGrid-grid-xxs-12 {
+  flex-grow: 0;
+  max-width: 100%;
+  flex-basis: 100%;
+}

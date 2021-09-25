@@ -1,11 +1,9 @@
-import { Button, Tooltip, Typography } from "@material-ui/core";
+import { Button, Tooltip, Typography } from "@mui/material";
 import useClipboard from "react-use-clipboard";
-import SellOutlinedIcon from "@material-ui/icons/ContentCopyRounded";
+import SellOutlinedIcon from "@mui/icons-material/ContentCopyRounded";
 import { useTranslation } from "react-i18next";
-import useStyles from "./depositTab.jss";
 
 export default function DepositTab() {
-  const classes = useStyles();
   const { t } = useTranslation();
   const [isCopied, setCopied] = useClipboard("601-180-1000-0202-8474", {
     successDuration: 2000,
@@ -16,7 +14,10 @@ export default function DepositTab() {
       <Typography
         variant="subtitle2"
         color="textSecondary"
-        className={classes.depositTab_subtitle}
+        sx={{
+          mt: 5,
+          mb: 2,
+        }}
       >
         Fund your account with the following key
       </Typography>
@@ -35,7 +36,9 @@ export default function DepositTab() {
           fullWidth
           size="large"
           endIcon={<SellOutlinedIcon />}
-          className={classes.depositTab_button}
+          sx={{
+            minHeight: (theme) => theme.spacing(8),
+          }}
         >
           601-180-1000-0202-8474
         </Button>

@@ -1,5 +1,4 @@
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Slide from "@material-ui/core/Slide";
+import { Slide, useScrollTrigger } from "@mui/material";
 
 export default function HideOnScroll({ children }: any) {
   const trigger = useScrollTrigger();

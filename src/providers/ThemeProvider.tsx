@@ -1,14 +1,9 @@
-import {
-  CssBaseline,
-  ThemeProvider as MUIThemeProvider,
-} from "@material-ui/core";
-import { useCreateMuiTheme } from "hooks";
+import { CssBaseline, ThemeProvider as MUIThemeProvider } from "@mui/material";
+import theme from "theme/theme";
 
 const ThemeProvider: React.FC = ({ children }) => {
-  const muiTheme = useCreateMuiTheme();
-
   return (
-    <MUIThemeProvider theme={muiTheme}>
+    <MUIThemeProvider theme={theme}>
       <CssBaseline />
       {children}
     </MUIThemeProvider>

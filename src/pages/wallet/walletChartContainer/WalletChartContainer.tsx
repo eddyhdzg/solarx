@@ -1,53 +1,83 @@
 import { useState } from "react";
 import {
+  Box,
   FormControl,
   InputLabel,
   Paper,
   Select,
+  SelectChangeEvent,
   Typography,
-} from "@material-ui/core";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import useStyles from "./walletChartContainer.jss";
+} from "@mui/material";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import WalletChart from "../walletChart/WalletChart";
 
 export default function WalletChartContainer() {
-  const classes = useStyles();
   const [age, setAge] = useState(10);
 
-  const handleChange = (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>
-  ) => {
-    setAge(event.target.value as number);
+  const handleChange = (event: SelectChangeEvent<string>) => {
+    setAge(Number(event.target.value));
   };
 
   return (
-    <Paper className={classes.walletChartContainer_root} elevation={3}>
-      <div className={classes.walletChartContainer_header}>
-        <div className={classes.walletChartContainer_titleWrapper}>
+    <Paper
+      sx={{
+        p: 3,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <Typography
             variant="subtitle1"
-            className={classes.walletChartContainer_title}
+            sx={{
+              mr: 0.5,
+            }}
           >
             $10,684.16 MXN
           </Typography>
-          <div className={classes.walletChartContainer_titleActivityWrapper}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              ml: -1,
+            }}
+          >
             <ArrowDropUpIcon
-              className={classes.walletChartContainer_titleActivity}
+              sx={{
+                color: (theme) => theme.custom.cash,
+              }}
             />
             <Typography
               variant="subtitle2"
-              className={classes.walletChartContainer_titleActivity}
+              sx={{
+                color: (theme) => theme.custom.cash,
+              }}
             >
               $134.41 MXN (1.34%)
             </Typography>
-          </div>
-        </div>
+          </Box>
+        </Box>
 
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          variant="outlined"
+          sx={{
+            mb: 2,
+            minWidth: (theme) => theme.spacing(15),
+          }}
+        >
           <InputLabel htmlFor="outlined-age-native-simple">Timespan</InputLabel>
           <Select
             native
-            value={age}
+            value={String(age)}
             onChange={handleChange}
             label="Timespan"
             inputProps={{
@@ -62,7 +92,7 @@ export default function WalletChartContainer() {
             <option value={40}>1 año</option>
           </Select>
         </FormControl>
-      </div>
+      </Box>
       <div>
         <WalletChart />
       </div>

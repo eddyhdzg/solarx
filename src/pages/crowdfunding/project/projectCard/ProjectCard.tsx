@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -7,8 +8,7 @@ import {
   CardContent,
   Divider,
   Typography,
-} from "@material-ui/core";
-import useStyles from "./projectCard.jss";
+} from "@mui/material";
 import {
   formatMoney,
   formatPercentage,
@@ -17,8 +17,8 @@ import {
   fomatNumInYears,
 } from "utils";
 import { useSigninCheck } from "reactfire";
-import RemoveRoundedIcon from "@material-ui/icons/RemoveRounded";
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { GradientLinearProgress } from "components";
 import { Project } from "types";
 import { useTranslation } from "react-i18next";
@@ -36,7 +36,6 @@ export default function ProjectCard({
   roi = 0,
   investors = 0,
 }: IProjectCardProps) {
-  const classes = useStyles();
   const { t } = useTranslation();
   const percentage = (sharesSold / totalShares) * 100;
   const { data: signinResult } = useSigninCheck();
@@ -47,10 +46,35 @@ export default function ProjectCard({
   };
 
   return (
-    <Card className={classes.projectCard_root}>
-      <CardContent className={classes.projectCard_content}>
+    <Card
+      sx={{
+        maxWidth: (theme) => theme.spacing(60),
+        borderRadius: 2.5,
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: (theme) => theme.palette.grey[800],
+        boxShadow: 8,
+        zIndex: 1,
+        m: {
+          xxs: "auto",
+          lg: "unset",
+        },
+      }}
+    >
+      <CardContent
+        sx={{
+          p: 4,
+        }}
+      >
         <div>
-          <div className={classes.projectCard_progressText}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+            }}
+          >
             <Typography variant="h5" component="h4">
               {formatPercentage(percentage)} {t("projects.funded")}
             </Typography>
@@ -58,22 +82,38 @@ export default function ProjectCard({
               {formatNumber(sharesSold)} / {formatNumber(totalShares)}{" "}
               {t("projects.shares")}
             </Typography>
-          </div>
-          <div className={classes.projectCard_gradientLinearProgress}>
-            <GradientLinearProgress value={percentage} />
-          </div>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            className={classes.projectCard_typographyBody2}
+          </Box>
+          <Box
+            sx={{
+              my: 1,
+            }}
           >
+            <GradientLinearProgress value={percentage} />
+          </Box>
+          <Typography variant="body3" color="textSecondary">
             {formatMoney(sharePrice * sharesSold)}{" "}
             {t("pages.crowdfunding.project.raisedOf")}{" "}
             {formatMoney(sharePrice * totalShares)}
           </Typography>
         </div>
-        <Divider className={classes.projectCard_divider} />
-        <div className={classes.projectCard_stats}>
+        <Divider
+          sx={{
+            my: 5,
+          }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            mt: -3,
+            "& > div": {
+              mt: 3,
+            },
+            "& > div:not(:last-child)": {
+              mr: 4,
+            },
+          }}
+        >
           <div>
             <Typography variant="h6">{formatMoney(sharePrice)}</Typography>
             <Typography variant="body2" color="textSecondary">
@@ -83,13 +123,13 @@ export default function ProjectCard({
           <div>
             <Typography variant="h6">
               {formatPercentage2Dec(roi)}{" "}
-              <span className={classes.projectCard_text}>
+              <Typography variant="body3" component="span">
                 (
                 {fomatNumInYears(
                   sharePrice / ((sharePrice * roi * 0.01) / 12) / 12
                 )}
                 )
-              </span>
+              </Typography>
             </Typography>
 
             <Typography variant="body2" color="textSecondary">
@@ -103,74 +143,147 @@ export default function ProjectCard({
               {t("projects.investors")}
             </Typography>
           </div>
-        </div>
-        <Divider className={classes.projectCard_divider} />
-        <ul className={classes.projectCard_summary}>
-          <li className={classes.projectCard_li}>
+        </Box>
+        <Divider
+          sx={{
+            my: 5,
+          }}
+        />
+        <ul>
+          <Box
+            component="li"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              textTransform: "capitalize",
+              "&:not(:last-child)": {
+                mb: 3,
+              },
+            }}
+          >
             <Typography variant="body2" color="textSecondary">
               {t("projects.shares")}
             </Typography>
-            <ButtonGroup
-              color="default"
-              className={classes.projectCard_buttonGroup}
-            >
+            <ButtonGroup color="inherit">
               <Button
                 disabled={shares <= 1}
                 onClick={() => handleChangeShares(-1)}
               >
                 <RemoveRoundedIcon />
               </Button>
-              <Button disabled className={classes.projectCard_counter}>
-                <span className={classes.projectCard_counterSpan}>
+              <Button
+                disabled
+                sx={{
+                  color: "inherit !important",
+                  px: 0,
+                }}
+              >
+                <Box
+                  component="span"
+                  sx={{
+                    minWidth: (theme) => theme.spacing(5),
+                  }}
+                >
                   {shares}
-                </span>
+                </Box>
               </Button>
 
               <Button onClick={() => handleChangeShares(1)}>
                 <AddRoundedIcon />
               </Button>
             </ButtonGroup>
-          </li>
+          </Box>
 
-          <li className={classes.projectCard_li}>
+          <Box
+            component="li"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              textTransform: "capitalize",
+              "&:not(:last-child)": {
+                mb: 3,
+              },
+            }}
+          >
             <Typography variant="body2" color="textSecondary">
               {t("pages.crowdfunding.project.monthlyRevenue")}
             </Typography>
             <Typography
               variant="subtitle1"
-              className={classes.projectCard_typographySubtitle1}
+              sx={{
+                whiteSpace: "nowrap",
+              }}
             >
               {formatMoney((sharePrice * roi * 0.01 * shares) / 12)}
             </Typography>
-          </li>
+          </Box>
 
-          <li className={classes.projectCard_li}>
+          <Box
+            component="li"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              textTransform: "capitalize",
+              "&:not(:last-child)": {
+                mb: 3,
+              },
+            }}
+          >
             <Typography variant="body2" color="textSecondary">
               {t("pages.crowdfunding.project.yearlyRevenue")}
             </Typography>
             <Typography
               variant="subtitle1"
-              className={classes.projectCard_typographySubtitle1}
+              sx={{
+                whiteSpace: "nowrap",
+              }}
             >
               {formatMoney(sharePrice * roi * 0.01 * shares)}
             </Typography>
-          </li>
+          </Box>
         </ul>
       </CardContent>
-      <CardActions className={classes.projectCard_actions}>
-        <ul className={classes.projectCard_price}>
-          <li className={classes.projectCard_li}>
+      <CardActions
+        sx={{
+          backgroundImage: (theme) => theme.custom.elevation[1],
+          p: 4,
+          flexDirection: "column",
+          alignItems: "stretch",
+        }}
+      >
+        <Box
+          sx={{
+            mb: 3,
+          }}
+        >
+          <Box
+            component="li"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              textTransform: "capitalize",
+              "&:not(:last-child)": {
+                mb: 3,
+              },
+            }}
+          >
             <Typography variant="body2" color="textSecondary">
               {t("pages.crowdfunding.project.price")}
             </Typography>
             <Typography
               variant="subtitle1"
-              className={classes.projectCard_typographySubtitle1}
+              sx={{
+                whiteSpace: "nowrap",
+              }}
             >
               {formatMoney(sharePrice * shares)}
             </Typography>
-          </li>
-        </ul>
+          </Box>
+        </Box>
 
         <Button
           color="primary"

@@ -1,26 +1,27 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import WalletActions from "../walletActions/WalletActions";
 import {
   WalletPortfolioSection,
   WalletHistorySection,
 } from "../walletSections/WalletSections";
+import { GridItem } from "components";
 
 export default function WalletDesktopLayout() {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} lg={8}>
+      <GridItem lg={8}>
         <WalletPortfolioSection />
-      </Grid>
-      <Grid item xs={12} lg={4}>
+      </GridItem>
+      <GridItem lg={4}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
+          <GridItem>
             <WalletActions />
-          </Grid>
-          <Grid item xs={12}>
+          </GridItem>
+          <GridItem>
             <WalletHistorySection />
-          </Grid>
+          </GridItem>
         </Grid>
-      </Grid>
+      </GridItem>
     </Grid>
   );
 }

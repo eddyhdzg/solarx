@@ -1,25 +1,28 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography } from "@mui/material";
 import { useCustomAuth } from "hooks";
-import GoogleIcon from "@material-ui/icons/Google";
-import useStyles from "./signInWithGoogle.jss";
+import GoogleIcon from "@mui/icons-material/Google";
 import { useTranslation } from "react-i18next";
 
 const SignInWithGoogle = () => {
   const { t } = useTranslation();
   const { signIn } = useCustomAuth();
-  const classes = useStyles();
+
   return (
     <Button
       onClick={() => signIn()}
-      className={classes.signInWithGoogle_button}
+      sx={{
+        backgroundColor: "common.black",
+        boxShadow: 3,
+        p: 1,
+        px: {
+          xs: 2,
+        },
+      }}
       startIcon={<GoogleIcon />}
       size="small"
+      color="inherit"
     >
-      <Typography
-        variant="button"
-        noWrap
-        className={classes.accountButton_text}
-      >
+      <Typography variant="button" noWrap>
         {t("auth.signInWithGoogle")}
       </Typography>
     </Button>

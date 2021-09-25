@@ -1,9 +1,8 @@
-import Chip from "@material-ui/core/Chip";
-import useStyles from "./filterChips.jss";
 import { UseFormWatch, UseFormReset } from "react-hook-form";
 import { ProjectFiltersSchema } from "hooks";
 import { stringToBoolean } from "utils";
 import { useTranslation } from "react-i18next";
+import { Box, Chip } from "@mui/material";
 
 interface IFilterChipsProps {
   watch: UseFormWatch<ProjectFiltersSchema>;
@@ -13,20 +12,31 @@ interface IFilterChipsProps {
 export default function FilterChips({ watch, reset }: IFilterChipsProps) {
   const watchAllField = watch();
   const { t } = useTranslation();
-  const classes = useStyles();
 
   const handleDelete = (field: string) => () => {
     reset({ ...watchAllField, [field]: "" });
   };
 
   return (
-    <ul className={classes.root}>
+    <Box
+      component="ul"
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        margin: {
+          xxs: 0,
+          xs: 1,
+        },
+      }}
+    >
       {watchAllField.id && (
         <li>
           <Chip
             label={watchAllField.id}
             onDelete={handleDelete("id")}
-            className={classes.chip}
+            sx={{
+              m: 0.5,
+            }}
           />
         </li>
       )}
@@ -36,7 +46,9 @@ export default function FilterChips({ watch, reset }: IFilterChipsProps) {
           <Chip
             label={watchAllField.name}
             onDelete={handleDelete("name")}
-            className={classes.chip}
+            sx={{
+              m: 0.5,
+            }}
           />
         </li>
       )}
@@ -46,7 +58,9 @@ export default function FilterChips({ watch, reset }: IFilterChipsProps) {
           <Chip
             label={watchAllField.location}
             onDelete={handleDelete("location")}
-            className={classes.chip}
+            sx={{
+              m: 0.5,
+            }}
           />
         </li>
       )}
@@ -60,10 +74,12 @@ export default function FilterChips({ watch, reset }: IFilterChipsProps) {
                 : t("projects.notFunded")
             }
             onDelete={handleDelete("funded")}
-            className={classes.chip}
+            sx={{
+              m: 0.5,
+            }}
           />
         </li>
       )}
-    </ul>
+    </Box>
   );
 }

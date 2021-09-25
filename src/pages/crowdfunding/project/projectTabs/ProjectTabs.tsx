@@ -1,18 +1,17 @@
 import { useState } from "react";
-import { Tabs, Tab } from "components";
+import { SegmentedControl } from "components";
 
 export default function ProjectTabs() {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <Tabs
+    <SegmentedControl
       value={tabIndex}
-      // @ts-ignore
       onChange={(_, index) => setTabIndex(index)}
     >
-      <Tab disableRipple label="Tab1" />
-      <Tab disableRipple label="Tab2" />
-      <Tab disableRipple label="Tab3" />
-    </Tabs>
+      <SegmentedControl.Segment disableRipple label="Tab1" />
+      <SegmentedControl.Segment disableRipple label="Tab2" />
+      <SegmentedControl.Segment disableRipple label="Tab3" />
+    </SegmentedControl>
   );
 }

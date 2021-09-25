@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAsyncDebounce } from "react-table";
-import FilterSearch from "../filterSearch/FilterSearch";
+import { FilterSearch } from "components";
 
 export default function GlobalFilter({ globalFilter, setGlobalFilter }: any) {
   const [search, setSearch] = useState(globalFilter || "");

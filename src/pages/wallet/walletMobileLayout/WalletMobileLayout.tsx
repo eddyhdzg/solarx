@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { Tabs, Tab } from "@material-ui/core";
-import { TabPanel, TabContext } from "@material-ui/lab";
+import { Tabs, Tab } from "@mui/material";
+import { TabPanel, TabContext } from "@mui/lab";
 import {
   WalletPortfolioSection,
   WalletHistorySection,
 } from "../walletSections/WalletSections";
-import useStyles from "./walletMobileLayout.jss";
 import WalletActions from "../walletActions/WalletActions";
 
 export default function WalletMobileLayout() {
-  const classes = useStyles();
   const [tabIndex, setTabIndex] = useState(0);
   return (
     <TabContext value={tabIndex.toString()}>
@@ -19,19 +17,51 @@ export default function WalletMobileLayout() {
         indicatorColor="primary"
         textColor="primary"
         centered
-        className={classes.walletMobileLayout_tabs}
+        sx={{
+          pb: 3,
+        }}
       >
-        <Tab label="Porfolio" className={classes.walletMobileLayout_tab} />
-        <Tab label="Actions" className={classes.walletMobileLayout_tab} />
-        <Tab label="History" className={classes.walletMobileLayout_tab} />
+        <Tab
+          label="Porfolio"
+          sx={{
+            px: 4,
+          }}
+        />
+        <Tab
+          label="Actions"
+          sx={{
+            px: 4,
+          }}
+        />
+        <Tab
+          label="History"
+          sx={{
+            px: 4,
+          }}
+        />
       </Tabs>
-      <TabPanel value="0" className={classes.walletMobileLayout_panel}>
+      <TabPanel
+        value="0"
+        sx={{
+          p: 0,
+        }}
+      >
         <WalletPortfolioSection />
       </TabPanel>
-      <TabPanel value="1" className={classes.walletMobileLayout_panel}>
+      <TabPanel
+        value="1"
+        sx={{
+          p: 0,
+        }}
+      >
         <WalletActions />
       </TabPanel>
-      <TabPanel value="2" className={classes.walletMobileLayout_panel}>
+      <TabPanel
+        value="2"
+        sx={{
+          p: 0,
+        }}
+      >
         <WalletHistorySection />
       </TabPanel>
     </TabContext>

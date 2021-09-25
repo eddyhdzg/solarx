@@ -1,72 +1,53 @@
-import { withStyles, Theme, createStyles } from "@material-ui/core/styles";
-import MUISwitch, {
-  SwitchClassKey,
-  SwitchProps,
-} from "@material-ui/core/Switch";
+import { styled } from "@mui/material/styles";
+import Switch, { SwitchProps } from "@mui/material/Switch";
 
-interface Styles extends Partial<Record<SwitchClassKey, string>> {
-  focusVisible?: string;
-}
-
-interface Props extends SwitchProps {
-  classes?: Styles;
-  error?: boolean;
-}
-
-const Switch = withStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 42,
-      height: 26,
-      padding: 0,
-      margin: theme.spacing(1),
-    },
-    switchBase: {
-      padding: 1,
-      "&$checked": {
-        transform: "translateX(16px)",
-        color: theme.palette.common.white,
-        "& + $track": {
-          backgroundColor: theme.palette.error,
-          opacity: 1,
-          border: "none",
-        },
+const IOSSwitch = styled((props: SwitchProps) => (
+  <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+))(({ theme }) => ({
+  width: 42,
+  height: 26,
+  padding: 0,
+  margin: theme.spacing(1),
+  "& .MuiSwitch-switchBase": {
+    padding: 0,
+    margin: 2,
+    transitionDuration: theme.transitions.duration.short,
+    "&.Mui-checked": {
+      transform: "translateX(16px)",
+      color: theme.palette.common.white,
+      "& + .MuiSwitch-track": {
+        backgroundColor: theme.palette.warning.light,
+        opacity: 1,
+        border: 0,
       },
-      "&$focusVisible $thumb": {
-        color: theme.palette.error,
-        // color: "#52d869",
-        border: "6px solid #fff",
+      "&.Mui-disabled + .MuiSwitch-track": {
+        opacity: 0.5,
       },
     },
-    thumb: {
-      width: 24,
-      height: 24,
+    "&.Mui-focusVisible .MuiSwitch-thumb": {
+      color: theme.palette.warning.main,
+      border: "6px solid #fff",
     },
-    track: {
-      borderRadius: 26 / 2,
-      border: `1px solid ${theme.palette.grey[400]}`,
-      backgroundColor: theme.palette.grey[50],
-      opacity: 1,
-      transition: theme.transitions.create(["background-color", "border"]),
+    "&.Mui-disabled .MuiSwitch-thumb": {
+      color: theme.palette.grey[600],
     },
-    checked: {},
-    focusVisible: {},
-  })
-)(({ classes, ...props }: Props) => {
-  return (
-    <MUISwitch
-      focusVisibleClassName={classes?.focusVisible}
-      disableRipple
-      classes={{
-        root: classes?.root,
-        switchBase: classes?.switchBase,
-        thumb: classes?.thumb,
-        track: classes?.track,
-        checked: classes?.checked,
-      }}
-      {...props}
-    />
-  );
-});
+    "&.Mui-disabled + .MuiSwitch-track": {
+      opacity: 0.3,
+    },
+  },
+  "& .MuiSwitch-thumb": {
+    boxSizing: "border-box",
+    width: 22,
+    height: 22,
+  },
+  "& .MuiSwitch-track": {
+    borderRadius: 13,
+    backgroundColor: "#39393D",
+    opacity: 1,
+    transition: theme.transitions.create(["background-color"], {
+      duration: theme.transitions.duration.complex,
+    }),
+  },
+}));
 
-export default Switch;
+export default IOSSwitch;

@@ -1,5 +1,5 @@
-import { IconButton, Tooltip, TooltipProps } from "@material-ui/core";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import { IconButton, Tooltip, TooltipProps } from "@mui/material";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 interface IInfoTooltipProps extends Omit<TooltipProps, "children"> {}
 

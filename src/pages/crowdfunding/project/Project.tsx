@@ -1,11 +1,10 @@
 import { useParams } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import { Box, Grid } from "@mui/material";
 import ProjectHeader from "./projectHeader/ProjectHeader";
-import useStyles from "./project.jss";
 import ProjectCard from "./projectCard/ProjectCard";
 import ProjectGalllery from "./projectGallery/ProjectGallery";
 import { useProject, useHeader } from "hooks";
-import { CenterLoader, Seo } from "components";
+import { CenterLoader, Seo, GridItem } from "components";
 import { useEffect } from "react";
 import ProjectTabs from "./projectTabs/ProjectTabs";
 import { useTranslation } from "react-i18next";
@@ -17,7 +16,6 @@ interface ProjectID {
 export default function Project() {
   const { t } = useTranslation();
   const { id } = useParams<ProjectID>();
-  const classes = useStyles();
   const { status, data } = useProject(id || "");
   const { onChangeRoute } = useHeader();
 
@@ -41,8 +39,14 @@ export default function Project() {
         description="Project information page."
       />
       <div>
-        <Grid container spacing={2} className={classes.project_mb1}>
-          <Grid item xs={12} lg={8}>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            mb: 1,
+          }}
+        >
+          <GridItem lg={8}>
             <ProjectHeader
               id={data?.id}
               name={data?.name}
@@ -51,13 +55,13 @@ export default function Project() {
               businessType={data?.businessType}
               company={data?.company}
             />
-          </Grid>
+          </GridItem>
         </Grid>
         <Grid container spacing={2}>
-          <Grid item xs={12} lg={8}>
+          <GridItem lg={8}>
             <ProjectGalllery images={data?.images} />
-          </Grid>
-          <Grid item xs={12} lg={4}>
+          </GridItem>
+          <GridItem lg={4}>
             <ProjectCard
               sharesSold={data?.sharesSold}
               totalShares={data?.totalShares}
@@ -65,7 +69,7 @@ export default function Project() {
               roi={data?.roi}
               investors={42}
             />
-          </Grid>
+          </GridItem>
         </Grid>
       </div>
       <Section>
@@ -74,11 +78,28 @@ export default function Project() {
             item
             xs={12}
             lg={8}
-            className={classes.project_tabsContainerWrapper}
+            sx={{
+              position: "relative",
+            }}
           >
-            <div className={classes.project_tabsContainer}>
+            <Box
+              sx={{
+                top: {
+                  lg: -32,
+                },
+                position: {
+                  lg: "absolute",
+                },
+                left: {
+                  lg: "50%",
+                },
+                transform: {
+                  lg: "translateX(-50%)",
+                },
+              }}
+            >
               <ProjectTabs />
-            </div>
+            </Box>
           </Grid>
         </Grid>
       </Section>
@@ -87,6 +108,33 @@ export default function Project() {
 }
 
 const Section: React.FC = ({ children }) => {
-  const classes = useStyles();
-  return <div className={classes.project_section}>{children}</div>;
+  return (
+    <Box
+      sx={{
+        minHeight: (theme) => theme.spacing(40),
+        backgroundImage: (theme) => theme.custom.elevation[1],
+        ml: {
+          xxs: "calc(-16px - env(safe-area-inset-left))",
+          md: "calc(-24px - env(safe-area-inset-left))",
+        },
+        mr: {
+          xxs: "calc(-16px - env(safe-area-inset-right))",
+          md: "calc(-24px - env(safe-area-inset-right))",
+        },
+        pl: {
+          xxs: "calc(16px + env(safe-area-inset-left))",
+          md: "calc(24px + env(safe-area-inset-left))",
+        },
+        pr: {
+          xxs: "calc(16px + env(safe-area-inset-right))",
+          md: "calc(24px + env(safe-area-inset-right))",
+        },
+        mt: {
+          lg: -16,
+        },
+      }}
+    >
+      {children}
+    </Box>
+  );
 };

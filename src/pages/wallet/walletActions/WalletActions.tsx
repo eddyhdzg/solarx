@@ -1,31 +1,42 @@
 import { useState } from "react";
-import { Tabs, Tab } from "components";
-import { Paper } from "@material-ui/core";
-import { TabPanel, TabContext } from "@material-ui/lab";
+import { SegmentedControl } from "components";
+import { Paper } from "@mui/material";
+import { TabPanel, TabContext } from "@mui/lab";
 import WithdrawTab from "../withdrawTab/WithdrawTab";
 import DepositTab from "../depositTab/DepositTab";
-import useStyles from "./walletActions.jss";
 
 export default function WalletActions() {
-  const classes = useStyles();
   const [tabIndex, setTabIndex] = useState(0);
   return (
-    <Paper className={classes.walletActions_root} elevation={3}>
+    <Paper
+      sx={{
+        p: 3,
+      }}
+    >
       <TabContext value={tabIndex.toString()}>
-        <Tabs
+        <SegmentedControl
           value={tabIndex}
-          // @ts-ignore
           onChange={(_, index) => setTabIndex(index)}
           centered
           selectionFollowsFocus
         >
-          <Tab disableRipple label="Withdraw" />
-          <Tab disableRipple label="Deposit" />
-        </Tabs>
-        <TabPanel value="0" className={classes.walletActions_panel}>
+          <SegmentedControl.Segment disableRipple label="Withdraw" />
+          <SegmentedControl.Segment disableRipple label="Deposit" />
+        </SegmentedControl>
+        <TabPanel
+          value="0"
+          sx={{
+            p: 0,
+          }}
+        >
           <WithdrawTab />
         </TabPanel>
-        <TabPanel value="1" className={classes.walletActions_panel}>
+        <TabPanel
+          value="1"
+          sx={{
+            p: 0,
+          }}
+        >
           <DepositTab />
         </TabPanel>
       </TabContext>

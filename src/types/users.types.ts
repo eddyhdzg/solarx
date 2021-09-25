@@ -1,3 +1,5 @@
+import { Timestamp } from "./firebase.types";
+
 // Everyone by default
 type DefaultUser = "DEFAULT" | null | undefined;
 // External users who want to use features first, they can jump back and forward between beta and production.
@@ -18,6 +20,7 @@ export type UserRole =
 
 export interface FirestoreUser {
   avatar?: string;
+  created?: Timestamp;
   displayName?: string;
   email?: string;
   uid?: string;

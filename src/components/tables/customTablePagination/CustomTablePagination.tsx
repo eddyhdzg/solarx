@@ -1,9 +1,8 @@
-import { TablePagination } from "@material-ui/core";
+import { TablePagination } from "@mui/material";
 import { TablePaginationActions } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { useTranslation } from "react-i18next";
-import useStyles from "./customTablePagination.jss";
 import {
   UsersChangePageSize,
   ProjectsChangePageSize,
@@ -26,7 +25,6 @@ export default function CustomTablePagination({
   component = "td",
   actionType,
 }: ICustomTablePaginationProps) {
-  const classes = useStyles();
   const { t } = useTranslation();
   const { dispatch } = useStore(({ dispatch }) => ({ dispatch }), shallow);
 
@@ -50,24 +48,25 @@ export default function CustomTablePagination({
 
   return (
     <TablePagination
-      count={rows.length}
-      page={pageIndex}
-      rowsPerPage={pageSize}
+      // rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
       rowsPerPageOptions={[5, 10, 25]}
+      count={rows.length}
+      rowsPerPage={pageSize}
+      page={pageIndex}
       SelectProps={{
-        inputProps: { "aria-label": "rows per page" },
+        inputProps: {
+          "aria-label": "rows per page",
+        },
         native: true,
       }}
+      onPageChange={handleChangePage}
+      onRowsPerPageChange={handleChangeRowsPerPage}
+      ActionsComponent={TablePaginationActions}
       labelRowsPerPage={t("table.rowsPerPage")}
       labelDisplayedRows={({ from, to, count }) => {
         return t("table.displayedRows", { from, to, count });
       }}
-      onPageChange={handleChangePage}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-      onChangePage={handleChangePage}
-      ActionsComponent={TablePaginationActions}
       component={component}
-      className={classes.tablePagination_root}
     />
   );
 }

@@ -1,13 +1,23 @@
-import { Paper, Typography } from "@material-ui/core";
-import useStyles from "./messagePaper.jss";
+import { Paper, Typography } from "@mui/material";
 
 interface IMessagePaperProps {
   message?: string;
 }
 export default function MessagePaper({ message }: IMessagePaperProps) {
-  const classes = useStyles();
   return (
-    <Paper elevation={3} className={classes.messagePaper_root}>
+    <Paper
+      sx={{
+        maxWidth: 800,
+        py: {
+          xxs: 4,
+          md: 8,
+        },
+        px: {
+          xxs: 2,
+          md: 4,
+        },
+      }}
+    >
       <Typography variant="h6">{message}</Typography>
     </Paper>
   );

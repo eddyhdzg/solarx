@@ -8,10 +8,9 @@ import {
   getPanelsRatio,
   sortShares,
 } from "utils";
-import { Chip, IconButton } from "@material-ui/core";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { Chip, IconButton } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
-import useStyles from "./useProjectsColumns.jss";
 import { useTranslation } from "react-i18next";
 
 interface IColumns {
@@ -24,7 +23,6 @@ interface IuseProjectsColumnsArgs {
 }
 
 const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
-  const classes = useStyles();
   const { t } = useTranslation();
   const columns: IColumns = useMemo(() => {
     const commonColumns = [
@@ -52,12 +50,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
           (row.sharesSold ?? 0) >= (row.totalShares ?? 0) ? true : false,
         Cell: ({ value }: { value: boolean }) =>
           value ? (
-            <Chip
-              color="primary"
-              size="small"
-              label={t("projects.funded")}
-              className={classes.useProjectsColumns_chip}
-            />
+            <Chip color="primary" size="small" label={t("projects.funded")} />
           ) : (
             ""
           ),
@@ -67,7 +60,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         id: "sharePrice",
         Header: t("projects.sharePrice"),
         accessor: ({ sharePrice }: Project) => sharePrice ?? 0,
-        className: classes.useProjectsColumns_alignRight,
+        className: "alignRight",
         Cell: ({ value = 0 }: { value: Project["sharePrice"] }) =>
           formatMoney(value),
       },
@@ -75,21 +68,21 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         id: "roi",
         Header: t("projects.roi"),
         accessor: ({ roi = 0 }: Project) => formatPercentage2Dec(roi),
-        className: classes.useProjectsColumns_alignRight,
+        className: "alignRight",
       },
       {
         id: "progress",
         Header: t("projects.progress"),
         accessor: ({ sharesSold, totalShares }: Project) =>
           getProgress({ sharesSold, totalShares }),
-        className: classes.useProjectsColumns_alignRight,
+        className: "alignRight",
       },
       {
         id: "shares",
         Header: t("projects.sharesRatio"),
         accessor: ({ sharesSold, totalShares }: Project) =>
           getPanelsRatio({ sharesSold, totalShares }),
-        className: classes.useProjectsColumns_alignRight,
+        className: "alignRight",
         sortType: sortShares,
       },
       {
@@ -122,10 +115,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             </IconButton>
           );
         },
-        className: [
-          classes.useProjectsColumns_noPadding,
-          classes.useProjectsColumns_alignRight,
-        ].join(" "),
+
         disableSortBy: true,
         tabIndex: -1,
       },
@@ -137,16 +127,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         Header: t("projects.archived"),
         accessor: "archived",
         Cell: ({ value }: { value: boolean }) =>
-          value ? (
-            <Chip
-              color="secondary"
-              size="small"
-              label="Archived"
-              className={classes.useProjectsColumns_chip}
-            />
-          ) : (
-            ""
-          ),
+          value ? <Chip color="secondary" size="small" label="Archived" /> : "",
         sortType: "basic",
       },
       {
@@ -163,23 +144,14 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             </IconButton>
           );
         },
-        className: [
-          classes.useProjectsColumns_noPadding,
-          classes.useProjectsColumns_alignRight,
-        ].join(" "),
+
         disableSortBy: true,
         tabIndex: -1,
       },
     ];
 
     return { publicColumns, privateColumns };
-  }, [
-    section,
-    classes.useProjectsColumns_alignRight,
-    classes.useProjectsColumns_chip,
-    classes.useProjectsColumns_noPadding,
-    t,
-  ]);
+  }, [section, t]);
 
   return { ...columns };
 };

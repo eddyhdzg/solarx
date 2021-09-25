@@ -1,17 +1,17 @@
+import { Box } from "@mui/material";
 import ProjectsTable from "./projectsTable/ProjectsTable";
 import ProjectCards from "./projectCards/ProjectCards";
 import FilterChips from "./filterChips/FilterChips";
 import FilterMenu from "./filterMenu/FilterMenu";
-import { IconButton, Tooltip, Button } from "@material-ui/core";
-import ViewListIcon from "@material-ui/icons/ViewList";
-import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import { IconButton, Tooltip, Button } from "@mui/material";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import { GlobalFilter } from "components";
-import useStyles from "./projectsTableLayout.jss";
 import { Control, UseFormReset, UseFormWatch } from "react-hook-form";
 import { ProjectFiltersSchema, useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { ProjectSection } from "types";
-import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -32,7 +32,6 @@ export default function ProjectsTableLayout({
   table,
   section = "crowdfunding",
 }: IProjectsTableLayoutProps) {
-  const classes = useStyles();
   const { t } = useTranslation();
   const { dispatch, projects } = useStore(
     ({ dispatch, projects }) => ({ dispatch, projects }),
@@ -48,13 +47,15 @@ export default function ProjectsTableLayout({
 
   return (
     <>
-      <div
-        className={[
-          classes.projectTableLayout_wrapper,
-          section === "admin/projects"
-            ? classes.projectTableLayout_wrapper__admin
-            : undefined,
-        ].join(" ")}
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "flex-end",
+          flexWrap: "wrap",
+          mb: 1,
+          justifyContent:
+            section === "admin/projects" ? "space-between" : "flex-end",
+        }}
       >
         <Button
           variant="contained"
@@ -62,19 +63,36 @@ export default function ProjectsTableLayout({
           endIcon={<AddRoundedIcon />}
           to="/admin/projects/create-project"
           component={Link}
-          className={[
-            classes.projectTableLayout_button,
-            section !== "admin/projects"
-              ? classes.projectTableLayout_button__crowdfunding
-              : undefined,
-          ].join(" ")}
+          sx={{
+            mr: 2,
+            mb: 1,
+            display: section === "crowdfunding" ? "none" : undefined,
+          }}
         >
           {t("pages.admin.createProject.title")}
         </Button>
 
-        <div className={classes.projectTableLayout_root}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            flexWrap: "wrap",
+          }}
+        >
           <FilterChips watch={watch} reset={reset} />
-          <div className={classes.projectTableLayout_filters}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              "&>:not(:last-child)": {
+                mr: {
+                  xxs: 0.5,
+                  md: 1,
+                },
+              },
+            }}
+          >
             <GlobalFilter
               globalFilter={table.state.globalFilter}
               setGlobalFilter={setGlobalFilter}
@@ -86,8 +104,8 @@ export default function ProjectsTableLayout({
                   ? t("forms.card")
                   : t("forms.table")
               }
-              classes={{
-                tooltip: classes.projectTableLayout_tooltip,
+              sx={{
+                textTransform: "capitalize",
               }}
             >
               <IconButton
@@ -101,9 +119,9 @@ export default function ProjectsTableLayout({
                 )}
               </IconButton>
             </Tooltip>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
       {projects?.projectType === "cards" ? (
         <ProjectCards {...table} section={section} />
       ) : (

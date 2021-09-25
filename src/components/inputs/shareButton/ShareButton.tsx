@@ -1,7 +1,7 @@
 import { useLocation } from "react-router";
 import useClipboard from "react-use-clipboard";
-import { Tooltip, Button } from "@material-ui/core";
-import IosShareRoundedIcon from "@material-ui/icons/IosShareRounded";
+import { Tooltip, Button } from "@mui/material";
+import IosShareRoundedIcon from "@mui/icons-material/IosShareRounded";
 import { useCanUseShareAPI } from "hooks";
 import { useTranslation } from "react-i18next";
 
@@ -39,6 +39,7 @@ export default function ShareButton() {
       startIcon={<IosShareRoundedIcon />}
       size="small"
       onClick={handleShareButton}
+      color="inherit"
     >
       {t("forms.share")}
     </Button>
@@ -52,7 +53,7 @@ export default function ShareButton() {
       }
       onClick={setCopied}
     >
-      <Button startIcon={<IosShareRoundedIcon />} size="small">
+      <Button startIcon={<IosShareRoundedIcon />} size="small" color="inherit">
         {t("forms.share")}
       </Button>
     </Tooltip>

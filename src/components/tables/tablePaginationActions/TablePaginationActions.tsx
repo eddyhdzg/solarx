@@ -1,53 +1,50 @@
-import { IconButton } from "@material-ui/core";
-import FirstPageIcon from "@material-ui/icons/FirstPage";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import LastPageIcon from "@material-ui/icons/LastPage";
-import useStyles from "./tablePaginationActions.jss";
+import { Box, IconButton } from "@mui/material";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import LastPageIcon from "@mui/icons-material/LastPage";
 
 interface TablePaginationActionsProps {
   count: number;
   page: number;
   rowsPerPage: number;
-  onChangePage: (
+  onPageChange: (
     event: React.MouseEvent<HTMLButtonElement>,
     newPage: number
   ) => void;
 }
 
-export default function TablePaginationActions({
-  count,
-  page,
-  rowsPerPage,
-  onChangePage,
-}: TablePaginationActionsProps) {
-  const classes = useStyles();
+export default function TablePaginationActions(
+  props: TablePaginationActionsProps
+) {
+  const { count, page, rowsPerPage, onPageChange } = props;
+
   const handleFirstPageButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    onChangePage(event, 0);
+    onPageChange(event, 0);
   };
 
   const handleBackButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    onChangePage(event, page - 1);
+    onPageChange(event, page - 1);
   };
 
   const handleNextButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    onChangePage(event, page + 1);
+    onPageChange(event, page + 1);
   };
 
   const handleLastPageButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
-    onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
   return (
-    <div className={classes.tablePaginationActions_root}>
+    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
@@ -76,6 +73,6 @@ export default function TablePaginationActions({
       >
         <LastPageIcon />
       </IconButton>
-    </div>
+    </Box>
   );
 }

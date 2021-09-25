@@ -1,5 +1,4 @@
-import { LinearProgress } from "@material-ui/core";
-import useStyles from "./gradientLinearProgress.jss";
+import { LinearProgress } from "@mui/material";
 
 interface IGradientLinearProgressProps {
   value: number;
@@ -8,17 +7,20 @@ interface IGradientLinearProgressProps {
 export default function GradientLinearProgress({
   value,
 }: IGradientLinearProgressProps) {
-  const classes = useStyles();
   return (
     <LinearProgress
       variant="determinate"
       value={value}
-      classes={{
-        root: classes.gradientLinearProgress_progressBarRoot,
-        colorPrimary: classes.gradientLinearProgress_progressBarColorPrimary,
-        bar: classes.gradientLinearProgress_bar,
-      }}
       aria-label="progress-bar"
+      sx={{
+        height: (theme) => theme.spacing(1),
+        borderRadius: 5,
+        bgcolor: (theme) => theme.palette.grey[700],
+        "& .MuiLinearProgress-bar": {
+          background: (theme) => theme.custom.gradient,
+          borderRadius: 5,
+        },
+      }}
     />
   );
 }

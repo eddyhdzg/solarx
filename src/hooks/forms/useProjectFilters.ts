@@ -32,7 +32,7 @@ export default function useProjectFilters({
   setFilter,
   length,
 }: useProjectFiltersProps) {
-  const form = useForm<ProjectFiltersSchema>({
+  const form = useForm({
     resolver: yupResolver(schema),
   });
 

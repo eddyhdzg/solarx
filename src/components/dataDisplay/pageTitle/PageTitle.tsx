@@ -1,10 +1,24 @@
-import { Typography } from "@material-ui/core";
-import useStyles from "./pageTitle.jss";
+import { Typography } from "@mui/material";
 
 const PageTitle: React.FC = ({ children }) => {
-  const classes = useStyles();
   return (
-    <Typography component="h1" variant="h3" className={classes.root}>
+    <Typography
+      component="h1"
+      variant="h3"
+      sx={{
+        mt: {
+          xxs: 1,
+          md: 2,
+        },
+        mb: {
+          xxs: 2,
+          md: 3,
+        },
+        overflow: "hidden",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+      }}
+    >
       {children}
     </Typography>
   );

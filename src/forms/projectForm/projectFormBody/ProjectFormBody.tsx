@@ -1,4 +1,6 @@
 import {
+  alpha,
+  Box,
   FormControlLabel,
   Grid,
   InputAdornment,
@@ -6,19 +8,18 @@ import {
   TextField,
   Typography,
   Divider,
-} from "@material-ui/core";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+  Button,
+} from "@mui/material";
+import Autocomplete from "@mui/lab/Autocomplete";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   NumberFormatInput,
   GridItem,
   Switch,
-  Button,
   DropzoneField,
   ImagesPreview,
 } from "components";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
-import useStyles from "./projectFormBody.jss";
 import { IProjectFormSchema } from "hooks";
 import { ProjectForms } from "types";
 import { useTranslation } from "react-i18next";
@@ -28,7 +29,6 @@ interface IProjectFormBodyProps {
 }
 
 export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
-  const classes = useStyles();
   const { t } = useTranslation();
   const {
     control,
@@ -39,17 +39,26 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
   const [formState] = watch(["state"]);
 
   return (
-    <div className={classes.projectFormBody_form}>
-      <Paper elevation={3}>
-        <div className={classes.projectFormBody_body}>
-          <div className={classes.projectFormBody_header}>
+    <div>
+      <Paper>
+        <Box
+          sx={{
+            p: 2,
+            mb: 2,
+          }}
+        >
+          <Box
+            sx={{
+              mb: 3,
+            }}
+          >
             <Typography variant="h6" component="h6">
               {t("forms.projectForm.general")}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
               {t("forms.projectForm.generalDescription")}
             </Typography>
-          </div>
+          </Box>
           <Grid container spacing={3}>
             <GridItem xs={6}>
               <Controller
@@ -64,15 +73,22 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     fullWidth
                     required
                     error={Boolean(fieldState.error)}
+                    // @ts-ignore
                     helperText={fieldState.error?.message}
                     inputProps={{
                       autoComplete: "disabled",
                     }}
-                    classes={{
-                      root: fieldState.isDirty
-                        ? classes.projectFormBody_textField__success
-                        : undefined,
-                    }}
+                    sx={
+                      fieldState.isDirty
+                        ? {
+                            "& input:valid + fieldset": {
+                              borderColor: (theme) =>
+                                theme.palette.success.dark,
+                              borderWidth: 2,
+                            },
+                          }
+                        : {}
+                    }
                     {...field}
                   />
                 )}
@@ -91,7 +107,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     autoHighlight
                     options={mexicanStates}
                     getOptionLabel={(option) => option?.name || ""}
-                    getOptionSelected={(option, selected) =>
+                    isOptionEqualToValue={(option, selected) =>
                       option?.key === selected?.key
                     }
                     renderInput={(params) => (
@@ -106,12 +122,19 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                         }}
                         required
                         error={Boolean(fieldState.error)}
+                        // @ts-ignore
                         helperText={fieldState.error?.message}
-                        classes={{
-                          root: fieldState.isDirty
-                            ? classes.projectFormBody_select__success
-                            : undefined,
-                        }}
+                        sx={
+                          fieldState.isDirty
+                            ? {
+                                "& input:valid + div + fieldset": {
+                                  borderColor: (theme) =>
+                                    theme.palette.success.dark,
+                                  borderWidth: 2,
+                                },
+                              }
+                            : {}
+                        }
                       />
                     )}
                     value={value || null}
@@ -164,13 +187,20 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                           fieldState.error && fieldState.isTouched
                         )}
                         helperText={
+                          // @ts-ignore
                           fieldState.isTouched && fieldState.error?.message
                         }
-                        classes={{
-                          root: fieldState.isDirty
-                            ? classes.projectFormBody_select__success
-                            : undefined,
-                        }}
+                        sx={
+                          fieldState.isDirty
+                            ? {
+                                "& input:valid + div + fieldset": {
+                                  borderColor: (theme) =>
+                                    theme.palette.success.dark,
+                                  borderWidth: 2,
+                                },
+                              }
+                            : {}
+                        }
                       />
                     )}
                     onChange={(_, item) => {
@@ -194,15 +224,22 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     fullWidth
                     required
                     error={Boolean(fieldState.error)}
+                    // @ts-ignore
                     helperText={fieldState.error?.message}
                     inputProps={{
                       autoComplete: "disabled",
                     }}
-                    classes={{
-                      root: fieldState.isDirty
-                        ? classes.projectFormBody_textField__success
-                        : undefined,
-                    }}
+                    sx={
+                      fieldState.isDirty
+                        ? {
+                            "& input:valid + fieldset": {
+                              borderColor: (theme) =>
+                                theme.palette.success.dark,
+                              borderWidth: 2,
+                            },
+                          }
+                        : {}
+                    }
                     {...field}
                   />
                 )}
@@ -237,12 +274,19 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                         }}
                         required
                         error={Boolean(fieldState.error)}
+                        // @ts-ignore
                         helperText={fieldState.error?.message}
-                        classes={{
-                          root: fieldState.isDirty
-                            ? classes.projectFormBody_select__success
-                            : undefined,
-                        }}
+                        sx={
+                          fieldState.isDirty
+                            ? {
+                                "& input:valid + div + fieldset": {
+                                  borderColor: (theme) =>
+                                    theme.palette.success.dark,
+                                  borderWidth: 2,
+                                },
+                              }
+                            : {}
+                        }
                       />
                     )}
                     onChange={(_, item) => {
@@ -270,15 +314,23 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               />
             </GridItem>
           </Grid>
-          <Divider className={classes.projectFormBody_divider} />
-          <div className={classes.projectFormBody_header}>
+          <Divider
+            sx={{
+              my: 4,
+            }}
+          />
+          <Box
+            sx={{
+              mb: 3,
+            }}
+          >
             <Typography variant="h6" component="h6">
               {t("forms.projectForm.numbers")}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
               {t("forms.projectForm.numbersDescription")}
             </Typography>
-          </div>
+          </Box>
           <Grid container spacing={3}>
             <GridItem xs={6}>
               <Controller
@@ -309,12 +361,19 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     }}
                     required
                     error={Boolean(fieldState.error)}
+                    // @ts-ignore
                     helperText={fieldState.error?.message}
-                    classes={{
-                      root: fieldState.isDirty
-                        ? classes.projectFormBody_select__success
-                        : undefined,
-                    }}
+                    sx={
+                      fieldState.isDirty
+                        ? {
+                            "& input:valid + div + fieldset": {
+                              borderColor: (theme) =>
+                                theme.palette.success.dark,
+                              borderWidth: 2,
+                            },
+                          }
+                        : {}
+                    }
                     {...field}
                   />
                 )}
@@ -350,12 +409,19 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     }}
                     required
                     error={Boolean(fieldState.error)}
+                    // @ts-ignore
                     helperText={fieldState.error?.message}
-                    classes={{
-                      root: fieldState.isDirty
-                        ? classes.projectFormBody_select__success
-                        : undefined,
-                    }}
+                    sx={
+                      fieldState.isDirty
+                        ? {
+                            "& input:valid + div + fieldset": {
+                              borderColor: (theme) =>
+                                theme.palette.success.dark,
+                              borderWidth: 2,
+                            },
+                          }
+                        : {}
+                    }
                     {...field}
                   />
                 )}
@@ -384,12 +450,19 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     }}
                     required
                     error={Boolean(fieldState.error)}
+                    // @ts-ignore
                     helperText={fieldState.error?.message}
-                    classes={{
-                      root: fieldState.isDirty
-                        ? classes.projectFormBody_textField__success
-                        : undefined,
-                    }}
+                    sx={
+                      fieldState.isDirty
+                        ? {
+                            "& input:valid + fieldset": {
+                              borderColor: (theme) =>
+                                theme.palette.success.dark,
+                              borderWidth: 2,
+                            },
+                          }
+                        : {}
+                    }
                     {...field}
                   />
                 )}
@@ -419,12 +492,19 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                     }}
                     required
                     error={Boolean(fieldState.error)}
+                    // @ts-ignore
                     helperText={fieldState.error?.message}
-                    classes={{
-                      root: fieldState.isDirty
-                        ? classes.projectFormBody_textField__success
-                        : undefined,
-                    }}
+                    sx={
+                      fieldState.isDirty
+                        ? {
+                            "& input:valid + fieldset": {
+                              borderColor: (theme) =>
+                                theme.palette.success.dark,
+                              borderWidth: 2,
+                            },
+                          }
+                        : {}
+                    }
                     {...field}
                   />
                 )}
@@ -432,77 +512,94 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             </GridItem>
           </Grid>
 
-          <Divider className={classes.projectFormBody_divider} />
+          <Divider
+            sx={{
+              my: 4,
+            }}
+          />
 
-          <div className={classes.projectFormBody_header}>
+          <Box
+            sx={{
+              mb: 3,
+            }}
+          >
             <Typography variant="h6" component="h6">
               {t("forms.projectForm.media")}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
               {t("forms.projectForm.mediaDescription")}
             </Typography>
-          </div>
+          </Box>
           <Grid container spacing={3}>
             <GridItem
-              xxs={12}
-              xs={12}
-              className={classes.projectFormBody_noBottomPadding}
+              sx={{
+                pb: 0,
+              }}
             >
               <Typography
                 variant="caption"
                 gutterBottom
-                classes={{
-                  root: dirtyFields.coverImage
+                color={(theme) =>
+                  dirtyFields.coverImage
                     ? errors.coverImage
-                      ? classes.projectFormBody_text__success
-                      : classes.projectFormBody_text__success
-                    : undefined,
-                }}
+                      ? theme.palette.error.main
+                      : theme.palette.success.main
+                    : undefined
+                }
               >
                 {t("forms.projectForm.coverImage")}
               </Typography>
             </GridItem>
-            <GridItem xs={6}>
+            <GridItem sm={6}>
               <DropzoneField
                 name="coverImage"
                 accept={["image/jpg", "image/jpeg", "image/gif", "image/png"]}
               />
             </GridItem>
-            <GridItem xs={6}>
+            <GridItem sm={6}>
               <ImagesPreview name="coverImage" />
             </GridItem>
             <GridItem
-              xxs={12}
-              xs={12}
-              className={classes.projectFormBody_noBottomPadding}
+              sx={{
+                pb: 0,
+              }}
             >
               <Typography
                 variant="caption"
                 gutterBottom
-                classes={{
-                  root: dirtyFields.images
+                color={(theme) =>
+                  dirtyFields.images
                     ? errors.images
-                      ? classes.projectFormBody_text__success
-                      : classes.projectFormBody_text__success
-                    : undefined,
-                }}
+                      ? theme.palette.error.main
+                      : theme.palette.success.main
+                    : undefined
+                }
               >
                 {t("forms.projectForm.images")}
               </Typography>
             </GridItem>
-            <GridItem xs={6}>
+            <GridItem sm={6}>
               <DropzoneField
                 name="images"
                 accept={["image/jpg", "image/jpeg", "image/gif", "image/png"]}
                 multiple
               />
             </GridItem>
-            <GridItem xs={6}>
+            <GridItem sm={6}>
               <ImagesPreview name="images" />
             </GridItem>
           </Grid>
-        </div>
-        <div className={classes.projectFormBody_actions}>
+        </Box>
+        <Box
+          sx={{
+            backgroundColor: (theme) => alpha(theme.palette.common.black, 0.08),
+            p: 2,
+            borderEndStartRadius: 1,
+            borderEndEndRadius: 1,
+            display: "flex",
+            justifyContent: "flex-end",
+          }}
+        >
           <Button
             size="large"
             variant="contained"
@@ -513,7 +610,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               ? t("pages.admin.createProject.title")
               : t("pages.admin.editProject.editProject")}
           </Button>
-        </div>
+        </Box>
       </Paper>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Box,
   Button,
   Typography,
   Fade,
@@ -11,12 +12,13 @@ import {
   TextField,
   InputLabel,
   Grid,
-} from "@material-ui/core";
-import FilterListRoundedIcon from "@material-ui/icons/FilterListRounded";
-import useStyles from "./filterMenu.jss";
+  OutlinedInput,
+} from "@mui/material";
+import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
 import { Controller, Control, UseFormReset } from "react-hook-form";
 import { ProjectFiltersSchema } from "hooks";
 import { useTranslation } from "react-i18next";
+import { GridItem } from "components";
 
 interface IFilterMenuProps {
   control: Control<ProjectFiltersSchema>;
@@ -24,7 +26,6 @@ interface IFilterMenuProps {
 }
 
 export default function FilterMenu({ control, reset }: IFilterMenuProps) {
-  const classes = useStyles();
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -45,8 +46,8 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
     <div>
       <Tooltip
         title={t("forms.filter")}
-        classes={{
-          tooltip: classes.tooltip,
+        sx={{
+          textTransform: "capitalize",
         }}
       >
         <IconButton
@@ -74,16 +75,37 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
           horizontal: "right",
         }}
       >
-        <div className={classes.menu}>
-          <div className={classes.header}>
+        <Box
+          sx={{
+            pt: 2,
+            px: 3,
+            pb: 3,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mb: 1,
+            }}
+          >
             <Typography variant="button">{t("forms.filter")}</Typography>
             <Button color="primary" onClick={handleReset}>
               {t("forms.reset")}
             </Button>
-          </div>
+          </Box>
           <form noValidate autoComplete="off">
-            <Grid container spacing={3} className={classes.form}>
-              <Grid item xs={6}>
+            <Grid
+              container
+              spacing={3}
+              sx={{
+                maxWidth: (theme) => theme.spacing(60),
+              }}
+            >
+              <GridItem xs={6}>
                 <Controller
                   name="id"
                   control={control}
@@ -91,13 +113,13 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                     <TextField
                       id="id-filter"
                       label={t("forms.id")}
-                      className={classes.field}
+                      fullWidth
                       {...field}
                     />
                   )}
                 />
-              </Grid>
-              <Grid item xs={6}>
+              </GridItem>
+              <GridItem xs={6}>
                 <Controller
                   name="name"
                   control={control}
@@ -105,14 +127,14 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                     <TextField
                       id="name-filter"
                       label={t("forms.name")}
-                      className={classes.field}
+                      fullWidth
                       {...field}
                     />
                   )}
                 />
-              </Grid>
+              </GridItem>
 
-              <Grid item xs={6}>
+              <GridItem xs={6}>
                 <Controller
                   name="location"
                   control={control}
@@ -120,15 +142,14 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                     <TextField
                       id="location-filter"
                       label={t("forms.location")}
-                      className={classes.field}
+                      fullWidth
                       {...field}
                     />
                   )}
                 />
-              </Grid>
-
-              <Grid item xs={6}>
-                <FormControl className={classes.field}>
+              </GridItem>
+              <GridItem xs={6}>
+                <FormControl fullWidth>
                   <InputLabel htmlFor="funded-filter">
                     {t("forms.founded")}
                   </InputLabel>
@@ -138,23 +159,26 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                     render={({ field }) => (
                       <Select
                         native
-                        inputProps={{
-                          name: "funded",
-                          id: "funded-filter",
-                        }}
+                        input={
+                          <OutlinedInput
+                            name="funded"
+                            label={t("forms.founded")}
+                            id="funded-filter"
+                          />
+                        }
                         {...field}
                       >
-                        <option value={""}></option>
+                        <option value={""} />
                         <option value={"true"}>{t("forms.founded")}</option>
                         <option value={"false"}>{t("forms.notFounded")}</option>
                       </Select>
                     )}
                   />
                 </FormControl>
-              </Grid>
+              </GridItem>
             </Grid>
           </form>
-        </div>
+        </Box>
       </Popover>
     </div>
   );

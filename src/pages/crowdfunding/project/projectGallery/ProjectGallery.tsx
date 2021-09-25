@@ -1,6 +1,6 @@
-import ProjectDesktopGallery from "../projectDesktopGallery/ProjectDesktopGallery";
-import ProjectMobileGallery from "../projectMobileGallery/ProjectMobileGallery";
-import { useTheme, useMediaQuery } from "@material-ui/core";
+import ProjectDesktopGallery from "./projectDesktopGallery/ProjectDesktopGallery";
+import ProjectMobileGallery from "./projectMobileGallery/ProjectMobileGallery";
+import { useTheme, useMediaQuery } from "@mui/material";
 import { Project } from "types";
 
 export default function ProjectGalllery(props: Pick<Project, "images">) {

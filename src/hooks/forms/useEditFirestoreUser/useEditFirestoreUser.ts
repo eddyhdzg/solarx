@@ -3,11 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   firestoreUserFormSchema,
   firestoreUserFormDefaultValues,
-  IFirestoreUserFormSchema,
 } from "./useEditFirestoreUser.schema";
 
 export default function useEditFirestoreUser() {
-  const form = useForm<IFirestoreUserFormSchema>({
+  const form = useForm({
     resolver: yupResolver(firestoreUserFormSchema),
     mode: "onTouched",
     defaultValues: firestoreUserFormDefaultValues,

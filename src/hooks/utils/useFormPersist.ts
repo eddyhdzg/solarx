@@ -8,8 +8,9 @@ const useFormPersist = (
     exclude = [],
     include,
     onDataRestored,
-    validate = false,
-    dirty = false,
+    validate = true,
+    dirty = true,
+    defaultValues = {},
   }: any = {}
 ) => {
   const values = watch(include);
@@ -25,10 +26,12 @@ const useFormPersist = (
         const shouldSet = !exclude.includes(key);
         if (shouldSet) {
           dataRestored[key] = values[key];
-          setValue(key, values[key], {
-            shouldValidate: validate,
-            shouldDirty: dirty,
-          });
+          if (defaultValues[key] !== values[key]) {
+            setValue(key, values[key], {
+              shouldValidate: validate,
+              shouldDirty: dirty,
+            });
+          }
         }
       });
 

@@ -9,7 +9,6 @@
 name: Deploy to Firebase Hosting on schedule from Beta to Prod
 "on":
   schedule:
-    - cron: "0 17 4 10 *"
     - cron: "0 17 1 11 *"
     - cron: "0 17 6 12 *"
     - cron: "0 17 3 1 *"

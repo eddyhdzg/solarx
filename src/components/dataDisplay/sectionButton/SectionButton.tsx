@@ -1,6 +1,5 @@
-import { Paper, Typography } from "@material-ui/core";
-import { Link, LinkProps } from "react-router-dom";
-import useStyles from "./sectionButton.jss";
+import { Paper, Typography, Link } from "@mui/material";
+import { Link as RouterLink, LinkProps } from "react-router-dom";
 
 interface ISectionButtonProps {
   title: string;
@@ -13,11 +12,19 @@ export default function SectionButton({
   to,
   emoji,
 }: ISectionButtonProps) {
-  const classes = useStyles();
-
   return (
-    <Link to={to} className={classes.link}>
-      <Paper elevation={3} className={classes.paper}>
+    <Link
+      component={RouterLink}
+      to={to}
+      sx={{
+        textDecoration: "inherit",
+      }}
+    >
+      <Paper
+        sx={{
+          p: 2,
+        }}
+      >
         <Typography variant="h6">{emoji}</Typography>
         <Typography noWrap variant="subtitle1">
           {title}

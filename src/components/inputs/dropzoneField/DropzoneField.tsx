@@ -1,8 +1,7 @@
 import { useFormContext, Controller } from "react-hook-form";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import { Typography } from "@material-ui/core";
-import useStyles from "./dropzoneField.jss";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 interface IDropzoneProps extends DropzoneOptions {
@@ -10,7 +9,6 @@ interface IDropzoneProps extends DropzoneOptions {
 }
 
 const Dropzone = ({ onChange, multiple, ...options }: IDropzoneProps) => {
-  const classes = useStyles();
   const { t } = useTranslation();
   const { getRootProps, getInputProps } = useDropzone({
     multiple,
@@ -20,16 +18,31 @@ const Dropzone = ({ onChange, multiple, ...options }: IDropzoneProps) => {
   const text = multiple ? t("forms.DragNDropfiles") : t("forms.DragNDropfile");
 
   return (
-    <div
+    <Box
       {...getRootProps({ className: "dropzone" })}
-      className={classes.dropzone_root}
+      sx={{
+        py: 4,
+        px: 2,
+        minHeight: 80,
+        borderRadius: 0.5,
+        width: "100%",
+        backgroundColor: (theme) => theme.palette.grey[800],
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+      }}
     >
       <input {...getInputProps({ onChange })} />
-      <CloudUploadIcon className={classes.dropzone_icon} />
+      <CloudUploadIcon
+        sx={{
+          mb: 2,
+        }}
+      />
       <Typography variant="body2" component="p" color="textSecondary">
         {text}
       </Typography>
-    </div>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
+import { Box } from "@mui/material";
 import UsersTable from "./usersTable/UsersTable";
 import { GlobalFilter } from "components";
-import useStyles from "./usersTableLayout.jss";
 
 interface IUsersTableLayoutProps {
   setGlobalFilter: any;
@@ -11,16 +11,27 @@ export default function UsersTableLayout({
   setGlobalFilter,
   table,
 }: IUsersTableLayoutProps) {
-  const classes = useStyles();
-
   return (
     <>
-      <div className={classes.projectTableLayout_root}>
+      <Box
+        sx={{
+          mb: 1,
+          display: {
+            sm: "flex",
+          },
+          alignItems: {
+            sm: "center",
+          },
+          justifyContent: {
+            sm: "flex-end",
+          },
+        }}
+      >
         <GlobalFilter
           globalFilter={table.state.globalFilter}
           setGlobalFilter={setGlobalFilter}
         />
-      </div>
+      </Box>
       <UsersTable {...table} />
     </>
   );

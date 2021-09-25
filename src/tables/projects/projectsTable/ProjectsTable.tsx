@@ -6,8 +6,7 @@ import {
   TableRow,
   TableFooter,
   Paper,
-} from "@material-ui/core";
-import useStyles from "./projectsTable.jss";
+} from "@mui/material";
 import { CustomTablePagination } from "components";
 
 interface IProjectsTableProps {
@@ -33,12 +32,20 @@ export default function ProjectsTable({
   setPageSize,
   state,
 }: IProjectsTableProps) {
-  const classes = useStyles();
-
   return (
-    <Paper elevation={3} className={classes.projectsTable_paper}>
+    <Paper
+      sx={{
+        display: "flex",
+        whiteSpace: "nowrap",
+        overflow: "auto",
+      }}
+    >
       <Table {...getTableProps()}>
-        <TableHead className={classes.projectsTable_header}>
+        <TableHead
+          sx={{
+            textTransform: "capitalize",
+          }}
+        >
           {headerGroups.map((headerGroup: any) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (

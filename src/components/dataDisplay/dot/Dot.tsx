@@ -1,19 +1,26 @@
-import { useTheme } from "@material-ui/core/styles";
-import useDotStyles from "./dot.jss";
+import { Box, Theme } from "@mui/material";
 
 export interface IDotProps {
-  color?: "default" | "green" | "red";
+  color?: "default" | "deposit" | "red";
 }
 
 export default function Dot({ color = "default" }: IDotProps) {
-  const theme = useTheme();
   const colorMap = {
-    default: theme.palette.text.primary,
-    green: theme.custom.cash,
-    red: theme.palette.error.main,
+    default: (theme: Theme) => theme.palette.text.primary,
+    deposit: (theme: Theme) => theme.custom.cash,
+    red: (theme: Theme) => theme.palette.error.main,
   };
 
-  const classes = useDotStyles({ color: colorMap[color] });
-
-  return <div className={classes.walletHistory_dot} />;
+  return (
+    <Box
+      component="span"
+      sx={{
+        mr: 1,
+        p: 0.5,
+        borderRadius: "50%",
+        display: "inline-block",
+        backgroundColor: colorMap[color],
+      }}
+    />
+  );
 }

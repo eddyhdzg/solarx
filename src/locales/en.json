@@ -64,6 +64,7 @@
           "preferencesDescription": "User's preferences."
         },
         "accountInformation": {
+          "myProfile": "My profile",
           "accountInformation": "Account information",
           "accountInformationDescription": "Edit your account information.",
           "privateInformation": "Private Information",
@@ -120,8 +121,7 @@
         "project": "Project"
       },
       "DragNDropfile": "Drag 'n' drop some a file here, or click to select a file",
-      "DragNDropfiles": "Drag 'n' drop some files here, or click to select files",
-      "signOut": "Sign Out"
+      "DragNDropfiles": "Drag 'n' drop some files here, or click to select files"
     },
     "projects": {
       "id": "id",
@@ -180,9 +180,11 @@
       "mediaNotEdited": "Media Edited Error 😔"
     },
     "auth": {
+      "myAccount": "My account",
       "youNeedToBeAnAdmin": "You need to be an admin to use this route",
       "signIntoUseThisRoute": "Sign in to use this route",
-      "signInWithGoogle": "Sign in with Google"
+      "signInWithGoogle": "Sign in with Google",
+      "signOut": "Sign Out"
     }
   }
 }

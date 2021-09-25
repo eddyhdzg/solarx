@@ -1,13 +1,21 @@
-import { Paper, Typography } from "@material-ui/core";
-import useStyles from "./walleShares.jss";
+import { Paper, Typography } from "@mui/material";
 import { WalletSharesTable } from "tables";
 
 export default function WalletShares() {
-  const classes = useStyles();
-
   return (
-    <Paper className={classes.walletShares_root} elevation={3}>
-      <Typography variant="subtitle1" className={classes.walletShares_title}>
+    <Paper
+      sx={{
+        p: 1,
+      }}
+    >
+      <Typography
+        variant="subtitle1"
+        sx={{
+          pt: 2,
+          px: 2,
+          pb: 1,
+        }}
+      >
         Shares
       </Typography>
       <WalletSharesTable />

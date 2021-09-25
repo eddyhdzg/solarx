@@ -48,14 +48,12 @@ export default function ProjectsPage() {
 
 const Projects = () => {
   const section: ProjectSection = "crowdfunding";
-  const { data: projects } = usePublicProjects();
+  const { data } = usePublicProjects();
   const { publicColumns } = useProjectsColumns({ section });
-  const data = useMemo(() => projects, [projects]);
   const globalFilter = useFuzzyGlobalFilter(projectSearchFilters);
   const {
     projects: { pageSize },
   } = useStore(({ projects }) => ({ projects }), shallow);
-
   const filterTypes = useMemo(
     () => ({
       fuzzyText: fuzzyTextFilterFn,

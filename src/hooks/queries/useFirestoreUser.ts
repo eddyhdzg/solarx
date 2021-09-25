@@ -11,6 +11,7 @@ export default function useFirestoreUser() {
     idField: "uid",
     initialData: {
       avatar: "",
+      created: "",
       displayName: "",
       email: "",
       uid: "",

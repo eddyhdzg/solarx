@@ -1,10 +1,9 @@
-import { Typography } from "@material-ui/core";
+import { Box, Chip, Typography } from "@mui/material";
 import { Project } from "types";
-import { ColorChip, ShareButton } from "components";
-import useStyles from "./projectHeader.jss";
-import PlaceIcon from "@material-ui/icons/Place";
-import BusinessRoundedIcon from "@material-ui/icons/BusinessRounded";
-import WorkOutlineRoundedIcon from "@material-ui/icons/WorkOutlineRounded";
+import { ShareButton } from "components";
+import PlaceIcon from "@mui/icons-material/Place";
+import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
+import WorkOutlineRoundedIcon from "@mui/icons-material/WorkOutlineRounded";
 
 type IProjectHeader = Pick<
   Project,
@@ -18,41 +17,74 @@ const ProjectHeader: React.FC<IProjectHeader> = ({
   businessType,
   company,
 }) => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.projectHeader_root}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-end",
+      }}
+    >
       <div>
         <Typography
           variant="h5"
           component="h2"
-          className={classes.projectHeader_title}
+          sx={{
+            mb: 1.5,
+          }}
         >
           {name}
         </Typography>
-        <div className={classes.projectHeader_chips}>
-          <ColorChip
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
+          <Chip
             label={`${city}, ${state}`}
-            color="yellow"
+            variant="yellow"
             icon={<PlaceIcon />}
+            size="small"
+            sx={{
+              py: 2,
+              px: 1,
+              m: 0.5,
+            }}
           />
-          <ColorChip
+          <Chip
             label={company}
-            color="blue"
+            variant="blue"
             icon={<BusinessRoundedIcon />}
+            size="small"
+            sx={{
+              py: 2,
+              px: 1,
+              m: 0.5,
+            }}
           />
-          <ColorChip
+          <Chip
             label={businessType}
-            color="green"
+            variant="green"
             icon={<WorkOutlineRoundedIcon />}
+            size="small"
+            sx={{
+              py: 2,
+              px: 1,
+              m: 0.5,
+            }}
           />
-        </div>
+        </Box>
       </div>
 
-      <div className={classes.projectHeader_button}>
+      <Box
+        sx={{
+          ml: 0.5,
+        }}
+      >
         <ShareButton />
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

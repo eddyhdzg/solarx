@@ -1,5 +1,7 @@
-import { Button, NumberFormatInput } from "components";
+import { NumberFormatInput } from "components";
 import {
+  Box,
+  Button,
   FormControl,
   FormHelperText,
   InputAdornment,
@@ -7,18 +9,23 @@ import {
   OutlinedInput,
   Select,
   Typography,
-} from "@material-ui/core";
-import useStyles from "./withdrawTab.jss";
+} from "@mui/material";
 
 export default function WithdrawTab() {
-  const classes = useStyles();
   return (
     <>
-      <div className={classes.walletActions_inputs}>
+      <Box
+        sx={{
+          mb: 4,
+        }}
+      >
         <FormControl
           variant="outlined"
           fullWidth
-          className={classes.walletActions_toWithdraw}
+          sx={{
+            mt: 5,
+            mb: 2,
+          }}
         >
           <InputLabel htmlFor="account-to-withdraw">To</InputLabel>
           <Select
@@ -33,7 +40,6 @@ export default function WithdrawTab() {
             <option aria-label="None" value="" />
           </Select>
         </FormControl>
-
         <FormControl variant="outlined" fullWidth>
           <OutlinedInput
             id="amount-to-withdraw"
@@ -47,38 +53,57 @@ export default function WithdrawTab() {
               thousandSeparator: true,
               decimalScale: 2,
             }}
-            labelWidth={0}
             inputComponent={NumberFormatInput as any}
             defaultValue={0}
           />
           <FormHelperText id="amount-to-withdraw-helper-text">
             Available cash:{" "}
-            <strong className={classes.walletActions_formHelperTextStrong}>
+            <Typography
+              variant="subtitle2"
+              component="strong"
+              color="textPrimary"
+            >
               $684.16 MXN
-            </strong>
+            </Typography>
           </FormHelperText>
         </FormControl>
-      </div>
-      <div className={classes.walletActions_summary}>
-        <ul className={classes.walletActions_ul}>
+      </Box>
+      <Box
+        sx={{
+          mb: 3,
+        }}
+      >
+        <Box
+          sx={{
+            textAlign: "end",
+          }}
+        >
           <li>
             <Typography color="textSecondary">
               Transaction Fee:{" "}
-              <strong className={classes.walletActions_summaryTextStrong}>
+              <Typography
+                variant="subtitle1"
+                component="strong"
+                color="textPrimary"
+              >
                 $10.60 MXN
-              </strong>
+              </Typography>
             </Typography>
           </li>
           <li>
             <Typography color="textSecondary">
               You will get:{" "}
-              <strong className={classes.walletActions_summaryTextStrong}>
+              <Typography
+                variant="subtitle1"
+                component="strong"
+                color="textPrimary"
+              >
                 $581.40 MXN
-              </strong>
+              </Typography>
             </Typography>
           </li>
-        </ul>
-      </div>
+        </Box>
+      </Box>
       <Button size="large" variant="contained" type="submit" disabled fullWidth>
         Withdraw
       </Button>

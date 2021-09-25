@@ -1,22 +1,34 @@
-import { FormControl, Select, FormControlProps } from "@material-ui/core";
-import LanguageIcon from "@material-ui/icons/Language";
-import useStyles from "./localeSelect.jss";
+import {
+  FormControl,
+  Select,
+  FormControlProps,
+  SelectChangeEvent,
+} from "@mui/material";
+import LanguageIcon from "@mui/icons-material/Language";
 import { localeOptions } from "constant";
 import { useTranslation } from "react-i18next";
 import { Locales } from "types";
 
 const LocaleSelect: React.FC<FormControlProps> = (props) => {
-  const classes = useStyles();
   const { t, i18n } = useTranslation();
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (event: SelectChangeEvent<string>) => {
     const newLocale = event.target.value as Locales;
     i18n.changeLanguage(newLocale);
   };
 
   return (
     <FormControl variant="outlined" {...props}>
-      <LanguageIcon className={classes.localeSelect_icon} />
+      <LanguageIcon
+        sx={{
+          margin: "auto",
+          position: "absolute",
+          top: "0",
+          left: 12,
+          bottom: 0,
+          pointerEvents: "none",
+        }}
+      />
       <Select
         native
         value={i18n.language}
@@ -24,8 +36,10 @@ const LocaleSelect: React.FC<FormControlProps> = (props) => {
         inputProps={{
           id: "locale-select",
         }}
-        classes={{
-          select: classes.localeSelect_select,
+        sx={{
+          "& .MuiNativeSelect-select": {
+            pl: 6,
+          },
         }}
       >
         {localeOptions.map((option) => {

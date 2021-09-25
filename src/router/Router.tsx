@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router";
 import { useRouterTree } from "hooks";
-import { CenterLoader, Layout } from "components";
+import { CenterLoader, AppLayout } from "components";
 import { Redirect } from "react-router-dom";
 
 export default function Router() {
@@ -11,7 +11,7 @@ export default function Router() {
   }
 
   return (
-    <Layout>
+    <AppLayout>
       <Switch>
         {Object.entries(routerTree).map(([path, { component: Component }]) => (
           <Route key={path} path={path}>
@@ -20,6 +20,6 @@ export default function Router() {
         ))}
         <Route render={() => <Redirect to="/wallet" />} />
       </Switch>
-    </Layout>
+    </AppLayout>
   );
 }

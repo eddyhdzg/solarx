@@ -1,34 +1,27 @@
-import { Paper, PaperProps } from "@material-ui/core";
-import useStyles from "./sectionBlock.jss";
+import { Paper, PaperProps, Box, BoxProps } from "@mui/material";
 
 interface ISectionBlockCompoundComponents {
-  Row: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  Row: React.FC<BoxProps>;
 }
 
-const SectionBlockRow: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
-  children,
-  className,
-  ...props
-}) => {
-  const classes = useStyles();
+const SectionBlockRow: React.FC<BoxProps> = ({ sx, ...props }) => {
   return (
-    <div className={[classes.sectionBlock_row, className].join(" ")} {...props}>
-      {children}
-    </div>
+    <Box
+      sx={{
+        py: 2,
+        px: 3,
+        ...sx,
+      }}
+      {...props}
+    />
   );
 };
 
-const SectionBlock: React.FC<PaperProps> & ISectionBlockCompoundComponents = ({
-  children,
-  ...props
-}) => {
-  return (
-    <Paper elevation={3} {...props}>
-      {children}
-    </Paper>
-  );
+const SectionBlock: React.FC<PaperProps> & ISectionBlockCompoundComponents = (
+  props
+) => {
+  return <Paper {...props} />;
 };
 
 SectionBlock.Row = SectionBlockRow;
-
 export default SectionBlock;

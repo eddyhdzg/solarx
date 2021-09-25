@@ -33,3 +33,6 @@ ui-debug.log
 # .env
 # .env.dev
 # .env.prod
+
+# Custom
+package-lock.json

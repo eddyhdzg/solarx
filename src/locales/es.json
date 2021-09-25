@@ -64,6 +64,7 @@
           "preferencesDescription": "Preferencias del usuario."
         },
         "accountInformation": {
+          "myProfile": "Mi perfil",
           "accountInformation": "Información de la cuenta",
           "accountInformationDescription": "Edite la información de su cuenta.",
           "privateInformation": "Información privada",
@@ -120,8 +121,7 @@
         "project": "Proyecto"
       },
       "DragNDropfile": "Arrastre y suelte un archivo aquí, o haga clic para seleccionar un archivo",
-      "DragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos",
-      "signOut": "Cerrar sesión"
+      "DragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos"
     },
     "projects": {
       "id": "id",
@@ -180,9 +180,11 @@
       "mediaNotEdited": "Error al editar media 😔"
     },
     "auth": {
+      "myAccount": "Mi Cuenta",
       "youNeedToBeAnAdmin": "Debes ser un administrador para usar esta ruta",
       "signIntoUseThisRoute": "Inicia sesión para usar esta ruta",
-      "signInWithGoogle": "Inicia sesión con Google"
+      "signInWithGoogle": "Inicia sesión con Google",
+      "signOut": "Cerrar sesión"
     }
   }
 }

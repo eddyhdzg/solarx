@@ -1,123 +1,106 @@
-import { Paper, Typography } from "@material-ui/core";
-import { Dot, SquareChip } from "components";
-import useStyles from "./walletHistory.jss";
-import { IDotProps } from "../../../components/dataDisplay/dot/Dot";
-
-const months: {
-  month: string;
-  transactions: {
-    color: IDotProps["color"];
-    title: string;
-    description: string;
-    value: string;
-    date: string;
-  }[];
-}[] = [
-  {
-    month: "October 2021",
-    transactions: [
-      {
-        color: "green",
-        title: "Deposit",
-        description: "Cash added to wallet",
-        value: "+ 2,000 MXN",
-        date: "Oct 10, 2021 - 17:23 CT",
-      },
-      {
-        color: "red",
-        title: "Adquisition",
-        description: "Bought 1 share from GE Apodaca",
-        value: "- 200 MXN",
-        date: "Oct 4, 2021 - 11:12",
-      },
-      {
-        color: "green",
-        title: "Monthly revenue",
-        description: "Investment cap payment of Sep.",
-        value: "+ 148.11 MXN",
-        date: "Oct 1, 2021 - 8:30",
-      },
-    ],
-  },
-  {
-    month: "September 2021",
-    transactions: [
-      {
-        color: "red",
-        title: "Withdraw",
-        description: "Withdraw to Eddy HeyBanco",
-        value: "-5,000 MXN",
-        date: "Sep 17, 2021 - 20.11",
-      },
-      {
-        color: "red",
-        title: "Adquisition",
-        description: "Bought 4 share from AMHSA",
-        value: "- 8,000 MXN",
-        date: "Sep 16, 2021 - 9:15",
-      },
-    ],
-  },
-];
+import { Box, Paper, Typography, Chip } from "@mui/material";
+import { Dot } from "components";
+import { demoTransactions } from "constant";
 
 export default function WalletHistory() {
-  const classes = useStyles();
-
   return (
-    <Paper className={classes.walletHistory_root} elevation={3}>
-      <Typography variant="subtitle1" className={classes.walletHistory_title}>
+    <Paper
+      sx={{
+        p: 3,
+        overflowY: "auto",
+        maxHeight: (theme) => theme.spacing(80),
+      }}
+    >
+      <Typography
+        variant="subtitle1"
+        sx={{
+          pb: 3,
+        }}
+      >
         History
       </Typography>
-      {months.map((month) => {
+      {demoTransactions.map((month) => {
         return (
-          <div
-            className={classes.walletHistory_monthContainer}
+          <Box
+            sx={{
+              "&:not(:last-child)": {
+                pb: 4,
+              },
+            }}
             key={month.month}
           >
             <Typography
               variant="subtitle2"
-              className={classes.walletHistory_month}
               color="textSecondary"
+              sx={{
+                pb: 1.5,
+              }}
             >
               {month.month}
             </Typography>
             <ul>
               {month.transactions.map((transaction) => {
                 return (
-                  <li
-                    className={classes.walletHistory_li}
+                  <Box
+                    component="li"
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      "&:not(:first-child)": {
+                        pt: 1.5,
+                      },
+                      "&:not(:last-child)": {
+                        pb: 1.5,
+                        borderBottomWidth: "1px",
+                        borderBottomStyle: "solid",
+                        borderBottomColor: (theme) => theme.palette.divider,
+                      },
+                    }}
                     key={transaction.date}
                   >
-                    <div className={classes.walletHistory_description}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
                       <Dot color={transaction.color} />
                       <div>
                         <Typography variant="subtitle2">
                           {transaction.title}
                         </Typography>
-                        <Typography variant="caption">
-                          <Typography variant="caption" color="textSecondary">
-                            {transaction.description}
-                          </Typography>
+                        <Typography variant="caption" color="textSecondary">
+                          {transaction.description}
                         </Typography>
                       </div>
-                    </div>
-                    <div className={classes.walletHistory_data}>
-                      <SquareChip
+                    </Box>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-end",
+                        textAlign: "end",
+                      }}
+                    >
+                      <Chip
                         size="small"
                         label={transaction.value}
-                        color={transaction.color}
+                        variant={transaction.color}
+                        sx={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          borderRadius: 1,
+                        }}
                       />
-                      <Typography variant="caption">
-                        <Typography variant="caption" color="textSecondary">
-                          {transaction.date}
-                        </Typography>
+                      <Typography variant="caption" color="textSecondary">
+                        {transaction.date}
                       </Typography>
-                    </div>
-                  </li>
+                    </Box>
+                  </Box>
                 );
               })}
             </ul>
-          </div>
+          </Box>
         );
       })}
     </Paper>

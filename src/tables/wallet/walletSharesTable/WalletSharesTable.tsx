@@ -1,13 +1,14 @@
-import { Avatar, TableContainer, Typography } from "@material-ui/core";
 import {
+  Avatar,
+  TableContainer,
+  Typography,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-} from "@material-ui/core";
+} from "@mui/material";
 import { formatNumber, formatPercentage2Dec } from "utils";
-import useStyles from "./walletSharesTable.jss";
 
 function createData(
   img: string,
@@ -65,11 +66,24 @@ const rows = [
 ];
 
 export default function WalletSharesTable() {
-  const classes = useStyles();
   return (
-    <TableContainer className={classes.walletSharesTable_table}>
+    <TableContainer
+      sx={{
+        whiteSpace: "nowrap",
+        "& th, & td": {
+          // borderBottomColor: "#242424",
+        },
+        "& tbody tr:last-child th, tbody tr:last-child td": {
+          borderBottom: "none",
+        },
+      }}
+    >
       <Table aria-label="simple table">
-        <TableHead className={classes.walletSharesTable_header}>
+        <TableHead
+          sx={{
+            textTransform: "capitalize",
+          }}
+        >
           <TableRow>
             <TableCell>Project</TableCell>
             <TableCell align="center">Shares</TableCell>
@@ -86,12 +100,17 @@ export default function WalletSharesTable() {
               <TableCell
                 component="th"
                 scope="row"
-                className={classes.walletSharesTable_projectName}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
                 <Avatar
                   alt="project-avatar"
                   src={row.img || undefined}
-                  className={classes.walletSharesTable_avatar}
+                  sx={{
+                    mr: 1.5,
+                  }}
                 />
                 {row.name}
               </TableCell>

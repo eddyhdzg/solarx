@@ -1,14 +1,15 @@
 import * as dayjs from "dayjs";
 import { Timestamp } from "types";
 import i18next from "i18next";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 
-export const convertBreadcrumb = (string: string) => {
-  return string
-    .replace(/-/g, " ")
-    .replace(/oe/g, "ö")
-    .replace(/ae/g, "ä")
-    .replace(/ue/g, "ü");
-};
+var utc = require("dayjs/plugin/utc");
+var timezone = require("dayjs/plugin/timezone");
+dayjs.extend(timezone);
+dayjs.extend(utc);
+dayjs.extend(localizedFormat);
+// @ts-ignore
+dayjs.tz.guess();
 
 // 1000 => 1,000
 // 1000.505 => 1,000.51
@@ -36,6 +37,12 @@ export const formatPercentage2Dec = (num: number) => {
 // 4-Jul-2021
 export const fomatTimeStamp = (date: Timestamp) =>
   dayjs.unix(date.seconds).format("D-MMM-YYYY");
+
+// Fri, Sep 24, 2021 1:00 AM
+export const fomatTimeStampWithMinAndSec = (date: Timestamp) => {
+  // @ts-ignore
+  return dayjs.unix(date.seconds)?.tz()?.format("llll");
+};
 
 export const fomatNumInYears = (num: number) => {
   return `${num.toLocaleString(undefined, {

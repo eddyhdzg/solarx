@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Seo, PageTitle } from "components";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { useTheme, useMediaQuery } from "@material-ui/core";
+import { useTheme, useMediaQuery } from "@mui/material";
 import WalletDesktopLayout from "../walletDesktopLayout/WalletDesktopLayout";
 import WalletMobileLayout from "../walletMobileLayout/WalletMobileLayout";
 

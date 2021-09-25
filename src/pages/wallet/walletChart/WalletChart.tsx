@@ -9,61 +9,13 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useMemo } from "react";
-import { useTheme } from "@material-ui/core";
+import { Box, useTheme, alpha } from "@mui/material";
 import { formatMoney, formatNumber } from "utils";
-import useStyles from "./walletChart.jss";
-
-const demoData: {
-  name: string;
-  Stocks: number;
-  Cash: number;
-}[] = [
-  {
-    name: "Oct. 2010",
-    Stocks: 0,
-    Cash: 0,
-  },
-  {
-    name: "Jan. 2020",
-    Stocks: 10200,
-    Cash: 411.22,
-  },
-  {
-    name: "Apr. 2020",
-    Stocks: 10200,
-    Cash: 841.87,
-  },
-  {
-    name: "Jul. 2020",
-    Stocks: 10200,
-    Cash: 1291.11,
-  },
-  {
-    name: "Oct. 2020",
-    Stocks: 10200,
-    Cash: 1803.7,
-  },
-  {
-    name: "Jan. 2021",
-    Stocks: 10200,
-    Cash: 2219.45,
-  },
-  {
-    name: "Apr. 2021",
-    Stocks: 10200,
-    Cash: 2613.18,
-  },
-  {
-    name: "Jul 2021",
-    Stocks: 10200,
-    Cash: 3043.96,
-  },
-];
+import { demoWalletData } from "constant";
 
 export default function WalletChart() {
-  const classes = useStyles();
   const data = useMemo(() => {
-    return demoData.map((col) => {
+    return demoWalletData.map((col) => {
       return { ...col, "Total Balance": col.Cash + col.Stocks };
     });
   }, []);
@@ -71,7 +23,12 @@ export default function WalletChart() {
   const theme = useTheme();
 
   return (
-    <div className={classes.walletChart_root}>
+    <Box
+      sx={{
+        width: "100%",
+        height: (theme) => theme.spacing(50),
+      }}
+    >
       <ResponsiveContainer>
         <LineChart
           data={data}
@@ -90,7 +47,7 @@ export default function WalletChart() {
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: "#1B1B1BF0",
+              backgroundColor: alpha(theme.palette.background.default, 0.85),
               borderRadius: theme.spacing(0.5),
               borderColor: theme.palette.divider,
             }}
@@ -119,6 +76,6 @@ export default function WalletChart() {
           />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </Box>
   );
 }

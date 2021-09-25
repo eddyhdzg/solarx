@@ -1,12 +1,21 @@
-import { CircularProgress } from "@material-ui/core";
-import useStyles from './centerLoader.jss'
+import { Box, CircularProgress } from "@mui/material";
 
 const CenterLoader: React.FC = () => {
-  const classes = useStyles();
   return (
-    <div className={classes.center_container}>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "absolute",
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      }}
+    >
       <CircularProgress />
-    </div>
+    </Box>
   );
 };
 

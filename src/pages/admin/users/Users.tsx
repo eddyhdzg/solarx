@@ -12,6 +12,8 @@ import { useHeader, useUsersColumns, useStore } from "hooks";
 import { Seo, PageTitle } from "components";
 import shallow from "zustand/shallow";
 import { useTranslation } from "react-i18next";
+import { usersSearchFilters } from "constant";
+import { fuzzyTextFilterFn } from "utils";
 
 export default function UsersPage() {
   const { onChangeRoute } = useHeader();
@@ -37,16 +39,18 @@ export default function UsersPage() {
 
 function Users() {
   const { data: firestoreUsers } = useFirestoreUsers();
+  const usersColumns: any = useUsersColumns();
+  const globalFilter = useFuzzyGlobalFilter(usersSearchFilters);
   const {
     users: { pageSize },
   } = useStore(({ users }) => ({ users }), shallow);
-
-  const usersColumns: any = useUsersColumns();
-  const usersFilters = useMemo(
-    () => ["uid", "displayName", "email", "role"],
+  const filterTypes = useMemo(
+    () => ({
+      fuzzyText: fuzzyTextFilterFn,
+    }),
     []
   );
-  const globalFilter = useFuzzyGlobalFilter(usersFilters);
+
   const { setFilter, setGlobalFilter, ...table } = useTable(
     {
       columns: usersColumns,
@@ -57,6 +61,8 @@ function Users() {
       },
       // @ts-ignore
       globalFilter,
+      // @ts-ignore
+      filterTypes,
     },
     useFilters,
     useGlobalFilter,

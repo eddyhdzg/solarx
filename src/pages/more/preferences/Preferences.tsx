@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import { Seo, GridItem, PageTitle } from "components";
 import { useHeader } from "hooks";
 import LocaleSection from "./subComponents/localeSection/LocaleSection";
-import useStyles from "./preferences.jss";
-import { Grid } from "@material-ui/core";
+import { Box, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 export default function PreferencesPage() {
@@ -27,15 +26,17 @@ export default function PreferencesPage() {
 }
 
 function Preferences() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        maxWidth: (theme) => theme.spacing(100),
+      }}
+    >
       <Grid container direction="row" spacing={4}>
         <GridItem xs={12}>
           <LocaleSection />
         </GridItem>
       </Grid>
-    </div>
+    </Box>
   );
 }

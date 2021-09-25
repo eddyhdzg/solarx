@@ -31,6 +31,7 @@ export const addUser = functions.auth.user().onCreate((user) => {
     displayName,
     email,
     role: "DEFAULT",
+    created: admin.firestore.FieldValue.serverTimestamp(),
   };
 
   return admin.firestore().collection("users").doc(uid).set(newUser);

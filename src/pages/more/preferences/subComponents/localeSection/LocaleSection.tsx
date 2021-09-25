@@ -1,10 +1,8 @@
-import { Divider, Typography, Grid } from "@material-ui/core";
+import { Divider, Typography, Grid } from "@mui/material";
 import { LocaleSelect, SectionBlock, GridItem } from "components";
-import useStyles from "./localeSection.jss";
 import { useTranslation } from "react-i18next";
 
 export default function LocaleSection() {
-  const classes = useStyles();
   const { t } = useTranslation();
   const { Row } = SectionBlock;
 
@@ -26,7 +24,11 @@ export default function LocaleSection() {
           <GridItem
             xs={7}
             sm={8}
-            className={classes.localeSection_selectContainer}
+            sx={{
+              maxWidth: {
+                md: 300,
+              },
+            }}
           >
             <LocaleSelect fullWidth />
           </GridItem>

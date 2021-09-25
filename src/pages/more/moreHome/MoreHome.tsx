@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import { Seo, GridItem, PageTitle, SectionButton } from "components";
 import { useHeader } from "hooks";

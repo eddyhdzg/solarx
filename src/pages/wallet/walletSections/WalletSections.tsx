@@ -1,21 +1,22 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import WalletSummary from "../walletSummary/WalletSummary";
 import WalletShares from "../walletShares/WalletShares";
 import WalletHistory from "../walletHistory/WalletHistory";
 import WalletChartContainer from "../walletChartContainer/WalletChartContainer";
+import { GridItem } from "components";
 
 export function WalletPortfolioSection() {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12}>
+      <GridItem>
         <WalletSummary />
-      </Grid>
-      <Grid item xs={12}>
+      </GridItem>
+      <GridItem>
         <WalletChartContainer />
-      </Grid>
-      <Grid item xs={12}>
+      </GridItem>
+      <GridItem>
         <WalletShares />
-      </Grid>
+      </GridItem>
     </Grid>
   );
 }

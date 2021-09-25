@@ -1,126 +1,87 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import {
   Avatar,
-  IconButton,
-  MenuList,
+  Menu,
   MenuItem,
-  Popper,
-  Paper,
-  Grow,
-  ClickAwayListener,
-} from "@material-ui/core";
+  ListItemIcon,
+  Divider,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useSigninCheck } from "reactfire";
-import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
-import useStyles from "./accountButton.jss";
 import { useCustomAuth } from "hooks";
-import SignInWithGoogle from "../signInWithGoogle/SignInWithGoogle";
+import { SignInWithGoogle } from "components";
 import { useTranslation } from "react-i18next";
 
-const AccountButton: React.FC = () => {
-  const classes = useStyles();
+export default function AccountMenu() {
   const { t } = useTranslation();
   const { signOut } = useCustomAuth();
   const { data: signinResult } = useSigninCheck();
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef<HTMLButtonElement>(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event: React.MouseEvent<EventTarget>) => {
-    if (
-      anchorRef.current &&
-      anchorRef.current.contains(event.target as HTMLElement)
-    ) {
-      return;
-    }
-
-    setOpen(false);
-  };
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
 
   const handleSignOut = () => {
-    signOut().finally(() => {
-      setOpen(false);
-    });
+    signOut();
   };
 
-  function handleListKeyDown(event: React.KeyboardEvent) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
-  const prevOpen = useRef(open);
-  useEffect(() => {
-    if (prevOpen.current === true && open === false) {
-      anchorRef?.current?.focus();
-    }
-
-    prevOpen.current = open;
-  }, [open, anchorRef]);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    <div>
-      {!signinResult?.signedIn && <SignInWithGoogle />}
-
-      <IconButton
-        aria-label="account of current user"
-        aria-haspopup="true"
-        ref={anchorRef}
-        aria-controls={open ? "menu-list-grow" : undefined}
-        onClick={handleToggle}
-        className={[
-          classes.accountButton_iconButton,
-          !signinResult?.signedIn && classes.accountButton_hide,
-        ].join(" ")}
-      >
-        <Avatar
-          alt="google avatar"
-          src={signinResult?.user?.photoURL || undefined}
-        />
-      </IconButton>
-
-      <Popper
+    <>
+      {signinResult?.signedIn ? (
+        <Tooltip title={t("auth.myAccount")}>
+          <IconButton onClick={handleClick}>
+            <Avatar
+              alt="avatar"
+              src={signinResult?.user?.photoURL || undefined}
+            />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <SignInWithGoogle />
+      )}
+      <Menu
+        anchorEl={anchorEl}
         open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        className={
-          !signinResult?.signedIn ? classes.accountButton_hide : undefined
-        }
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          sx: {
+            mt: 1.5,
+            minWidth: 200,
+          },
+        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleSignOut}>
-                    <ExitToAppRoundedIcon
-                      className={classes.accountButton_icon}
-                    />
-                    {t("forms.signOut")}
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </div>
+        <MenuItem>
+          <ListItemIcon>
+            <AccountCircleIcon />
+          </ListItemIcon>
+          {t("pages.more.accountInformation.myProfile")}
+        </MenuItem>
+        <MenuItem>
+          <ListItemIcon>
+            <Settings />
+          </ListItemIcon>
+          {t("pages.more.preferences.preferences")}
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleSignOut}>
+          <ListItemIcon>
+            <Logout />
+          </ListItemIcon>
+          {t("auth.signOut")}
+        </MenuItem>
+      </Menu>
+    </>
   );
-};
-
-export default AccountButton;
+}
