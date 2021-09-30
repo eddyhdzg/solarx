@@ -2,11 +2,6 @@ import { PaletteMode } from "@mui/material";
 
 export type ThemeType = PaletteMode | "system";
 
-declare module "@material-ui/core/styles/createBreakpoints" {
-  interface BreakpointOverrides {
-    xxs: true; // adds the `xxs` breakpoint
-  }
-}
 declare module "@mui/material/styles" {
   interface Theme {
     custom: {
@@ -65,6 +60,12 @@ declare module "@mui/material/styles" {
   }
 }
 
+declare module "@mui/material/Button" {
+  interface ButtonPropsVariantOverrides {
+    paper: true;
+  }
+}
+
 declare module "@mui/material/Chip" {
   interface ChipPropsVariantOverrides {
     blue: true;
@@ -92,5 +93,11 @@ declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     subtitle3: true;
     body3: true;
+  }
+}
+
+declare module "@mui/material/TextField" {
+  interface BaseTextFieldProps {
+    success?: boolean;
   }
 }

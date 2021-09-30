@@ -45,7 +45,6 @@ export default function ShareButton() {
     </Button>
   ) : (
     <Tooltip
-      arrow
       leaveTouchDelay={3000}
       enterTouchDelay={0}
       title={

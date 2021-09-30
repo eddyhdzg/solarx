@@ -21,15 +21,7 @@ export default function LocaleSection() {
               {t("pages.more.preferences.interfaceLanguage")}
             </Typography>
           </GridItem>
-          <GridItem
-            xs={7}
-            sm={8}
-            sx={{
-              maxWidth: {
-                md: 300,
-              },
-            }}
-          >
+          <GridItem xs={7} sm={8}>
             <LocaleSelect fullWidth />
           </GridItem>
         </Grid>

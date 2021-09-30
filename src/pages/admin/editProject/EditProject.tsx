@@ -95,11 +95,13 @@ function EditProject() {
       []
     ) as IProjectMediaFormSchema;
 
+    let dataPromise;
+    let mediaPromise;
+
     if (Object.keys(dirtyDataValues).length) {
-      editProjectDataMutation(id || "", dirtyDataValues)
+      dataPromise = editProjectDataMutation(id || "", dirtyDataValues)
         .then(() => {
           enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
-          methods.reset({}, { keepValues: true });
         })
         .catch(() => {
           enqueueSnackbar(t("snackbar.projectNotEdited"), { variant: "error" });
@@ -107,15 +109,18 @@ function EditProject() {
     }
 
     if (Object.keys(dirtyMediaValues).length) {
-      editProjectMediaMutation(id, dirtyMediaValues)
+      mediaPromise = editProjectMediaMutation(id, dirtyMediaValues)
         .then(() => {
           enqueueSnackbar(t("snackbar.mediaEdited"), { variant: "success" });
-          methods.reset({}, { keepValues: true });
         })
         .catch(() => {
           enqueueSnackbar(t("snackbar.mediaNotEdited"), { variant: "error" });
         });
     }
+
+    Promise.all([dataPromise, mediaPromise]).finally(() => {
+      methods.reset({}, { keepValues: true });
+    });
   });
 
   return (

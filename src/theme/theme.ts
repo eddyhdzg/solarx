@@ -1,23 +1,7 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { yellow, grey } from "@mui/material/colors";
 
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: yellow,
-    secondary: grey,
-  },
-  breakpoints: {
-    keys: ["xxs", "xs", "sm", "md", "lg", "xl"],
-    values: {
-      xxs: 0,
-      xs: 400,
-      sm: 768,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
+const customTheme = {
   custom: {
     gradient: "linear-gradient(60deg, #FBDE51, #F2805A)",
     login: "linear-gradient(135deg,rgb(48, 50, 54), rgb(31, 32, 35))",
@@ -39,6 +23,25 @@ const theme = createTheme({
       12: "linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14))",
       16: "linear-gradient(rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.15))",
       24: "linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.16))",
+    },
+  },
+};
+
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: yellow,
+    secondary: grey,
+  },
+  breakpoints: {
+    keys: ["xxs", "xs", "sm", "md", "lg", "xl"],
+    values: {
+      xxs: 0,
+      xs: 400,
+      sm: 768,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
     },
   },
   components: {
@@ -80,14 +83,14 @@ const theme = createTheme({
           props: { variant: "red" },
           style: {
             color: "#f44336",
-            backgroundColor: "rgba(250, 82, 82, 0.21)",
+            backgroundColor: "rgba(250, 82, 82, 0.15)",
           },
         },
         {
           props: { variant: "deposit" },
           style: {
             color: "#00BFA5",
-            backgroundColor: "rgba(0, 191, 165, 0.21)",
+            backgroundColor: "rgba(0, 191, 165, 0.15)",
           },
         },
       ],
@@ -99,6 +102,25 @@ const theme = createTheme({
           backgroundColor: "#212121",
         },
       },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          "&.MuiButton-colorInherit:not(:last-of-type)": {
+            borderRightColor: "inherit",
+          },
+        },
+      },
+
+      variants: [
+        {
+          props: { variant: "contained", color: "inherit" },
+          style: {
+            backgroundColor: `#121212 !important`,
+            backgroundImage: `${customTheme.custom.elevation[6]} !important`,
+          },
+        },
+      ],
     },
   },
   typography: {
@@ -155,11 +177,12 @@ const theme = createTheme({
     button: {
       fontWeight: 600,
       lineHeight: "150%",
-      textTransform: "capitalize",
+      textTransform: "none",
     },
     caption: {},
     overline: {},
   },
+  ...customTheme,
 });
 
 export default responsiveFontSizes(theme, {

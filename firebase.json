@@ -13,11 +13,29 @@
       ],
       "headers": [
         {
-          "source": "**/*.@(js|html)",
+          "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(jpg|jpeg|gif|png)",
           "headers": [
             {
               "key": "Cache-Control",
-              "value": "max-age=0"
+              "value": "max-age=7200"
+            }
+          ]
+        },
+        {
+          "source": "404.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "max-age=300"
             }
           ]
         }
@@ -45,9 +63,15 @@
     "source": "functions"
   },
   "emulators": {
+    "functions": {
+      "port": 5001
+    },
     "firestore": {
       "rules": "firestore.rules",
       "port": 8080
+    },
+    "hosting": {
+      "port": 5000
     },
     "ui": {
       "enabled": true

@@ -20,7 +20,7 @@ const RouterMemo: React.FC = ({ children }) => {
     if (baseRoute in routerMemo) {
       dispatch({
         type: "ROUTERMEMO_UPDATE_MEMO",
-        payload: { key: baseRoute, route: location.pathname },
+        payload: { key: baseRoute, route: location.pathname + location.search },
       });
     }
 

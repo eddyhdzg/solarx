@@ -1,34 +1,35 @@
 import { useState } from "react";
 import {
-  Box,
   Button,
   Typography,
-  Fade,
-  Popover,
   IconButton,
-  Tooltip,
   Select,
   FormControl,
   TextField,
   InputLabel,
-  Grid,
   OutlinedInput,
 } from "@mui/material";
 import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
-import { Controller, Control, UseFormReset } from "react-hook-form";
-import { ProjectFiltersSchema } from "hooks";
 import { useTranslation } from "react-i18next";
 import { GridItem } from "components";
+import {
+  StyledTooltip,
+  Content,
+  Header,
+  StyledGrid,
+  StyledPopover,
+} from "./FilterMenu.styled";
+import { useRouterState } from "hooks";
 
-interface IFilterMenuProps {
-  control: Control<ProjectFiltersSchema>;
-  reset: UseFormReset<ProjectFiltersSchema>;
-}
-
-export default function FilterMenu({ control, reset }: IFilterMenuProps) {
+export default function FilterMenu() {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const {
+    values: { id = "", name = "", location = "", funded = "" },
+    onChange,
+    onReset,
+  } = useRouterState();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -39,17 +40,12 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
   };
 
   const handleReset = () => {
-    reset({ id: "", funded: "", location: "", name: "" });
+    onReset(["id", "name", "location", "funded"]);
   };
 
   return (
     <div>
-      <Tooltip
-        title={t("forms.filter")}
-        sx={{
-          textTransform: "capitalize",
-        }}
-      >
+      <StyledTooltip title={t("forms.filter")}>
         <IconButton
           aria-label="project filter menu"
           aria-controls="project-filter-menu"
@@ -58,94 +54,53 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
         >
           <FilterListRoundedIcon />
         </IconButton>
-      </Tooltip>
-      <Popover
+      </StyledTooltip>
+      <StyledPopover
         id="filter-menu"
         anchorEl={anchorEl}
         keepMounted
         open={open}
         onClose={handleClose}
-        TransitionComponent={Fade}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <Box
-          sx={{
-            pt: 2,
-            px: 3,
-            pb: 3,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              mb: 1,
-            }}
-          >
+        <Content>
+          <Header>
             <Typography variant="button">{t("forms.filter")}</Typography>
             <Button color="primary" onClick={handleReset}>
               {t("forms.reset")}
             </Button>
-          </Box>
+          </Header>
           <form noValidate autoComplete="off">
-            <Grid
-              container
-              spacing={3}
-              sx={{
-                maxWidth: (theme) => theme.spacing(60),
-              }}
-            >
+            <StyledGrid container spacing={3}>
               <GridItem xs={6}>
-                <Controller
+                <TextField
+                  id="id"
                   name="id"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      id="id-filter"
-                      label={t("forms.id")}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
+                  label={t("forms.id")}
+                  fullWidth
+                  value={id}
+                  onChange={onChange}
                 />
               </GridItem>
               <GridItem xs={6}>
-                <Controller
+                <TextField
+                  id="name"
                   name="name"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      id="name-filter"
-                      label={t("forms.name")}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
+                  label={t("forms.name")}
+                  fullWidth
+                  value={name}
+                  onChange={onChange}
                 />
               </GridItem>
-
               <GridItem xs={6}>
-                <Controller
+                <TextField
+                  id="location"
                   name="location"
-                  control={control}
-                  render={({ field }) => (
-                    <TextField
-                      id="location-filter"
-                      label={t("forms.location")}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
+                  label={t("forms.location")}
+                  fullWidth
+                  value={location}
+                  onChange={onChange}
                 />
               </GridItem>
               <GridItem xs={6}>
@@ -153,33 +108,31 @@ export default function FilterMenu({ control, reset }: IFilterMenuProps) {
                   <InputLabel htmlFor="funded-filter">
                     {t("forms.founded")}
                   </InputLabel>
-                  <Controller
-                    control={control}
+                  <Select
+                    id="funded"
                     name="funded"
-                    render={({ field }) => (
-                      <Select
-                        native
-                        input={
-                          <OutlinedInput
-                            name="funded"
-                            label={t("forms.founded")}
-                            id="funded-filter"
-                          />
-                        }
-                        {...field}
-                      >
-                        <option value={""} />
-                        <option value={"true"}>{t("forms.founded")}</option>
-                        <option value={"false"}>{t("forms.notFounded")}</option>
-                      </Select>
-                    )}
-                  />
+                    native
+                    value={funded}
+                    input={
+                      <OutlinedInput
+                        name="funded"
+                        label={t("forms.founded")}
+                        id="funded-filter"
+                      />
+                    }
+                    // @ts-ignore
+                    onChange={onChange}
+                  >
+                    <option value={""} />
+                    <option value={"true"}>{t("forms.founded")}</option>
+                    <option value={"false"}>{t("forms.notFounded")}</option>
+                  </Select>
                 </FormControl>
               </GridItem>
-            </Grid>
+            </StyledGrid>
           </form>
-        </Box>
-      </Popover>
+        </Content>
+      </StyledPopover>
     </div>
   );
 }

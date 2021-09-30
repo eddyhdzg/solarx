@@ -59,10 +59,8 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       {
         id: "sharePrice",
         Header: t("projects.sharePrice"),
-        accessor: ({ sharePrice }: Project) => sharePrice ?? 0,
+        accessor: ({ sharePrice = 0 }: Project) => formatMoney(sharePrice),
         className: "alignRight",
-        Cell: ({ value = 0 }: { value: Project["sharePrice"] }) =>
-          formatMoney(value),
       },
       {
         id: "roi",

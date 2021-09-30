@@ -1,12 +1,12 @@
-import {
-  AppBar,
-  BottomNavigation,
-  BottomNavigationAction,
-} from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { TBaseRoutes } from "types";
 import { NavLink } from "react-router-dom";
 import { RouterTree } from "hooks/router/useRouterTree";
+import {
+  StyledAppBar,
+  StyledBottomNavigation,
+  StyledBottomNavigationAction,
+} from "./MobileAppbar.styled";
 
 interface IMobileAppbarProps {
   routerTree: RouterTree;
@@ -20,34 +20,10 @@ const MobileAppbar: React.FC<IMobileAppbarProps> = ({
   const { pathname } = useLocation();
 
   return (
-    <AppBar
-      position="fixed"
-      color="transparent"
-      sx={{
-        top: "auto",
-        bottom: 0,
-        width: "100%",
-        backgroundColor: (theme) =>
-          theme.custom.glassBackground.backgroundColor,
-        backdropFilter: (theme) => theme.custom.glassBackground.backdropFilter,
-      }}
-    >
-      <BottomNavigation
-        value={pathname}
-        sx={{
-          borderTopWidth: 1,
-          borderTopStyle: "solid",
-          borderTopColor: (theme) => theme.palette.divider,
-          width: "100%",
-          height: "calc(56px + env(safe-area-inset-bottom))",
-          backgroundColor: "transparent",
-          '& [class*="-label"]': {
-            display: "none",
-          },
-        }}
-      >
+    <StyledAppBar position="fixed" color="transparent">
+      <StyledBottomNavigation value={pathname}>
         {Object.entries(routerTree).map(([route, { icon: Icon }]) => (
-          <BottomNavigationAction
+          <StyledBottomNavigationAction
             key={route}
             component={NavLink}
             to={getMemoryRoute(route as TBaseRoutes)}
@@ -63,13 +39,10 @@ const MobileAppbar: React.FC<IMobileAppbarProps> = ({
                 }}
               />
             }
-            sx={{
-              pb: "calc(8px + env(safe-area-inset-bottom))",
-            }}
           />
         ))}
-      </BottomNavigation>
-    </AppBar>
+      </StyledBottomNavigation>
+    </StyledAppBar>
   );
 };
 

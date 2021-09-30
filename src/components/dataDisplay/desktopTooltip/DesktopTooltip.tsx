@@ -1,19 +1,12 @@
-import { styled } from "@mui/material/styles";
-import { Tooltip, Zoom, TooltipProps, tooltipClasses } from "@mui/material";
+import { Zoom, TooltipProps } from "@mui/material";
+import { DesktopTooltipRoot } from "./DesktopTooltip.styled";
 
-const DesktopTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip
+const DesktopTooltip = ({ className, ...props }: TooltipProps) => (
+  <DesktopTooltipRoot
     {...props}
     classes={{ popper: className }}
     TransitionComponent={Zoom}
   />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.black,
-    borderWidth: 2,
-    borderColor: theme.palette.divider,
-    borderStyle: "solid",
-  },
-}));
+);
 
 export default DesktopTooltip;

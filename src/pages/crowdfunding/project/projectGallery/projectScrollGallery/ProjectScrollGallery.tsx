@@ -1,5 +1,6 @@
-import { Dialog, DialogContent, ImageList, ImageListItem } from "@mui/material";
+import { Dialog, DialogContent, ImageList } from "@mui/material";
 import { Project } from "types";
+import { StyledImageListItem } from "./ProjectScrollGallery.styled";
 
 interface IProjectScrollGalleryProps {
   images: Project["images"];
@@ -26,18 +27,13 @@ export default function ProjectScrollGallery({
         <DialogContent>
           <ImageList variant="quilted" rowHeight={240} cols={2} gap={8}>
             {images!.map((image, index) => (
-              <ImageListItem
+              <StyledImageListItem
                 key={image}
                 cols={index % 3 ? 1 : 2}
                 rows={index % 3 ? 1 : 2}
-                sx={{
-                  "& .MuiImageListItem-img": {
-                    borderRadius: 1,
-                  },
-                }}
               >
                 <img src={image} alt={`project-${index}`} />
-              </ImageListItem>
+              </StyledImageListItem>
             ))}
           </ImageList>
         </DialogContent>

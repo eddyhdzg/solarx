@@ -1,54 +1,112 @@
+import { Timespan } from "types";
 export * from "./mexicanCities.constant";
 export * from "./mexicanStates.constant";
 export * from "./others.constant";
 export * from "./projects.constant";
 export * from "./users.constant";
 
-// Erase later
+const oneMonthNanoSeconds = 2678400000;
+const threeMonthNanoSeconds = 8000000000;
+const oneYearNanoSeconds = 31062204000;
+
+export const nanosecondsHash: {
+  [key in Timespan]: number;
+} = {
+  "1M": oneMonthNanoSeconds,
+  "3M": threeMonthNanoSeconds,
+  "1Y": oneYearNanoSeconds,
+  H: Infinity,
+};
+
 export const demoWalletData: {
-  name: string;
   Stocks: number;
   Cash: number;
+  "SolarX Points": number;
+  nanoseconds: number;
 }[] = [
   {
-    name: "Oct. 2010",
     Stocks: 0,
     Cash: 0,
+    "SolarX Points": 1000,
+    nanoseconds: 1594962000000,
   },
   {
-    name: "Jan. 2020",
+    Stocks: 0,
+    Cash: 1000,
+    "SolarX Points": 1000,
+    nanoseconds: 1614578400000,
+  },
+  {
     Stocks: 10200,
     Cash: 411.22,
+    "SolarX Points": 0,
+    nanoseconds: 1617256800000,
   },
   {
-    name: "Apr. 2020",
     Stocks: 10200,
     Cash: 841.87,
+    "SolarX Points": 0,
+    nanoseconds: 1619845200000,
   },
   {
-    name: "Jul. 2020",
     Stocks: 10200,
     Cash: 1291.11,
+    "SolarX Points": 0,
+    nanoseconds: 1622523600000,
   },
   {
-    name: "Oct. 2020",
     Stocks: 10200,
     Cash: 1803.7,
+    "SolarX Points": 0,
+    nanoseconds: 1625115600000,
   },
   {
-    name: "Jan. 2021",
     Stocks: 10200,
     Cash: 2219.45,
+    "SolarX Points": 0,
+    nanoseconds: 1627794000000, // AGO 1
   },
   {
-    name: "Apr. 2021",
     Stocks: 10200,
     Cash: 2613.18,
+    "SolarX Points": 200,
+    nanoseconds: 1630472400000, // SEP 1
   },
   {
-    name: "Jul 2021",
+    Stocks: 10200,
+    Cash: 10013.18,
+    "SolarX Points": 200,
+    nanoseconds: 1631768400000, // SEP 16
+  },
+  {
+    Stocks: 10200,
+    Cash: 5013.18,
+    "SolarX Points": 200,
+    nanoseconds: 1631854800000, // SEP 17
+  },
+  {
     Stocks: 10200,
     Cash: 3043.96,
+    "SolarX Points": 200,
+    nanoseconds: 1633064400000, // OCT 1
+  },
+  {
+    Stocks: 10200,
+    Cash: 3192.07,
+    "SolarX Points": 200,
+    nanoseconds: 1633064400000, // OCT 1
+  },
+  {
+    Stocks: 10200,
+    Cash: 2992.07,
+    "SolarX Points": 200,
+    nanoseconds: 1633323600000, // OCT 4
+  },
+  {
+    Stocks: 10200,
+    Cash: 4992.07,
+    "SolarX Points": 200,
+    nanoseconds: 1633842000000, // OCT 10
   },
 ];
 
@@ -67,7 +125,7 @@ export const demoTransactions: {
     transactions: [
       {
         color: "deposit",
-        title: "Deposit",
+        title: "Deposit ",
         description: "Cash added to wallet",
         value: "+ 2,000 MXN",
         date: "Oct 10, 2021 - 17:23 CT",

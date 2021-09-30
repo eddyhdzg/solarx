@@ -1,45 +1,30 @@
 import { useState } from "react";
 import { SegmentedControl } from "components";
-import { Paper } from "@mui/material";
 import { TabPanel, TabContext } from "@mui/lab";
 import WithdrawTab from "../withdrawTab/WithdrawTab";
 import DepositTab from "../depositTab/DepositTab";
+import { WalletActionsRoot, StyledTabPanel } from "./WalletActions.styled";
 
 export default function WalletActions() {
   const [tabIndex, setTabIndex] = useState(0);
   return (
-    <Paper
-      sx={{
-        p: 3,
-      }}
-    >
+    <WalletActionsRoot>
       <TabContext value={tabIndex.toString()}>
         <SegmentedControl
           value={tabIndex}
           onChange={(_, index) => setTabIndex(index)}
-          centered
           selectionFollowsFocus
         >
           <SegmentedControl.Segment disableRipple label="Withdraw" />
           <SegmentedControl.Segment disableRipple label="Deposit" />
         </SegmentedControl>
-        <TabPanel
-          value="0"
-          sx={{
-            p: 0,
-          }}
-        >
+        <StyledTabPanel value="0">
           <WithdrawTab />
-        </TabPanel>
-        <TabPanel
-          value="1"
-          sx={{
-            p: 0,
-          }}
-        >
+        </StyledTabPanel>
+        <TabPanel value="1">
           <DepositTab />
         </TabPanel>
       </TabContext>
-    </Paper>
+    </WalletActionsRoot>
   );
 }

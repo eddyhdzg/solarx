@@ -18,6 +18,17 @@ export interface Project {
   totalShares?: number;
 }
 
+export interface Discount {
+  id?: string;
+  name?: string;
+  description?: string;
+  discount?: number;
+  quantity?: number;
+  sold?: number;
+}
+
+export interface NewDiscount extends Omit<Discount, "id" | "sold"> {}
+
 export type ProjectsType = "cards" | "table";
 
 export type ProjectSection = "crowdfunding" | "admin/projects";

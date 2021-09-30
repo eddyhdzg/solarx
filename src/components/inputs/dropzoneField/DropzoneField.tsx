@@ -1,14 +1,20 @@
 import { useFormContext, Controller } from "react-hook-form";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { DropzoneFieldBox, CloudUploadIcon } from "./DropzoneField.styled";
 
 interface IDropzoneProps extends DropzoneOptions {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  success: boolean;
 }
 
-const Dropzone = ({ onChange, multiple, ...options }: IDropzoneProps) => {
+const Dropzone = ({
+  onChange,
+  multiple,
+  success,
+  ...options
+}: IDropzoneProps) => {
   const { t } = useTranslation();
   const { getRootProps, getInputProps } = useDropzone({
     multiple,
@@ -18,31 +24,16 @@ const Dropzone = ({ onChange, multiple, ...options }: IDropzoneProps) => {
   const text = multiple ? t("forms.DragNDropfiles") : t("forms.DragNDropfile");
 
   return (
-    <Box
+    <DropzoneFieldBox
+      success={success}
       {...getRootProps({ className: "dropzone" })}
-      sx={{
-        py: 4,
-        px: 2,
-        minHeight: 80,
-        borderRadius: 0.5,
-        width: "100%",
-        backgroundColor: (theme) => theme.palette.grey[800],
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-      }}
     >
       <input {...getInputProps({ onChange })} />
-      <CloudUploadIcon
-        sx={{
-          mb: 2,
-        }}
-      />
-      <Typography variant="body2" component="p" color="textSecondary">
+      <CloudUploadIcon />
+      <Typography variant="body2" component="p" color="inherit">
         {text}
       </Typography>
-    </Box>
+    </DropzoneFieldBox>
   );
 };
 
@@ -55,7 +46,11 @@ const DropzoneField = ({ name, ...rest }: IDropzoneFieldProps) => {
 
   return (
     <Controller
-      render={({ field: { onChange, ref, ...field } }) => (
+      render={({
+        field: { onChange, ref, ...field },
+        fieldState,
+        formState,
+      }) => (
         <Dropzone
           onDrop={(e) => {
             return onChange(e);
@@ -65,6 +60,7 @@ const DropzoneField = ({ name, ...rest }: IDropzoneFieldProps) => {
           }}
           {...field}
           {...rest}
+          success={fieldState.isDirty && !formState.errors[name]}
         />
       )}
       name={name}

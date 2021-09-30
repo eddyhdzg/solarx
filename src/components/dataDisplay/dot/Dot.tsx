@@ -1,26 +1,19 @@
-import { Box, Theme } from "@mui/material";
+import { useTheme } from "@mui/material";
+import { DotRoot } from "./Dot.styled";
 
 export interface IDotProps {
-  color?: "default" | "deposit" | "red";
+  color?: "default" | "deposit" | "red" | "stocks" | "totalBalance";
 }
 
 export default function Dot({ color = "default" }: IDotProps) {
+  const theme = useTheme();
   const colorMap = {
-    default: (theme: Theme) => theme.palette.text.primary,
-    deposit: (theme: Theme) => theme.custom.cash,
-    red: (theme: Theme) => theme.palette.error.main,
+    default: theme.palette.text.primary,
+    deposit: theme.custom.cash,
+    red: theme.palette.error.main,
+    stocks: theme.custom.stocks,
+    totalBalance: theme.custom.totalBalance,
   };
 
-  return (
-    <Box
-      component="span"
-      sx={{
-        mr: 1,
-        p: 0.5,
-        borderRadius: "50%",
-        display: "inline-block",
-        backgroundColor: colorMap[color],
-      }}
-    />
-  );
+  return <DotRoot backgroundColor={colorMap[color]} />;
 }

@@ -1,14 +1,5 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Card,
-  CardActions,
-  CardContent,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import {
   formatMoney,
   formatPercentage,
@@ -17,11 +8,20 @@ import {
   fomatNumInYears,
 } from "utils";
 import { useSigninCheck } from "reactfire";
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { GradientLinearProgress } from "components";
+import { GradientLinearProgress, Counter } from "components";
 import { Project } from "types";
 import { useTranslation } from "react-i18next";
+import {
+  ProjectCardRoot,
+  Content,
+  Header,
+  ProgressWrapper,
+  StyledDivider,
+  StatsWrapper,
+  StyledCardActions,
+  Li,
+  Ul,
+} from "./ProjectCard.styled";
 
 interface IProjectCardProps
   extends Pick<Project, "sharesSold" | "totalShares" | "sharePrice"> {
@@ -40,41 +40,17 @@ export default function ProjectCard({
   const percentage = (sharesSold / totalShares) * 100;
   const { data: signinResult } = useSigninCheck();
   const [shares, setShares] = useState(1);
-
   const handleChangeShares = (num: number) => {
     setShares(shares + num);
   };
+  const max = totalShares - sharesSold;
+  const error = shares < 1 || shares > max;
 
   return (
-    <Card
-      sx={{
-        maxWidth: (theme) => theme.spacing(60),
-        borderRadius: 2.5,
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: (theme) => theme.palette.grey[800],
-        boxShadow: 8,
-        zIndex: 1,
-        m: {
-          xxs: "auto",
-          lg: "unset",
-        },
-      }}
-    >
-      <CardContent
-        sx={{
-          p: 4,
-        }}
-      >
+    <ProjectCardRoot>
+      <Content>
         <div>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "space-between",
-              flexWrap: "wrap",
-            }}
-          >
+          <Header>
             <Typography variant="h5" component="h4">
               {formatPercentage(percentage)} {t("projects.funded")}
             </Typography>
@@ -82,38 +58,18 @@ export default function ProjectCard({
               {formatNumber(sharesSold)} / {formatNumber(totalShares)}{" "}
               {t("projects.shares")}
             </Typography>
-          </Box>
-          <Box
-            sx={{
-              my: 1,
-            }}
-          >
+          </Header>
+          <ProgressWrapper>
             <GradientLinearProgress value={percentage} />
-          </Box>
+          </ProgressWrapper>
           <Typography variant="body3" color="textSecondary">
             {formatMoney(sharePrice * sharesSold)}{" "}
             {t("pages.crowdfunding.project.raisedOf")}{" "}
             {formatMoney(sharePrice * totalShares)}
           </Typography>
         </div>
-        <Divider
-          sx={{
-            my: 5,
-          }}
-        />
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            mt: -3,
-            "& > div": {
-              mt: 3,
-            },
-            "& > div:not(:last-child)": {
-              mr: 4,
-            },
-          }}
-        >
+        <StyledDivider />
+        <StatsWrapper>
           <div>
             <Typography variant="h6">{formatMoney(sharePrice)}</Typography>
             <Typography variant="body2" color="textSecondary">
@@ -143,147 +99,58 @@ export default function ProjectCard({
               {t("projects.investors")}
             </Typography>
           </div>
-        </Box>
-        <Divider
-          sx={{
-            my: 5,
-          }}
-        />
+        </StatsWrapper>
+        <StyledDivider />
         <ul>
-          <Box
-            component="li"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              textTransform: "capitalize",
-              "&:not(:last-child)": {
-                mb: 3,
-              },
-            }}
-          >
+          <Li>
             <Typography variant="body2" color="textSecondary">
               {t("projects.shares")}
             </Typography>
-            <ButtonGroup color="inherit">
-              <Button
-                disabled={shares <= 1}
-                onClick={() => handleChangeShares(-1)}
-              >
-                <RemoveRoundedIcon />
-              </Button>
-              <Button
-                disabled
-                sx={{
-                  color: "inherit !important",
-                  px: 0,
-                }}
-              >
-                <Box
-                  component="span"
-                  sx={{
-                    minWidth: (theme) => theme.spacing(5),
-                  }}
-                >
-                  {shares}
-                </Box>
-              </Button>
+            {max ? (
+              <Counter
+                shares={shares}
+                onChangeShares={handleChangeShares}
+                setShares={setShares}
+                error={error}
+                max={max}
+              />
+            ) : (
+              <Typography variant="subtitle1" align="right">
+                Sold Out
+              </Typography>
+            )}
+          </Li>
 
-              <Button onClick={() => handleChangeShares(1)}>
-                <AddRoundedIcon />
-              </Button>
-            </ButtonGroup>
-          </Box>
-
-          <Box
-            component="li"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              textTransform: "capitalize",
-              "&:not(:last-child)": {
-                mb: 3,
-              },
-            }}
-          >
+          <Li>
             <Typography variant="body2" color="textSecondary">
               {t("pages.crowdfunding.project.monthlyRevenue")}
             </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                whiteSpace: "nowrap",
-              }}
-            >
+            <Typography variant="subtitle1" align="right">
               {formatMoney((sharePrice * roi * 0.01 * shares) / 12)}
             </Typography>
-          </Box>
+          </Li>
 
-          <Box
-            component="li"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              textTransform: "capitalize",
-              "&:not(:last-child)": {
-                mb: 3,
-              },
-            }}
-          >
+          <Li>
             <Typography variant="body2" color="textSecondary">
               {t("pages.crowdfunding.project.yearlyRevenue")}
             </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                whiteSpace: "nowrap",
-              }}
-            >
+            <Typography variant="subtitle1" align="right">
               {formatMoney(sharePrice * roi * 0.01 * shares)}
             </Typography>
-          </Box>
+          </Li>
         </ul>
-      </CardContent>
-      <CardActions
-        sx={{
-          backgroundImage: (theme) => theme.custom.elevation[1],
-          p: 4,
-          flexDirection: "column",
-          alignItems: "stretch",
-        }}
-      >
-        <Box
-          sx={{
-            mb: 3,
-          }}
-        >
-          <Box
-            component="li"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              textTransform: "capitalize",
-              "&:not(:last-child)": {
-                mb: 3,
-              },
-            }}
-          >
+      </Content>
+      <StyledCardActions>
+        <Ul>
+          <Li>
             <Typography variant="body2" color="textSecondary">
               {t("pages.crowdfunding.project.price")}
             </Typography>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                whiteSpace: "nowrap",
-              }}
-            >
+            <Typography variant="subtitle1" noWrap>
               {formatMoney(sharePrice * shares)}
             </Typography>
-          </Box>
-        </Box>
+          </Li>
+        </Ul>
 
         <Button
           color="primary"
@@ -295,7 +162,7 @@ export default function ProjectCard({
             ? t("pages.crowdfunding.project.goToCheckout")
             : t("pages.crowdfunding.project.signInToProceedToPayment")}
         </Button>
-      </CardActions>
-    </Card>
+      </StyledCardActions>
+    </ProjectCardRoot>
   );
 }

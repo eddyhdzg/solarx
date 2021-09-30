@@ -63,9 +63,9 @@
           "preferences": "Preferencias",
           "preferencesDescription": "Preferencias del usuario."
         },
-        "accountInformation": {
+        "profile": {
+          "profile": "Perfil",
           "myProfile": "Mi perfil",
-          "accountInformation": "Información de la cuenta",
           "accountInformationDescription": "Edite la información de su cuenta.",
           "privateInformation": "Información privada",
           "publicInformation": "Información pública",
@@ -152,10 +152,10 @@
       "displayedRows": "{{from}}-{{to}} de {{count}}"
     },
     "dates": {
-      "year": "año",
-      "year_plural": "años",
-      "yearWithCount": "{{count}} año",
-      "yearWithCount_plural": "{{count}} años"
+      "year_one": "año",
+      "year_other": "años",
+      "yearWithCount_one": "{{count}} año",
+      "yearWithCount_other": "{{count}} años"
     },
     "router": {
       "admin": "admin",

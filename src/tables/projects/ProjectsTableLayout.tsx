@@ -1,34 +1,31 @@
-import { Box } from "@mui/material";
 import ProjectsTable from "./projectsTable/ProjectsTable";
 import ProjectCards from "./projectCards/ProjectCards";
 import FilterChips from "./filterChips/FilterChips";
 import FilterMenu from "./filterMenu/FilterMenu";
-import { IconButton, Tooltip, Button } from "@mui/material";
+import { IconButton } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import { GlobalFilter } from "components";
-import { Control, UseFormReset, UseFormWatch } from "react-hook-form";
-import { ProjectFiltersSchema, useStore } from "hooks";
+import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { ProjectSection } from "types";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import {
+  ActionsContainer,
+  StyledButton,
+  ActionsWrapper,
+  InputsWrapper,
+  StyledTooltip,
+} from "./ProjectsTableLayout.styled";
 
 interface IProjectsTableLayoutProps {
-  control: Control<ProjectFiltersSchema>;
-  reset: UseFormReset<ProjectFiltersSchema>;
-  watch: UseFormWatch<ProjectFiltersSchema>;
-  setGlobalFilter: any;
   table: any;
   section: ProjectSection;
 }
 
 export default function ProjectsTableLayout({
-  control,
-  reset,
-  watch,
-  setGlobalFilter,
   table,
   section = "crowdfunding",
 }: IProjectsTableLayoutProps) {
@@ -47,66 +44,29 @@ export default function ProjectsTableLayout({
 
   return (
     <>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "flex-end",
-          flexWrap: "wrap",
-          mb: 1,
-          justifyContent:
-            section === "admin/projects" ? "space-between" : "flex-end",
-        }}
-      >
-        <Button
+      <ActionsContainer section={section}>
+        <StyledButton
           variant="contained"
           color="primary"
           endIcon={<AddRoundedIcon />}
           to="/admin/projects/create-project"
           component={Link}
-          sx={{
-            mr: 2,
-            mb: 1,
-            display: section === "crowdfunding" ? "none" : undefined,
-          }}
+          section={section}
         >
           {t("pages.admin.createProject.title")}
-        </Button>
+        </StyledButton>
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            flexWrap: "wrap",
-          }}
-        >
-          <FilterChips watch={watch} reset={reset} />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              "&>:not(:last-child)": {
-                mr: {
-                  xxs: 0.5,
-                  md: 1,
-                },
-              },
-            }}
-          >
-            <GlobalFilter
-              globalFilter={table.state.globalFilter}
-              setGlobalFilter={setGlobalFilter}
-            />
-            <FilterMenu control={control} reset={reset} />
-            <Tooltip
+        <ActionsWrapper>
+          <FilterChips />
+          <InputsWrapper>
+            <GlobalFilter />
+            <FilterMenu />
+            <StyledTooltip
               title={
                 projects?.projectType === "cards"
                   ? t("forms.card")
                   : t("forms.table")
               }
-              sx={{
-                textTransform: "capitalize",
-              }}
             >
               <IconButton
                 aria-label="project list type"
@@ -118,10 +78,10 @@ export default function ProjectsTableLayout({
                   <ViewListIcon />
                 )}
               </IconButton>
-            </Tooltip>
-          </Box>
-        </Box>
-      </Box>
+            </StyledTooltip>
+          </InputsWrapper>
+        </ActionsWrapper>
+      </ActionsContainer>
       {projects?.projectType === "cards" ? (
         <ProjectCards {...table} section={section} />
       ) : (

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Avatar,
-  Menu,
   MenuItem,
   ListItemIcon,
   Divider,
@@ -15,6 +14,8 @@ import { useSigninCheck } from "reactfire";
 import { useCustomAuth } from "hooks";
 import { SignInWithGoogle } from "components";
 import { useTranslation } from "react-i18next";
+import { AccountButtonMenu } from "./AccountButton.styled";
+import { Link } from "react-router-dom";
 
 export default function AccountMenu() {
   const { t } = useTranslation();
@@ -48,27 +49,21 @@ export default function AccountMenu() {
       ) : (
         <SignInWithGoogle />
       )}
-      <Menu
+      <AccountButtonMenu
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         onClick={handleClose}
-        PaperProps={{
-          sx: {
-            mt: 1.5,
-            minWidth: 200,
-          },
-        }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
+        <MenuItem component={Link} to="/more/profile">
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
-          {t("pages.more.accountInformation.myProfile")}
+          {t("pages.more.profile.profile")}
         </MenuItem>
-        <MenuItem>
+        <MenuItem component={Link} to="/more/preferences">
           <ListItemIcon>
             <Settings />
           </ListItemIcon>
@@ -81,7 +76,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           {t("auth.signOut")}
         </MenuItem>
-      </Menu>
+      </AccountButtonMenu>
     </>
   );
 }

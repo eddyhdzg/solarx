@@ -8,7 +8,7 @@ import {
   useFilters,
   usePagination,
 } from "react-table";
-import { useHeader, useUsersColumns, useStore } from "hooks";
+import { useHeader, useUsersColumns, useStore, useUsersFilters } from "hooks";
 import { Seo, PageTitle } from "components";
 import shallow from "zustand/shallow";
 import { useTranslation } from "react-i18next";
@@ -70,5 +70,10 @@ function Users() {
     usePagination
   ) as any;
 
-  return <UsersTableLayout setGlobalFilter={setGlobalFilter} table={table} />;
+  useUsersFilters({
+    setGlobalFilter,
+    data: table?.data,
+  });
+
+  return <UsersTableLayout table={table} />;
 }

@@ -1,7 +1,7 @@
-import { Box } from "@mui/material";
 import { ProjectCard, CustomTablePagination } from "components";
 import { Row } from "react-table";
 import { Project, ProjectSection } from "types";
+import { ProjectCardsGird, PaginationContainer } from "./ProjectCards.styled";
 
 interface IProjectCardsProps {
   page: Row<Project>[];
@@ -22,16 +22,7 @@ export default function ProjectCards({
 }: IProjectCardsProps) {
   return (
     <>
-      <Box
-        sx={{
-          display: "grid",
-          gridGap: "1rem",
-          gridTemplateColumns: {
-            xxs: "repeat(auto-fill,minmax(288px,1fr))",
-            xs: "repeat(auto-fill,minmax(320px,1fr))",
-          },
-        }}
-      >
+      <ProjectCardsGird>
         {projects.map((project) => (
           <ProjectCard
             key={project.original.id}
@@ -39,15 +30,8 @@ export default function ProjectCards({
             url={`/${section}/${project.original.id}`}
           />
         ))}
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          my: 1,
-        }}
-      >
+      </ProjectCardsGird>
+      <PaginationContainer>
         <CustomTablePagination
           component="div"
           rows={rows}
@@ -56,7 +40,7 @@ export default function ProjectCards({
           state={state}
           actionType="PROJECTS_CHANGE_PAGESIZE"
         />
-      </Box>
+      </PaginationContainer>
     </>
   );
 }

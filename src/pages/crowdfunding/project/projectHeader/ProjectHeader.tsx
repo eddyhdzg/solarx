@@ -1,9 +1,15 @@
-import { Box, Chip, Typography } from "@mui/material";
 import { Project } from "types";
 import { ShareButton } from "components";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import WorkOutlineRoundedIcon from "@mui/icons-material/WorkOutlineRounded";
+import {
+  ProjectHeaderRoot,
+  ProjectName,
+  ProjectHeaderWrapper,
+  StyledChip,
+  ShareButtonContainer,
+} from "./ProjectHeader.styled";
 
 type IProjectHeader = Pick<
   Project,
@@ -18,73 +24,37 @@ const ProjectHeader: React.FC<IProjectHeader> = ({
   company,
 }) => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "flex-end",
-      }}
-    >
+    <ProjectHeaderRoot>
       <div>
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{
-            mb: 1.5,
-          }}
-        >
+        <ProjectName variant="h4" component="h3">
           {name}
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          <Chip
+        </ProjectName>
+        <ProjectHeaderWrapper>
+          <StyledChip
             label={`${city}, ${state}`}
             variant="yellow"
             icon={<PlaceIcon />}
             size="small"
-            sx={{
-              py: 2,
-              px: 1,
-              m: 0.5,
-            }}
           />
-          <Chip
+          <StyledChip
             label={company}
             variant="blue"
             icon={<BusinessRoundedIcon />}
             size="small"
-            sx={{
-              py: 2,
-              px: 1,
-              m: 0.5,
-            }}
           />
-          <Chip
+          <StyledChip
             label={businessType}
             variant="green"
             icon={<WorkOutlineRoundedIcon />}
             size="small"
-            sx={{
-              py: 2,
-              px: 1,
-              m: 0.5,
-            }}
           />
-        </Box>
+        </ProjectHeaderWrapper>
       </div>
 
-      <Box
-        sx={{
-          ml: 0.5,
-        }}
-      >
+      <ShareButtonContainer>
         <ShareButton />
-      </Box>
-    </Box>
+      </ShareButtonContainer>
+    </ProjectHeaderRoot>
   );
 };
 

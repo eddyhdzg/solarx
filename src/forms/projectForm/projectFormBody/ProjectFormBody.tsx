@@ -1,16 +1,12 @@
 import {
-  alpha,
-  Box,
   FormControlLabel,
   Grid,
   InputAdornment,
   Paper,
-  TextField,
   Typography,
-  Divider,
   Button,
+  Autocomplete,
 } from "@mui/material";
-import Autocomplete from "@mui/lab/Autocomplete";
 import { Controller, useFormContext } from "react-hook-form";
 import {
   NumberFormatInput,
@@ -23,6 +19,15 @@ import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { IProjectFormSchema } from "hooks";
 import { ProjectForms } from "types";
 import { useTranslation } from "react-i18next";
+import {
+  Section,
+  Titles,
+  StyledTextField,
+  Actions,
+  StyledDivider,
+  ImageTypography,
+  MB3Grid,
+} from "./ProjectFormBody.styled";
 
 interface IProjectFormBodyProps {
   title: ProjectForms;
@@ -34,64 +39,46 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
     control,
     setValue,
     watch,
-    formState: { isValid, isDirty, dirtyFields, errors },
+    formState: { isValid, isDirty },
   } = useFormContext<IProjectFormSchema>();
   const [formState] = watch(["state"]);
 
   return (
     <div>
       <Paper>
-        <Box
-          sx={{
-            p: 2,
-            mb: 2,
-          }}
-        >
-          <Box
-            sx={{
-              mb: 3,
-            }}
-          >
+        <Section>
+          <Titles>
             <Typography variant="h6" component="h6">
               {t("forms.projectForm.general")}
             </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
+            <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.generalDescription")}
             </Typography>
-          </Box>
+          </Titles>
           <Grid container spacing={3}>
             <GridItem xs={6}>
               <Controller
                 name="name"
                 control={control}
                 defaultValue=""
-                render={({ field, fieldState }) => (
-                  <TextField
-                    id="project-name"
-                    label={t("projects.projectName")}
-                    variant="outlined"
-                    fullWidth
-                    required
-                    error={Boolean(fieldState.error)}
-                    // @ts-ignore
-                    helperText={fieldState.error?.message}
-                    inputProps={{
-                      autoComplete: "disabled",
-                    }}
-                    sx={
-                      fieldState.isDirty
-                        ? {
-                            "& input:valid + fieldset": {
-                              borderColor: (theme) =>
-                                theme.palette.success.dark,
-                              borderWidth: 2,
-                            },
-                          }
-                        : {}
-                    }
-                    {...field}
-                  />
-                )}
+                render={({ field, fieldState }) => {
+                  return (
+                    <StyledTextField
+                      id="project-name"
+                      label={t("projects.projectName")}
+                      variant="outlined"
+                      fullWidth
+                      required
+                      error={Boolean(fieldState.error)}
+                      helperText={fieldState.error?.message}
+                      inputProps={{
+                        autoComplete: "disabled",
+                      }}
+                      success={fieldState.isDirty}
+                      {...field}
+                    />
+                  );
+                }}
               />
             </GridItem>
             <GridItem xs={6}>
@@ -111,7 +98,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                       option?.key === selected?.key
                     }
                     renderInput={(params) => (
-                      <TextField
+                      <StyledTextField
                         {...params}
                         label={t("projects.state")}
                         variant="outlined"
@@ -122,19 +109,8 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                         }}
                         required
                         error={Boolean(fieldState.error)}
-                        // @ts-ignore
                         helperText={fieldState.error?.message}
-                        sx={
-                          fieldState.isDirty
-                            ? {
-                                "& input:valid + div + fieldset": {
-                                  borderColor: (theme) =>
-                                    theme.palette.success.dark,
-                                  borderWidth: 2,
-                                },
-                              }
-                            : {}
-                        }
+                        success={fieldState.isDirty}
                       />
                     )}
                     value={value || null}
@@ -159,8 +135,8 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                   <Autocomplete
                     id="project-city-autocomplete"
                     autoHighlight
-                    disabled={!formState?.key}
                     freeSolo
+                    disabled={!formState?.key}
                     forcePopupIcon
                     options={
                       formState?.key! in mexicanCities
@@ -168,7 +144,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                         : []
                     }
                     renderInput={(params) => (
-                      <TextField
+                      <StyledTextField
                         {...params}
                         label={t("projects.city")}
                         variant="outlined"
@@ -187,20 +163,9 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                           fieldState.error && fieldState.isTouched
                         )}
                         helperText={
-                          // @ts-ignore
                           fieldState.isTouched && fieldState.error?.message
                         }
-                        sx={
-                          fieldState.isDirty
-                            ? {
-                                "& input:valid + div + fieldset": {
-                                  borderColor: (theme) =>
-                                    theme.palette.success.dark,
-                                  borderWidth: 2,
-                                },
-                              }
-                            : {}
-                        }
+                        success={fieldState.isDirty}
                       />
                     )}
                     onChange={(_, item) => {
@@ -217,29 +182,18 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 control={control}
                 defaultValue=""
                 render={({ field, fieldState }) => (
-                  <TextField
+                  <StyledTextField
                     id="project-company"
                     label={t("projects.company")}
                     variant="outlined"
                     fullWidth
                     required
                     error={Boolean(fieldState.error)}
-                    // @ts-ignore
                     helperText={fieldState.error?.message}
                     inputProps={{
                       autoComplete: "disabled",
                     }}
-                    sx={
-                      fieldState.isDirty
-                        ? {
-                            "& input:valid + fieldset": {
-                              borderColor: (theme) =>
-                                theme.palette.success.dark,
-                              borderWidth: 2,
-                            },
-                          }
-                        : {}
-                    }
+                    success={fieldState.isDirty}
                     {...field}
                   />
                 )}
@@ -253,12 +207,12 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 render={({ field: { onChange, ...field }, fieldState }) => (
                   <Autocomplete
                     id="project-business-type"
-                    options={businessTypes}
                     autoHighlight
                     freeSolo
                     forcePopupIcon
+                    options={businessTypes}
                     renderInput={(params) => (
-                      <TextField
+                      <StyledTextField
                         {...params}
                         label={t("projects.businessType")}
                         variant="outlined"
@@ -274,19 +228,8 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                         }}
                         required
                         error={Boolean(fieldState.error)}
-                        // @ts-ignore
                         helperText={fieldState.error?.message}
-                        sx={
-                          fieldState.isDirty
-                            ? {
-                                "& input:valid + div + fieldset": {
-                                  borderColor: (theme) =>
-                                    theme.palette.success.dark,
-                                  borderWidth: 2,
-                                },
-                              }
-                            : {}
-                        }
+                        success={fieldState.isDirty}
                       />
                     )}
                     onChange={(_, item) => {
@@ -314,66 +257,42 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               />
             </GridItem>
           </Grid>
-          <Divider
-            sx={{
-              my: 4,
-            }}
-          />
-          <Box
-            sx={{
-              mb: 3,
-            }}
-          >
+          <StyledDivider />
+          <Titles>
             <Typography variant="h6" component="h6">
               {t("forms.projectForm.numbers")}
             </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
+            <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.numbersDescription")}
             </Typography>
-          </Box>
+          </Titles>
           <Grid container spacing={3}>
             <GridItem xs={6}>
               <Controller
                 name="roi"
                 control={control}
-                defaultValue={1}
-                render={({ field: { onChange, ...field }, fieldState }) => (
-                  <TextField
+                render={({ field, fieldState }) => (
+                  <StyledTextField
                     id="project-roi"
                     label={t("projects.roiShort")}
                     variant="outlined"
                     fullWidth
-                    onChange={(e) => {
-                      onChange(Number(e.target.value));
+                    required
+                    error={Boolean(fieldState.error)}
+                    helperText={fieldState.error?.message}
+                    success={fieldState.isDirty && fieldState.isTouched}
+                    inputProps={{
+                      inputMode: "decimal",
+                      min: 0,
+                      max: 100,
+                      decimalScale: 2,
                     }}
                     InputProps={{
                       inputComponent: NumberFormatInput as any,
-                      inputProps: {
-                        min: 1,
-                        max: 100,
-                        fixedDecimalScale: true,
-                        thousandSeparator: true,
-                        decimalScale: 2,
-                      },
                       endAdornment: (
                         <InputAdornment position="end">%</InputAdornment>
                       ),
                     }}
-                    required
-                    error={Boolean(fieldState.error)}
-                    // @ts-ignore
-                    helperText={fieldState.error?.message}
-                    sx={
-                      fieldState.isDirty
-                        ? {
-                            "& input:valid + div + fieldset": {
-                              borderColor: (theme) =>
-                                theme.palette.success.dark,
-                              borderWidth: 2,
-                            },
-                          }
-                        : {}
-                    }
                     {...field}
                   />
                 )}
@@ -383,23 +302,24 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               <Controller
                 name="sharePrice"
                 control={control}
-                defaultValue={1}
-                render={({ field: { onChange, ...field }, fieldState }) => (
-                  <TextField
+                render={({ field, fieldState }) => (
+                  <StyledTextField
                     id="project-sharePrice"
                     label={t("projects.sharePrice")}
                     variant="outlined"
                     fullWidth
-                    onChange={(e) => {
-                      onChange(Number(e.target.value));
+                    required
+                    error={Boolean(fieldState.error)}
+                    helperText={fieldState.error?.message}
+                    success={fieldState.isDirty && fieldState.isTouched}
+                    inputProps={{
+                      inputMode: "numeric",
+                      min: 1,
+                      thousandSeparator: true,
+                      decimalScale: 0,
                     }}
                     InputProps={{
                       inputComponent: NumberFormatInput as any,
-                      inputProps: {
-                        min: 1,
-                        thousandSeparator: true,
-                        decimalScale: 2,
-                      },
                       startAdornment: (
                         <InputAdornment position="start">$</InputAdornment>
                       ),
@@ -407,21 +327,6 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                         <InputAdornment position="end">MXN</InputAdornment>
                       ),
                     }}
-                    required
-                    error={Boolean(fieldState.error)}
-                    // @ts-ignore
-                    helperText={fieldState.error?.message}
-                    sx={
-                      fieldState.isDirty
-                        ? {
-                            "& input:valid + div + fieldset": {
-                              borderColor: (theme) =>
-                                theme.palette.success.dark,
-                              borderWidth: 2,
-                            },
-                          }
-                        : {}
-                    }
                     {...field}
                   />
                 )}
@@ -432,37 +337,25 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
                 name="totalShares"
                 control={control}
                 defaultValue={1}
-                render={({ field: { onChange, ...field }, fieldState }) => (
-                  <TextField
+                render={({ field, fieldState }) => (
+                  <StyledTextField
                     id="project-totalShares"
                     label={t("projects.totalShares")}
                     variant="outlined"
                     fullWidth
-                    onChange={(e) => {
-                      onChange(Number(e.target.value));
+                    required
+                    error={Boolean(fieldState.error)}
+                    helperText={fieldState.error?.message}
+                    success={fieldState.isDirty && fieldState.isTouched}
+                    inputProps={{
+                      inputMode: "numeric",
+                      min: 1,
+                      thousandSeparator: true,
+                      decimalScale: 0,
                     }}
                     InputProps={{
                       inputComponent: NumberFormatInput as any,
-                      inputProps: {
-                        min: 1,
-                        thousandSeparator: true,
-                      },
                     }}
-                    required
-                    error={Boolean(fieldState.error)}
-                    // @ts-ignore
-                    helperText={fieldState.error?.message}
-                    sx={
-                      fieldState.isDirty
-                        ? {
-                            "& input:valid + fieldset": {
-                              borderColor: (theme) =>
-                                theme.palette.success.dark,
-                              borderWidth: 2,
-                            },
-                          }
-                        : {}
-                    }
                     {...field}
                   />
                 )}
@@ -472,39 +365,23 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               <Controller
                 name="ppa"
                 control={control}
-                defaultValue={0}
-                render={({ field: { onChange, ...field }, fieldState }) => (
-                  <TextField
+                render={({ field, fieldState }) => (
+                  <StyledTextField
                     id="project-ppa"
                     label={t("projects.ppaYears")}
                     variant="outlined"
                     fullWidth
-                    onChange={(e) => {
-                      onChange(Number(e.target.value));
+                    required
+                    error={Boolean(fieldState.error)}
+                    helperText={fieldState.error?.message}
+                    success={fieldState.isDirty && fieldState.isTouched}
+                    inputProps={{
+                      inputMode: "decimal",
+                      min: 0,
                     }}
                     InputProps={{
                       inputComponent: NumberFormatInput as any,
-                      inputProps: {
-                        min: 0,
-                        decimalScale: 2,
-                        thousandSeparator: true,
-                      },
                     }}
-                    required
-                    error={Boolean(fieldState.error)}
-                    // @ts-ignore
-                    helperText={fieldState.error?.message}
-                    sx={
-                      fieldState.isDirty
-                        ? {
-                            "& input:valid + fieldset": {
-                              borderColor: (theme) =>
-                                theme.palette.success.dark,
-                              borderWidth: 2,
-                            },
-                          }
-                        : {}
-                    }
                     {...field}
                   />
                 )}
@@ -512,44 +389,21 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             </GridItem>
           </Grid>
 
-          <Divider
-            sx={{
-              my: 4,
-            }}
-          />
+          <StyledDivider />
 
-          <Box
-            sx={{
-              mb: 3,
-            }}
-          >
+          <Titles>
             <Typography variant="h6" component="h6">
               {t("forms.projectForm.media")}
             </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
+            <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.mediaDescription")}
             </Typography>
-          </Box>
-          <Grid container spacing={3}>
-            <GridItem
-              sx={{
-                pb: 0,
-              }}
-            >
-              <Typography
-                variant="caption"
-                gutterBottom
-                color={(theme) =>
-                  dirtyFields.coverImage
-                    ? errors.coverImage
-                      ? theme.palette.error.main
-                      : theme.palette.success.main
-                    : undefined
-                }
-              >
-                {t("forms.projectForm.coverImage")}
-              </Typography>
-            </GridItem>
+          </Titles>
+          <ImageTypography variant="caption">
+            {t("forms.projectForm.coverImage")}
+          </ImageTypography>
+
+          <MB3Grid container spacing={3}>
             <GridItem sm={6}>
               <DropzoneField
                 name="coverImage"
@@ -559,25 +413,12 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
             <GridItem sm={6}>
               <ImagesPreview name="coverImage" />
             </GridItem>
-            <GridItem
-              sx={{
-                pb: 0,
-              }}
-            >
-              <Typography
-                variant="caption"
-                gutterBottom
-                color={(theme) =>
-                  dirtyFields.images
-                    ? errors.images
-                      ? theme.palette.error.main
-                      : theme.palette.success.main
-                    : undefined
-                }
-              >
-                {t("forms.projectForm.images")}
-              </Typography>
-            </GridItem>
+          </MB3Grid>
+
+          <ImageTypography variant="caption">
+            {t("forms.projectForm.images")}
+          </ImageTypography>
+          <Grid container spacing={3}>
             <GridItem sm={6}>
               <DropzoneField
                 name="images"
@@ -589,17 +430,8 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               <ImagesPreview name="images" />
             </GridItem>
           </Grid>
-        </Box>
-        <Box
-          sx={{
-            backgroundColor: (theme) => alpha(theme.palette.common.black, 0.08),
-            p: 2,
-            borderEndStartRadius: 1,
-            borderEndEndRadius: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
+        </Section>
+        <Actions>
           <Button
             size="large"
             variant="contained"
@@ -610,7 +442,7 @@ export default function ProjectFormBody({ title }: IProjectFormBodyProps) {
               ? t("pages.admin.createProject.title")
               : t("pages.admin.editProject.editProject")}
           </Button>
-        </Box>
+        </Actions>
       </Paper>
     </div>
   );

@@ -2,12 +2,11 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableRow,
   TableFooter,
-  Paper,
 } from "@mui/material";
 import { CustomTablePagination } from "components";
+import { StyledPaper, StyledTableHead } from "./ProjectsTable.styled";
 
 interface IProjectsTableProps {
   getTableProps: any;
@@ -33,19 +32,9 @@ export default function ProjectsTable({
   state,
 }: IProjectsTableProps) {
   return (
-    <Paper
-      sx={{
-        display: "flex",
-        whiteSpace: "nowrap",
-        overflow: "auto",
-      }}
-    >
+    <StyledPaper>
       <Table {...getTableProps()}>
-        <TableHead
-          sx={{
-            textTransform: "capitalize",
-          }}
-        >
+        <StyledTableHead>
           {headerGroups.map((headerGroup: any) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column: any) => (
@@ -73,7 +62,7 @@ export default function ProjectsTable({
               ))}
             </TableRow>
           ))}
-        </TableHead>
+        </StyledTableHead>
         <TableBody {...getTableBodyProps()}>
           {page.map((row: any) => {
             prepareRow(row);
@@ -106,6 +95,6 @@ export default function ProjectsTable({
           </TableRow>
         </TableFooter>
       </Table>
-    </Paper>
+    </StyledPaper>
   );
 }

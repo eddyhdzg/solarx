@@ -1,14 +1,18 @@
 import {
-  Avatar,
-  TableContainer,
   Typography,
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableRow,
 } from "@mui/material";
 import { formatNumber, formatPercentage2Dec } from "utils";
+import {
+  StyledTableContainer,
+  StyledTableHead,
+  CenterCol,
+  StyledAvatar,
+  StyledTableCellHeader,
+} from "./WalletSharesTable.styled";
 
 function createData(
   img: string,
@@ -67,25 +71,11 @@ const rows = [
 
 export default function WalletSharesTable() {
   return (
-    <TableContainer
-      sx={{
-        whiteSpace: "nowrap",
-        "& th, & td": {
-          // borderBottomColor: "#242424",
-        },
-        "& tbody tr:last-child th, tbody tr:last-child td": {
-          borderBottom: "none",
-        },
-      }}
-    >
+    <StyledTableContainer>
       <Table aria-label="simple table">
-        <TableHead
-          sx={{
-            textTransform: "capitalize",
-          }}
-        >
+        <StyledTableHead>
           <TableRow>
-            <TableCell>Project</TableCell>
+            <StyledTableCellHeader>Project</StyledTableCellHeader>
             <TableCell align="center">Shares</TableCell>
             <TableCell align="right">Share Price</TableCell>
             <TableCell align="right">Total Price</TableCell>
@@ -93,26 +83,18 @@ export default function WalletSharesTable() {
             <TableCell align="right">Monthly Revenue</TableCell>
             <TableCell align="right">Yearly Revenue</TableCell>
           </TableRow>
-        </TableHead>
+        </StyledTableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.name}>
-              <TableCell
-                component="th"
-                scope="row"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <Avatar
-                  alt="project-avatar"
-                  src={row.img || undefined}
-                  sx={{
-                    mr: 1.5,
-                  }}
-                />
-                {row.name}
+              <TableCell component="th" scope="row">
+                <CenterCol>
+                  <StyledAvatar
+                    alt="project-avatar"
+                    src={row.img || undefined}
+                  />
+                  {row.name}
+                </CenterCol>
               </TableCell>
               <TableCell align="center">{formatNumber(row.shares)}</TableCell>
               <TableCell align="right">
@@ -164,6 +146,6 @@ export default function WalletSharesTable() {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </StyledTableContainer>
   );
 }

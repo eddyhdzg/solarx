@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
-// import { FirestoreUser, UserRole } from "../../src/types";
+import { Project } from "./types";
 
 admin.initializeApp();
 
@@ -35,4 +35,50 @@ export const addUser = functions.auth.user().onCreate((user) => {
   };
 
   return admin.firestore().collection("users").doc(uid).set(newUser);
+});
+
+export const getProject_v0 = functions.https.onCall(async (data, _) => {
+  const projectId = data.id;
+
+  if (!projectId && typeof projectId !== "string") {
+    return null;
+  }
+
+  const doc = await admin
+    .firestore()
+    .collection("projects")
+    .doc(projectId)
+    .get();
+
+  const documentData = doc.data();
+
+  const project: Project | null =
+    doc.exists && !documentData?.archived
+      ? {
+          id: doc.id,
+          ...doc.data(),
+        }
+      : null;
+
+  return project;
+});
+
+export const getProjects_v0 = functions.https.onCall(async () => {
+  const projects = await admin
+    .firestore()
+    .collection("projects")
+    .where("archived", "==", false)
+    .get()
+    .then((snapshot) =>
+      snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }))
+    )
+    .catch((error) => {
+      console.log("got an error", error);
+      return [];
+    });
+
+  return projects;
 });

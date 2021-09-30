@@ -1,8 +1,8 @@
 import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { UserRole } from "types";
 import { useEditRole, useRole } from "hooks";
+import { RoleSelectFormControl } from "./RoleSelect.styled";
 
 interface IRoleSelectProps {
   id?: string;
@@ -21,13 +21,7 @@ export default function RoleSelect({ id, role = "DEFAULT" }: IRoleSelectProps) {
   };
 
   return (
-    <FormControl
-      variant="filled"
-      sx={{
-        m: 1,
-        minWidth: 160,
-      }}
-    >
+    <RoleSelectFormControl variant="filled">
       <InputLabel htmlFor={customId}>Roles</InputLabel>
       <Select
         native
@@ -49,6 +43,6 @@ export default function RoleSelect({ id, role = "DEFAULT" }: IRoleSelectProps) {
           </option>
         </optgroup>
       </Select>
-    </FormControl>
+    </RoleSelectFormControl>
   );
 }

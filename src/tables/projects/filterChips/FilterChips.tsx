@@ -1,85 +1,51 @@
-import { UseFormWatch, UseFormReset } from "react-hook-form";
-import { ProjectFiltersSchema } from "hooks";
+import { useRouterState } from "hooks";
 import { stringToBoolean } from "utils";
 import { useTranslation } from "react-i18next";
-import { Box, Chip } from "@mui/material";
+import { StyledUl, StyledChip } from "./FilterChips.styled";
 
-interface IFilterChipsProps {
-  watch: UseFormWatch<ProjectFiltersSchema>;
-  reset: UseFormReset<ProjectFiltersSchema>;
-}
-
-export default function FilterChips({ watch, reset }: IFilterChipsProps) {
-  const watchAllField = watch();
+export default function FilterChips() {
   const { t } = useTranslation();
+  const {
+    values: { id = "", name = "", location = "", funded = "" },
+    onReset,
+  } = useRouterState();
 
   const handleDelete = (field: string) => () => {
-    reset({ ...watchAllField, [field]: "" });
+    onReset([field]);
   };
 
   return (
-    <Box
-      component="ul"
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        margin: {
-          xxs: 0,
-          xs: 1,
-        },
-      }}
-    >
-      {watchAllField.id && (
+    <StyledUl>
+      {id && (
         <li>
-          <Chip
-            label={watchAllField.id}
-            onDelete={handleDelete("id")}
-            sx={{
-              m: 0.5,
-            }}
-          />
+          <StyledChip label={id} onDelete={handleDelete("id")} />
         </li>
       )}
 
-      {watchAllField.name && (
+      {name && (
         <li>
-          <Chip
-            label={watchAllField.name}
-            onDelete={handleDelete("name")}
-            sx={{
-              m: 0.5,
-            }}
-          />
+          <StyledChip label={name} onDelete={handleDelete("name")} />
         </li>
       )}
 
-      {watchAllField.location && (
+      {location && (
         <li>
-          <Chip
-            label={watchAllField.location}
-            onDelete={handleDelete("location")}
-            sx={{
-              m: 0.5,
-            }}
-          />
+          <StyledChip label={location} onDelete={handleDelete("location")} />
         </li>
       )}
 
-      {watchAllField.funded && (
+      {funded && (
         <li>
-          <Chip
+          <StyledChip
             label={
-              stringToBoolean(watchAllField.funded)
+              stringToBoolean(funded)
                 ? t("projects.funded")
                 : t("projects.notFunded")
             }
             onDelete={handleDelete("funded")}
-            sx={{
-              m: 0.5,
-            }}
           />
         </li>
       )}
-    </Box>
+    </StyledUl>
   );
 }

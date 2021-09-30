@@ -1,0 +1,15 @@
+.recharts-legend-item.inactive {
+  text-decoration: line-through;
+}
+
+.recharts-responsive-container {
+  overflow: hidden;
+}
+
+.recharts-layer.recharts-cartesian-axis-tick tspan {
+  text-transform: capitalize;
+}
+
+p.recharts-tooltip-label {
+  text-transform: capitalize;
+}

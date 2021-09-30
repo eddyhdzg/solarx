@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { Seo, GridItem, PageTitle } from "components";
 import { useHeader } from "hooks";
 import LocaleSection from "./subComponents/localeSection/LocaleSection";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { StyledRoot } from "./Preferences.styled";
 
 export default function PreferencesPage() {
   const { onChangeRoute } = useHeader();
@@ -27,16 +28,12 @@ export default function PreferencesPage() {
 
 function Preferences() {
   return (
-    <Box
-      sx={{
-        maxWidth: (theme) => theme.spacing(100),
-      }}
-    >
+    <StyledRoot>
       <Grid container direction="row" spacing={4}>
         <GridItem xs={12}>
           <LocaleSection />
         </GridItem>
       </Grid>
-    </Box>
+    </StyledRoot>
   );
 }

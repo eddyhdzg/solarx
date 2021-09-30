@@ -1,24 +1,11 @@
-import { Paper, Typography } from "@mui/material";
 import { WalletSharesTable } from "tables";
+import { StyledPaper, StyledTypography } from "./WalletShares.styled";
 
 export default function WalletShares() {
   return (
-    <Paper
-      sx={{
-        p: 1,
-      }}
-    >
-      <Typography
-        variant="subtitle1"
-        sx={{
-          pt: 2,
-          px: 2,
-          pb: 1,
-        }}
-      >
-        Shares
-      </Typography>
+    <StyledPaper>
+      <StyledTypography variant="subtitle1">Shares</StyledTypography>
       <WalletSharesTable />
-    </Paper>
+    </StyledPaper>
   );
 }

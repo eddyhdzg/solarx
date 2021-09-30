@@ -1,0 +1,39 @@
+.notion {
+  color: white;
+  width: 100%;
+}
+
+.notion-hr {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.notion-bookmark > div:first-child {
+  color: white;
+}
+
+.notion-bookmark-link > div {
+  color: white;
+}
+
+.notion-link {
+  color: rgb(144, 202, 249);
+  text-decoration: underline rgba(144, 202, 249, 0.4) !important;
+}
+
+.notion-bookmark {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+@media screen and (max-width: 767px) {
+  .notion-full-width {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .notion-full-width {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

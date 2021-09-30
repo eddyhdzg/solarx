@@ -1,9 +1,15 @@
 import { NavLink } from "react-router-dom";
-import { Drawer, List, ListItem, ListItemIcon, Box } from "@mui/material";
 import { TBaseRoutes } from "types";
 import { RouterTree } from "hooks/router/useRouterTree";
 import { DesktopTooltip } from "components";
-import logo from "assets/images/Logo.svg";
+import logo from "assets/images/logo.svg";
+import {
+  DesktopAppbarDrawer,
+  DesktopAppbarContent,
+  DesktopAppbarUl,
+  DesktopAppbarLi,
+  DesktopAppbarLiIcon,
+} from "./DesktopAppbar.styled";
 
 interface IDesktopAppbarProps {
   routerTree: RouterTree;
@@ -18,132 +24,47 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
   const more = [routes.pop()!];
 
   return (
-    <Drawer
-      variant="permanent"
-      sx={{
-        "& .MuiDrawer-paper": {
-          backgroundColor: (theme) => theme.palette.grey[900],
-          borderColor: "transparent",
-          boxShadow: 3,
-        },
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flex: "auto",
-          justifyContent: "space-between",
-          width: `calc(56px + env(safe-area-inset-left))`,
-          px: 0.5,
-          pt: "env(safe-area-inset-top)",
-          pb: "env(safe-area-inset-bottom)",
-          overflowY: "auto",
-          msOverflowStyle: "none",
-          scrollbarWidth: "none",
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
-        }}
-      >
+    <DesktopAppbarDrawer variant="permanent">
+      <DesktopAppbarContent>
         <div>
-          <List
-            sx={{
-              "& .MuiListItem-button": {
-                my: 1,
-                "&:first-child": {
-                  mt: 0,
-                },
-                "&:last-child": {
-                  mb: 0,
-                },
-              },
-            }}
-          >
-            <ListItem
-              button
-              component={NavLink}
-              to="/wallet"
-              sx={{
-                justifyContent: "center",
-                py: 2,
-                borderRadius: 1,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: "auto",
-                }}
-              >
+          <DesktopAppbarUl>
+            <DesktopAppbarLi button component={NavLink} to="/wallet">
+              <DesktopAppbarLiIcon>
                 <img src={logo} height={24} width={24} alt="nav-logo" />
-              </ListItemIcon>
-            </ListItem>
+              </DesktopAppbarLiIcon>
+            </DesktopAppbarLi>
             {routes.map(([route, { icon: Icon, title }]) => (
               <DesktopTooltip key={route} title={title} placement="right">
-                <ListItem
+                <DesktopAppbarLi
                   button
                   component={NavLink}
                   to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
-                  sx={{
-                    justifyContent: "center",
-                    py: 2,
-                    borderRadius: 1,
-                  }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: "auto",
-                    }}
-                  >
-                    {<Icon />}
-                  </ListItemIcon>
-                </ListItem>
+                  <DesktopAppbarLiIcon>{<Icon />}</DesktopAppbarLiIcon>
+                </DesktopAppbarLi>
               </DesktopTooltip>
             ))}
-          </List>
+          </DesktopAppbarUl>
         </div>
         <div>
-          <List
-            sx={{
-              "& .MuiListItem-button": {
-                my: 1,
-                "&:first-child": {
-                  mt: 0,
-                },
-                "&:last-child": {
-                  mb: 0,
-                },
-              },
-            }}
-          >
+          <DesktopAppbarUl>
             {more?.map(([route, { icon: Icon, title }]) => (
               <DesktopTooltip key={route} title={title} placement="right">
-                <ListItem
+                <DesktopAppbarLi
                   button
                   component={NavLink}
                   to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
-                  sx={{
-                    justifyContent: "center",
-                    py: 2,
-                    borderRadius: 1,
-                  }}
                 >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: "auto",
-                    }}
-                  >
-                    {<Icon />}
-                  </ListItemIcon>
-                </ListItem>
+                  <DesktopAppbarLiIcon>{<Icon />}</DesktopAppbarLiIcon>
+                </DesktopAppbarLi>
               </DesktopTooltip>
             ))}
-          </List>
+          </DesktopAppbarUl>
         </div>
-      </Box>
-    </Drawer>
+      </DesktopAppbarContent>
+    </DesktopAppbarDrawer>
   );
 };
 

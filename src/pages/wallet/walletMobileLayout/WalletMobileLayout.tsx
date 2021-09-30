@@ -1,69 +1,40 @@
 import { useState } from "react";
-import { Tabs, Tab } from "@mui/material";
-import { TabPanel, TabContext } from "@mui/lab";
+import { TabContext } from "@mui/lab";
 import {
   WalletPortfolioSection,
   WalletHistorySection,
 } from "../walletSections/WalletSections";
 import WalletActions from "../walletActions/WalletActions";
+import {
+  StyledTabs,
+  StyledTab,
+  StyledTabPanel,
+} from "./WalletMobileLayout.styled";
 
 export default function WalletMobileLayout() {
   const [tabIndex, setTabIndex] = useState(0);
   return (
     <TabContext value={tabIndex.toString()}>
-      <Tabs
+      <StyledTabs
         value={tabIndex}
         onChange={(_, index) => setTabIndex(index)}
         indicatorColor="primary"
         textColor="primary"
         centered
-        sx={{
-          pb: 3,
-        }}
       >
-        <Tab
-          label="Porfolio"
-          sx={{
-            px: 4,
-          }}
-        />
-        <Tab
-          label="Actions"
-          sx={{
-            px: 4,
-          }}
-        />
-        <Tab
-          label="History"
-          sx={{
-            px: 4,
-          }}
-        />
-      </Tabs>
-      <TabPanel
-        value="0"
-        sx={{
-          p: 0,
-        }}
-      >
+        <StyledTab label="Porfolio" />
+        <StyledTab label="Actions" />
+        <StyledTab label="History" />
+      </StyledTabs>
+      <StyledTabPanel value="0">
         <WalletPortfolioSection />
-      </TabPanel>
-      <TabPanel
-        value="1"
-        sx={{
-          p: 0,
-        }}
-      >
+      </StyledTabPanel>
+      <StyledTabPanel value="1">
         <WalletActions />
-      </TabPanel>
-      <TabPanel
-        value="2"
-        sx={{
-          p: 0,
-        }}
-      >
+      </StyledTabPanel>
+      <StyledTabPanel value="2">
         <WalletHistorySection />
-      </TabPanel>
+      </StyledTabPanel>
     </TabContext>
   );
 }

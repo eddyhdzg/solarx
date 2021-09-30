@@ -9,7 +9,7 @@ import {
 export default function useCreateProjectDataForm() {
   const form = useForm({
     resolver: yupResolver(projectFormSchema),
-    mode: "onChange",
+    mode: "onTouched",
     defaultValues: projectFormDefaultValues,
   });
 

@@ -1,6 +1,5 @@
 import { NumberFormatInput } from "components";
 import {
-  Box,
   Button,
   FormControl,
   FormHelperText,
@@ -8,25 +7,20 @@ import {
   InputLabel,
   OutlinedInput,
   Select,
+  Tooltip,
   Typography,
 } from "@mui/material";
+import {
+  InputsContainer,
+  StyledFormControl,
+  SummaryContainer,
+} from "./WithdrawTab.styled";
 
 export default function WithdrawTab() {
   return (
     <>
-      <Box
-        sx={{
-          mb: 4,
-        }}
-      >
-        <FormControl
-          variant="outlined"
-          fullWidth
-          sx={{
-            mt: 5,
-            mb: 2,
-          }}
-        >
+      <InputsContainer>
+        <StyledFormControl variant="outlined" fullWidth>
           <InputLabel htmlFor="account-to-withdraw">To</InputLabel>
           <Select
             native
@@ -39,7 +33,7 @@ export default function WithdrawTab() {
           >
             <option aria-label="None" value="" />
           </Select>
-        </FormControl>
+        </StyledFormControl>
         <FormControl variant="outlined" fullWidth>
           <OutlinedInput
             id="amount-to-withdraw"
@@ -54,7 +48,6 @@ export default function WithdrawTab() {
               decimalScale: 2,
             }}
             inputComponent={NumberFormatInput as any}
-            defaultValue={0}
           />
           <FormHelperText id="amount-to-withdraw-helper-text">
             Available cash:{" "}
@@ -67,46 +60,46 @@ export default function WithdrawTab() {
             </Typography>
           </FormHelperText>
         </FormControl>
-      </Box>
-      <Box
-        sx={{
-          mb: 3,
-        }}
-      >
-        <Box
-          sx={{
-            textAlign: "end",
-          }}
-        >
-          <li>
-            <Typography color="textSecondary">
-              Transaction Fee:{" "}
-              <Typography
-                variant="subtitle1"
-                component="strong"
-                color="textPrimary"
-              >
-                $10.60 MXN
-              </Typography>
+      </InputsContainer>
+      <SummaryContainer>
+        <li>
+          <Typography color="textSecondary">
+            Transaction Fee:{" "}
+            <Typography
+              variant="subtitle1"
+              component="strong"
+              color="textPrimary"
+            >
+              $10.60 MXN
             </Typography>
-          </li>
-          <li>
-            <Typography color="textSecondary">
-              You will get:{" "}
-              <Typography
-                variant="subtitle1"
-                component="strong"
-                color="textPrimary"
-              >
-                $581.40 MXN
-              </Typography>
+          </Typography>
+        </li>
+        <li>
+          <Typography color="textSecondary">
+            You will get:{" "}
+            <Typography
+              variant="subtitle1"
+              component="strong"
+              color="textPrimary"
+            >
+              $581.40 MXN
             </Typography>
-          </li>
-        </Box>
-      </Box>
-      <Button size="large" variant="contained" type="submit" disabled fullWidth>
-        Withdraw
-      </Button>
+          </Typography>
+        </li>
+      </SummaryContainer>
+      <Tooltip title="Coming soon">
+        <div>
+          <Button
+            size="large"
+            variant="contained"
+            type="submit"
+            disabled
+            fullWidth
+          >
+            Withdraw
+          </Button>
+        </div>
+      </Tooltip>
     </>
   );
 }

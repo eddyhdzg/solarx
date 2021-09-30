@@ -1,3 +1,4 @@
+export { default as Counter } from "./counter/Counter";
 export { default as DropzoneField } from "./dropzoneField/DropzoneField";
 export { default as LocaleSelect } from "./localeSelect/LocaleSelect";
 export { default as NumberFormatInput } from "./numberFormatInput/NumberFormatInput";

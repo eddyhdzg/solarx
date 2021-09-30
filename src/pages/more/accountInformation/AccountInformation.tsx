@@ -20,18 +20,16 @@ export default function AccountInformationPage() {
   }, [onChangeRoute, t]);
 
   return (
-    <AuthWrapper>
+    <>
       <Seo
-        title={t("pages.more.accountInformation.accountInformation")}
-        description={t(
-          "pages.more.accountInformation.accountInformationDescription"
-        )}
+        title={t("pages.more.profile.profile")}
+        description={t("pages.more.profile.accountInformationDescription")}
       />
-      <PageTitle>
-        {t("pages.more.accountInformation.accountInformation")}
-      </PageTitle>
-      <AccountInformation />
-    </AuthWrapper>
+      <PageTitle>{t("pages.more.profile.profile")}</PageTitle>
+      <AuthWrapper>
+        <AccountInformation />
+      </AuthWrapper>
+    </>
   );
 }
 

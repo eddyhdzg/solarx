@@ -1,20 +1,21 @@
-import {
-  alpha,
-  Avatar,
-  Box,
-  Button,
-  Divider,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Divider, Grid, Typography } from "@mui/material";
 import { GridItem } from "components";
 import { FirestoreUser } from "types";
 import { IFirestoreUserFormSchema, useEditFirestoreUserMutation } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 import { checkKeyDown } from "utils";
 import { useTranslation } from "react-i18next";
+import {
+  StyledPaper,
+  Content,
+  Row,
+  Header,
+  Caption,
+  StyledAvatar,
+  AvatarContainer,
+  StyledTextField,
+  Actions,
+} from "./AccountInformationForm.styled";
 
 interface IAccountInformationFormProps {
   firestoreUser: FirestoreUser;
@@ -43,42 +44,17 @@ export default function AccountInformationForm({
       onSubmit={onSubmit}
       onKeyDown={(e) => checkKeyDown(e)}
     >
-      <Paper
-        sx={{
-          maxWidth: (theme) => theme.spacing(100),
-          display: "flex",
-          overflow: "auto",
-          flexDirection: "column",
-        }}
-      >
-        <Box
-          sx={{
-            p: {
-              xxs: 2,
-              md: 4,
-            },
-            mb: 2,
-          }}
-        >
-          <Box
-            sx={{
-              my: 4,
-            }}
-          >
-            <Typography
-              variant="h6"
-              component="h6"
-              sx={{
-                mb: 2,
-              }}
-            >
-              {t("pages.more.accountInformation.privateInformation")}
-            </Typography>
+      <StyledPaper>
+        <Content>
+          <Row>
+            <Header variant="h6" component="h6">
+              {t("pages.more.profile.privateInformation")}
+            </Header>
             <Grid container spacing={3}>
               <GridItem sm={6} zeroMinWidth>
                 <Typography noWrap variant="body2">
                   <strong>
-                    {t("pages.more.accountInformation.accountID")}
+                    {t("pages.more.profile.accountID")}
                     {": "}
                   </strong>
                   {firestoreUser?.uid}
@@ -87,55 +63,43 @@ export default function AccountInformationForm({
               <GridItem sm={6}>
                 <Typography noWrap variant="body2">
                   <strong>
-                    {t("pages.more.accountInformation.email")}
+                    {t("pages.more.profile.email")}
                     {": "}
                   </strong>
                   {firestoreUser?.email}
                 </Typography>
               </GridItem>
             </Grid>
-          </Box>
+          </Row>
           <Divider />
-          <Box
-            sx={{
-              my: 4,
-            }}
-          >
+          <Row>
             <Typography variant="h6" component="h6">
-              {t("pages.more.accountInformation.publicInformation")}
+              {t("pages.more.profile.publicInformation")}
             </Typography>
-            <Typography
-              variant="caption"
-              component="p"
-              color="textSecondary"
-              sx={{ mb: 2 }}
-            >
-              {t("pages.more.accountInformation.publicInformationDescription")}
-            </Typography>
+            <Caption variant="caption" component="p" color="textSecondary">
+              {t("pages.more.profile.publicInformationDescription")}
+            </Caption>
 
-            <Box sx={{ mb: 2 }}>
+            <AvatarContainer>
               <Typography variant="subtitle2">
-                {t("pages.more.accountInformation.avatar")}
+                {t("pages.more.profile.avatar")}
               </Typography>
-              <Avatar
+              <StyledAvatar
                 alt="google avatar"
                 src={firestoreUser?.avatar || undefined}
-                sx={{
-                  width: (theme) => theme.spacing(7),
-                  height: (theme) => theme.spacing(7),
-                }}
               />
-            </Box>
+            </AvatarContainer>
             <Grid container spacing={3}>
               <GridItem sm={6}>
                 <Controller
+                  // @ts-ignore
                   name="displayName"
                   control={control}
                   defaultValue=""
                   render={({ field, fieldState }) => (
-                    <TextField
+                    <StyledTextField
                       id="firestoreUser-displayName"
-                      label={t("pages.more.accountInformation.displayName")}
+                      label={t("pages.more.profile.displayName")}
                       variant="outlined"
                       fullWidth
                       required
@@ -145,44 +109,26 @@ export default function AccountInformationForm({
                       inputProps={{
                         autoComplete: "disabled",
                       }}
-                      sx={
-                        fieldState.isDirty
-                          ? {
-                              "& input:valid + fieldset": {
-                                borderColor: "green",
-                                borderWidth: 2,
-                              },
-                            }
-                          : {}
-                      }
+                      success={fieldState.isDirty}
                       {...field}
                     />
                   )}
                 />
               </GridItem>
             </Grid>
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            backgroundColor: (theme) => alpha(theme.palette.common.black, 0.08),
-            p: 2,
-            borderEndStartRadius: 1,
-            borderEndEndRadius: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-          }}
-        >
+          </Row>
+        </Content>
+        <Actions>
           <Button
             size="large"
             variant="contained"
             disabled={!isValid || !isDirty}
             type="submit"
           >
-            {t("pages.more.accountInformation.editAccount")}
+            {t("pages.more.profile.editAccount")}
           </Button>
-        </Box>
-      </Paper>
+        </Actions>
+      </StyledPaper>
     </form>
   );
 }

@@ -1,7 +1,8 @@
-import { Button, Tooltip, Typography } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import useClipboard from "react-use-clipboard";
 import SellOutlinedIcon from "@mui/icons-material/ContentCopyRounded";
 import { useTranslation } from "react-i18next";
+import { Caption, AccountNumber } from "./DepositTab.styled";
 
 export default function DepositTab() {
   const { t } = useTranslation();
@@ -11,19 +12,11 @@ export default function DepositTab() {
 
   return (
     <div>
-      <Typography
-        variant="subtitle2"
-        color="textSecondary"
-        sx={{
-          mt: 5,
-          mb: 2,
-        }}
-      >
+      <Caption variant="subtitle2" color="textSecondary">
         Fund your account with the following key
-      </Typography>
+      </Caption>
 
       <Tooltip
-        arrow
         leaveTouchDelay={3000}
         enterTouchDelay={0}
         title={
@@ -31,17 +24,15 @@ export default function DepositTab() {
         }
         onClick={setCopied}
       >
-        <Button
+        <AccountNumber
+          color="inherit"
           variant="outlined"
           fullWidth
           size="large"
           endIcon={<SellOutlinedIcon />}
-          sx={{
-            minHeight: (theme) => theme.spacing(8),
-          }}
         >
           601-180-1000-0202-8474
-        </Button>
+        </AccountNumber>
       </Tooltip>
     </div>
   );

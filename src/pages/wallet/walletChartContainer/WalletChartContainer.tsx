@@ -1,101 +1,97 @@
-import { useState } from "react";
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  Paper,
-  Select,
-  SelectChangeEvent,
-  Typography,
-} from "@mui/material";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { useState, useMemo } from "react";
+import { Button, ButtonGroup } from "@mui/material";
 import WalletChart from "../walletChart/WalletChart";
+import {
+  WalletChartContainerRoot,
+  HeaderWrapper,
+  TitleWrapper,
+  MoneyTypography,
+  StatsWrapper,
+  ArrowDropUpIcon,
+  StatsTypography,
+  ButtonGroupContainer,
+} from "./WalletChartContainer.styled";
+import { Timespan } from "types";
+import { demoWalletData, timespans, nanosecondsHash } from "constant";
+import { useBreakpoint } from "hooks";
+import { formatStock1M, formatStock1Y } from "utils";
 
 export default function WalletChartContainer() {
-  const [age, setAge] = useState(10);
+  const [timespan, setTimespan] = useState<Timespan>("H");
+  const xs = useBreakpoint("xs");
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setAge(Number(event.target.value));
+  const handleChange = (newTimespan: Timespan) => {
+    setTimespan(newTimespan);
   };
 
-  return (
-    <Paper
-      sx={{
-        p: 3,
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Typography
-            variant="subtitle1"
-            sx={{
-              mr: 0.5,
-            }}
-          >
-            $10,684.16 MXN
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              ml: -1,
-            }}
-          >
-            <ArrowDropUpIcon
-              sx={{
-                color: (theme) => theme.custom.cash,
-              }}
-            />
-            <Typography
-              variant="subtitle2"
-              sx={{
-                color: (theme) => theme.custom.cash,
-              }}
-            >
-              $134.41 MXN (1.34%)
-            </Typography>
-          </Box>
-        </Box>
+  const data = useMemo(() => {
+    const today = new Date().getTime();
+    let maxDif = 0;
 
-        <FormControl
-          variant="outlined"
-          sx={{
-            mb: 2,
-            minWidth: (theme) => theme.spacing(15),
-          }}
-        >
-          <InputLabel htmlFor="outlined-age-native-simple">Timespan</InputLabel>
-          <Select
-            native
-            value={String(age)}
-            onChange={handleChange}
-            label="Timespan"
-            inputProps={{
-              name: "timespan",
-              id: "outlined-timespan-native-simple",
-            }}
+    const filteredData = demoWalletData.filter((value) => {
+      return today - value.nanoseconds < nanosecondsHash[timespan];
+    });
+
+    if (filteredData.length) {
+      maxDif =
+        filteredData[filteredData.length - 1].nanoseconds -
+        filteredData[0].nanoseconds;
+    }
+
+    return filteredData.map(({ nanoseconds, ...col }) => {
+      let name = "";
+
+      if (maxDif < nanosecondsHash["3M"]) {
+        name = formatStock1M(nanoseconds);
+      } else {
+        name = formatStock1Y(nanoseconds);
+      }
+
+      return {
+        ...col,
+        name,
+        "Total Balance": col.Cash + col.Stocks + col["SolarX Points"],
+      };
+    });
+  }, [timespan]);
+
+  return (
+    <WalletChartContainerRoot>
+      <HeaderWrapper>
+        <TitleWrapper>
+          <MoneyTypography variant="subtitle1">$13,443.96 MXN</MoneyTypography>
+          <StatsWrapper>
+            <ArrowDropUpIcon />
+            <StatsTypography variant="subtitle2">
+              $180.15 MXN (1.34%)
+            </StatsTypography>
+          </StatsWrapper>
+        </TitleWrapper>
+
+        <ButtonGroupContainer>
+          <ButtonGroup
+            variant="outlined"
+            aria-label="timespan button group"
+            color="secondary"
+            size={xs ? "medium" : "small"}
           >
-            <option aria-label="None" value="" />
-            <option value={10}>Histórico</option>
-            <option value={20}>1 mes</option>
-            <option value={30}>3 meses</option>
-            <option value={40}>1 año</option>
-          </Select>
-        </FormControl>
-      </Box>
+            {timespans.map(({ value, text }) => {
+              return (
+                <Button
+                  key={value}
+                  color={timespan === value ? "inherit" : "secondary"}
+                  onClick={() => handleChange(value)}
+                >
+                  {text}
+                </Button>
+              );
+            })}
+          </ButtonGroup>
+        </ButtonGroupContainer>
+      </HeaderWrapper>
       <div>
-        <WalletChart />
+        <WalletChart data={data} />
       </div>
-    </Paper>
+    </WalletChartContainerRoot>
   );
 }

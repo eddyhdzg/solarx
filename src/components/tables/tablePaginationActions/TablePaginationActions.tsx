@@ -1,8 +1,9 @@
-import { Box, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import { TablePaginationActionsRoot } from "./TablePaginationActions.styled";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -44,7 +45,7 @@ export default function TablePaginationActions(
   };
 
   return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+    <TablePaginationActionsRoot>
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
@@ -73,6 +74,6 @@ export default function TablePaginationActions(
       >
         <LastPageIcon />
       </IconButton>
-    </Box>
+    </TablePaginationActionsRoot>
   );
 }

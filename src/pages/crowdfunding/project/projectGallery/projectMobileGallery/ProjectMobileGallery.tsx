@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { Box, MobileStepper, Skeleton } from "@mui/material";
-import SwipeableViews from "react-swipeable-views";
 import { Project } from "types";
+import SwipeableViews from "react-swipeable-views";
+import {
+  SkeletonWrapper,
+  StyledSkeleton,
+  Img,
+  StyledMobileStepper,
+} from "./ProjectMobileGallery.styled";
 
 type IProjectMobileGallery = Pick<Project, "images">;
 
@@ -17,71 +22,36 @@ const ProjectMobileGallery: React.FC<IProjectMobileGallery> = ({
 
   if (!maxSteps) {
     return (
-      <Box
-        sx={{
-          flexGrow: 1,
-          position: "relative",
-        }}
-      >
-        <Skeleton
-          animation="wave"
-          variant="rectangular"
-          sx={{
-            height: 360,
-          }}
-        />
-      </Box>
+      <SkeletonWrapper>
+        <StyledSkeleton animation="wave" variant="rectangular" />
+      </SkeletonWrapper>
     );
   }
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        position: "relative",
-      }}
-    >
+    <SkeletonWrapper>
       <SwipeableViews
         index={activeStep}
         onChangeIndex={handleStepChange}
         enableMouseEvents
-        style={{
-          minHeight: 360,
-        }}
       >
         {images?.map((img, index) => (
           <div key={img}>
             {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                src={img}
-                alt="swipable-view"
-                sx={{
-                  height: 360,
-                  display: "block",
-                  objectFit: "cover",
-                  overflow: "hidden",
-                  width: "100%",
-                  pointerEvents: "none",
-                  userSelect: "none",
-                }}
-              />
+              <Img src={img} alt="swipable-view" />
             ) : null}
           </div>
         ))}
       </SwipeableViews>
-      <MobileStepper
+      <StyledMobileStepper
         steps={maxSteps}
         position="static"
         variant="dots"
         activeStep={activeStep}
-        sx={{
-          justifyContent: "center",
-        }}
         nextButton={<></>}
         backButton={<></>}
       />
-    </Box>
+    </SkeletonWrapper>
   );
 };
 

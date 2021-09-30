@@ -1,12 +1,15 @@
-import { InputBase, IconButton, alpha } from "@mui/material";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { useTranslation } from "react-i18next";
-import SearchIcon from "@mui/icons-material/Search";
+import {
+  FilterSearchInputBase,
+  SearchIcon,
+  StyledIconButton,
+} from "./FilterSearch.styled";
 
 interface IFilterSearchProps {
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onReset: () => void;
+  onReset: (names: string[]) => void;
 }
 
 const FilterSearch = ({ value, onReset, ...props }: IFilterSearchProps) => {
@@ -14,56 +17,16 @@ const FilterSearch = ({ value, onReset, ...props }: IFilterSearchProps) => {
 
   return (
     <div>
-      <InputBase
-        sx={{
-          backgroundColor: (theme) => alpha(theme.palette.common.white, 0.15),
-          "&:hover": {
-            backgroundColor: (theme) => alpha(theme.palette.common.white, 0.25),
-          },
-          borderRadius: 1,
-          "& .MuiInputBase-input": {
-            color: (theme) => theme.palette.text.secondary,
-            fontSize: 16,
-            transition: (theme) => theme.transitions.create("width"),
-            py: 1,
-            pl: 5,
-            pr: 4,
-            width: {
-              xxs: "100%",
-              sm: "12ch",
-            },
-            "&:focus": {
-              width: {
-                sm: "20ch",
-              },
-            },
-          },
-        }}
+      <FilterSearchInputBase
+        name="search"
         placeholder={t("forms.search")}
-        startAdornment={
-          <SearchIcon
-            sx={{
-              color: (theme) => theme.palette.text.secondary,
-              position: "absolute",
-              left: 8,
-              userSelect: "none",
-              pointerEvents: "none",
-            }}
-          />
-        }
+        startAdornment={<SearchIcon />}
         value={value}
         endAdornment={
           value && (
-            <IconButton
-              onClick={onReset}
-              size="small"
-              sx={{
-                position: "absolute",
-                right: 4,
-              }}
-            >
+            <StyledIconButton onClick={() => onReset(["search"])} size="small">
               <ClearRoundedIcon />
-            </IconButton>
+            </StyledIconButton>
           )
         }
         {...props}

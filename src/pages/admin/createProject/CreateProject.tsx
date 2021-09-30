@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { Seo, PageTitle } from "components";
-import { useHeader } from "hooks";
+import {
+  IProjectDataFormSchema,
+  IProjectFormSchema,
+  IProjectMediaFormSchema,
+  useHeader,
+} from "hooks";
 import {
   useCreateProjectDataForm,
   useCreateProjectDataMutation,
@@ -8,8 +13,9 @@ import {
 } from "hooks";
 import ProjectForm from "forms/projectForm/ProjectForm";
 import { useSnackbar } from "notistack";
-import { FormProvider } from "react-hook-form";
+import { FormProvider, SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { getDirtyValues } from "utils";
 
 export default function CreateProjectPage() {
   const { t } = useTranslation();
@@ -37,17 +43,29 @@ function CreateProject() {
   const { createProjectMediaMutation } = useCreateProjectMediaMutation();
   const { enqueueSnackbar } = useSnackbar();
 
-  const onSubmit = methods.handleSubmit((data, createDataEvent) => {
-    createDataEvent?.preventDefault();
+  const onSubmit: SubmitHandler<IProjectFormSchema> = (values, e) => {
+    e?.preventDefault();
 
-    const { coverImage, images, ...createProjectData } = data;
+    const dirtyDataValues = getDirtyValues(
+      methods?.formState?.dirtyFields,
+      values,
+      [],
+      ["coverImage", "images"]
+    ) as IProjectDataFormSchema;
 
-    createProjectDataMutation(createProjectData)
+    const dirtyMediaValues = getDirtyValues(
+      methods?.formState?.dirtyFields,
+      values,
+      ["coverImage", "images"],
+      []
+    ) as IProjectMediaFormSchema;
+
+    createProjectDataMutation(dirtyDataValues)
       .then((res) => {
         enqueueSnackbar(t("snackbar.projectAdded"), { variant: "success" });
 
-        if (coverImage?.length || images?.length) {
-          createProjectMediaMutation(res.id, { coverImage, images })
+        if (Object.keys(dirtyMediaValues).length) {
+          createProjectMediaMutation(res.id, dirtyMediaValues)
             .then(() => {
               enqueueSnackbar(t("snackbar.mediaAdded"), { variant: "success" });
             })
@@ -57,34 +75,22 @@ function CreateProject() {
               });
             })
             .finally(() => {
-              methods.reset(
-                {},
-                {
-                  keepDefaultValues: true,
-                  keepTouched: false,
-                  keepDirty: false,
-                }
-              );
+              methods.reset();
             });
         } else {
-          methods.reset(
-            {},
-            {
-              keepDefaultValues: true,
-              keepTouched: false,
-              keepDirty: false,
-            }
-          );
+          methods.reset();
         }
       })
       .catch(() => {
         enqueueSnackbar(t("snackbar.projectNotAdded"), { variant: "error" });
       });
-  });
+
+    methods.reset();
+  };
 
   return (
     <FormProvider {...methods}>
-      <ProjectForm onSubmit={onSubmit} title="Create" />
+      <ProjectForm onSubmit={methods.handleSubmit(onSubmit)} title="Create" />
     </FormProvider>
   );
 }

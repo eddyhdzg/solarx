@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from "react";
 import {
   useHeader,
-  useProjectFilters,
   usePrivateProjects,
   useProjectsColumns,
   useFuzzyGlobalFilter,
   useStore,
+  useProjectsFilters,
 } from "hooks";
 import {
   useTable,
@@ -78,19 +78,11 @@ const Projects = () => {
     usePagination
   ) as any;
 
-  const { control, reset, watch } = useProjectFilters({
+  useProjectsFilters({
     setFilter,
-    length: table?.data?.length,
+    setGlobalFilter,
+    data: table?.data,
   });
 
-  return (
-    <ProjectsTableLayout
-      control={control}
-      reset={reset}
-      watch={watch}
-      setGlobalFilter={setGlobalFilter}
-      table={table}
-      section={section}
-    />
-  );
+  return <ProjectsTableLayout table={table} section={section} />;
 };

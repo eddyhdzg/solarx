@@ -2,3 +2,4 @@ export { default as useCreateProjectDataMutation } from "./useCreateProjectDataM
 export { default as useCreateProjectMediaMutation } from "./useCreateProjectMediaMutation";
 export { default as useEditFirestoreUserMutation } from "./useEditFirestoreUserMutation";
 export { default as useEditRole } from "./useEditRole";
+export { default as useProjectDiscountsMutation } from "./useProjectDiscountsMutation";

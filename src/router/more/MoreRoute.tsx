@@ -10,7 +10,7 @@ const MoreRoute = () => {
       <Route exact path="/more/preferences">
         <MorePreferences />
       </Route>
-      <Route exact path="/more/account-information">
+      <Route exact path="/more/profile">
         <MoreAccountInformation />
       </Route>
     </Switch>
