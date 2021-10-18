@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@date-io/dayjs": "^2.11.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@hookform/resolvers": "^2.8.2",
@@ -50,8 +51,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:firestore": "react-scripts test --detectOpenHandles --verbose ./src/tests/firestore",
-    "emulator": "firebase emulators:start",
+    "test:firestore": "react-scripts test  --runInBand --detectOpenHandles --verbose ./src/tests/firestore",
+    "emulator": "firebase --project='solarx-dev' emulators:start",
     "kill": "lsof -ti tcp:8080 | xargs kill",
     "========== DEV ==========": "",
     "firestore:rules:dev": "firebase deploy --project solarx-dev --only firestore:rules",

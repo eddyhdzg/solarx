@@ -1,11 +1,7 @@
 import * as yup from "yup";
 import { FirestoreUser } from "types";
 
-export interface IFirestoreUserFormSchema
-  extends Omit<
-    FirestoreUser,
-    "uid" | "avatar" | "role" | "email" | "created"
-  > {}
+export type IFirestoreUserFormSchema = Pick<FirestoreUser, "displayName">;
 
 export const firestoreUserFormDefaultValues: IFirestoreUserFormSchema = {
   displayName: "",

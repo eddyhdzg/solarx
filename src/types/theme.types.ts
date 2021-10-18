@@ -101,3 +101,9 @@ declare module "@mui/material/TextField" {
     success?: boolean;
   }
 }
+
+declare module "@mui/material/Select" {
+  interface SelectProps {
+    success?: boolean;
+  }
+}

@@ -1,33 +1,54 @@
-import { Timestamp } from "./firebase.types";
+import { TTimestamp } from "./firebase.types";
 
 export interface Project {
   id?: string;
+  archived?: boolean;
   businessType?: string;
   city?: string;
   company?: string;
-  created?: Timestamp;
   coverImage?: string | null;
+  created?: TTimestamp;
+  fundedDate?: TTimestamp | null;
+  goal?: number;
   images?: string[] | null;
+  lastUpdate?: TTimestamp;
+  investors?: number;
   name?: string;
+  operationDate?: TTimestamp | null;
   ppa?: number;
+  releaseDate?: TTimestamp | null;
   roi?: number;
-  sharesSold?: number;
   sharePrice?: number;
-  archived?: boolean;
+  sharesSold?: number;
   state?: string;
+  status?: string;
   totalShares?: number;
 }
 
+export type ProjectStatus =
+  | "canceled"
+  | "fundraising"
+  | "funded"
+  | "operating"
+  | "coming soon";
+
 export interface Discount {
   id?: string;
-  name?: string;
   description?: string;
   discount?: number;
+  investors?: number;
+  lastUpdate?: TTimestamp;
+  name?: string;
   quantity?: number;
-  sold?: number;
+  sharesSold?: number;
 }
 
-export interface NewDiscount extends Omit<Discount, "id" | "sold"> {}
+export type CreateDiscount = Pick<
+  Discount,
+  "name" | "description" | "discount" | "quantity"
+>;
+
+export type EditDiscount = Pick<Discount, "name" | "description">;
 
 export type ProjectsType = "cards" | "table";
 

@@ -1,5 +1,6 @@
 // https://github.com/hipdev/firebase-rules-emulator-suite-tutorial/blob/master/test/test.js
 // https://github.com/hipdev/firebase-rules-emulator-suite-tutorial/blob/master/firestore.rules
+
 import { UserRole } from "types";
 
 const firebase = require("@firebase/testing");
@@ -9,6 +10,8 @@ export const myId = "user_abc";
 export const theirId = "user_xyz";
 export const adminId = "user_admin";
 const moderatorId = "user_moderator";
+export const projectId = "public_project";
+export const projectDiscountId = "public_project_discount";
 // const superUserId = "user_superUser";
 
 interface Auth {

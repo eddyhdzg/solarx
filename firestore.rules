@@ -5,29 +5,56 @@ service cloud.firestore {
       return request.auth.token.role in array;
     }
 
-    function updateOnlyFields(allowedFields) {
-      return request.resource.data.diff(resource.data).changedKeys().hasOnly(allowedFields)
+    function isCreating() {
+      return resource == null;
+    }
+
+    function onlyAffectsFields(fields) {
+      return isCreating()
+      ? request.resource.data.keys().hasOnly(fields)
+      : request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields)
     }
 
     function myDocument(userId) {
-      return request.auth.uid == userId
+      return request.auth.uid == userId;
+    }
+
+    function myDocumentOrAdmin(userId) {
+      return request.auth.uid == userId || isOneOfRoles(['ADMIN', 'MODERATOR', 'SUPER_USER']);
+    }
+
+    function isFutureDate(date) {
+      return date is timestamp && date > request.time;
     }
 
     match /{document=**} {
-      allow read, write: if false
+      allow read, write: if false;
     }
 
     match /users/{userId} {
-      allow read: if true;
-      allow update: if (myDocument(userId) && updateOnlyFields(['avatar','displayName']));
-      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && updateOnlyFields(['role']));
+      allow read;
+      allow update: if (myDocument(userId) && onlyAffectsFields(['anonymous','avatar','displayName']));
+      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['role']));
+    }
+
+    match /users/{userId}/privateUserData/data {
+      allow read: if myDocumentOrAdmin(userId);
+      allow update: if (myDocument(userId) && onlyAffectsFields(['name','lastNames']));
+    }
+
+    match /users/{userId}/userShares/{userSharesId} {
+      allow read: if myDocumentOrAdmin(userId);
     }
 
     match /projects/{projectId} {
-      allow read: if true;
-      allow write: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']));
+      allow read;
+      allow create, update: if isOneOfRoles(['MODERATOR', 'SUPER_USER']);
+    }
+
+    match /projects/{projectId}/projectDiscounts/{projectDiscountId} {
+      allow read;
+      allow create: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','discount','lastUpdate','name','quantity','sharesSold']));
+      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','name']));
     }
   }
 }
-
-

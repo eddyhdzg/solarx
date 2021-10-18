@@ -1,4 +1,4 @@
-import { Timestamp } from "./firebase.types";
+import { TTimestamp } from "./firebase.types";
 
 // Everyone by default
 type DefaultUser = "DEFAULT" | null | undefined;
@@ -20,7 +20,7 @@ export type UserRole =
 
 export interface FirestoreUser {
   avatar?: string;
-  created?: Timestamp;
+  created?: TTimestamp;
   displayName?: string;
   email?: string;
   uid?: string;

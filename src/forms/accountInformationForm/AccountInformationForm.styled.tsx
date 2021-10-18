@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Paper,
-  Typography,
-  TextField,
-  styled,
-  alpha,
-} from "@mui/material";
+import { Avatar, Paper, Typography, styled, alpha } from "@mui/material";
 
 export const StyledPaper = styled(Paper)(({ theme }) => ({
   maxWidth: theme.spacing(100),
@@ -42,15 +35,6 @@ export const StyledAvatar = styled(Avatar)(({ theme }) => ({
   width: theme.spacing(7),
   height: theme.spacing(7),
 }));
-
-export const StyledTextField = styled(TextField, {
-  shouldForwardProp: (prop) => prop !== "success",
-})(({ theme }) => (props) => ({
-  "& input:valid + fieldset": {
-    borderColor: props.success && theme.palette.success.dark,
-    borderWidth: props.success && 2,
-  },
-})) as any;
 
 export const Actions = styled("div")(({ theme }) => ({
   backgroundColor: alpha(theme.palette.common.black, 0.08),

@@ -3,8 +3,8 @@ import { DeepMap } from "react-hook-form";
 export const getDirtyValues = (
   dirtyFields: DeepMap<any, true>,
   values: any,
-  include: string[],
-  exclude: string[]
+  include: string[] = [],
+  exclude: string[] = []
 ) => {
   return Object.fromEntries(
     Object.keys(dirtyFields)

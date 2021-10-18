@@ -116,6 +116,8 @@
         "numbersDescription": "Todos los datos numéricos del proyecto.",
         "media": "Media",
         "mediaDescription": "Imágenes para mostrar el proyecto.",
+        "dates": "Fechas",
+        "datesDescription": "Proporcione las fechas importantes del projecto.",
         "coverImage": "Imagen de portada",
         "images": "Imágenes",
         "project": "Proyecto"
@@ -170,14 +172,14 @@
       "userNotEdited": "Error al editar usuario 😔",
       "roleEdited": "Rol editado! 🔥",
       "roleNotEdited": "Error al editar rol 😔",
-      "projectAdded": "Proyecto agregado! 🔥",
+      "projectAdded": "Proyecto gregado! 🔥",
       "projectNotAdded": "Error al agregar proyecto 😔",
-      "projectEdited": "Projecto Editado! 🔥",
+      "projectEdited": "Projecto editado! 🔥",
       "projectNotEdited": "Error al editar projecto 😔",
-      "mediaAdded": "Media agregada! 🔥",
-      "mediaNotAdded": "Error al agregar media😔",
-      "mediaEdited": "Media editada! 🔥",
-      "mediaNotEdited": "Error al editar media 😔"
+      "discountAdded": "Descuento agregado! 🔥",
+      "discountNotAdded": "Error al agregar descuento 😔",
+      "discountEdited": "Descuento editado! 🔥",
+      "discountNotEdited": "Error al editar descuento 😔"
     },
     "auth": {
       "myAccount": "Mi Cuenta",

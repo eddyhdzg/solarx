@@ -1,21 +1,9 @@
 import { useEffect } from "react";
-import { Seo, PageTitle } from "components";
-import {
-  IProjectDataFormSchema,
-  IProjectFormSchema,
-  IProjectMediaFormSchema,
-  useHeader,
-} from "hooks";
-import {
-  useCreateProjectDataForm,
-  useCreateProjectDataMutation,
-  useCreateProjectMediaMutation,
-} from "hooks";
-import ProjectForm from "forms/projectForm/ProjectForm";
-import { useSnackbar } from "notistack";
-import { FormProvider, SubmitHandler } from "react-hook-form";
+import { Seo, PageTitle, GridItem } from "components";
+import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { getDirtyValues } from "utils";
+import { CreateProjectGeneralFormContext } from "forms";
+import { Grid } from "@mui/material";
 
 export default function CreateProjectPage() {
   const { t } = useTranslation();
@@ -37,60 +25,11 @@ export default function CreateProjectPage() {
 }
 
 function CreateProject() {
-  const { t } = useTranslation();
-  const methods = useCreateProjectDataForm();
-  const { createProjectDataMutation } = useCreateProjectDataMutation();
-  const { createProjectMediaMutation } = useCreateProjectMediaMutation();
-  const { enqueueSnackbar } = useSnackbar();
-
-  const onSubmit: SubmitHandler<IProjectFormSchema> = (values, e) => {
-    e?.preventDefault();
-
-    const dirtyDataValues = getDirtyValues(
-      methods?.formState?.dirtyFields,
-      values,
-      [],
-      ["coverImage", "images"]
-    ) as IProjectDataFormSchema;
-
-    const dirtyMediaValues = getDirtyValues(
-      methods?.formState?.dirtyFields,
-      values,
-      ["coverImage", "images"],
-      []
-    ) as IProjectMediaFormSchema;
-
-    createProjectDataMutation(dirtyDataValues)
-      .then((res) => {
-        enqueueSnackbar(t("snackbar.projectAdded"), { variant: "success" });
-
-        if (Object.keys(dirtyMediaValues).length) {
-          createProjectMediaMutation(res.id, dirtyMediaValues)
-            .then(() => {
-              enqueueSnackbar(t("snackbar.mediaAdded"), { variant: "success" });
-            })
-            .catch(() => {
-              enqueueSnackbar(t("snackbar.mediaNotAdded"), {
-                variant: "error",
-              });
-            })
-            .finally(() => {
-              methods.reset();
-            });
-        } else {
-          methods.reset();
-        }
-      })
-      .catch(() => {
-        enqueueSnackbar(t("snackbar.projectNotAdded"), { variant: "error" });
-      });
-
-    methods.reset();
-  };
-
   return (
-    <FormProvider {...methods}>
-      <ProjectForm onSubmit={methods.handleSubmit(onSubmit)} title="Create" />
-    </FormProvider>
+    <Grid container spacing={3}>
+      <GridItem lg={9}>
+        <CreateProjectGeneralFormContext />
+      </GridItem>
+    </Grid>
   );
 }

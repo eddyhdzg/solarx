@@ -1,5 +1,5 @@
 import { Button, Divider, Grid, Typography } from "@mui/material";
-import { GridItem } from "components";
+import { GridItem, StyledTextField } from "components";
 import { FirestoreUser } from "types";
 import { IFirestoreUserFormSchema, useEditFirestoreUserMutation } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
@@ -13,7 +13,6 @@ import {
   Caption,
   StyledAvatar,
   AvatarContainer,
-  StyledTextField,
   Actions,
 } from "./AccountInformationForm.styled";
 

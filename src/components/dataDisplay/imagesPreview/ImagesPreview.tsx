@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FieldValues, useFormContext } from "react-hook-form";
-import { IProjectFormSchema } from "hooks";
+import { IProjectMediaSchema } from "hooks";
 import { TImagesPreview } from "types/firebase.types";
 import {
   ImagesPreviewImg,
@@ -9,49 +9,31 @@ import {
 } from "./ImagesPreview.styled";
 
 export default function ImagesPreview({ name }: FieldValues) {
-  const { watch } = useFormContext<IProjectFormSchema>();
+  const { watch } = useFormContext<IProjectMediaSchema>();
   const [imageArray] = watch([name]) as [TImagesPreview];
   const [files, setFiles] = useState<TImagesPreview>([]);
-  const [pastFiles, setPastFiles] = useState<TImagesPreview>([]);
 
   useEffect(() => {
-    setPastFiles(files);
+    if (typeof imageArray === "string") {
+      setFiles([imageArray]);
+    } else if (imageArray?.length) {
+      setFiles(
+        imageArray?.map((file) => {
+          if (typeof file === "string") {
+            return file;
+          }
 
-    setFiles(
-      imageArray?.length
-        ? imageArray.map((file) => {
-            if (typeof file === "string") {
-              return file;
-            }
-
-            return Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            });
-          })
-        : []
-    );
-
-    return () => {
-      files?.forEach((file) => {
-        if (typeof file !== "string") {
-          URL.revokeObjectURL(file.preview);
-        }
-      });
-    };
+          return Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          });
+        })
+      );
+    } else {
+      setFiles([]);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageArray]);
-
-  useEffect(
-    () => () => {
-      pastFiles?.forEach((file) => {
-        if (typeof file !== "string") {
-          URL.revokeObjectURL(file.preview);
-        }
-      });
-    },
-    [pastFiles]
-  );
 
   return (
     <ImagesPreviewUl>

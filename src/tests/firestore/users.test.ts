@@ -1,13 +1,8 @@
 /**
  * @jest-environment node
  */
-
-//  https://stackoverflow.com/a/67341569
-
 import * as firebase from "@firebase/testing";
-
 import {
-  // MY_PROJECT_ID,
   myId,
   theirId,
   myAuth,
@@ -19,54 +14,45 @@ import {
 
 describe("Firestore Users Security Rules", () => {
   beforeEach(async () => {
-    await firebase.clearFirestoreData({ projectId: "users" });
+    await firebase.clearFirestoreData({ projectId: "local" });
   });
 
   afterAll(async () => {
-    await firebase.clearFirestoreData({ projectId: "users" });
+    await firebase.clearFirestoreData({ projectId: "local" });
   });
+
   //////////////////////////////////////////
-  // Users
+  // allow read;
   //////////////////////////////////////////
-  it("Can read a user document with the same ID as our user", async () => {
+  it("Can read a user document.", async () => {
     const db = getFirestore(null);
-    const testDoc = db.collection("users").doc(myId);
+    const testDoc = db.collection("users").doc(theirId);
     await firebase.assertSucceeds(testDoc.get());
   });
 
-  it("Can update to a user document with the same ID as our user", async () => {
+  //////////////////////////////////////////
+  // allow update: if (myDocument(userId)
+  //////////////////////////////////////////
+  it("Can't update user document with another uid.", async () => {
     const admin = getAdminFirestore();
-    await admin.collection("users").doc(myId).set({ displayName: "Waluigi" });
-    const db = getFirestore(myAuth);
-    const testDoc = db.collection("users").doc(myId);
-    await firebase.assertSucceeds(testDoc.update({ displayName: "Mario" }));
-  });
-
-  it("Can't update to a user document with another ID as our user", async () => {
-    const admin = getAdminFirestore();
-    await admin
-      .collection("users")
-      .doc(theirId)
-      .set({ displayName: "Waluigi" });
+    await admin.collection("users").doc(theirId).set({ displayName: "Mario" });
     const db = getFirestore(myAuth);
     const testDoc = db.collection("users").doc(theirId);
-    await firebase.assertFails(testDoc.update({ displayName: "Mario" }));
+    await firebase.assertFails(testDoc.update({ displayName: "Waluigi" }));
   });
 
-  it("Can update allowed fields to a user document with the same ID as our user", async () => {
+  it("Can update user document with same uid.", async () => {
     const admin = getAdminFirestore();
-    await admin
-      .collection("users")
-      .doc(myId)
-      .set({ avatar: "www.google.com", displayName: "Waluigi" });
+    await admin.collection("users").doc(myId).set({ displayName: "Mario" });
     const db = getFirestore(myAuth);
     const testDoc = db.collection("users").doc(myId);
-    await firebase.assertSucceeds(
-      testDoc.update({ avatar: "www.nintendo.com", displayName: "Mario" })
-    );
+    await firebase.assertSucceeds(testDoc.update({ displayName: "Waluigi" }));
   });
 
-  it("Can't update unallowed fields to a user document with the same ID as our user", async () => {
+  //////////////////////////////////////////
+  // allow update: updateOnlyFields(['anonymous','avatar','displayName']));
+  //////////////////////////////////////////
+  it("Can't update protected fields of a user document.", async () => {
     const admin = getAdminFirestore();
     await admin.collection("users").doc(myId).set({ role: "DEFAULT" });
     const db = getFirestore(myAuth);
@@ -74,23 +60,28 @@ describe("Firestore Users Security Rules", () => {
     await firebase.assertFails(testDoc.update({ role: "BETA" }));
   });
 
-  it("Can update allowed fields to a user document if moderator", async () => {
+  it("Can update allowed fields of a user document.", async () => {
     const admin = getAdminFirestore();
     await admin.collection("users").doc(myId).set({
+      anonymous: true,
       avatar: "www.google.com",
-      displayName: "Waluigi",
-      role: "DEFAULT",
+      displayName: "anonymous",
     });
-    const db = getFirestore(moderatorAuth);
+    const db = getFirestore(myAuth);
     const testDoc = db.collection("users").doc(myId);
     await firebase.assertSucceeds(
       testDoc.update({
-        role: "BETA",
+        anonymous: false,
+        avatar: "www.nintendo.com",
+        displayName: "Mario",
       })
     );
   });
 
-  it("Can't update allowed fields to a user document if admin", async () => {
+  //////////////////////////////////////////
+  // allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && updateOnlyFields(['role']));
+  //////////////////////////////////////////
+  it("Can't update protected fields of a user document even if admin.", async () => {
     const admin = getAdminFirestore();
     await admin.collection("users").doc(myId).set({
       avatar: "www.google.com",
@@ -107,4 +98,20 @@ describe("Firestore Users Security Rules", () => {
       })
     );
   });
+});
+
+it("Can update allowed fields of a user document if moderator", async () => {
+  const admin = getAdminFirestore();
+  await admin.collection("users").doc(myId).set({
+    avatar: "www.google.com",
+    displayName: "Waluigi",
+    role: "DEFAULT",
+  });
+  const db = getFirestore(moderatorAuth);
+  const testDoc = db.collection("users").doc(myId);
+  await firebase.assertSucceeds(
+    testDoc.update({
+      role: "BETA",
+    })
+  );
 });

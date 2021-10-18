@@ -8,7 +8,7 @@ import {
 export default function useEditFirestoreUser() {
   const form = useForm({
     resolver: yupResolver(firestoreUserFormSchema),
-    mode: "onTouched",
+    mode: "onChange",
     defaultValues: firestoreUserFormDefaultValues,
   });
 
