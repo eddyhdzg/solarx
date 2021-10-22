@@ -1,6 +1,6 @@
 import { Grid, GridProps } from "@mui/material";
 
-interface IGridProps extends Omit<Partial<GridProps>, "xxs"> {
+export interface IGridProps extends Omit<Partial<GridProps>, "xxs"> {
   xxs?: number;
 }
 

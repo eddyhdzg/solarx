@@ -1,5 +1,4 @@
 import { Timestamp } from "firebase/firestore";
-
 export type TTimestamp = Timestamp;
 
 export interface Project {
@@ -27,13 +26,14 @@ export interface Project {
   totalShares?: number;
 }
 
-export interface Discount {
+export interface BuyingOption {
   id?: string;
   description?: string;
   discount?: number;
   investors?: number;
   lastUpdate?: TTimestamp;
-  name?: string;
   quantity?: number;
   sharesSold?: number;
+  subtitle?: string;
+  title?: string;
 }

@@ -114,6 +114,8 @@
         "generalDescription": "Provide basic information about the project.",
         "numbers": "Numbers",
         "numbersDescription": "All numeric data of the project.",
+        "content": "Content",
+        "contentDescription": "Content to showcase the project.",
         "media": "Media",
         "mediaDescription": "Images to showcase the project.",
         "dates": "Dates",
@@ -176,10 +178,10 @@
       "projectNotAdded": "Project Added Error 😔",
       "projectEdited": "Project Edited! 🔥",
       "projectNotEdited": "Project Edited Error 😔",
-      "discountAdded": "Discount Added! 🔥",
-      "discountNotAdded": "Discount Added Error 😔",
-      "discountEdited": "Discount Edited! 🔥",
-      "discountNotEdited": "Discount Edited Error 😔"
+      "buyingOptionAdded": "Buying Option Added! 🔥",
+      "buyingOptionNotAdded": "Buying Option Added Error 😔",
+      "buyingOptionEdited": "Buying Option Edited! 🔥",
+      "buyingOptionNotEdited": "Buying Option Edited Error 😔"
     },
     "auth": {
       "myAccount": "My account",

@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { SegmentedControl } from "components";
-import Notion from "notion/Example";
+import { Notion } from "components";
 import { TabContext } from "@mui/lab";
 import { ProjectTabsContainer, StyledTabPanel } from "./ProjectTabs.styled";
 
-export default function ProjectTabs() {
+interface IProjectTabsProps {
+  general?: string;
+  graphs?: string;
+  about?: string;
+}
+
+export default function ProjectTabs(props: IProjectTabsProps) {
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
@@ -22,7 +28,13 @@ export default function ProjectTabs() {
           </SegmentedControl>
         </ProjectTabsContainer>
         <StyledTabPanel value="0">
-          <Notion />
+          <Notion pageId={props.general} />
+        </StyledTabPanel>
+        <StyledTabPanel value="1">
+          <Notion pageId={props.graphs} />
+        </StyledTabPanel>
+        <StyledTabPanel value="2">
+          <Notion pageId={props.about} />
         </StyledTabPanel>
       </TabContext>
     </>

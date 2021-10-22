@@ -40,7 +40,7 @@ export default function ProjectDatesForm({ onSubmit }: IProjectFormBodyProps) {
               <Controller
                 name="releaseDate"
                 control={control}
-                render={({ field, fieldState }) => (
+                render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
                     label="Release Date"
                     error={Boolean(fieldState.error)}
@@ -50,12 +50,11 @@ export default function ProjectDatesForm({ onSubmit }: IProjectFormBodyProps) {
                 )}
               />
             </GridItem>
-
             <GridItem xs={6}>
               <Controller
                 name="fundedDate"
                 control={control}
-                render={({ field, fieldState }) => (
+                render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
                     label="Funded Date"
                     error={Boolean(fieldState.error)}
@@ -69,7 +68,7 @@ export default function ProjectDatesForm({ onSubmit }: IProjectFormBodyProps) {
               <Controller
                 name="operationDate"
                 control={control}
-                render={({ field, fieldState }) => (
+                render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
                     label="Operation Date"
                     error={Boolean(fieldState.error)}

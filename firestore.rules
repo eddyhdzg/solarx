@@ -33,13 +33,13 @@ service cloud.firestore {
 
     match /users/{userId} {
       allow read;
-      allow update: if (myDocument(userId) && onlyAffectsFields(['anonymous','avatar','displayName']));
-      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['role']));
+      allow update: if (myDocument(userId) && onlyAffectsFields(['anonymous','avatar','displayName','lastUpdate']));
+      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['lastUpdate','role']));
     }
 
     match /users/{userId}/privateUserData/data {
       allow read: if myDocumentOrAdmin(userId);
-      allow update: if (myDocument(userId) && onlyAffectsFields(['name','lastNames']));
+      allow update: if (myDocument(userId) && onlyAffectsFields(['name','lastNames','lastUpdate']));
     }
 
     match /users/{userId}/userShares/{userSharesId} {
@@ -51,10 +51,10 @@ service cloud.firestore {
       allow create, update: if isOneOfRoles(['MODERATOR', 'SUPER_USER']);
     }
 
-    match /projects/{projectId}/projectDiscounts/{projectDiscountId} {
+    match /projects/{projectId}/buyingOptions/{buyingOptionId} {
       allow read;
-      allow create: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','discount','lastUpdate','name','quantity','sharesSold']));
-      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','name']));
+      allow create: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','discount','investors','lastUpdate','quantity','sharesSold','subtitle','title']));
+      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','lastUpdate','subtitle', "title"]));
     }
   }
 }

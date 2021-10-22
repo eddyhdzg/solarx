@@ -1,20 +1,21 @@
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
 import ProjectHeader from "./projectHeader/ProjectHeader";
-import ProjectCard from "./projectCard/ProjectCard";
 import ProjectGalllery from "./projectGallery/ProjectGallery";
+import ProjectSummary from "./projectSummary/ProjectSummary";
+import ProjectBuyingOptions from "./projectBuyingOptions/ProjectBuyingOptions";
 import { useProject, useHeader } from "hooks";
 import { CenterLoader, Seo, GridItem } from "components";
 import { useEffect } from "react";
-import ProjectTabs from "./projectTabs/ProjectTabs";
+// import ProjectTabs from "./projectTabs/ProjectTabs";
 import { useTranslation } from "react-i18next";
-import { HeaderGrid, Content, RelativeDiv } from "./Project.styled";
+import Project from "./Project.styled";
 
 interface ProjectID {
   id?: string;
 }
 
-export default function Project() {
+export default function ProjectTemplate() {
   const { t } = useTranslation();
   const { id } = useParams<ProjectID>();
   const { status, data } = useProject(id || "");
@@ -39,8 +40,8 @@ export default function Project() {
         }
         description="Project information page."
       />
-      <div>
-        <HeaderGrid container spacing={2}>
+      <Project>
+        <Project.HeaderGrid container spacing={4}>
           <GridItem lg={8}>
             <ProjectHeader
               id={data?.id}
@@ -51,31 +52,36 @@ export default function Project() {
               company={data?.company}
             />
           </GridItem>
-        </HeaderGrid>
-        <Grid container spacing={2}>
+        </Project.HeaderGrid>
+        <Grid container spacing={4}>
           <GridItem lg={8}>
             <ProjectGalllery images={data?.images} />
+            {/* <div>
+              <Project.GreyBackground />
+              <Project.Tabs>
+                <ProjectTabs
+                  general={data?.generalContent}
+                  graphs={data?.graphsContent}
+                  about={data?.aboutContent}
+                />
+              </Project.Tabs>
+            </div> */}
           </GridItem>
-          <GridItem lg={4}>
-            <ProjectCard
-              sharesSold={data?.sharesSold}
-              totalShares={data?.totalShares}
-              sharePrice={data?.sharePrice}
-              roi={data?.roi}
-              investors={42}
-            />
-          </GridItem>
+          <Project.Sticky item lg={4}>
+            <Project.StickyContent>
+              <ProjectSummary
+                goal={data?.goal}
+                investors={data?.investors}
+                roi={data?.roi}
+                sharePrice={data?.sharePrice}
+                sharesSold={data?.sharesSold}
+                totalShares={data?.totalShares}
+              />
+              <ProjectBuyingOptions roi={data?.roi} />
+            </Project.StickyContent>
+          </Project.Sticky>
         </Grid>
-      </div>
-      <Content>
-        <Grid container spacing={3}>
-          <GridItem lg={8}>
-            <RelativeDiv>
-              <ProjectTabs />
-            </RelativeDiv>
-          </GridItem>
-        </Grid>
-      </Content>
+      </Project>
     </>
   );
 }

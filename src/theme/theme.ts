@@ -55,6 +55,7 @@ const theme = createTheme({
         icon: {
           color: "inherit",
           fontSize: "inherit",
+          marginRight: 0,
         },
       },
       variants: [
@@ -111,13 +112,26 @@ const theme = createTheme({
           },
         },
       },
-
       variants: [
         {
           props: { variant: "contained", color: "inherit" },
           style: {
             backgroundColor: `#121212 !important`,
             backgroundImage: `${customTheme.custom.elevation[6]} !important`,
+          },
+        },
+      ],
+    },
+    MuiGrid: {
+      defaultProps: {},
+      variants: [
+        {
+          props: {
+            item: true,
+          },
+          style: {
+            maxWidth: "100%",
+            flexBasis: "100%",
           },
         },
       ],

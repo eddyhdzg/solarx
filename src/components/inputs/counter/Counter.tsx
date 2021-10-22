@@ -1,6 +1,11 @@
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { CounterRoot, CounterButton, CounterInput } from "./Counter.styled";
+import {
+  CounterRoot,
+  CounterInput,
+  CounterButtonLeft,
+  CounterButtonRight,
+} from "./Counter.styled";
 import { NumberFormatInput } from "components";
 
 interface ICounterProps {
@@ -19,31 +24,28 @@ export default function Counter({
   max,
 }: ICounterProps) {
   const handleChange = (num: number) => {
-    if (num <= 1) {
-      setShares(1);
-    } else if (num >= max) {
-      setShares(max);
-    } else {
-      setShares(num);
-    }
+    if (num <= 1) setShares(1);
+    else if (num >= max) setShares(max);
+    else setShares(num);
   };
 
   return (
     <CounterRoot error={error}>
-      <CounterButton
+      <CounterButtonLeft
         variant="outlined"
         color="inherit"
         disabled={shares <= 1}
         onClick={() => onChangeShares(-1)}
       >
         <RemoveRoundedIcon />
-      </CounterButton>
+      </CounterButtonLeft>
 
       <CounterInput
         id="shares-counter"
         value={shares}
-        onChange={(e) => {
-          handleChange(Number(e.target.value));
+        onChange={(value) => {
+          // @ts-ignore
+          if (value) handleChange(value as number);
         }}
         inputProps={{
           inputMode: "numeric",
@@ -57,14 +59,14 @@ export default function Counter({
         }}
       />
 
-      <CounterButton
+      <CounterButtonRight
         variant="outlined"
         color="inherit"
         disabled={max <= shares}
         onClick={() => onChangeShares(1)}
       >
         <AddRoundedIcon />
-      </CounterButton>
+      </CounterButtonRight>
     </CounterRoot>
   );
 }

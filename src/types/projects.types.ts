@@ -2,6 +2,7 @@ import { TTimestamp } from "./firebase.types";
 
 export interface Project {
   id?: string;
+  aboutContent?: string;
   archived?: boolean;
   businessType?: string;
   city?: string;
@@ -9,6 +10,8 @@ export interface Project {
   coverImage?: string | null;
   created?: TTimestamp;
   fundedDate?: TTimestamp | null;
+  generalContent?: string;
+  graphsContent?: string;
   goal?: number;
   images?: string[] | null;
   lastUpdate?: TTimestamp;
@@ -32,26 +35,38 @@ export type ProjectStatus =
   | "operating"
   | "coming soon";
 
-export interface Discount {
+export interface BuyingOption {
   id?: string;
   description?: string;
   discount?: number;
   investors?: number;
   lastUpdate?: TTimestamp;
-  name?: string;
   quantity?: number;
   sharesSold?: number;
+  subtitle?: string;
+  title?: string;
 }
 
-export type CreateDiscount = Pick<
-  Discount,
-  "name" | "description" | "discount" | "quantity"
+export interface Content {
+  id?: string;
+  about?: number;
+  general?: string;
+  graphs?: number;
+  lastUpdate?: TTimestamp;
+}
+
+export type Notion = string | null | undefined;
+
+export type CreateBuyingOption = Pick<
+  BuyingOption,
+  "description" | "discount" | "quantity" | "subtitle" | "title"
 >;
 
-export type EditDiscount = Pick<Discount, "name" | "description">;
+export type EditBuyingOption = Pick<
+  BuyingOption,
+  "title" | "subtitle" | "description"
+>;
 
 export type ProjectsType = "cards" | "table";
-
 export type ProjectSection = "crowdfunding" | "admin/projects";
-
 export type ProjectForms = "Edit" | "Create";

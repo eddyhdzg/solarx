@@ -21,13 +21,13 @@ export default function useEditProjectMediaMutation() {
       await uploadBytesResumable(coverImageStorageRef, fileToUpload);
       const coverImageUrl = await getDownloadURL(coverImageStorageRef);
       updateDoc(projectFirestoreDocRef, {
-        lastUpdate: serverTimestamp(),
         coverImage: coverImageUrl,
+        lastUpdate: serverTimestamp(),
       });
     } else {
       updateDoc(projectFirestoreDocRef, {
-        lastUpdate: serverTimestamp(),
         coverImage: null,
+        lastUpdate: serverTimestamp(),
       });
     }
   };
@@ -59,13 +59,13 @@ export default function useEditProjectMediaMutation() {
       ) as string[];
 
       updateDoc(projectFirestoreDocRef, {
-        lastUpdate: serverTimestamp(),
         images: filteredFileUrls,
+        lastUpdate: serverTimestamp(),
       });
     } else {
       updateDoc(projectFirestoreDocRef, {
-        lastUpdate: serverTimestamp(),
         images: [],
+        lastUpdate: serverTimestamp(),
       });
     }
   };

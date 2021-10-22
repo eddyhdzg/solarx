@@ -3,6 +3,8 @@ import { Locales, ThemeType, Timespan } from "types";
 export const themeOptions: ThemeType[] = ["light", "dark", "system"];
 export const localeOptions: Locales[] = ["en", "es"];
 
+export const Notion_Regex = /^[a-zA-Z0-9_.-]*$/gi;
+
 export const timespans: {
   text: string;
   value: Timespan;

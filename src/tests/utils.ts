@@ -11,7 +11,7 @@ export const theirId = "user_xyz";
 export const adminId = "user_admin";
 const moderatorId = "user_moderator";
 export const projectId = "public_project";
-export const projectDiscountId = "public_project_discount";
+export const projectBuyingOptionId = "public_project_buyingOption";
 // const superUserId = "user_superUser";
 
 interface Auth {

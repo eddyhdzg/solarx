@@ -10,7 +10,7 @@ export const StyledSegment = styled(Tab, {
   "&:focus": {
     color: theme.palette.text.primary,
   },
-  padding: size === "medium" ? theme.spacing(2, 6) : theme.spacing(2, 4),
+  padding: size === "medium" ? theme.spacing(2, 5) : theme.spacing(2, 4),
   fontSize: "14px",
   [theme.breakpoints.up("xs")]: {
     padding: size === "medium" ? theme.spacing(2.5, 6) : theme.spacing(2, 4),

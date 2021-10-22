@@ -17,7 +17,6 @@ interface IDateTimePickerProps extends Partial<MobileDatePickerProps> {
 export default function DateTimePicker({
   error,
   success,
-  ref,
   ...props
 }: IDateTimePickerProps) {
   return (
@@ -40,7 +39,6 @@ export default function DateTimePicker({
         )}
         ampm={false}
         clearable
-        inputRef={ref}
         {...props}
       />
     </LocalizationProvider>

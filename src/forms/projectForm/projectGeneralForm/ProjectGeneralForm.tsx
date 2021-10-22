@@ -8,13 +8,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import {
-  GridItem,
-  Switch,
-  StyledTextField,
-  StyledSelect,
-  // DateTimePicker,
-} from "components";
+import { GridItem, Switch, StyledTextField, StyledSelect } from "components";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { useTranslation } from "react-i18next";
 import { IProjectGeneralSchema } from "hooks";
@@ -269,20 +263,6 @@ export default function ProjectGeneralForm({
                 }}
               />
             </GridItem>
-            {/* <GridItem xs={6}>
-              <Controller
-                name="releaseDate"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <DateTimePicker
-                    label="Release Date"
-                    error={Boolean(fieldState.error)}
-                    success={fieldState.isDirty}
-                    {...field}
-                  />
-                )}
-              />
-            </GridItem> */}
             <GridItem xs={6}>
               <Controller
                 name="archived"

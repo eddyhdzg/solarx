@@ -23,7 +23,6 @@ export default function useProjectGeneralMutation() {
       fundedDate: null,
       goal: 1,
       images: [],
-      lastUpdate: serverTimestamp() as TTimestamp,
       investors: 0,
       operationDate: null,
       ppa: 0,
@@ -33,6 +32,7 @@ export default function useProjectGeneralMutation() {
       sharesSold: 0,
       state: state?.name,
       totalShares: 1,
+      lastUpdate: serverTimestamp() as TTimestamp,
       ...data,
     };
 
@@ -49,8 +49,8 @@ export default function useProjectGeneralMutation() {
     };
     const projectDocRef = doc(firestore, "projects", id);
     return updateDoc(projectDocRef, {
-      lastUpdate: serverTimestamp(),
       ...project,
+      lastUpdate: serverTimestamp(),
     });
   };
 

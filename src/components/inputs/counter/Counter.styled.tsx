@@ -1,4 +1,10 @@
-import { Button, styled, InputBase, inputBaseClasses } from "@mui/material";
+import {
+  Button,
+  styled,
+  InputBase,
+  inputBaseClasses,
+  alpha,
+} from "@mui/material";
 
 export const CounterRoot = styled("div", {
   shouldForwardProp: (prop) => prop !== "error",
@@ -11,11 +17,24 @@ export const CounterRoot = styled("div", {
   userSelect: "none",
 }));
 
-export const CounterButton = styled(Button)({
+export const CounterButtonLeft = styled(Button)({
   border: "none !important",
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+});
+export const CounterButtonRight = styled(Button)({
+  border: "none !important",
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
 });
 
 export const CounterInput = styled(InputBase)(({ theme }) => ({
+  borderLeftColor: alpha(theme.palette.common.white, 0.15),
+  borderRightColor: alpha(theme.palette.common.white, 0.15),
+  borderLeftStyle: "solid",
+  borderRightStyle: "solid",
+  borderLeftWidth: "1px",
+  borderRightWidth: "1px",
   maxWidth: theme.spacing(8),
   [`& .${inputBaseClasses.input}`]: {
     textAlign: "center",

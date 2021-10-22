@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useHeader } from "hooks";
 import { Seo, PageTitle, GridItem } from "components";
 import { useTranslation } from "react-i18next";
@@ -12,10 +12,14 @@ import {
   EditProjectGeneralFormContext,
   EditProjectNumberFormContext,
   EditProjectMediaFormContext,
-  ProjectDiscountFormLayout,
+  ProjectBuyingOptionsFormLayout,
   EditProjectDatesFormContext,
+  EditProjectContentFormContext,
 } from "forms";
 import { ProjectSummary } from "organisms";
+import { useLocation, useHistory } from "react-router-dom";
+// @ts-ignore
+import queryString from "query-string";
 
 export default function EditPorjectPage() {
   const { t } = useTranslation();
@@ -38,25 +42,36 @@ export default function EditPorjectPage() {
 }
 
 function EditProject() {
-  const [tabIndex, setTabIndex] = useState(0);
+  const { search, pathname } = useLocation();
+  const { tab = "0" } = queryString.parse(search) as { tab: string };
+  const history = useHistory();
+
+  const handleChange = (index: number) => {
+    history.replace({
+      pathname,
+      search: queryString.stringify({ tab: index.toString() }),
+    });
+  };
 
   return (
     <>
       <EditProjectTabsContainer>
         <Tabs
-          value={tabIndex}
-          onChange={(_, index) => setTabIndex(index)}
+          value={Number(tab)}
+          onChange={(_, index) => handleChange(index)}
           selectionFollowsFocus
+          variant="scrollable"
         >
           <Tab disableRipple label="General" />
           <Tab disableRipple label="Numbers" />
+          <Tab disableRipple label="Buying Options" />
           <Tab disableRipple label="Media" />
-          <Tab disableRipple label="Discounts" />
+          <Tab disableRipple label="CMS" />
           <Tab disableRipple label="Dates" />
         </Tabs>
       </EditProjectTabsContainer>
       <Grid container spacing={3}>
-        <TabContext value={tabIndex.toString()}>
+        <TabContext value={tab}>
           <GridItem md={7} lg={8} xl={9}>
             <EditProjectTabPanel value="0">
               <EditProjectGeneralFormContext />
@@ -65,12 +80,15 @@ function EditProject() {
               <EditProjectNumberFormContext />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="2">
-              <EditProjectMediaFormContext />
+              <ProjectBuyingOptionsFormLayout />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="3">
-              <ProjectDiscountFormLayout />
+              <EditProjectMediaFormContext />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="4">
+              <EditProjectContentFormContext />
+            </EditProjectTabPanel>
+            <EditProjectTabPanel value="5">
               <EditProjectDatesFormContext />
             </EditProjectTabPanel>
           </GridItem>

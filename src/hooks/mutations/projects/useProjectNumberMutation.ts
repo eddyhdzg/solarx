@@ -10,7 +10,7 @@ export default function useEditProjectNumberMutation() {
     data: IProjectNumberSchema
   ) => {
     const projectDocRef = doc(firestore, "projects", id);
-    return updateDoc(projectDocRef, { lastUpdate: serverTimestamp(), ...data });
+    return updateDoc(projectDocRef, { ...data, lastUpdate: serverTimestamp() });
   };
 
   return editProjectNumberMutation;

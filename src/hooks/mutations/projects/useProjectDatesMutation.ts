@@ -24,8 +24,8 @@ export default function useProjectDatesMutation() {
     };
     const projectDocRef = doc(firestore, "projects", id);
     return updateDoc(projectDocRef, {
-      lastUpdate: serverTimestamp(),
       ...project,
+      lastUpdate: serverTimestamp(),
     });
   };
 

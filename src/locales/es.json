@@ -114,6 +114,8 @@
         "generalDescription": "Proporcione información básica sobre el proyecto.",
         "numbers": "Números",
         "numbersDescription": "Todos los datos numéricos del proyecto.",
+        "content": "Contenido",
+        "contentDescription": "Contenido para enseñar el projecto.",
         "media": "Media",
         "mediaDescription": "Imágenes para mostrar el proyecto.",
         "dates": "Fechas",
@@ -176,10 +178,10 @@
       "projectNotAdded": "Error al agregar proyecto 😔",
       "projectEdited": "Projecto editado! 🔥",
       "projectNotEdited": "Error al editar projecto 😔",
-      "discountAdded": "Descuento agregado! 🔥",
-      "discountNotAdded": "Error al agregar descuento 😔",
-      "discountEdited": "Descuento editado! 🔥",
-      "discountNotEdited": "Error al editar descuento 😔"
+      "buyingOptionAdded": "Opción de compra agregado! 🔥",
+      "buyingOptionNotAdded": "Error al agregar opción de compra 😔",
+      "buyingOptionEdited": "Opción de compra editado! 🔥",
+      "buyingOptionNotEdited": "Error al editar opción de compra 😔"
     },
     "auth": {
       "myAccount": "Mi Cuenta",

@@ -16,16 +16,11 @@ const NumberFormatInput = forwardRef<NumberFormat, INumberFormatInputProps>(
     },
     ref
   ) {
-    const handleChange = (value: number) => {
-      let newValue = value;
-      if (value <= min) newValue = Number(min);
-      else if (value >= max) newValue = Number(max);
-      else newValue = value;
-      onChange({
-        target: {
-          value: String(newValue),
-        },
-      });
+    const handleChange = (value?: number) => {
+      let newValue = value as number;
+      if (newValue <= min) newValue = Number(min);
+      else if (newValue >= max) newValue = Number(max);
+      onChange(newValue);
     };
 
     return (
@@ -34,7 +29,7 @@ const NumberFormatInput = forwardRef<NumberFormat, INumberFormatInputProps>(
         getInputRef={ref}
         isNumericString
         onValueChange={(values) => {
-          handleChange(values.floatValue || 0);
+          handleChange(values.floatValue);
         }}
         onKeyDown={(e) => {
           if (e.key === "ArrowUp") handleChange(Number(rest.value) + 1);
