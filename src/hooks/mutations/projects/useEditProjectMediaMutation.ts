@@ -1,5 +1,5 @@
 import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { IProjectMediaSchema } from "hooks";
+import { IEditProjectMediaSchema } from "hooks";
 import { useFirestore, useStorage } from "reactfire";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -9,7 +9,7 @@ export default function useEditProjectMediaMutation() {
 
   const uploadCoverImage = async (
     id: string,
-    coverImage: IProjectMediaSchema["coverImage"]
+    coverImage: IEditProjectMediaSchema["coverImage"]
   ) => {
     const projectFirestoreDocRef = doc(firestore, "projects", id);
     if (coverImage?.length) {
@@ -34,7 +34,7 @@ export default function useEditProjectMediaMutation() {
 
   const uploadImages = async (
     id: string,
-    images: IProjectMediaSchema["images"]
+    images: IEditProjectMediaSchema["images"]
   ) => {
     const projectFirestoreDocRef = doc(firestore, "projects", id);
     if (images?.length) {
@@ -72,7 +72,7 @@ export default function useEditProjectMediaMutation() {
 
   const editProjectMediaMutation = async (
     id: string | undefined,
-    { coverImage, images }: IProjectMediaSchema
+    { coverImage, images }: IEditProjectMediaSchema
   ) => {
     if (!id) return new Error("ID Error");
     let coverImagePromise: Promise<void> | undefined;

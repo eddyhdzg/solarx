@@ -6,19 +6,9 @@ import {
   TableFooter,
 } from "@mui/material";
 import { CustomTablePagination } from "components";
+import { Project } from "types";
+import { HeaderGroup, TableInstance, Row, Cell } from "react-table";
 import { StyledPaper, StyledTableHead } from "./ProjectsTable.styled";
-
-interface IProjectsTableProps {
-  getTableProps: any;
-  getTableBodyProps: any;
-  headerGroups: any;
-  rows: any;
-  prepareRow: any;
-  page: any;
-  gotoPage: any;
-  setPageSize: any;
-  state: any;
-}
 
 export default function ProjectsTable({
   getTableProps,
@@ -30,55 +20,70 @@ export default function ProjectsTable({
   gotoPage,
   setPageSize,
   state,
-}: IProjectsTableProps) {
+}: TableInstance<Project>) {
   return (
     <StyledPaper>
       <Table {...getTableProps()}>
         <StyledTableHead>
-          {headerGroups.map((headerGroup: any) => (
+          {headerGroups.map((headerGroup: HeaderGroup<Project>) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column: any) => (
-                <TableCell
-                  tabIndex={column?.tabIndex || "1"}
-                  onKeyPress={() => {
-                    column.toggleSortBy();
-                  }}
-                  {...column.getHeaderProps([
-                    column.getSortByToggleProps(),
-                    {
-                      className: column?.className,
-                    },
-                  ])}
-                >
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
-                  </span>
-                </TableCell>
-              ))}
+              {headerGroup.headers.map(
+                (
+                  column: HeaderGroup<Project> & {
+                    tabIndex?: number;
+                    className?: string;
+                  }
+                ) => (
+                  <TableCell
+                    tabIndex={column?.tabIndex || 1}
+                    onKeyPress={() => {
+                      column.toggleSortBy();
+                    }}
+                    {...column.getHeaderProps([
+                      column.getSortByToggleProps(),
+                      {
+                        className: column?.className,
+                      },
+                    ])}
+                  >
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted
+                        ? column.isSortedDesc
+                          ? " 🔽"
+                          : " 🔼"
+                        : ""}
+                    </span>
+                  </TableCell>
+                )
+              )}
             </TableRow>
           ))}
         </StyledTableHead>
         <TableBody {...getTableBodyProps()}>
-          {page.map((row: any) => {
+          {page.map((row: Row<Project>) => {
             prepareRow(row);
             return (
               <TableRow {...row.getRowProps()}>
-                {row.cells.map((cell: any) => {
-                  return (
-                    <TableCell
-                      {...cell.getCellProps({
-                        className: cell.column.className,
-                      })}
-                    >
-                      {cell.render("Cell")}
-                    </TableCell>
-                  );
-                })}
+                {row.cells.map(
+                  (
+                    cell: Cell<Project> & {
+                      column: {
+                        className?: string;
+                      };
+                    }
+                  ) => {
+                    return (
+                      <TableCell
+                        {...cell.getCellProps({
+                          className: cell.column.className,
+                        })}
+                      >
+                        {cell.render("Cell")}
+                      </TableCell>
+                    );
+                  }
+                )}
               </TableRow>
             );
           })}

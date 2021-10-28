@@ -1,19 +1,19 @@
 import * as yup from "yup";
 import { Notion_Regex } from "constant";
 
-export interface IProjectContentSchema {
+export interface IEditProjectContentSchema {
   generalContent?: string;
   graphsContent?: string;
   aboutContent?: string;
 }
 
-export const projectContentDefaultValues: IProjectContentSchema = {
+export const editProjectContentDefaultValues: IEditProjectContentSchema = {
   generalContent: "",
   graphsContent: "",
   aboutContent: "",
 };
 
-export const projectContentSchema: yup.SchemaOf<IProjectContentSchema> =
+export const editProjectContentSchema: yup.SchemaOf<IEditProjectContentSchema> =
   yup.object({
     generalContent: yup
       .string()

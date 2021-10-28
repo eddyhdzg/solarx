@@ -45,6 +45,8 @@ const theme = createTheme({
     },
   },
   components: {
+    StyledSelect: {},
+    StyledTextField: {},
     MuiPaper: {
       defaultProps: {
         elevation: 3,

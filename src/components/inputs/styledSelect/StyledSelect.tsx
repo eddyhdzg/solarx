@@ -1,14 +1,18 @@
 import { Select, styled, outlinedInputClasses } from "@mui/material";
 
-// @ts-ignore
+export interface StyledSelectProps {
+  success?: boolean;
+}
+
 const StyledSelect = styled(Select, {
   shouldForwardProp: (prop) => prop !== "success",
-})(({ theme }) => ({ success }: { success: boolean }) => ({
+  name: "StyledSelect",
+  slot: "Root",
+})<StyledSelectProps>(({ theme, success }) => ({
   [`& .${outlinedInputClasses.notchedOutline}`]: {
-    // @ts-ignore
     borderColor: success ? theme.palette.success.dark : undefined,
     borderWidth: success ? 2 : undefined,
   },
-})) as typeof Select;
+}));
 
 export default StyledSelect;

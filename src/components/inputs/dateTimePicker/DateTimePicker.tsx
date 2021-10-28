@@ -1,27 +1,32 @@
-// @ts-nocheck
 import { InputAdornment } from "@mui/material";
 import {
   LocalizationProvider,
   MobileDateTimePicker,
   MobileDatePickerProps,
 } from "@mui/lab";
-import DateAdapter from "@mui/lab/AdapterDayjs";
+import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import EventIcon from "@mui/icons-material/Event";
 import { StyledTextField } from "components";
 
-interface IDateTimePickerProps extends Partial<MobileDatePickerProps> {
+interface IDateTimePickerProps
+  extends Omit<MobileDatePickerProps, "renderInput"> {
   error?: boolean;
   success?: boolean;
 }
 
-export default function DateTimePicker({
-  error,
+export default function ResponsiveDateTimePickers({
+  label,
   success,
-  ...props
+  error,
+  value,
+  onChange,
 }: IDateTimePickerProps) {
   return (
-    <LocalizationProvider dateAdapter={DateAdapter}>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <MobileDateTimePicker
+        label={label}
+        value={value}
+        onChange={onChange}
         renderInput={(params) => (
           <StyledTextField
             {...params}
@@ -39,7 +44,6 @@ export default function DateTimePicker({
         )}
         ampm={false}
         clearable
-        {...props}
       />
     </LocalizationProvider>
   );

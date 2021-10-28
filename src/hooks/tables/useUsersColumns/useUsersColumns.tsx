@@ -1,9 +1,10 @@
 import { useMemo } from "react";
-import { RoleSelect } from "components";
+import { UserRoleForm } from "forms";
 import { FirestoreUser, UserRole } from "types";
 import { Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { fomatTimeStampWithMinAndSec } from "utils";
+import { Column } from "react-table";
 
 interface Row {
   original: FirestoreUser;
@@ -11,7 +12,7 @@ interface Row {
 
 const useUsersColumns = () => {
   const { t } = useTranslation();
-  const columns = useMemo(() => {
+  const columns: Column<object>[] = useMemo(() => {
     const adminUsers = [
       {
         id: "avatar",
@@ -48,7 +49,7 @@ const useUsersColumns = () => {
         Header: t("pages.more.profile.role"),
         accessor: "role",
         Cell: ({ value, row }: { value: UserRole; row: Row }) => {
-          return <RoleSelect id={row?.original?.uid} role={value} />;
+          return <UserRoleForm uid={row?.original?.uid} role={value} />;
         },
       },
     ];

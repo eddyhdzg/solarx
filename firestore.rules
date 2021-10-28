@@ -54,7 +54,7 @@ service cloud.firestore {
     match /projects/{projectId}/buyingOptions/{buyingOptionId} {
       allow read;
       allow create: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','discount','investors','lastUpdate','quantity','sharesSold','subtitle','title']));
-      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','lastUpdate','subtitle', "title"]));
+      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','lastUpdate','subtitle', 'title']));
     }
   }
 }

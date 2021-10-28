@@ -1,14 +1,14 @@
 import { Switch, Route } from "react-router-dom";
-import { CrowdfundingProject, CrowdfundingProjects } from "pages";
+import { CrowdfundingProjectPage, CrowdfundingProjectsPage } from "pages";
 
 const CrowdfundingRoute = () => {
   return (
     <Switch>
       <Route exact path="/crowdfunding">
-        <CrowdfundingProjects />
+        <CrowdfundingProjectsPage />
       </Route>
       <Route exact path="/crowdfunding/:id">
-        <CrowdfundingProject />
+        <CrowdfundingProjectPage />
       </Route>
     </Switch>
   );

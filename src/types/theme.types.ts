@@ -1,8 +1,33 @@
-import { PaletteMode } from "@mui/material";
+import {
+  ComponentsOverrides,
+  ComponentsProps,
+  ComponentsVariants,
+  PaletteMode,
+} from "@mui/material";
+import { StyledSelectProps } from "../components/inputs/styledSelect/StyledSelect";
+import { StyledTextFieldProps } from "../components/inputs/styledTextField/StyledTextField";
 
 export type ThemeType = PaletteMode | "system";
 
 declare module "@mui/material/styles" {
+  interface ComponentsPropsList {
+    StyledSelect: StyledSelectProps;
+    StyledTextField: StyledTextFieldProps;
+  }
+
+  interface Components {
+    StyledSelect?: {
+      defaultProps?: ComponentsProps["MuiSelect"];
+      styleOverrides?: ComponentsOverrides["MuiSelect"];
+      variants?: ComponentsVariants["MuiSelect"];
+    };
+    StyledTextField?: {
+      defaultProps?: ComponentsProps["MuiTextField"];
+      styleOverrides?: ComponentsOverrides["MuiTextField"];
+      variants?: ComponentsVariants["MuiTextField"];
+    };
+  }
+
   interface Theme {
     custom: {
       gradient: string;

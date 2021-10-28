@@ -3,16 +3,17 @@ import { TablePaginationActions } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { useTranslation } from "react-i18next";
+import { TableInstance } from "react-table";
 import {
   UsersChangePageSize,
   ProjectsChangePageSize,
 } from "providers/clientStore/ClientStore.actions";
 
-interface ICustomTablePaginationProps {
-  rows: any;
-  gotoPage: any;
-  setPageSize: any;
-  state: any;
+interface ICustomTablePaginationProps
+  extends Pick<
+    TableInstance<object>,
+    "rows" | "gotoPage" | "setPageSize" | "state"
+  > {
   actionType: UsersChangePageSize["type"] | ProjectsChangePageSize["type"];
   component?: "td" | "div";
 }
@@ -48,8 +49,7 @@ export default function CustomTablePagination({
 
   return (
     <TablePagination
-      // rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-      rowsPerPageOptions={[5, 10, 25]}
+      rowsPerPageOptions={[5, 10, 20]}
       count={rows.length}
       rowsPerPage={pageSize}
       page={pageIndex}

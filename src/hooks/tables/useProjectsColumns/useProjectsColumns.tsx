@@ -9,13 +9,14 @@ import {
   sortShares,
 } from "utils";
 import { Chip, IconButton } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Column } from "react-table";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 interface IColumns {
-  publicColumns: any;
-  privateColumns: any;
+  publicColumns: Column<object>[];
+  privateColumns: Column<object>[];
 }
 
 interface IuseProjectsColumnsArgs {

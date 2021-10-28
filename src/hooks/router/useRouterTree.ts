@@ -1,17 +1,19 @@
 import { useIsAdmin } from "hooks";
 import { AdminRoute, CrowdfundingRoute, MoreRoute, WalletMemo } from "router";
-
-// Icons
+import { useTranslation } from "react-i18next";
+import { SvgIconTypeMap } from "@mui/material";
+import { OverridableComponent } from "@mui/material/OverridableComponent";
 import WalletRoundedIcon from "@mui/icons-material/AccountBalanceWalletRounded";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import StoreMallDirectoryRounded from "@mui/icons-material/StoreMallDirectoryRounded";
 import MoreHorizRoundedIcon from "@mui/icons-material/MoreHorizRounded";
-import { useTranslation } from "react-i18next";
 
 export type RouterTree = {
   [key: string]: {
     title: string;
-    icon: any;
+    icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+      muiName: string;
+    };
     component(): JSX.Element;
   };
 };

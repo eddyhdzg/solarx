@@ -57,16 +57,6 @@ export interface Content {
 
 export type Notion = string | null | undefined;
 
-export type CreateBuyingOption = Pick<
-  BuyingOption,
-  "description" | "discount" | "quantity" | "subtitle" | "title"
->;
-
-export type EditBuyingOption = Pick<
-  BuyingOption,
-  "title" | "subtitle" | "description"
->;
-
 export type ProjectsType = "cards" | "table";
 export type ProjectSection = "crowdfunding" | "admin/projects";
 export type ProjectForms = "Edit" | "Create";

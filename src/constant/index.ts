@@ -166,3 +166,81 @@ export const demoTransactions: {
     ],
   },
 ];
+
+export type CurrencyType = "stocks" | "solarX points";
+export type TransactionKey = CurrencyType | "nanoseconds";
+
+export const demoTransactions2: {
+  [key in TransactionKey]: number;
+}[] = [
+  {
+    stocks: 0,
+    "solarX points": 1000,
+    nanoseconds: 1594962000000,
+  },
+  {
+    stocks: 0,
+    "solarX points": 1000,
+    nanoseconds: 1614578400000,
+  },
+  {
+    stocks: 10200,
+    "solarX points": 0,
+    nanoseconds: 1617256800000,
+  },
+  {
+    stocks: 10200,
+    "solarX points": 0,
+    nanoseconds: 1619845200000,
+  },
+  {
+    stocks: 10200,
+    "solarX points": 0,
+    nanoseconds: 1622523600000,
+  },
+  {
+    stocks: 10200,
+    "solarX points": 0,
+    nanoseconds: 1625115600000,
+  },
+  {
+    stocks: 10200,
+    "solarX points": 0,
+    nanoseconds: 1627794000000, // AGO 1
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1630472400000, // SEP 1
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1631768400000, // SEP 16
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1631854800000, // SEP 17
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1633064400000, // OCT 1
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1633064400000, // OCT 1
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1633323600000, // OCT 4
+  },
+  {
+    stocks: 10200,
+    "solarX points": 200,
+    nanoseconds: 1633842000000, // OCT 10
+  },
+];

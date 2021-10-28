@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FieldValues, useFormContext } from "react-hook-form";
-import { IProjectMediaSchema } from "hooks";
+import { IEditProjectMediaSchema } from "hooks";
 import { TImagesPreview } from "types/firebase.types";
 import {
   ImagesPreviewImg,
@@ -9,7 +9,7 @@ import {
 } from "./ImagesPreview.styled";
 
 export default function ImagesPreview({ name }: FieldValues) {
-  const { watch } = useFormContext<IProjectMediaSchema>();
+  const { watch } = useFormContext<IEditProjectMediaSchema>();
   const [imageArray] = watch([name]) as [TImagesPreview];
   const [files, setFiles] = useState<TImagesPreview>([]);
 
@@ -31,8 +31,6 @@ export default function ImagesPreview({ name }: FieldValues) {
     } else {
       setFiles([]);
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageArray]);
 
   return (

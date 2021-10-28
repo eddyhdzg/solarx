@@ -1,14 +1,18 @@
 import { TextField, styled, outlinedInputClasses } from "@mui/material";
 
-// @ts-ignore
+export interface StyledTextFieldProps {
+  success?: boolean;
+}
+
 const StyledTextField = styled(TextField, {
   shouldForwardProp: (prop) => prop !== "success",
-})(({ theme }) => ({ success }: { success: boolean }) => ({
+  name: "StyledTextField",
+  slot: "Root",
+})<StyledTextFieldProps>(({ theme, success }) => ({
   [`& .${outlinedInputClasses.notchedOutline}`]: {
-    // @ts-ignore
     borderColor: success ? theme.palette.success.dark : undefined,
     borderWidth: success ? 2 : undefined,
   },
-})) as typeof TextField;
+}));
 
 export default StyledTextField;

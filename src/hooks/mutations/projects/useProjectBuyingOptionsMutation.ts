@@ -1,5 +1,5 @@
 import { useFirestore } from "reactfire";
-import { CreateBuyingOption, EditBuyingOption } from "types";
+
 import {
   collection,
   addDoc,
@@ -7,13 +7,17 @@ import {
   updateDoc,
   serverTimestamp,
 } from "firebase/firestore";
+import {
+  ICreateProjectBuyingOptionSchema,
+  IEditProjectBuyingOptionSchema,
+} from "hooks";
 
 export default function useProjectBuyingOptionsMutation() {
   const firestore = useFirestore();
 
   const createProjectBuyingOption = (
     projectId: string,
-    values: CreateBuyingOption
+    values: ICreateProjectBuyingOptionSchema
   ) => {
     const projectBuyingOptionsRef = collection(
       firestore,
@@ -32,7 +36,7 @@ export default function useProjectBuyingOptionsMutation() {
   const editProjectBuyingOption = (
     projectId: string,
     buyingOptionId: string,
-    values: EditBuyingOption
+    values: IEditProjectBuyingOptionSchema
   ) => {
     const projectBuyingOptionsDocRef = doc(
       firestore,

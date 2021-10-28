@@ -20,13 +20,12 @@ export const sortShares = (a: Row<Project>, b: Row<Project>) => {
 };
 
 export const fuzzyTextFilterFn = (
-  rows: Row<Project>,
+  rows: Row<object>[],
   id: string,
   filterValue: string
 ) => {
-  // @ts-ignore
   return matchSorter(rows, filterValue, {
-    keys: [(row: any) => row.values[id]],
+    keys: [(row: Row<object>) => row.values[id]],
   });
 };
 

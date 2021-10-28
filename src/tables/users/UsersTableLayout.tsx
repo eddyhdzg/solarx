@@ -1,9 +1,11 @@
-import UsersTable from "./usersTable/UsersTable";
 import { GlobalFilter } from "components";
 import { UsersTableLayoutRoot } from "./UsersTableLayout.styled";
+import { TableInstance } from "react-table";
+import { FirestoreUser } from "types";
+import UsersTable from "./usersTable/UsersTable";
 
 interface IUsersTableLayoutProps {
-  table: any;
+  table: TableInstance<FirestoreUser>;
 }
 
 export default function UsersTableLayout({ table }: IUsersTableLayoutProps) {

@@ -28,7 +28,7 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
       <DesktopAppbarContent>
         <div>
           <DesktopAppbarUl>
-            <DesktopAppbarLi button component={NavLink} to="/wallet">
+            <DesktopAppbarLi component={NavLink} to="/wallet">
               <DesktopAppbarLiIcon>
                 <img src={logo} height={24} width={24} alt="nav-logo" />
               </DesktopAppbarLiIcon>
@@ -36,7 +36,6 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
             {routes.map(([route, { icon: Icon, title }]) => (
               <DesktopTooltip key={route} title={title} placement="right">
                 <DesktopAppbarLi
-                  button
                   component={NavLink}
                   to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
@@ -52,7 +51,6 @@ const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
             {more?.map(([route, { icon: Icon, title }]) => (
               <DesktopTooltip key={route} title={title} placement="right">
                 <DesktopAppbarLi
-                  button
                   component={NavLink}
                   to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"

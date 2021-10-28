@@ -3,7 +3,9 @@ import {
   BottomNavigation,
   styled,
   BottomNavigationAction,
+  BottomNavigationActionProps,
 } from "@mui/material";
+import { NavLink, NavLinkProps } from "react-router-dom";
 
 export const StyledAppBar = styled(AppBar)(({ theme }) => ({
   top: "auto",
@@ -25,8 +27,14 @@ export const StyledBottomNavigation = styled(BottomNavigation)(({ theme }) => ({
   },
 }));
 
-export const StyledBottomNavigationAction: any = styled(BottomNavigationAction)(
-  {
-    paddingBottom: "calc(8px + env(safe-area-inset-bottom))",
-  }
-);
+export const StyledBottomNavigationAction = styled(
+  (
+    props: BottomNavigationActionProps & {
+      component: typeof NavLink;
+      to: NavLinkProps["to"];
+      activeClassName: NavLinkProps["activeClassName"];
+    }
+  ) => <BottomNavigationAction {...props} />
+)(() => ({
+  paddingBottom: "calc(8px + env(safe-area-inset-bottom))",
+}));

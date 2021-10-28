@@ -1,5 +1,6 @@
 import * as firebase from "@firebase/testing";
-import { BuyingOption, TTimestamp, EditBuyingOption } from "../types";
+import { IEditProjectBuyingOptionSchema } from "hooks";
+import { BuyingOption, TTimestamp } from "types";
 
 export const correctCreateProjectBuyingOption: BuyingOption = {
   description: "",
@@ -12,7 +13,7 @@ export const correctCreateProjectBuyingOption: BuyingOption = {
   title: "",
 };
 
-export const updateCreateProjectBuyingOption: EditBuyingOption = {
+export const updateCreateProjectBuyingOption: IEditProjectBuyingOptionSchema = {
   description: "",
   subtitle: "",
   title: "",

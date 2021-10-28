@@ -1,11 +1,11 @@
 import { Switch, Route } from "react-router-dom";
-import { WalletHome } from "pages";
+import { WalletPage } from "pages";
 
 const WalletRoute = () => {
   return (
     <Switch>
       <Route exact path="/wallet">
-        <WalletHome />
+        <WalletPage />
       </Route>
     </Switch>
   );

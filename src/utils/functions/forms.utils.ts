@@ -2,7 +2,7 @@ import { DeepMap } from "react-hook-form";
 
 export const getDirtyValues = (
   dirtyFields: DeepMap<any, true>,
-  values: any,
+  values: DeepMap<any, true>,
   include: string[] = [],
   exclude: string[] = []
 ) => {
@@ -18,6 +18,5 @@ export const getDirtyValues = (
 };
 
 export const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
-  // @ts-ignore
   if (e?.code === "Enter") e.preventDefault();
 };

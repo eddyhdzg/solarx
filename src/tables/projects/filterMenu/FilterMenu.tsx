@@ -27,7 +27,8 @@ export default function FilterMenu() {
   const open = Boolean(anchorEl);
   const {
     values: { id = "", name = "", location = "", funded = "" },
-    onChange,
+    onInputChange,
+    onSelectChange,
     onReset,
   } = useRouterState();
 
@@ -80,7 +81,7 @@ export default function FilterMenu() {
                   label={t("forms.id")}
                   fullWidth
                   value={id}
-                  onChange={onChange}
+                  onChange={onInputChange}
                 />
               </GridItem>
               <GridItem xs={6}>
@@ -90,7 +91,7 @@ export default function FilterMenu() {
                   label={t("forms.name")}
                   fullWidth
                   value={name}
-                  onChange={onChange}
+                  onChange={onInputChange}
                 />
               </GridItem>
               <GridItem xs={6}>
@@ -100,7 +101,7 @@ export default function FilterMenu() {
                   label={t("forms.location")}
                   fullWidth
                   value={location}
-                  onChange={onChange}
+                  onChange={onInputChange}
                 />
               </GridItem>
               <GridItem xs={6}>
@@ -120,8 +121,7 @@ export default function FilterMenu() {
                         id="funded-filter"
                       />
                     }
-                    // @ts-ignore
-                    onChange={onChange}
+                    onChange={onSelectChange}
                   >
                     <option value={""} />
                     <option value={"true"}>{t("forms.founded")}</option>

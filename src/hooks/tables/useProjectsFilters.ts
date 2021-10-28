@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import { useAsyncDebounce } from "react-table";
 import { useQueryParams } from "hooks";
+import { useAsyncDebounce, TableInstance } from "react-table";
 
 interface useProjectsFiltersProps {
   setFilter: (
     columnId: string,
     filterValue: string | boolean | undefined
   ) => void;
-  setGlobalFilter: any;
-  data?: any;
+  setGlobalFilter: TableInstance<object>["setGlobalFilter"];
+  data?: TableInstance<object>["data"];
 }
 
 export default function useProjectsFilters({
@@ -34,10 +34,10 @@ export default function useProjectsFilters({
 
   useEffect(() => {
     setGlobalFilter(search);
-    setFilter("id", id);
-    setFilter("name", name);
-    setFilter("location", location);
-    setFilter("funded", funded);
+    setFilter("id", id?.toString());
+    setFilter("name", name?.toString());
+    setFilter("location", location?.toString());
+    setFilter("funded", funded?.toString());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 

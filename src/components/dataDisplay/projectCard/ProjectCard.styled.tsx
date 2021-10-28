@@ -1,4 +1,11 @@
-import { Card, CardMedia, Skeleton, styled, Typography } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  Skeleton,
+  styled,
+  Typography,
+  CardMediaProps,
+} from "@mui/material";
 import SellOutlined from "@mui/icons-material/SellOutlined";
 import SavingsOutlined from "@mui/icons-material/SavingsOutlined";
 
@@ -28,13 +35,21 @@ export const ProjectSkeleton = styled(Skeleton, {
   display: props.loading ? undefined : "none",
 }));
 
-export const ProjectCardMedia = styled(CardMedia, {
-  shouldForwardProp: (prop) => prop !== "loading",
-})((props: { loading: boolean }) => ({
+export const ProjectCardMedia = styled(
+  ({
+    loading,
+    ...props
+  }: CardMediaProps & { loading: boolean; component: "img"; alt: string }) => (
+    <CardMedia {...props} />
+  ),
+  {
+    shouldForwardProp: (prop) => prop !== "loading",
+  }
+)(({ loading }) => ({
   height: 160,
   width: "100%",
-  display: props.loading ? "none" : "block",
-})) as any;
+  display: loading ? "none" : "block",
+}));
 
 export const ProjectCardHeaders = styled("div")(({ theme }) => ({
   marginBottom: theme.spacing(3),

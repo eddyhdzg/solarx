@@ -1,19 +1,33 @@
 import { useEffect } from "react";
+import { UseFormWatch, FieldValues, UseFormSetValue } from "react-hook-form";
 
 const useFormPersist = (
-  name: any,
-  { watch, setValue }: any,
+  name: string,
+  {
+    watch,
+    setValue,
+  }: {
+    watch: UseFormWatch<FieldValues>;
+    setValue: UseFormSetValue<FieldValues>;
+  },
   {
     storage,
     exclude = [],
     include,
-    onDataRestored,
     validate = true,
     dirty = true,
     defaultValues = {},
-  }: any = {}
+  }: {
+    storage: Storage;
+    exclude: string[];
+    include?: string[];
+    validate?: boolean;
+    dirty?: boolean;
+    defaultValues: { [key: string]: string };
+  }
 ) => {
-  const values = watch(include);
+  const values = include ? watch(include) : watch();
+
   const getStorage = () => storage || window.sessionStorage;
 
   useEffect(() => {
@@ -34,10 +48,6 @@ const useFormPersist = (
           }
         }
       });
-
-      if (onDataRestored) {
-        onDataRestored(dataRestored);
-      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);

@@ -8,10 +8,11 @@ import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import { GlobalFilter } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
-import { ProjectSection } from "types";
+import { Project, ProjectSection } from "types";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { TableInstance } from "react-table";
 import {
   ActionsContainer,
   StyledButton,
@@ -21,7 +22,7 @@ import {
 } from "./ProjectsTableLayout.styled";
 
 interface IProjectsTableLayoutProps {
-  table: any;
+  table: TableInstance<Project>;
   section: ProjectSection;
 }
 

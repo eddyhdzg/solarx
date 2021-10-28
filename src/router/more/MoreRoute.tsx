@@ -1,17 +1,17 @@
 import { Switch, Route } from "react-router-dom";
-import { MoreAccountInformation, MorePreferences, MoreHome } from "pages";
+import { MoreHomePage, PreferencesPage, AccountInformationPage } from "pages";
 
 const MoreRoute = () => {
   return (
     <Switch>
       <Route exact path="/more">
-        <MoreHome />
+        <MoreHomePage />
       </Route>
       <Route exact path="/more/preferences">
-        <MorePreferences />
+        <PreferencesPage />
       </Route>
       <Route exact path="/more/profile">
-        <MoreAccountInformation />
+        <AccountInformationPage />
       </Route>
     </Switch>
   );

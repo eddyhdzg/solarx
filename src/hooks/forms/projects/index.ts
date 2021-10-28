@@ -11,12 +11,11 @@ export * from "./useEditProjectDatesForm/useEditProjectDatesForm.schema";
 export { default as useEditProjectBuyingOptionForm } from "./useEditProjectBuyingOptionForm/useEditProjectBuyingOptionForm";
 export * from "./useEditProjectBuyingOptionForm/useEditProjectBuyingOptionForm.schema";
 // General
-export { default as useCreateProjectGeneralForm } from "./useProjectGeneralForm/useCreateProjectGeneralForm";
-export { default as useEditProjectGeneralForm } from "./useProjectGeneralForm/useEditProjectGeneralForm";
+export { default as useProjectGeneralForm } from "./useProjectGeneralForm/useProjectGeneralForm";
 export * from "./useProjectGeneralForm/useProjectGeneralForm.schema";
 // Media
-export { default as useEditProjectMediaForm } from "./useProjectMediaForm/useEditProjectMediaForm";
-export * from "./useProjectMediaForm/useProjectMediaForm.schema";
+export { default as useEditProjectMediaForm } from "./useEditProjectMediaForm/useEditProjectMediaForm";
+export * from "./useEditProjectMediaForm/useEditProjectMediaForm.schema";
 // Numbers
-export { default as useEditProjectNumberForm } from "./useProjectNumberForm/useEditProjectNumberForm";
-export * from "./useProjectNumberForm/useProjectNumberForm.schema";
+export { default as useEditProjectNumberForm } from "./useEditProjectNumberForm/useEditProjectNumberForm";
+export * from "./useEditProjectNumberForm/useEditProjectNumberForm.schema";

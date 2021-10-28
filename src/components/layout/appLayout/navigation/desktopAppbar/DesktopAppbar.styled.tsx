@@ -3,9 +3,11 @@ import {
   drawerClasses,
   Drawer,
   List,
-  ListItem,
+  ListItemButton,
   ListItemIcon,
+  ListItemButtonProps,
 } from "@mui/material";
+import { NavLink, NavLinkProps } from "react-router-dom";
 
 export const DesktopAppbarDrawer = styled(Drawer)(({ theme }) => ({
   [`& .${drawerClasses.paper}`]: {
@@ -46,7 +48,15 @@ export const DesktopAppbarUl = styled(List)(({ theme }) => ({
   },
 }));
 
-export const DesktopAppbarLi: any = styled(ListItem)(({ theme }) => ({
+export const DesktopAppbarLi = styled(
+  (
+    props: ListItemButtonProps & {
+      component: typeof NavLink;
+      to: NavLinkProps["to"];
+      activeClassName?: NavLinkProps["activeClassName"];
+    }
+  ) => <ListItemButton {...props} />
+)(({ theme }) => ({
   justifyContent: "center",
   paddingTop: theme.spacing(2),
   paddingBottom: theme.spacing(2),

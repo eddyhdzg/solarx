@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useAsyncDebounce } from "react-table";
+import { useAsyncDebounce, TableInstance } from "react-table";
 import { useQueryParams } from "hooks";
 
 interface useUsersFiltersProps {
-  setGlobalFilter: any;
-  data?: any;
+  setGlobalFilter: TableInstance<object>["setGlobalFilter"];
+  data?: TableInstance<object>["data"];
 }
 
 export default function useUsersFilters({

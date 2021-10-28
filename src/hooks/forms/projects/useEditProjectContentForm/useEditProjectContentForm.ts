@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  projectContentSchema,
-  projectContentDefaultValues,
+  editProjectContentSchema,
+  editProjectContentDefaultValues,
 } from "./useEditProjectContentForm.schema";
 
 export default function useEditProjectContentForm() {
   const form = useForm({
-    resolver: yupResolver(projectContentSchema),
+    resolver: yupResolver(editProjectContentSchema),
     mode: "onChange",
-    defaultValues: projectContentDefaultValues,
+    defaultValues: editProjectContentDefaultValues,
   });
 
   return form;

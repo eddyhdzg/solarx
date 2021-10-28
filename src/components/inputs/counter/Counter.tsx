@@ -44,15 +44,14 @@ export default function Counter({
         id="shares-counter"
         value={shares}
         onChange={(value) => {
-          // @ts-ignore
-          if (value) handleChange(value as number);
+          if (value) handleChange(Number(value));
         }}
         inputProps={{
           inputMode: "numeric",
           min: 1,
           max,
         }}
-        inputComponent={NumberFormatInput as any}
+        inputComponent={NumberFormatInput}
         onKeyDown={(e) => {
           if (e.key === "ArrowUp") handleChange(shares + 1);
           if (e.key === "ArrowDown") handleChange(shares - 1);

@@ -10,11 +10,7 @@ dayjs.extend(timezone);
 dayjs.extend(utc);
 dayjs.extend(localizedFormat);
 // dayjs.locale("es");
-// dayjs.locale("es");
-// @ts-ignore
 dayjs.tz.guess();
-
-export const formater = dayjs as any;
 
 // 1000 => 1,000
 // 1000.505 => 1,000.51
@@ -53,7 +49,6 @@ export const formatStock1M = (nanoseconds: TTimestamp["nanoseconds"]) => {
 
 // Fri, Sep 24, 2021 1:00 AM
 export const fomatTimeStampWithMinAndSec = (date: TTimestamp) => {
-  // @ts-ignore
   return dayjs.unix(date.seconds)?.tz()?.format("llll");
 };
 

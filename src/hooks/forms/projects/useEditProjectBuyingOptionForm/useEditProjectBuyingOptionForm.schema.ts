@@ -1,13 +1,17 @@
 import * as yup from "yup";
-import { EditBuyingOption } from "types";
+import { BuyingOption } from "types";
 
-export const editProjectBuyingOptionDefaultValues: EditBuyingOption = {
-  description: "",
-  subtitle: "",
-  title: "",
-};
+export interface IEditProjectBuyingOptionSchema
+  extends Pick<BuyingOption, "title" | "subtitle" | "description"> {}
 
-export const editProjectBuyingOptionSchema: yup.SchemaOf<EditBuyingOption> =
+export const editProjectBuyingOptionDefaultValues: IEditProjectBuyingOptionSchema =
+  {
+    description: "",
+    subtitle: "",
+    title: "",
+  };
+
+export const editProjectBuyingOptionSchema: yup.SchemaOf<IEditProjectBuyingOptionSchema> =
   yup.object({
     description: yup.string().required("Value is required"),
     subtitle: yup.string().required("Value is required"),

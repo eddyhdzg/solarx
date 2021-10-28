@@ -38,7 +38,7 @@ export default function FilterChips() {
         <li>
           <StyledChip
             label={
-              stringToBoolean(funded)
+              stringToBoolean(funded.toString())
                 ? t("projects.funded")
                 : t("projects.notFunded")
             }
