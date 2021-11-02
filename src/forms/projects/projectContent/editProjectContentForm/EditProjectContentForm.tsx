@@ -11,16 +11,13 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
+import { ProjectIDParams } from "types";
 import ProjectContentFormLayout from "../ProjectContentFormLayout";
-
-interface ProjectID {
-  id?: string;
-}
 
 export default function EditProjectContentForm() {
   const { reset, ...form } = useEditProjectContentForm();
   const { t } = useTranslation();
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
   const editProjectContentMutation = useEditProjectContentMutation();
   const { enqueueSnackbar } = useSnackbar();
@@ -29,9 +26,9 @@ export default function EditProjectContentForm() {
     const defaultValues: IEditProjectContentSchema = !data
       ? editProjectContentDefaultValues
       : {
-          aboutContent: data?.aboutContent,
-          generalContent: data?.generalContent,
-          graphsContent: data?.graphsContent,
+          aboutContent: data?.aboutContent || "",
+          generalContent: data?.generalContent || "",
+          graphsContent: data?.graphsContent || "",
         };
 
     reset(defaultValues);

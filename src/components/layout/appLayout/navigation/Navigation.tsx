@@ -7,6 +7,11 @@ import DesktopAppbar from "./desktopAppbar/DesktopAppbar";
 import MobileAppbar from "./mobileAppbar/MobileAppbar";
 import { RouterTree } from "hooks/router/useRouterTree";
 
+export default function Navigation() {
+  const { routerTree } = useRouterTree();
+  return <NavigationHelper routerTree={routerTree} />;
+}
+
 interface INavigationHelperProps {
   routerTree: RouterTree;
 }
@@ -32,8 +37,3 @@ const NavigationHelper = ({ routerTree }: INavigationHelperProps) => {
     <MobileAppbar routerTree={routerTree} getMemoryRoute={getMemoryRoute} />
   );
 };
-
-export default function Navigation() {
-  const { routerTree } = useRouterTree();
-  return <NavigationHelper routerTree={routerTree} />;
-}

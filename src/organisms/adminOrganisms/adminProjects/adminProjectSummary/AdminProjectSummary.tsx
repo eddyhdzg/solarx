@@ -2,6 +2,7 @@ import { Chip, Paper, Typography } from "@mui/material";
 import { useProject } from "hooks";
 import { useParams } from "react-router-dom";
 import { formatMoney, formatNumber, fomatTimeStampWithMinAndSec } from "utils";
+import { ProjectIDParams } from "types";
 import {
   AdminProjectSummaryBody,
   AdminProjectSummaryTitle,
@@ -9,12 +10,8 @@ import {
   AdminProjectSummaryUL,
 } from "./AdminProjectSummary.styled";
 
-interface ProjectID {
-  id?: string;
-}
-
 export default function AdminProjectSummary() {
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data } = useProject(id || "");
 
   return (

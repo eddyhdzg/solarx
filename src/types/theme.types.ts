@@ -4,15 +4,15 @@ import {
   ComponentsVariants,
   PaletteMode,
 } from "@mui/material";
-import { StyledSelectProps } from "../components/inputs/styledSelect/StyledSelect";
-import { StyledTextFieldProps } from "../components/inputs/styledTextField/StyledTextField";
+import { IStyledSelectProps } from "../components/inputs/styledSelect/StyledSelect";
+import { IStyledTextFieldProps } from "../components/inputs/styledTextField/StyledTextField";
 
 export type ThemeType = PaletteMode | "system";
 
 declare module "@mui/material/styles" {
   interface ComponentsPropsList {
-    StyledSelect: StyledSelectProps;
-    StyledTextField: StyledTextFieldProps;
+    StyledSelect: IStyledSelectProps;
+    StyledTextField: IStyledTextFieldProps;
   }
 
   interface Components {
@@ -41,6 +41,7 @@ declare module "@mui/material/styles" {
       stocks: string;
       border: string;
       elevation: {
+        0: string;
         1: string;
         2: string;
         3: string;

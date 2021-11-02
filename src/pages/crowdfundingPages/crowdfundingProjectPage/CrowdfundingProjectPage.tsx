@@ -4,14 +4,11 @@ import { useProject, useHeader } from "hooks";
 import { CenterLoader, Seo } from "components";
 import { useTranslation } from "react-i18next";
 import { CrowdfundingProjectTemplate } from "templates";
-
-interface ProjectID {
-  id?: string;
-}
+import { ProjectIDParams } from "types";
 
 export default function CrowdfundingProjectPage() {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { status, data } = useProject(id || "");
   const { onChangeRoute } = useHeader();
 

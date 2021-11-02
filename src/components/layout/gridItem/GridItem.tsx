@@ -1,12 +1,17 @@
-import { Grid, GridProps } from "@mui/material";
+import { Grid, GridProps, styled } from "@mui/material";
 
-export interface IGridProps extends Omit<Partial<GridProps>, "xxs"> {
+export interface IGridItemProps extends GridProps {
   xxs?: number;
 }
 
-const GridItem: React.FC<IGridProps> = ({ xxs = 12, ...props }) => {
-  const xxsClass = `MuiGrid-grid-xxs-${xxs}`;
-  return <Grid item className={xxsClass} {...props} />;
-};
+export const GridItem = styled(
+  ({ xxs, ...rest }: IGridItemProps) => {
+    const xxsClass = `MuiGrid-grid-xxs-${xxs}`;
+    return <Grid item className={xxsClass} {...rest} />;
+  },
+  {
+    shouldForwardProp: (prop) => prop !== "xxs",
+  }
+)(() => ({}));
 
 export default GridItem;

@@ -14,6 +14,7 @@ const customTheme = {
     stocks: yellow[500],
     border: "#313537",
     elevation: {
+      0: "linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03))",
       1: "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
       2: "linear-gradient(rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07))",
       3: "linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08))",

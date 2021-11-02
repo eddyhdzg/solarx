@@ -33,3 +33,11 @@ fuzzyTextFilterFn.autoRemove = (val: string) => !val;
 
 // https://stackoverflow.com/questions/263965/how-can-i-convert-a-string-to-boolean-in-javascript
 export const stringToBoolean = (s: string) => (s === "false" ? false : !!s);
+
+export const calcGoal = (
+  sharePrice: number = 0,
+  discount: number = 0,
+  quantity: number = 0
+) => {
+  return (sharePrice - (sharePrice * discount) / 100) * quantity;
+};

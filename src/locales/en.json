@@ -178,10 +178,14 @@
       "projectNotAdded": "Project Added Error 😔",
       "projectEdited": "Project Edited! 🔥",
       "projectNotEdited": "Project Edited Error 😔",
+      "projectGoalEdited": "Project Goal Edited! 🔥",
+      "projectGoalNotEdited": "Project Goal Edited Error 😔",
       "buyingOptionAdded": "Buying Option Added! 🔥",
       "buyingOptionNotAdded": "Buying Option Added Error 😔",
       "buyingOptionEdited": "Buying Option Edited! 🔥",
-      "buyingOptionNotEdited": "Buying Option Edited Error 😔"
+      "buyingOptionNotEdited": "Buying Option Edited Error 😔",
+      "sharesCreated": "Shares Creates! 🔥",
+      "sharesNotCreated": "Error while creating shares 😔"
     },
     "auth": {
       "myAccount": "My account",

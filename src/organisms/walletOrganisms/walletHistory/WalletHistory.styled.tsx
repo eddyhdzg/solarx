@@ -48,17 +48,17 @@ export const DescriptionTexts = styled("div")({
 export const DescriptionTitle = styled(Typography)({
   overflow: "hidden",
   textOverflow: "ellipsis",
-  display: "-webkit-box",
-  "-webkit-line-clamp": "1",
-  "-webkit-box-orient": "vertical",
+  // display: "-webkit-box",
+  // "-webkit-line-clamp": "1",
+  // "-webkit-box-orient": "vertical",
 });
 
 export const Description = styled(Typography)({
   overflow: "hidden",
   textOverflow: "ellipsis",
-  display: "-webkit-box",
-  "-webkit-line-clamp": "2",
-  "-webkit-box-orient": "vertical",
+  // display: "-webkit-box",
+  // "-webkit-line-clamp": "2",
+  // "-webkit-box-orient": "vertical",
 });
 
 export const DataContainer = styled("div")({

@@ -8,7 +8,7 @@ export const ActionsContainer = styled("div", {
   display: "flex",
   alignItems: "flex-end",
   flexWrap: "wrap",
-  marginBottom: theme.spacing(1),
+  marginBottom: theme.spacing(1.5),
   justifyContent:
     props.section === "admin/projects" ? "space-between" : "flex-end",
 }));
@@ -27,16 +27,16 @@ export const StyledButton = styled(
   }
 )(({ theme, section }) => ({
   marginRight: theme.spacing(2),
-  marginBottom: theme.spacing(1),
   display: section === "crowdfunding" ? "none" : undefined,
 }));
 
-export const ActionsWrapper = styled("div")({
+export const ActionsWrapper = styled("div")(({ theme }) => ({
+  marginTop: theme.spacing(1),
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",
   flexWrap: "wrap",
-});
+}));
 
 export const InputsWrapper = styled("div")(({ theme }) => ({
   display: "flex",

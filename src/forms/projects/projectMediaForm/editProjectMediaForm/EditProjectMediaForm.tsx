@@ -11,16 +11,13 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
+import { ProjectIDParams } from "types";
 import ProjectMediaFormLayout from "../ProjectMediaFormLayout";
-
-interface ProjectID {
-  id?: string;
-}
 
 export default function EditProjectMediaForm() {
   const { reset, ...form } = useEditProjectMediaForm();
   const { t } = useTranslation();
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
   const editProjectMediaMutation = useEditProjectMediaMutation();
   const { enqueueSnackbar } = useSnackbar();

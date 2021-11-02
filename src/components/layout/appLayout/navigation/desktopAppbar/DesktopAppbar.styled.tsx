@@ -36,16 +36,8 @@ export const DesktopAppbarContent = styled("div")(({ theme }) => ({
 }));
 
 export const DesktopAppbarUl = styled(List)(({ theme }) => ({
-  "& .MuiListItem-button": {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    "&:first-of-type": {
-      marginTop: 0,
-    },
-    "&:last-child": {
-      marginBottom: 0,
-    },
-  },
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
 }));
 
 export const DesktopAppbarLi = styled(
@@ -61,6 +53,14 @@ export const DesktopAppbarLi = styled(
   paddingTop: theme.spacing(2),
   paddingBottom: theme.spacing(2),
   borderRadius: theme.shape.borderRadius,
+  marginTop: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  "&:first-of-type": {
+    marginTop: 0,
+  },
+  "&:last-child": {
+    marginBottom: 0,
+  },
 }));
 
 export const DesktopAppbarLiIcon = styled(ListItemIcon)({

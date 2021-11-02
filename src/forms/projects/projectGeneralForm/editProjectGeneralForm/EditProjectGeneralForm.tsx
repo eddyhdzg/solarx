@@ -12,16 +12,13 @@ import { useSnackbar } from "notistack";
 import { mexicanStates } from "constant";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
+import { ProjectIDParams } from "types";
 import ProjectGeneralFormLayout from "../ProjectGeneralFormLayout";
-
-interface ProjectID {
-  id?: string;
-}
 
 export default function EditProjectGeneralForm() {
   const { reset, ...form } = useProjectGeneralForm();
   const { t } = useTranslation();
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
   const { editProjectGeneralMutation } = useProjectGeneralMutation();
   const { enqueueSnackbar } = useSnackbar();

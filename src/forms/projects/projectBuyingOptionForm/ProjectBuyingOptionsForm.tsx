@@ -19,13 +19,10 @@ import {
   TableCellDescription,
   TableCellNumber,
 } from "../ProjectForms.styled";
-
-interface ProjectID {
-  id?: string;
-}
+import { ProjectIDParams } from "types";
 
 export default function ProjectBuyingOptionsForm() {
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data } = useProjectBuyingOptions(id || "");
   const [ref, scroll] = useScrollRight();
 

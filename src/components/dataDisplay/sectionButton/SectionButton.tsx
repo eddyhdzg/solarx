@@ -4,8 +4,8 @@ import { SectionButtonPaper } from "./SectionButton.styled";
 
 interface ISectionButtonProps {
   title: string;
-  to: LinkProps["to"];
   emoji: string;
+  to: LinkProps["to"];
 }
 
 export default function SectionButton({

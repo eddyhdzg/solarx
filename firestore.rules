@@ -56,5 +56,9 @@ service cloud.firestore {
       allow create: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','discount','investors','lastUpdate','quantity','sharesSold','subtitle','title']));
       allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','lastUpdate','subtitle', 'title']));
     }
+
+    match /shares/{shareId} {
+      allow read: if request.query.limit <= 20;
+    }
   }
 }

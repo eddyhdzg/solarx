@@ -11,16 +11,13 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
+import { ProjectIDParams } from "types";
 import ProjectNumberFormLayout from "../ProjectNumberFormLayout";
-
-interface ProjectID {
-  id?: string;
-}
 
 export default function EditProjectNumberForm() {
   const { reset, ...form } = useEditProjectNumberForm();
   const { t } = useTranslation();
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
   const editProjectNumberMutation = useEditProjectNumberMutation();
   const { enqueueSnackbar } = useSnackbar();

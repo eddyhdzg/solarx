@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Grid } from "@mui/material";
-import { useProject } from "hooks";
+import { useProject, useBreakpoint } from "hooks";
 import { CenterLoader, GridItem } from "components";
 import {
   ProjectBuyingOptions,
@@ -9,15 +9,13 @@ import {
   ProjectSummary,
   ProjectTabs,
 } from "organisms";
+import { ProjectIDParams } from "types";
 import Template from "./CrowdfundingProjectTemplate.styled";
 
-interface ProjectID {
-  id?: string;
-}
-
 export default function CrowdfundingProjectTemplate() {
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { status, data } = useProject(id || "");
+  const lg = useBreakpoint("lg");
 
   if (status === "loading") {
     return <CenterLoader />;
@@ -40,18 +38,20 @@ export default function CrowdfundingProjectTemplate() {
       <Grid container spacing={4}>
         <GridItem lg={8}>
           <ProjectGallery images={data?.images} />
-          <div>
-            <Template.GreyBackground />
-            <Template.Tabs>
-              <ProjectTabs
-                general={data?.generalContent}
-                graphs={data?.graphsContent}
-                about={data?.aboutContent}
-              />
-            </Template.Tabs>
-          </div>
+          {lg && (
+            <div>
+              <Template.GreyBackground />
+              <Template.Tabs>
+                <ProjectTabs
+                  general={data?.generalContent}
+                  graphs={data?.graphsContent}
+                  about={data?.aboutContent}
+                />
+              </Template.Tabs>
+            </div>
+          )}
         </GridItem>
-        <Template.Sticky item lg={4}>
+        <Template.Sticky lg={4}>
           <Template.StickyContent>
             <ProjectSummary
               goal={data?.goal}
@@ -63,6 +63,18 @@ export default function CrowdfundingProjectTemplate() {
             />
             <ProjectBuyingOptions roi={data?.roi} />
           </Template.StickyContent>
+          {!lg && (
+            <div>
+              <Template.GreyBackground />
+              <Template.Tabs>
+                <ProjectTabs
+                  general={data?.generalContent}
+                  graphs={data?.graphsContent}
+                  about={data?.aboutContent}
+                />
+              </Template.Tabs>
+            </div>
+          )}
         </Template.Sticky>
       </Grid>
     </Template>

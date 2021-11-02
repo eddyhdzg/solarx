@@ -176,12 +176,16 @@
       "roleNotEdited": "Error al editar rol 😔",
       "projectAdded": "Proyecto gregado! 🔥",
       "projectNotAdded": "Error al agregar proyecto 😔",
-      "projectEdited": "Projecto editado! 🔥",
-      "projectNotEdited": "Error al editar projecto 😔",
+      "projectEdited": "Proyecto editado! 🔥",
+      "projectNotEdited": "Error al editar proyecto 😔",
+      "projectGoalEdited": "Meta del proyecto editada! 🔥",
+      "projectGoalNotEdited": "Error al editar meta del proyecto 😔",
       "buyingOptionAdded": "Opción de compra agregado! 🔥",
       "buyingOptionNotAdded": "Error al agregar opción de compra 😔",
       "buyingOptionEdited": "Opción de compra editado! 🔥",
-      "buyingOptionNotEdited": "Error al editar opción de compra 😔"
+      "buyingOptionNotEdited": "Error al editar opción de compra 😔",
+      "sharesCreated": "Acciones creadas! 🔥",
+      "sharesNotCreated": "Error al crear acciones 😔"
     },
     "auth": {
       "myAccount": "Mi Cuenta",

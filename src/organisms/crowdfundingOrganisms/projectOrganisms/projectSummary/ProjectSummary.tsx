@@ -10,14 +10,16 @@ import {
 import { GradientLinearProgress, Counter } from "components";
 import { Project } from "types";
 import { useTranslation } from "react-i18next";
+
 import {
   ProjectSummaryRoot,
-  ProjectSummaryContent,
   ProjectSummaryHeader,
   ProjectSummaryProgressWrapper,
   ProjectSummaryStyledDivider,
   ProjectSummaryStatsWrapper,
   ProjectSummaryLi,
+  ProjectSummarySubtitle,
+  ProjectSummaryDateIcon,
 } from "./ProjectSummary.styled";
 
 interface IProjectSummaryProps
@@ -48,7 +50,7 @@ export default function ProjectSummary({
 
   return (
     <ProjectSummaryRoot>
-      <ProjectSummaryContent>
+      <div>
         <div>
           <ProjectSummaryHeader>
             <Typography variant="h5" component="h4">
@@ -138,7 +140,16 @@ export default function ProjectSummary({
             </Typography>
           </ProjectSummaryLi>
         </ul>
-      </ProjectSummaryContent>
+        <ProjectSummaryStyledDivider />
+        <div>
+          <ProjectSummarySubtitle>
+            <ProjectSummaryDateIcon />
+            <Typography variant="body3" color="textSecondary">
+              Release Date Thu, November 11 2021 7:17 AM CST.
+            </Typography>
+          </ProjectSummarySubtitle>
+        </div>
+      </div>
     </ProjectSummaryRoot>
   );
 }

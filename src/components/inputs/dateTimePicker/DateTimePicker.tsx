@@ -14,7 +14,7 @@ interface IDateTimePickerProps
   success?: boolean;
 }
 
-export default function ResponsiveDateTimePickers({
+export default function DateTimePicker({
   label,
   success,
   error,

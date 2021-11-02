@@ -2,11 +2,7 @@ import { useState } from "react";
 import ProjectBuyingOption from "../projectBuyingOption/ProjectBuyingOption";
 import { useProjectBuyingOptions } from "hooks";
 import { useParams } from "react-router-dom";
-import { Project } from "types";
-
-interface ProjectID {
-  id?: string;
-}
+import { Project, ProjectIDParams } from "types";
 
 interface IProjectBuyingOptionsProps {
   roi: Project["roi"];
@@ -15,7 +11,7 @@ interface IProjectBuyingOptionsProps {
 export default function ProjectBuyingOptions({
   roi,
 }: IProjectBuyingOptionsProps) {
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data } = useProjectBuyingOptions(id || "");
   const [expanded, setExpanded] = useState<string | undefined>(undefined);
 

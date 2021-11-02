@@ -9,7 +9,7 @@ import {
   EditProjectDatesForm,
   EditProjectContentForm,
 } from "forms";
-import { AdminProjectSummary } from "organisms";
+import { AdminTriggers, AdminProjectSummary } from "organisms";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import {
@@ -44,6 +44,7 @@ export default function AdminEditProjectTemplate() {
           <Tab disableRipple label="Media" />
           <Tab disableRipple label="CMS" />
           <Tab disableRipple label="Dates" />
+          <Tab disableRipple label="Triggers" />
         </Tabs>
       </EditProjectTabsContainer>
       <Grid container spacing={3}>
@@ -66,6 +67,9 @@ export default function AdminEditProjectTemplate() {
             </EditProjectTabPanel>
             <EditProjectTabPanel value="5">
               <EditProjectDatesForm />
+            </EditProjectTabPanel>
+            <EditProjectTabPanel value="6">
+              <AdminTriggers />
             </EditProjectTabPanel>
           </GridItem>
           <GridItem md={5} lg={4} xl={3}>

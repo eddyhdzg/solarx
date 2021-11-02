@@ -11,16 +11,13 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
+import { ProjectIDParams } from "types";
 import ProjectDatesFormLayout from "../ProjectDatesFormLayout";
-
-interface ProjectID {
-  id?: string;
-}
 
 export default function EditProjectDatesForm() {
   const { reset, ...form } = useEditProjectDatesForm();
   const { t } = useTranslation();
-  const { id } = useParams<ProjectID>();
+  const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
   const editProjectDatesMutation = useEditProjectDatesMutation();
   const { enqueueSnackbar } = useSnackbar();

@@ -1,4 +1,5 @@
 import { styled, Grid, GridProps } from "@mui/material";
+import { GridItem } from "components";
 
 const Root = styled("div")(({ theme }) => ({
   overflowY: "clip",
@@ -23,7 +24,7 @@ const HeaderGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const GreyBackground = styled("div")(({ theme }) => ({
-  backgroundImage: theme.custom.elevation[1],
+  backgroundImage: theme.custom.elevation[0],
   width: "100%",
   minHeight: "1000vh",
   position: "absolute",
@@ -32,17 +33,19 @@ const GreyBackground = styled("div")(({ theme }) => ({
 
 const Tabs = styled("div")(({ theme }) => ({
   position: "relative",
-  marginTop: 120,
+  marginTop: 80,
   top: theme.spacing(-5),
+  [theme.breakpoints.up("lg")]: {
+    marginTop: 120,
+  },
 }));
 
-const Sticky = styled(Grid)(({ theme }) => ({
+const Sticky = styled(GridItem)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     position: "sticky",
     top: theme.spacing(10),
     maxHeight: "100vh",
     overflowY: "auto",
-    // bottom: 0,
   },
 }));
 
@@ -50,6 +53,9 @@ const StickyContent = styled("div")(({ theme }) => ({
   maxWidth: theme.spacing(60),
   marginLeft: "auto",
   marginRight: "auto",
+  [theme.breakpoints.up("lg")]: {
+    paddingBottom: theme.spacing(15),
+  },
 }));
 
 interface ISegmentedControlCompoundComponents {

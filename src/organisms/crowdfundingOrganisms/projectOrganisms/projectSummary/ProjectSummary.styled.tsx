@@ -1,16 +1,15 @@
 import { styled, Divider } from "@mui/material";
+import TodayIcon from "@mui/icons-material/Today";
 
 export const ProjectSummaryRoot = styled("div")(({ theme }) => ({
   maxWidth: theme.spacing(60),
-  margin: "auto",
+  marginLeft: "auto",
+  marginRight: "auto",
+  marginBottom: theme.spacing(4),
   [theme.breakpoints.up("lg")]: {
-    margin: "unset",
-    marginBottom: theme.spacing(5),
+    marginLeft: "auto",
+    marginRight: "auto",
   },
-}));
-
-export const ProjectSummaryContent = styled("div")(({ theme }) => ({
-  // padding: theme.spacing(2),
 }));
 
 export const ProjectSummaryHeader = styled("div")({
@@ -51,4 +50,15 @@ export const ProjectSummaryLi = styled("li")(({ theme }) => ({
   "&:not(:last-child)": {
     marginBottom: theme.spacing(3),
   },
+}));
+
+export const ProjectSummarySubtitle = styled("div")({
+  display: "flex",
+  alignItems: "center",
+});
+
+export const ProjectSummaryDateIcon = styled(TodayIcon)(({ theme }) => ({
+  fontSize: "14px",
+  marginRight: theme.spacing(1),
+  color: theme.palette.text.secondary,
 }));

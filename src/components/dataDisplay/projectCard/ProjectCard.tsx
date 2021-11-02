@@ -24,7 +24,7 @@ interface IProjectCardProps extends Project {
 }
 
 export default function ProjectCard({
-  id,
+  // id,
   city,
   state,
   name,

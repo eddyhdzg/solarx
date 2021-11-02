@@ -4,6 +4,7 @@ import {
   FirestoreProvider,
   useFirebaseApp,
   useInitPerformance,
+  FunctionsProvider,
 } from "reactfire";
 import { getAuth } from "firebase/auth";
 import { connectFirestoreEmulator, getFirestore } from "firebase/firestore";
@@ -28,7 +29,9 @@ const FirebaseAuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthProvider sdk={auth}>
-      <FirestoreProvider sdk={firestore}>{children}</FirestoreProvider>
+      <FirestoreProvider sdk={firestore}>
+        <FunctionsProvider sdk={functions}>{children}</FunctionsProvider>
+      </FirestoreProvider>
     </AuthProvider>
   );
 };
