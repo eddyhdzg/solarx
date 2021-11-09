@@ -3,7 +3,7 @@ import { Project, ProjectSection } from "types";
 import {
   formatMoney,
   formatPercentage2Dec,
-  fomatTimeStamp,
+  fomaTimestamp,
   getProgress,
   getPanelsRatio,
   sortShares,
@@ -93,7 +93,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         id: "created",
         Header: t("projects.created"),
         accessor: ({ created }: Project) => {
-          return created ? fomatTimeStamp(created) : "";
+          return created ? fomaTimestamp(created) : "";
         },
       },
     ];
@@ -114,7 +114,6 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             </IconButton>
           );
         },
-
         disableSortBy: true,
         tabIndex: -1,
       },
@@ -124,9 +123,9 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       ...commonColumns,
       {
         Header: t("projects.archived"),
-        accessor: "archived",
+        accessor: "active",
         Cell: ({ value }: { value: boolean }) =>
-          value ? <Chip color="secondary" size="small" label="Archived" /> : "",
+          !value ? <Chip color="error" size="small" label="Archived" /> : "",
         sortType: "basic",
       },
       {
@@ -143,7 +142,6 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
             </IconButton>
           );
         },
-
         disableSortBy: true,
         tabIndex: -1,
       },

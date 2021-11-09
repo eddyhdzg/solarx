@@ -11,7 +11,9 @@ import { NumberFormatInput } from "components";
 interface ICounterProps {
   onChangeShares: (num: number) => void;
   shares: number;
-  setShares: React.Dispatch<React.SetStateAction<number>>;
+  setShares:
+    | React.Dispatch<React.SetStateAction<number>>
+    | ((num: number) => void);
   error: boolean;
   max: number;
 }

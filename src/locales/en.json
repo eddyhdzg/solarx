@@ -22,7 +22,8 @@
           "admin": "admin",
           "adminDescription": "Admin section.",
           "projects": "projects",
-          "users": "users"
+          "users": "users",
+          "local": "local"
         },
         "createProject": {
           "title": "Create project",
@@ -38,7 +39,18 @@
         },
         "users": {
           "users": "users",
-          "usersDescription": "Manage users as an administrators."
+          "usersDescription": "Manage users as an administrator."
+        },
+        "local": {
+          "local": "local",
+          "localDescription": "Manage local firestore as an administrator.",
+          "triggers": "Triggers",
+          "createProduct": "Create Product",
+          "createProducts": "Create a new product",
+          "createPrices": "Create Prices",
+          "create3Prices": "Create 3 prices for a product",
+          "createAuthUser": "Create authenticated user with default information",
+          "createUser": "Create User"
         }
       },
       "crowdfunding": {
@@ -120,7 +132,7 @@
         "mediaDescription": "Images to showcase the project.",
         "dates": "Dates",
         "datesDescription": "Provide important dates about the project.",
-        "coverImage": "Cover Image",
+        "coverImage": "Cover image from stripe.",
         "images": "Images",
         "project": "Project"
       },
@@ -180,12 +192,19 @@
       "projectNotEdited": "Project Edited Error 😔",
       "projectGoalEdited": "Project Goal Edited! 🔥",
       "projectGoalNotEdited": "Project Goal Edited Error 😔",
-      "buyingOptionAdded": "Buying Option Added! 🔥",
-      "buyingOptionNotAdded": "Buying Option Added Error 😔",
-      "buyingOptionEdited": "Buying Option Edited! 🔥",
-      "buyingOptionNotEdited": "Buying Option Edited Error 😔",
+      "priceEdited": "Price Edited! 🔥",
+      "priceNotEdited": "Price Edited Error 😔",
       "sharesCreated": "Shares Creates! 🔥",
-      "sharesNotCreated": "Error while creating shares 😔"
+      "sharesNotCreated": "Error while creating shares 😔",
+      "projectCreated": "Project Created! 🔥",
+      "projectNotCreated": "Project Creation Error 😔",
+      "sharePricesUpdated": "Share prices updated! 🔥",
+      "sharePricesNotUpdated": "Share prices update error 😔",
+      "checkoutError": "Error while trying to generate payment checkout, please try again later.",
+      "paymentMethodCreated": "Payment method created 👍🏻",
+      "paymentMethodCreatedError": "Error while creating the payment method 😔",
+      "successfulPayment": "Your payment was successful! 👍🏻",
+      "errorPayment": "Payment error, please try again later 😔"
     },
     "auth": {
       "myAccount": "My account",

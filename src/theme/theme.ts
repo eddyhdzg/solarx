@@ -10,7 +10,8 @@ const customTheme = {
       backdropFilter: "blur(10px)",
     },
     cash: "#00BFA5",
-    totalBalance: "#80B0FF",
+    totalBalance: "#fff",
+    sxp: "#80B0FF",
     stocks: yellow[500],
     border: "#313537",
     elevation: {
@@ -91,7 +92,7 @@ const theme = createTheme({
           },
         },
         {
-          props: { variant: "deposit" },
+          props: { variant: "green" },
           style: {
             color: "#00BFA5",
             backgroundColor: "rgba(0, 191, 165, 0.15)",

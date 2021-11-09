@@ -1,7 +1,7 @@
 import { functions, admin } from "../config/firebase";
 import { UserRole, FirestoreUser } from "../types";
 
-export const createUser = functions.auth.user().onCreate((snap) => {
+export const createUser_v0 = functions.auth.user().onCreate((snap) => {
   const { uid, displayName, email, photoURL } = snap;
 
   const newUser: FirestoreUser = {
@@ -10,7 +10,6 @@ export const createUser = functions.auth.user().onCreate((snap) => {
     email,
     role: "DEFAULT",
     created: admin.firestore.FieldValue.serverTimestamp(),
-    lastUpdate: admin.firestore.FieldValue.serverTimestamp(),
   };
 
   return admin
@@ -20,7 +19,7 @@ export const createUser = functions.auth.user().onCreate((snap) => {
     .set(newUser, { merge: true });
 });
 
-export const updateRole = functions.firestore
+export const updateRole_v0 = functions.firestore
   .document("users/{uid}")
   .onUpdate((change, context) => {
     const pastValue = change.before.data();

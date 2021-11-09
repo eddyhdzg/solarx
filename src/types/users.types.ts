@@ -1,4 +1,5 @@
-import { TTimestamp } from "./firebase.types";
+import { Timestamp } from "./firebase.types";
+import { PaymentMethod as StripePaymentMethod } from "@stripe/stripe-js";
 
 // Everyone by default
 export type DefaultUser = "DEFAULT";
@@ -23,9 +24,61 @@ export type UserRole =
 export interface FirestoreUser {
   anonymous?: boolean;
   avatar?: string;
-  created?: TTimestamp;
+  created?: Timestamp;
   displayName?: string;
   email?: string;
   uid?: string;
   role?: UserRole;
 }
+export interface UserHistory {
+  id?: string;
+  amount?: number;
+  currency?: "mxn" | "usd" | "sxp";
+  date?: Timestamp;
+  description?: string;
+  title?: string;
+  tags?: string[];
+}
+
+export interface UserShare {
+  id?: string;
+  avatar?: string;
+  name?: string;
+  roi?: number;
+  sharePrice?: number;
+  shares?: number;
+}
+
+export interface UserTransaction {
+  id?: string;
+  cash?: number;
+  date?: Timestamp;
+  stocks?: number;
+  sxp?: number;
+  total?: number;
+}
+export interface UserPrivateData {
+  cash?: number;
+  fullName?: string;
+  lastNames?: string;
+  stocks?: number;
+  sxp?: number;
+  total?: number;
+}
+
+export interface Checkout {
+  cancel_url?: string;
+  client?: "web";
+  created?: Timestamp;
+  mode?: "payment";
+  price?: string;
+  quantity?: number;
+  sessionId?: string;
+  success_url?: string;
+  error?: {
+    message: string;
+  };
+  url?: string;
+}
+
+export interface PaymentMethod extends Partial<StripePaymentMethod> {}

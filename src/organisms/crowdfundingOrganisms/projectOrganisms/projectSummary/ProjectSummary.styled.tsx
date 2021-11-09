@@ -1,17 +1,6 @@
 import { styled, Divider } from "@mui/material";
 import TodayIcon from "@mui/icons-material/Today";
 
-export const ProjectSummaryRoot = styled("div")(({ theme }) => ({
-  maxWidth: theme.spacing(60),
-  marginLeft: "auto",
-  marginRight: "auto",
-  marginBottom: theme.spacing(4),
-  [theme.breakpoints.up("lg")]: {
-    marginLeft: "auto",
-    marginRight: "auto",
-  },
-}));
-
 export const ProjectSummaryHeader = styled("div")({
   display: "flex",
   alignItems: "flex-end",

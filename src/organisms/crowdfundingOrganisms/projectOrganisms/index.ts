@@ -1,5 +1,4 @@
-export { default as ProjectBuyingOption } from "./projectBuyingOption/ProjectBuyingOption";
-export { default as ProjectBuyingOptions } from "./projectBuyingOptions/ProjectBuyingOptions";
+export { default as ProjectPrices } from "./projectPrices/ProjectPrices";
 export { default as ProjectGallery } from "./projectGallery/ProjectGallery";
 export { default as ProjectHeader } from "./projectHeader/ProjectHeader";
 export { default as ProjectSummary } from "./projectSummary/ProjectSummary";

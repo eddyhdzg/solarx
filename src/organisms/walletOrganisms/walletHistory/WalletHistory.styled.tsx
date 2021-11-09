@@ -1,6 +1,13 @@
-import { styled, Paper, Typography, Chip } from "@mui/material";
+import {
+  styled,
+  Typography,
+  Chip as MUIChip,
+  ChipProps,
+  Paper as MUIPaper,
+  TypographyProps,
+} from "@mui/material";
 
-export const WalletHistoryPaper = styled(Paper)(({ theme }) => ({
+export const Paper = styled(MUIPaper)(({ theme }) => ({
   padding: theme.spacing(3),
   overflowY: "auto",
   maxHeight: theme.spacing(80),
@@ -10,17 +17,17 @@ export const Title = styled(Typography)(({ theme }) => ({
   paddingBottom: theme.spacing(3),
 }));
 
-export const MonthContainer = styled("div")(({ theme }) => ({
+export const Month = styled("div")(({ theme }) => ({
   "&:not(:last-child)": {
     paddingBottom: theme.spacing(4),
   },
 }));
 
-export const MonthTypography = styled(Typography)(({ theme }) => ({
+export const MonthTitle = styled(Typography)(({ theme }) => ({
   paddingBottom: theme.spacing(1.5),
 }));
 
-export const TransactionContainer = styled("li")(({ theme }) => ({
+export const Li = styled("li")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -48,17 +55,12 @@ export const DescriptionTexts = styled("div")({
 export const DescriptionTitle = styled(Typography)({
   overflow: "hidden",
   textOverflow: "ellipsis",
-  // display: "-webkit-box",
-  // "-webkit-line-clamp": "1",
-  // "-webkit-box-orient": "vertical",
 });
 
 export const Description = styled(Typography)({
   overflow: "hidden",
   textOverflow: "ellipsis",
-  // display: "-webkit-box",
-  // "-webkit-line-clamp": "2",
-  // "-webkit-box-orient": "vertical",
+  lineClamp: 2,
 });
 
 export const DataContainer = styled("div")({
@@ -68,8 +70,42 @@ export const DataContainer = styled("div")({
   textAlign: "end",
 });
 
-export const StyledChip = styled(Chip)(({ theme }) => ({
+export const Chip = styled(MUIChip)(({ theme }) => ({
   fontSize: 12,
   fontWeight: 600,
   borderRadius: theme.shape.borderRadius,
 }));
+
+interface IWalletHistoryCompoundComponents {
+  Paper: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  Title: React.FC<TypographyProps>;
+  Month: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  MonthTitle: React.FC<TypographyProps>;
+  Li: React.FC<React.HTMLAttributes<HTMLLIElement>>;
+  DescriptionContainer: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  DescriptionTexts: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  DescriptionTitle: React.FC<TypographyProps>;
+  Description: React.FC<TypographyProps>;
+  DataContainer: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  Chip: React.FC<ChipProps>;
+}
+
+const WalletHistory: React.FC & IWalletHistoryCompoundComponents = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
+
+WalletHistory.Paper = Paper;
+WalletHistory.Title = Title;
+WalletHistory.Month = Month;
+WalletHistory.MonthTitle = MonthTitle;
+WalletHistory.Li = Li;
+WalletHistory.DescriptionContainer = DescriptionContainer;
+WalletHistory.DescriptionTexts = DescriptionTexts;
+WalletHistory.DescriptionTitle = DescriptionTitle;
+WalletHistory.Description = Description;
+WalletHistory.DataContainer = DataContainer;
+WalletHistory.Chip = Chip;
+
+export default WalletHistory;

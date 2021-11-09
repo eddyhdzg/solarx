@@ -1,7 +1,7 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp as FirestoreTimestamp } from "firebase/firestore";
 import { FileWithPath } from "react-dropzone";
 
-export type TTimestamp = Timestamp;
+export type Timestamp = FirestoreTimestamp;
 export type FirestoreQueryStatus = "loading" | "error" | "success";
 
 export interface FilePreview extends FileWithPath {

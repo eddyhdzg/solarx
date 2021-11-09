@@ -1,7 +1,7 @@
 import { Chip, Paper, Typography } from "@mui/material";
 import { useProject } from "hooks";
 import { useParams } from "react-router-dom";
-import { formatMoney, formatNumber, fomatTimeStampWithMinAndSec } from "utils";
+import { formatMoney, formatNumber, fomaTimestampWithMinAndSec } from "utils";
 import { ProjectIDParams } from "types";
 import {
   AdminProjectSummaryBody,
@@ -51,7 +51,7 @@ export default function AdminProjectSummary() {
               Images
             </Typography>
             <Typography variant="subtitle2">
-              {(data?.images?.length || 0) + (data?.coverImage ? 1 : 0)}
+              {data?.images?.length || 0}
             </Typography>
           </li>
         </AdminProjectSummaryUL>
@@ -66,17 +66,7 @@ export default function AdminProjectSummary() {
               Created Date
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
-              {data?.created ? fomatTimeStampWithMinAndSec(data?.created) : "-"}
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="body2" color="textSecondary">
-              Last Update
-            </Typography>
-            <Typography variant="subtitle2" textAlign="right">
-              {data?.lastUpdate
-                ? fomatTimeStampWithMinAndSec(data?.lastUpdate)
-                : "-"}
+              {data?.created ? fomaTimestampWithMinAndSec(data?.created) : "-"}
             </Typography>
           </li>
           <li>
@@ -85,7 +75,7 @@ export default function AdminProjectSummary() {
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.releaseDate
-                ? fomatTimeStampWithMinAndSec(data?.releaseDate)
+                ? fomaTimestampWithMinAndSec(data?.releaseDate)
                 : "-"}
             </Typography>
           </li>
@@ -95,7 +85,7 @@ export default function AdminProjectSummary() {
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.fundedDate
-                ? fomatTimeStampWithMinAndSec(data?.fundedDate)
+                ? fomaTimestampWithMinAndSec(data?.fundedDate)
                 : "-"}
             </Typography>
           </li>
@@ -105,7 +95,7 @@ export default function AdminProjectSummary() {
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.operationDate
-                ? fomatTimeStampWithMinAndSec(data?.operationDate)
+                ? fomaTimestampWithMinAndSec(data?.operationDate)
                 : "-"}
             </Typography>
           </li>

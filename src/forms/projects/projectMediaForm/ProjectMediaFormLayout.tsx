@@ -1,8 +1,8 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { GridItem, DropzoneField, ImagesPreview } from "components";
-import { IEditProjectMediaSchema } from "hooks";
-import { SubmitForm } from "types";
+import { IEditProjectMediaSchema, useProject } from "hooks";
+import { SubmitForm, ProjectIDParams } from "types";
 import { useTranslation } from "react-i18next";
 import { checkKeyDown } from "utils";
 import {
@@ -10,8 +10,9 @@ import {
   Titles,
   Actions,
   ImageTypography,
-  MB3Grid,
+  Img,
 } from "../ProjectForms.styled";
+import { useParams } from "react-router-dom";
 
 interface IProjectMediaFormLayoutProps {
   onSubmit: SubmitForm;
@@ -20,6 +21,8 @@ interface IProjectMediaFormLayoutProps {
 export default function ProjectMediaFormLayout({
   onSubmit,
 }: IProjectMediaFormLayoutProps) {
+  const { id } = useParams<ProjectIDParams>();
+  const { data } = useProject(id || "");
   const { t } = useTranslation();
   const {
     formState: { isValid, isDirty },
@@ -45,19 +48,10 @@ export default function ProjectMediaFormLayout({
           <ImageTypography variant="caption">
             {t("forms.projectForm.coverImage")}
           </ImageTypography>
-
-          <MB3Grid container spacing={3}>
-            <GridItem sm={6}>
-              <DropzoneField
-                name="coverImage"
-                accept={["image/jpg", "image/jpeg", "image/gif", "image/png"]}
-              />
-            </GridItem>
-            <GridItem sm={6}>
-              <ImagesPreview name="coverImage" />
-            </GridItem>
-          </MB3Grid>
-
+          <Img
+            src={data?.images?.length ? data?.images[0] : undefined}
+            alt="project"
+          />
           <ImageTypography variant="caption">
             {t("forms.projectForm.images")}
           </ImageTypography>

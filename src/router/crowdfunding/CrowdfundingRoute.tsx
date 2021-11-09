@@ -1,5 +1,9 @@
 import { Switch, Route } from "react-router-dom";
-import { CrowdfundingProjectPage, CrowdfundingProjectsPage } from "pages";
+import {
+  CrowdfundingProjectPage,
+  CrowdfundingProjectsPage,
+  CheckoutPage,
+} from "pages";
 
 const CrowdfundingRoute = () => {
   return (
@@ -9,6 +13,9 @@ const CrowdfundingRoute = () => {
       </Route>
       <Route exact path="/crowdfunding/:id">
         <CrowdfundingProjectPage />
+      </Route>
+      <Route exact path="/crowdfunding/:id/checkout">
+        <CheckoutPage />
       </Route>
     </Switch>
   );

@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { IEditProjectNumberSchema } from "hooks";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function useEditProjectNumberMutation() {
   const firestore = useFirestore();
@@ -10,7 +10,7 @@ export default function useEditProjectNumberMutation() {
     data: IEditProjectNumberSchema
   ) => {
     const projectDocRef = doc(firestore, "projects", id);
-    return updateDoc(projectDocRef, { ...data, lastUpdate: serverTimestamp() });
+    return updateDoc(projectDocRef, data);
   };
 
   return editProjectNumberMutation;

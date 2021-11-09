@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import {
-  useProjectGeneralForm,
-  useProjectGeneralMutation,
+  useEditProjectGeneralForm,
+  useEditProjectGeneralMutation,
   IProjectGeneralSchema,
   useProject,
   projectGeneralDefaultValues,
@@ -16,18 +16,17 @@ import { ProjectIDParams } from "types";
 import ProjectGeneralFormLayout from "../ProjectGeneralFormLayout";
 
 export default function EditProjectGeneralForm() {
-  const { reset, ...form } = useProjectGeneralForm();
+  const { reset, ...form } = useEditProjectGeneralForm();
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
-  const { editProjectGeneralMutation } = useProjectGeneralMutation();
+  const editProjectGeneralMutation = useEditProjectGeneralMutation();
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     const defaultValues: IProjectGeneralSchema = !data
       ? projectGeneralDefaultValues
       : {
-          archived: data?.archived,
           businessType: data?.businessType,
           city: data?.city,
           company: data?.company,

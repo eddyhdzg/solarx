@@ -1,10 +1,10 @@
 export interface Share {
   id?: string;
   auctionPrice?: number;
-  buyingOption?: string;
   sharePrice?: number;
   status?: "available" | "pledged" | "owned";
   owner?: string | null;
+  priceId?: string;
   projectId?: string;
   roi?: number;
 }

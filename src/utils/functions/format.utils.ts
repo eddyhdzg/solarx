@@ -1,5 +1,5 @@
 import * as dayjs from "dayjs";
-import { TTimestamp } from "types";
+import { Timestamp } from "types";
 import i18next from "i18next";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 require("dayjs/locale/es");
@@ -9,7 +9,6 @@ var timezone = require("dayjs/plugin/timezone");
 dayjs.extend(timezone);
 dayjs.extend(utc);
 dayjs.extend(localizedFormat);
-// dayjs.locale("es");
 dayjs.tz.guess();
 
 // 1000 => 1,000
@@ -18,9 +17,16 @@ export const formatNumber = (num: number) => {
   return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
 };
 
-// 1000 => 1,000 MXN
-export const formatMoney = (num: number) => {
-  return `$${num.toLocaleString(undefined, { maximumFractionDigits: 2 })} MXN`;
+// 100,000 => 1,000
+export const formatUnits = (num: number) => {
+  return (num / 100).toLocaleString(undefined, { maximumFractionDigits: 2 });
+};
+
+// 100,000 => 1,000 MXN
+export const formatMoney = (num: number = 0) => {
+  return `$${(num / 100).toLocaleString(undefined, {
+    maximumFractionDigits: 2,
+  })} MXN`;
 };
 
 // 1000 => 1,000%
@@ -36,19 +42,19 @@ export const formatPercentage2Dec = (num: number) => {
 };
 
 // 4-Jul-2021
-export const fomatTimeStamp = (date: TTimestamp) =>
+export const fomaTimestamp = (date: Timestamp) =>
   dayjs.unix(date.seconds).format("D-MMM-YYYY");
 
-export const formatStock1Y = (nanoseconds: TTimestamp["nanoseconds"]) => {
-  return dayjs.unix(nanoseconds / 1000).format("MMM YYYY");
+export const formatStock1Y = (seconds: Timestamp["seconds"]) => {
+  return dayjs.unix(seconds).format("MMM D YYYY");
 };
 
-export const formatStock1M = (nanoseconds: TTimestamp["nanoseconds"]) => {
-  return dayjs.unix(nanoseconds / 1000).format("MMM D");
+export const formatStock1M = (seconds: Timestamp["seconds"]) => {
+  return dayjs.unix(seconds).format("MMM D");
 };
 
 // Fri, Sep 24, 2021 1:00 AM
-export const fomatTimeStampWithMinAndSec = (date: TTimestamp) => {
+export const fomaTimestampWithMinAndSec = (date: Timestamp) => {
   return dayjs.unix(date.seconds)?.tz()?.format("llll");
 };
 
@@ -56,4 +62,14 @@ export const fomatNumInYears = (num: number) => {
   return `${num.toLocaleString(undefined, {
     maximumFractionDigits: 1,
   })} ${i18next.t("dates.year", { count: num })}`;
+};
+
+// October 2021
+export const formatMonthAndYear = (seconds: Timestamp["seconds"]) => {
+  return dayjs.unix(seconds)?.tz()?.format("MMMM YYYY");
+};
+
+// Thu, Aug 16, 2018 8:02 PM
+export const formatllll = (seconds: Timestamp["seconds"]) => {
+  return dayjs.unix(seconds)?.tz()?.format("llll");
 };

@@ -1,47 +1,43 @@
 import { Typography } from "@mui/material";
 import { Dot } from "components";
-import { demoTransactions } from "constant";
-import {
-  WalletHistoryPaper,
-  Title,
-  MonthContainer,
-  MonthTypography,
-  TransactionContainer,
-  DescriptionContainer,
-  DataContainer,
-  StyledChip,
-  DescriptionTexts,
-  Description,
-  DescriptionTitle,
-} from "./WalletHistory.styled";
+import { useUserHistory, useDisplayUserHistory } from "hooks";
+import { useUser } from "reactfire";
+import Styled from "./WalletHistory.styled";
 
 export default function WalletHistory() {
+  const user = useUser();
+  const { data } = useUserHistory(user.data?.uid || "");
+  const displayUserHistory = useDisplayUserHistory(data);
+
   return (
-    <WalletHistoryPaper>
-      <Title variant="subtitle1">History</Title>
-      {demoTransactions.map((month) => {
+    <Styled.Paper>
+      <Styled.Title variant="subtitle1">History</Styled.Title>
+      {displayUserHistory.map(([month, transactions]) => {
         return (
-          <MonthContainer key={month.month}>
-            <MonthTypography variant="subtitle2" color="textSecondary">
-              {month.month}
-            </MonthTypography>
+          <Styled.Month key={month}>
+            <Styled.MonthTitle variant="subtitle2" color="textSecondary">
+              {month}
+            </Styled.MonthTitle>
             <ul>
-              {month.transactions.map((transaction) => {
+              {transactions.map((transaction) => {
                 return (
-                  <TransactionContainer key={transaction.date}>
-                    <DescriptionContainer>
+                  <Styled.Li key={transaction.date}>
+                    <Styled.DescriptionContainer>
                       <Dot color={transaction.color} />
-                      <DescriptionTexts>
-                        <DescriptionTitle variant="subtitle2">
+                      <Styled.DescriptionTexts>
+                        <Styled.DescriptionTitle variant="subtitle2">
                           {transaction.title}
-                        </DescriptionTitle>
-                        <Description variant="body3" color="textSecondary">
+                        </Styled.DescriptionTitle>
+                        <Styled.Description
+                          variant="body3"
+                          color="textSecondary"
+                        >
                           {transaction.description}
-                        </Description>
-                      </DescriptionTexts>
-                    </DescriptionContainer>
-                    <DataContainer>
-                      <StyledChip
+                        </Styled.Description>
+                      </Styled.DescriptionTexts>
+                    </Styled.DescriptionContainer>
+                    <Styled.DataContainer>
+                      <Styled.Chip
                         size="small"
                         label={transaction.value}
                         variant={transaction.color}
@@ -49,14 +45,14 @@ export default function WalletHistory() {
                       <Typography variant="body3" color="textSecondary">
                         {transaction.date}
                       </Typography>
-                    </DataContainer>
-                  </TransactionContainer>
+                    </Styled.DataContainer>
+                  </Styled.Li>
                 );
               })}
             </ul>
-          </MonthContainer>
+          </Styled.Month>
         );
       })}
-    </WalletHistoryPaper>
+    </Styled.Paper>
   );
 }

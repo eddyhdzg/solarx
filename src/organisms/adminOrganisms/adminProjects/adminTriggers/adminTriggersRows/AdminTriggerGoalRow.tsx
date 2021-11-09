@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Typography, Button, TableCell, TableRow } from "@mui/material";
-import { useProject, useProjectBuyingOptions, useRole } from "hooks";
+import { useProject, useRole, useProjectPrices } from "hooks";
 import { useParams } from "react-router-dom";
 import { formatMoney, calcGoal } from "utils";
 import { ProjectIDParams } from "types";
@@ -20,14 +20,13 @@ export default function AdminTriggerGoalRow({
 }: AdminTriggerRowProps) {
   const role = useRole();
   const functions = useFunctions();
-  const updateProjectGoalBuyingOptions = httpsCallable<
-    { id?: string },
-    boolean
-  >(functions, "updateProjectGoalBuyingOptions");
+  const updateProjectGoal = httpsCallable<{ id?: string }, boolean>(
+    functions,
+    "updateProjectGoal_v0"
+  );
   const { id } = useParams<ProjectIDParams>();
   const { data: project, status: projectStatus } = useProject(id || "");
-  const { data: buyingOptions, status: buyingOptionsStatus } =
-    useProjectBuyingOptions(id || "");
+  const { data: prices, status: pricesStatus } = useProjectPrices(id || "");
   const [newGoal, setNewGoal] = useState(0);
   const [newQuantity, setNewQuantity] = useState(0);
   const disabled =
@@ -36,22 +35,20 @@ export default function AdminTriggerGoalRow({
   const { t } = useTranslation();
 
   useEffect(() => {
-    const auxGoal = buyingOptions.reduce((prev, curr) => {
-      return (
-        prev + calcGoal(project?.sharePrice, curr?.discount, curr?.quantity)
-      );
+    const auxGoal = prices.reduce((prev, curr) => {
+      return prev + calcGoal(curr?.unit_amount, curr?.quantity);
     }, 0);
 
-    const auxQuantity = buyingOptions.reduce((prev, curr) => {
+    const auxQuantity = prices.reduce((prev, curr) => {
       return prev + (curr?.quantity || 0);
     }, 0);
 
     setNewGoal(auxGoal);
     setNewQuantity(auxQuantity);
-  }, [buyingOptions, buyingOptionsStatus, project, projectStatus]);
+  }, [prices, pricesStatus, project, projectStatus]);
 
   const handleUpdateProjectGoal = () => {
-    updateProjectGoalBuyingOptions({ id })
+    updateProjectGoal({ id })
       .then(() => {
         enqueueSnackbar(t("snackbar.projectGoalEdited"), {
           variant: "success",
@@ -74,7 +71,7 @@ export default function AdminTriggerGoalRow({
           </Typography>
         </div>
       </TableCell>
-      <TableCell align="right">{formatMoney(project?.goal || 0)}</TableCell>
+      <TableCell align="right">{formatMoney(project?.goal)}</TableCell>
       <TableCell align="right">
         {disabled ? "-" : formatMoney(newGoal)}
       </TableCell>

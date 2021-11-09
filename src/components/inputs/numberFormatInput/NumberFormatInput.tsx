@@ -1,9 +1,12 @@
 import { forwardRef } from "react";
 import NumberFormat, { NumberFormatProps } from "react-number-format";
 
-interface INumberFormatInputProps extends NumberFormatProps {
+interface INumberFormatInputProps
+  extends Omit<NumberFormatProps, "min" | "max"> {
   onChange: (...event: any[]) => void;
   name: string;
+  min?: number;
+  max?: number;
 }
 
 const NumberFormatInput = forwardRef<NumberFormat, INumberFormatInputProps>(
@@ -16,11 +19,15 @@ const NumberFormatInput = forwardRef<NumberFormat, INumberFormatInputProps>(
     },
     ref
   ) {
-    const handleChange = (value?: number) => {
-      let newValue = value as number;
-      if (newValue <= min) newValue = Number(min);
-      else if (newValue >= max) newValue = Number(max);
-      onChange(newValue);
+    const handleChange = (value: number = min) => {
+      if (value <= min) value = min;
+      else if (value >= max) value = max;
+      onChange(value);
+    };
+
+    const keyDown = (e: any) => {
+      if (e.key === "ArrowUp") handleChange(Number(rest.value) + 1);
+      if (e.key === "ArrowDown") handleChange(Number(rest.value) - 1);
     };
 
     return (
@@ -28,13 +35,11 @@ const NumberFormatInput = forwardRef<NumberFormat, INumberFormatInputProps>(
         {...rest}
         getInputRef={ref}
         isNumericString
-        onValueChange={(values) => {
-          handleChange(values.floatValue);
+        onValueChange={(e) => {
+          if (e.value === "") handleChange();
+          else handleChange(parseFloat(e.value));
         }}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowUp") handleChange(Number(rest.value) + 1);
-          if (e.key === "ArrowDown") handleChange(Number(rest.value) - 1);
-        }}
+        onKeyDown={keyDown}
       />
     );
   }

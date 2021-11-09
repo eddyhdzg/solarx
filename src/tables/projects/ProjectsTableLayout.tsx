@@ -9,13 +9,10 @@ import { GlobalFilter } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { Project, ProjectSection } from "types";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { TableInstance } from "react-table";
 import {
   ActionsContainer,
-  StyledButton,
   ActionsWrapper,
   InputsWrapper,
   StyledTooltip,
@@ -45,18 +42,7 @@ export default function ProjectsTableLayout({
 
   return (
     <>
-      <ActionsContainer section={section}>
-        <StyledButton
-          variant="contained"
-          color="primary"
-          endIcon={<AddRoundedIcon />}
-          to="/admin/projects/create-project"
-          component={Link}
-          section={section}
-        >
-          {t("pages.admin.createProject.title")}
-        </StyledButton>
-
+      <ActionsContainer>
         <ActionsWrapper>
           <FilterChips />
           <InputsWrapper>

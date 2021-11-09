@@ -1,20 +1,13 @@
-import * as firebase from "@firebase/testing";
-import { IEditProjectBuyingOptionSchema } from "hooks";
-import { BuyingOption, TTimestamp } from "types";
+import { IEditProjectPriceSchema } from "hooks";
+import { ProjectPrice } from "types";
 
-export const correctCreateProjectBuyingOption: BuyingOption = {
+export const correctCreateProjectBuyingOption: ProjectPrice = {
   description: "",
-  discount: 1,
-  investors: 0,
-  lastUpdate: firebase.firestore.FieldValue.serverTimestamp() as TTimestamp,
+  investors: [],
   quantity: 1,
   sharesSold: 1,
-  subtitle: "",
-  title: "",
 };
 
-export const updateCreateProjectBuyingOption: IEditProjectBuyingOptionSchema = {
-  description: "",
-  subtitle: "",
-  title: "",
+export const updateCreateProjectBuyingOption: IEditProjectPriceSchema = {
+  quantity: 1,
 };

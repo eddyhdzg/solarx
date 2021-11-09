@@ -64,7 +64,7 @@ export const LastRow = styled(TableRow)({
   "& td, & th": { border: 0 },
 });
 
-interface ISegmentedControlCompoundComponents {
+interface IAdminTriggersCompoundComponents {
   Body: React.FC<React.HTMLAttributes<HTMLDivElement>>;
   Subtitle: React.FC<TypographyProps & { component: "p" }>;
   Ul: React.FC<React.HTMLAttributes<HTMLUListElement>>;
@@ -74,8 +74,9 @@ interface ISegmentedControlCompoundComponents {
   LastRow: React.FC<TableRowProps>;
 }
 
-const AdminTriggers: React.FC<React.HTMLAttributes<HTMLDivElement>> &
-  ISegmentedControlCompoundComponents = ({ children }) => {
+const AdminTriggers: React.FC & IAdminTriggersCompoundComponents = ({
+  children,
+}) => {
   return <>{children}</>;
 };
 

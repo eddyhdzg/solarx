@@ -9,9 +9,8 @@ interface IProjectScrollGalleryProps {
 }
 
 export default function ProjectScrollGallery({
-  images,
+  images = null,
   open,
-
   handleClose,
 }: IProjectScrollGalleryProps) {
   return (
@@ -26,15 +25,16 @@ export default function ProjectScrollGallery({
       >
         <DialogContent>
           <ImageList variant="quilted" rowHeight={240} cols={2} gap={8}>
-            {images!.map((image, index) => (
-              <StyledImageListItem
-                key={image}
-                cols={index % 3 ? 1 : 2}
-                rows={index % 3 ? 1 : 2}
-              >
-                <img src={image} alt={`project-${index}`} />
-              </StyledImageListItem>
-            ))}
+            {images !== null &&
+              images!.map((image, index) => (
+                <StyledImageListItem
+                  key={image}
+                  cols={index % 3 ? 1 : 2}
+                  rows={index % 3 ? 1 : 2}
+                >
+                  <img src={image} alt={`project-${index}`} />
+                </StyledImageListItem>
+              ))}
           </ImageList>
         </DialogContent>
       </Dialog>

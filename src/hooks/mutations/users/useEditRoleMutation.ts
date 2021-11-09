@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { UserRole } from "types";
-import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function useEditRoleMutation() {
   const firestore = useFirestore();
@@ -11,7 +11,7 @@ export default function useEditRoleMutation() {
       role: role ? role : "DEFAULT",
     };
 
-    return updateDoc(userRef, { ...newRole, lastUpdate: serverTimestamp() });
+    return updateDoc(userRef, newRole);
   };
 
   return editRoleMutation;

@@ -1,4 +1,3 @@
-// Projects
+export * from "./checkout";
 export * from "./projects";
-// Users
 export * from "./users";

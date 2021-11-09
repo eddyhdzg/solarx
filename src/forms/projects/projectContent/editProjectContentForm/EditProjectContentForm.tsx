@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import {
   useEditProjectContentForm,
   useEditProjectContentMutation,
-  useProject,
   IEditProjectContentSchema,
   editProjectContentDefaultValues,
+  useProjectContent,
 } from "hooks";
 import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ export default function EditProjectContentForm() {
   const { reset, ...form } = useEditProjectContentForm();
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProject(id || "");
+  const { data, status } = useProjectContent(id || "");
   const editProjectContentMutation = useEditProjectContentMutation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -26,9 +26,9 @@ export default function EditProjectContentForm() {
     const defaultValues: IEditProjectContentSchema = !data
       ? editProjectContentDefaultValues
       : {
-          aboutContent: data?.aboutContent || "",
-          generalContent: data?.generalContent || "",
-          graphsContent: data?.graphsContent || "",
+          about: data?.about || "",
+          general: data?.general || "",
+          graphs: data?.graphs || "",
         };
 
     reset(defaultValues);
@@ -42,7 +42,7 @@ export default function EditProjectContentForm() {
       values
     ) as IEditProjectContentSchema;
 
-    editProjectContentMutation(data.id || "", dirtyValues)
+    editProjectContentMutation(id || "", dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })

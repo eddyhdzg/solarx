@@ -22,7 +22,8 @@
           "admin": "admin",
           "adminDescription": "Sección de administración.",
           "projects": "proyectos",
-          "users": "usuarios"
+          "users": "usuarios",
+          "local": "local"
         },
         "createProject": {
           "title": "Crear proyecto",
@@ -39,6 +40,17 @@
         "users": {
           "users": "usuarios",
           "usersDescription": "Gestionar usuarios como administrador."
+        },
+        "local": {
+          "local": "local",
+          "localDescription": "Gestionar firestore local como administrador.",
+          "triggers": "Ejecutables",
+          "createProduct": "Crear Product",
+          "createProducts": "Crear un producto nuevo",
+          "createPrices": "Crear precios",
+          "create3Prices": "Crear 3 precios para un producto",
+          "createAuthUser": "Creat usuario autenticado con la información por defecto",
+          "createUser": "Crear Usuario"
         }
       },
       "crowdfunding": {
@@ -120,7 +132,7 @@
         "mediaDescription": "Imágenes para mostrar el proyecto.",
         "dates": "Fechas",
         "datesDescription": "Proporcione las fechas importantes del projecto.",
-        "coverImage": "Imagen de portada",
+        "coverImage": "Imagen de portada desde stripe.",
         "images": "Imágenes",
         "project": "Proyecto"
       },
@@ -180,12 +192,19 @@
       "projectNotEdited": "Error al editar proyecto 😔",
       "projectGoalEdited": "Meta del proyecto editada! 🔥",
       "projectGoalNotEdited": "Error al editar meta del proyecto 😔",
-      "buyingOptionAdded": "Opción de compra agregado! 🔥",
-      "buyingOptionNotAdded": "Error al agregar opción de compra 😔",
-      "buyingOptionEdited": "Opción de compra editado! 🔥",
-      "buyingOptionNotEdited": "Error al editar opción de compra 😔",
+      "priceEdited": "Precio editado! 🔥",
+      "priceNotEdited": "Error al editar el precio 😔",
       "sharesCreated": "Acciones creadas! 🔥",
-      "sharesNotCreated": "Error al crear acciones 😔"
+      "sharesNotCreated": "Error al crear acciones 😔",
+      "projectCreated": "Projecto Creado! 🔥",
+      "projectNotCreated": "Error al crear projecto 😔",
+      "sharePricesUpdated": "Precios de acciones editados! 🔥",
+      "sharePricesNotUpdated": "Error al editar precios de acciones 😔",
+      "checkoutError": "Error al intentar generar ficha de pago. Vuelve a intentarlo más tarde.",
+      "paymentMethodCreated": "Método de pago creado 👍🏻",
+      "paymentMethodCreatedError": "Error al crear el método de pago 😔",
+      "successfulPayment": "Pago exitoso! 👍🏻",
+      "errorPayment": "Error de pago. Vuelve a intentarlo más tarde 😔"
     },
     "auth": {
       "myAccount": "Mi Cuenta",

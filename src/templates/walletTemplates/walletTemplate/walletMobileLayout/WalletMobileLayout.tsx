@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { TabContext } from "@mui/lab";
 import {
-  WalletPortfolioSection,
-  WalletHistorySection,
-  WalletActions,
+  WalletHistory,
+  WalletBalance,
+  WalletTotalBalance,
+  WalletShares,
+  WalletTimeline,
 } from "organisms";
+import { Grid } from "@mui/material";
+import { GridItem } from "components";
 import {
   StyledTabs,
   StyledTab,
@@ -21,19 +25,31 @@ export default function WalletMobileLayout() {
         indicatorColor="primary"
         textColor="primary"
         centered
+        variant="scrollable"
       >
-        <StyledTab label="Porfolio" />
-        <StyledTab label="Actions" />
+        <StyledTab label="Balance" />
+        <StyledTab label="Shares" />
         <StyledTab label="History" />
+        <StyledTab label="Timeline" />
       </StyledTabs>
       <StyledTabPanel value="0">
-        <WalletPortfolioSection />
+        <Grid container spacing={3}>
+          <GridItem sm={5}>
+            <WalletTotalBalance />
+          </GridItem>
+          <GridItem sm={7}>
+            <WalletBalance />
+          </GridItem>
+        </Grid>
       </StyledTabPanel>
       <StyledTabPanel value="1">
-        <WalletActions />
+        <WalletShares />
       </StyledTabPanel>
       <StyledTabPanel value="2">
-        <WalletHistorySection />
+        <WalletHistory />
+      </StyledTabPanel>
+      <StyledTabPanel value="3">
+        <WalletTimeline />
       </StyledTabPanel>
     </TabContext>
   );

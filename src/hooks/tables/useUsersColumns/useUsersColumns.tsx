@@ -3,7 +3,7 @@ import { UserRoleForm } from "forms";
 import { FirestoreUser, UserRole } from "types";
 import { Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { fomatTimeStampWithMinAndSec } from "utils";
+import { fomaTimestampWithMinAndSec } from "utils";
 import { Column } from "react-table";
 
 interface Row {
@@ -21,6 +21,8 @@ const useUsersColumns = () => {
         Cell: ({ value }: { value: string }) => {
           return <Avatar alt="avatar" src={value || undefined} />;
         },
+        disableSortBy: true,
+        tabIndex: -1,
       },
       {
         id: "uid",
@@ -41,7 +43,7 @@ const useUsersColumns = () => {
         id: "created",
         Header: t("projects.created"),
         accessor: ({ created }: FirestoreUser) => {
-          return created ? fomatTimeStampWithMinAndSec(created) : "";
+          return created ? fomaTimestampWithMinAndSec(created) : "";
         },
       },
       {

@@ -10,6 +10,7 @@ import {
 import { useScrollRight } from "hooks";
 import AdminTriggerGeneralOptionRow from "./adminTriggersRows/AdminTriggerGeneralOptionRow";
 import AdminTriggerGoalRow from "./adminTriggersRows/AdminTriggerGoalRow";
+import AdminTriggerSharePrice from "./adminTriggersRows/AdminTriggerSharePrice";
 import AdminTriggerShares from "./adminTriggersRows/AdminTriggerShares";
 import Styles from "./AdminTriggers.styled";
 
@@ -42,6 +43,7 @@ export default function AdminTriggers() {
               </TableRow>
             </TableHead>
             <TableBody>
+              <AdminTriggerSharePrice scrolled={scroll} />
               <AdminTriggerGeneralOptionRow scrolled={scroll} />
               <AdminTriggerGoalRow scrolled={scroll} />
               <AdminTriggerShares scrolled={scroll} />

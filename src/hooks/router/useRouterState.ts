@@ -44,7 +44,24 @@ const useRouterState = () => {
     });
   };
 
-  return { values: searchParams, onInputChange, onSelectChange, onReset };
+  const setValue = (name: string, num: number) => {
+    const newQueries = {
+      ...searchParams,
+      [name]: num,
+    };
+    history.replace({
+      pathname,
+      search: queryString.stringify(newQueries),
+    });
+  };
+
+  return {
+    values: searchParams,
+    onInputChange,
+    onSelectChange,
+    onReset,
+    setValue,
+  };
 };
 
 export default useRouterState;

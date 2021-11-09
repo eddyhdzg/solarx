@@ -1,7 +1,7 @@
 import { useFirestore } from "reactfire";
 import { Project } from "types";
 import { IEditProjectDatesSchema } from "hooks";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { toTimestamp } from "utils";
 
 export default function useEditProjectDatesMutation() {
@@ -26,7 +26,6 @@ export default function useEditProjectDatesMutation() {
     const projectDocRef = doc(firestore, "projects", id);
     return updateDoc(projectDocRef, {
       ...project,
-      lastUpdate: serverTimestamp(),
     });
   };
 

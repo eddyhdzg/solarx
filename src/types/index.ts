@@ -1,4 +1,5 @@
 export * from "./firebase.types";
+export * from "./functions.types";
 export * from "./locales.types";
 export * from "./projects.types";
 export * from "./router.types";

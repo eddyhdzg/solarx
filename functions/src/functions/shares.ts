@@ -1,7 +1,7 @@
 import { functions, admin } from "../config/firebase";
-import { Project, BuyingOption, FirestoreUser, Share } from "../types";
+import { Project, ProjectPrice, FirestoreUser, Share } from "../types";
 
-export const createShares = functions.https.onCall(async (data, context) => {
+export const createShares_v0 = functions.https.onCall(async (data, context) => {
   const pid = data?.id;
   const role: FirestoreUser["role"] = context.auth?.token?.role;
   const sharesColRef = admin.firestore().collection("shares");
@@ -27,7 +27,7 @@ export const createShares = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const { sharePrice = 0, roi } = (await admin
+  const { sharePrice = 1, roi } = (await admin
     .firestore()
     .collection("projects")
     .doc(pid)
@@ -35,19 +35,18 @@ export const createShares = functions.https.onCall(async (data, context) => {
     .then((res) => res.data())
     .catch(() => ({}))) as Project;
 
-  const buyingOptions = await admin
+  const projectPrice = await admin
     .firestore()
     .collection("projects")
     .doc(pid)
-    .collection("buyingOptions")
+    .collection("prices")
     .get()
     .then((snapshot) => {
       return snapshot.docs.map((doc) => {
-        const { discount = 0, quantity } = doc.data() as BuyingOption;
-
+        const { unit_amount = 0, quantity } = doc.data() as ProjectPrice;
         return {
-          bid: doc.id,
-          auctionPrice: sharePrice - (sharePrice * discount) / 100,
+          priceId: doc.id,
+          auctionPrice: unit_amount,
           quantity,
         };
       });
@@ -57,27 +56,30 @@ export const createShares = functions.https.onCall(async (data, context) => {
     });
 
   const batches: admin.firestore.WriteBatch[] = [];
-  buyingOptions.forEach(({ bid, auctionPrice, quantity = 0 }) => {
+
+  projectPrice.forEach(({ priceId, auctionPrice, quantity = 0 }) => {
     const share: Share = {
       auctionPrice,
-      buyingOption: bid,
       sharePrice,
       status: "available",
       owner: null,
+      priceId,
       projectId: pid,
       roi,
     };
 
-    while (quantity > 0) {
+    let left = quantity;
+
+    while (left > 0) {
       const batch = admin.firestore().batch();
-      const currBatchSize = Math.min(quantity, 500);
+      const currBatchSize = Math.min(left, 500);
 
       for (let i = 0; i < currBatchSize; i++) {
         batch.set(sharesColRef.doc(), share);
       }
 
       batches.push(batch);
-      quantity -= currBatchSize;
+      left -= currBatchSize;
     }
   });
 

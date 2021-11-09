@@ -20,7 +20,7 @@ export default function AdminTriggerSharesRow({
   const functions = useFunctions();
   const createShares = httpsCallable<{ id?: string }, boolean>(
     functions,
-    "createShares"
+    "createShares_v0"
   );
   const { id } = useParams<ProjectIDParams>();
   const projectSharesExist = useProjectSharesExist(id);
@@ -52,8 +52,12 @@ export default function AdminTriggerSharesRow({
           </Typography>
         </div>
       </TableCell>
-      <TableCell align="right">{projectSharesExist && <DoneIcon />}</TableCell>
-      <TableCell align="right">{!projectSharesExist && <DoneIcon />}</TableCell>
+      <TableCell align="right">
+        {projectSharesExist ? <DoneIcon /> : "-"}
+      </TableCell>
+      <TableCell align="right">
+        {!projectSharesExist ? <DoneIcon /> : "-"}
+      </TableCell>
       <Styles.TableCellLast scrolled={Boolean(scrolled)} align="right">
         <Button
           size="large"

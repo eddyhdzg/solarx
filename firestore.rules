@@ -15,49 +15,80 @@ service cloud.firestore {
       : request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields)
     }
 
-    function myDocument(userId) {
-      return request.auth.uid == userId;
+    function myDocument(uid) {
+      return request.auth.uid == uid;
     }
 
-    function myDocumentOrAdmin(userId) {
-      return request.auth.uid == userId || isOneOfRoles(['ADMIN', 'MODERATOR', 'SUPER_USER']);
+    function myDocumentOrAdmin(uid) {
+      return request.auth.uid == uid || isOneOfRoles(['ADMIN', 'MODERATOR', 'SUPER_USER']);
     }
 
-    function isFutureDate(date) {
-      return date is timestamp && date > request.time;
+    function myDocumentOrMod(uid) {
+      return request.auth.uid == uid || isOneOfRoles(['MODERATOR', 'SUPER_USER']);
     }
 
     match /{document=**} {
       allow read, write: if false;
     }
 
-    match /users/{userId} {
+    match /users/{uid} {
       allow read;
-      allow update: if (myDocument(userId) && onlyAffectsFields(['anonymous','avatar','displayName','lastUpdate']));
-      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['lastUpdate','role']));
+      allow update: if myDocumentOrMod(uid);
+
+      match /privateUserData/data {
+        allow read: if myDocumentOrAdmin(uid);
+        allow update: if (myDocument(uid) && onlyAffectsFields(['name','lastNames']));
+      }
+
+      match /payment_methods/{id} {
+        allow read: if myDocumentOrAdmin(uid);
+        allow create: if myDocument(uid);
+      }
+
+      match /userHistory/{id} {
+        allow read: if myDocumentOrAdmin(uid);
+      }
+
+      match /userShares/{id} {
+        allow read: if myDocumentOrAdmin(uid);
+      }
+
+      match /userTransactions/{id} {
+        allow read: if myDocumentOrAdmin(uid);
+      }
+
+      // Stripe
+      match /checkout_sessions/{id} {
+        allow read, write: if request.auth.uid == uid;
+      }
+      match /subscriptions/{id} {
+        allow read: if request.auth.uid == uid;
+      }
+      match /payments/{id} {
+        allow read: if request.auth.uid == uid;
+      }
     }
 
-    match /users/{userId}/privateUserData/data {
-      allow read: if myDocumentOrAdmin(userId);
-      allow update: if (myDocument(userId) && onlyAffectsFields(['name','lastNames','lastUpdate']));
-    }
-
-    match /users/{userId}/userShares/{userSharesId} {
-      allow read: if myDocumentOrAdmin(userId);
-    }
-
-    match /projects/{projectId} {
+    match /projects/{pid} {
       allow read;
       allow create, update: if isOneOfRoles(['MODERATOR', 'SUPER_USER']);
+
+        match /data/content {
+          allow read;
+          allow create, update: if isOneOfRoles(['MODERATOR', 'SUPER_USER']);
+        }
+
+        // Stripe
+        match /prices/{id} {
+          allow read;
+          allow create, update: if isOneOfRoles(['MODERATOR', 'SUPER_USER']);
+        }
+        match /tax_rates/{id} {
+          allow read;
+        }
     }
 
-    match /projects/{projectId}/buyingOptions/{buyingOptionId} {
-      allow read;
-      allow create: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','discount','investors','lastUpdate','quantity','sharesSold','subtitle','title']));
-      allow update: if (isOneOfRoles(['MODERATOR', 'SUPER_USER']) && onlyAffectsFields(['description','lastUpdate','subtitle', 'title']));
-    }
-
-    match /shares/{shareId} {
+    match /shares/{sid} {
       allow read: if request.query.limit <= 20;
     }
   }

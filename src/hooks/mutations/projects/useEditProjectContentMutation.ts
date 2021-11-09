@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { IEditProjectContentSchema } from "hooks";
-import { doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function useEditProjectContentMutation() {
   const firestore = useFirestore();
@@ -9,8 +9,8 @@ export default function useEditProjectContentMutation() {
     id: string,
     data: IEditProjectContentSchema
   ) => {
-    const projectDocRef = doc(firestore, "projects", id);
-    return updateDoc(projectDocRef, { ...data, lastUpdate: serverTimestamp() });
+    const projectDocRef = doc(firestore, "projects", id, "data", "content");
+    return setDoc(projectDocRef, data, { merge: true });
   };
 
   return editProjectContentMutation;

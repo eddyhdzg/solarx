@@ -2,5 +2,5 @@ export { default as useEditProjectContentMutation } from "./useEditProjectConten
 export { default as useEditProjectDatesMutation } from "./useEditProjectDatesMutation";
 export { default as useEditProjectMediaMutation } from "./useEditProjectMediaMutation";
 export { default as useEditProjectNumberMutation } from "./useEditProjectNumberMutation";
-export { default as useProjectBuyingOptionsMutation } from "./useProjectBuyingOptionsMutation";
-export { default as useProjectGeneralMutation } from "./useProjectGeneralMutation";
+export { default as useEditProjectGeneralMutation } from "./useEditProjectGeneralMutation";
+export { default as useEditProjectPricesMutation } from "./useEditProjectPricesMutation";

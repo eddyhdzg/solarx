@@ -38,6 +38,7 @@ declare module "@mui/material/styles" {
       };
       cash: string;
       totalBalance: string;
+      sxp: string;
       stocks: string;
       border: string;
       elevation: {
@@ -65,6 +66,7 @@ declare module "@mui/material/styles" {
       };
       cash?: string;
       totalBalance?: string;
+      sxp?: string;
       stocks?: string;
       border?: string;
       elevation?: {
@@ -98,7 +100,6 @@ declare module "@mui/material/Chip" {
     green: true;
     yellow: true;
     red: true;
-    deposit: true;
   }
 }
 

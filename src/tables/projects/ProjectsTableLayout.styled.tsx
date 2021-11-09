@@ -1,33 +1,13 @@
-import { styled, Button, ButtonProps, Tooltip } from "@mui/material";
-import { Link, LinkProps } from "react-router-dom";
-import { ProjectSection } from "types";
+import { styled, Tooltip } from "@mui/material";
 
 export const ActionsContainer = styled("div", {
   shouldForwardProp: (prop) => prop !== "section",
-})(({ theme }) => (props: { section: ProjectSection }) => ({
+})(({ theme }) => () => ({
   display: "flex",
   alignItems: "flex-end",
   flexWrap: "wrap",
   marginBottom: theme.spacing(1.5),
-  justifyContent:
-    props.section === "admin/projects" ? "space-between" : "flex-end",
-}));
-
-export const StyledButton = styled(
-  (
-    props: ButtonProps & {
-      section: ProjectSection;
-
-      component: typeof Link;
-      to: LinkProps["to"];
-    }
-  ) => <Button {...props} />,
-  {
-    shouldForwardProp: (prop) => prop !== "section",
-  }
-)(({ theme, section }) => ({
-  marginRight: theme.spacing(2),
-  display: section === "crowdfunding" ? "none" : undefined,
+  justifyContent: "flex-end",
 }));
 
 export const ActionsWrapper = styled("div")(({ theme }) => ({

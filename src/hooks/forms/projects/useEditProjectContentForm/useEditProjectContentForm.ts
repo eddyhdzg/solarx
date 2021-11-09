@@ -7,6 +7,8 @@ import {
 
 export default function useEditProjectContentForm() {
   const form = useForm({
+    // FIXME https://github.com/react-hook-form/resolvers/issues/245
+    // @ts-ignore
     resolver: yupResolver(editProjectContentSchema),
     mode: "onChange",
     defaultValues: editProjectContentDefaultValues,

@@ -21,6 +21,15 @@ export default function AdminHomeTemplate() {
           emoji="👥"
         />
       </GridItem>
+      {process.env.REACT_APP_ENV === "local" && (
+        <GridItem xs={6} sm={4} md={3} xl={2}>
+          <SectionButton
+            title={t("pages.admin.adminHome.local")}
+            to="/admin/local"
+            emoji="📟"
+          />
+        </GridItem>
+      )}
     </Grid>
   );
 }

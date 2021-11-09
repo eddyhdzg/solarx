@@ -1,5 +1,3 @@
-export const funCalcMoney = (
-  sharePrice: number = 1,
-  quantity: number = 1,
-  discount: number = 1
-) => Math.floor(sharePrice * quantity * (discount / 100));
+export const funCalcMoney = (quantity: number = 1, unit_amount: number = 1) => {
+  return quantity * unit_amount;
+};

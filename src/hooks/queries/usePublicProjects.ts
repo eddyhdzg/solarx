@@ -7,7 +7,7 @@ export default function usePublicProjects() {
   const projectsRef = collection(firestore, "projects");
   const projectsQuery = query(
     projectsRef,
-    where("archived", "==", false),
+    where("active", "==", true),
     orderBy("created")
   );
 

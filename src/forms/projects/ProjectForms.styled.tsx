@@ -3,7 +3,6 @@ import {
   alpha,
   Divider,
   Typography,
-  Grid,
   TableContainer,
   TableCell,
   InputAdornment,
@@ -36,17 +35,9 @@ export const ImageTypography = styled(Typography)(({ theme }) => ({
   marginBottom: theme.spacing(2),
 })) as typeof Typography;
 
-export const MB3Grid = styled(Grid)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
-}));
-
 export const TableContent = styled("div")(({ theme }) => ({
   padding: theme.spacing(2),
 }));
-
-export const TableCellID = styled(TableCell)({
-  minWidth: 200,
-});
 
 export const TableCellDescription = styled(TableCell)({
   minWidth: 300,
@@ -79,3 +70,9 @@ export const StyledInputAdornment = styled(InputAdornment)({
   marginRight: 0,
   opacity: 0.5,
 });
+
+export const Img = styled("img")(({ theme }) => ({
+  maxWidth: theme.spacing(40),
+  borderRadius: theme.shape.borderRadius,
+  marginBottom: theme.spacing(3),
+}));

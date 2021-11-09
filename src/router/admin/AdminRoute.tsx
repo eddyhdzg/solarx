@@ -2,10 +2,10 @@ import { Switch, Route } from "react-router-dom";
 import { AdminWrapper } from "components";
 import {
   AdminHomePage,
-  AdminCreateProjectPage,
   AdminEditProjectPage,
   AdminProjectsPage,
   AdminUsersPage,
+  AdminLocalPage,
 } from "pages";
 import { FirebaseStorageProvider } from "providers";
 
@@ -20,14 +20,14 @@ const AdminRoute = () => {
           <Route exact path="/admin/projects">
             <AdminProjectsPage />
           </Route>
-          <Route exact path="/admin/projects/create-project">
-            <AdminCreateProjectPage />
-          </Route>
           <Route exact path="/admin/projects/:id">
             <AdminEditProjectPage />
           </Route>
           <Route exact path="/admin/users">
             <AdminUsersPage />
+          </Route>
+          <Route exact path="/admin/local">
+            <AdminLocalPage />
           </Route>
         </Switch>
       </FirebaseStorageProvider>

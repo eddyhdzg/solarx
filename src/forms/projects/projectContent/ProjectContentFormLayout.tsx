@@ -45,12 +45,12 @@ export default function ProjectContentFormLayout({
           <Grid container spacing={3}>
             <GridItem lg={6}>
               <Controller
-                name="generalContent"
+                name="general"
                 control={control}
                 render={({ field, fieldState }) => {
                   return (
                     <StyledTextField
-                      id="project-generalContent"
+                      id="project-general"
                       label="General Content"
                       variant="outlined"
                       fullWidth
@@ -76,12 +76,12 @@ export default function ProjectContentFormLayout({
             </GridItem>
             <GridItem lg={6}>
               <Controller
-                name="graphsContent"
+                name="graphs"
                 control={control}
                 render={({ field, fieldState }) => {
                   return (
                     <StyledTextField
-                      id="project-graphsContent"
+                      id="project-graphs"
                       label="Graphs Content"
                       variant="outlined"
                       fullWidth
@@ -107,12 +107,12 @@ export default function ProjectContentFormLayout({
             </GridItem>
             <GridItem lg={6}>
               <Controller
-                name="aboutContent"
+                name="about"
                 control={control}
                 render={({ field, fieldState }) => {
                   return (
                     <StyledTextField
-                      id="project-aboutContent"
+                      id="project-about"
                       label="About Content"
                       variant="outlined"
                       fullWidth

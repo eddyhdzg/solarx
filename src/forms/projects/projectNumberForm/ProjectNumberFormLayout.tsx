@@ -1,6 +1,11 @@
 import { Grid, InputAdornment, Paper, Typography, Button } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
-import { NumberFormatInput, GridItem, StyledTextField } from "components";
+import {
+  NumberFormatInput,
+  GridItem,
+  StyledTextField,
+  CurrencyField,
+} from "components";
 import { IEditProjectNumberSchema } from "hooks";
 import { useTranslation } from "react-i18next";
 import { checkKeyDown } from "utils";
@@ -91,10 +96,9 @@ export default function ProjectNumberFormLayout({
                       inputMode: "numeric",
                       min: 1,
                       thousandSeparator: true,
-                      decimalScale: 0,
                     }}
                     InputProps={{
-                      inputComponent: NumberFormatInput,
+                      inputComponent: CurrencyField,
                       startAdornment: (
                         <InputAdornment position="start">$</InputAdornment>
                       ),

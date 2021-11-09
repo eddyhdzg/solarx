@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Typography, Button, TableCell, TableRow } from "@mui/material";
-import { useProject, useProjectBuyingOptions, useRole } from "hooks";
+import { useProject, useRole, useProjectPrices } from "hooks";
 import { useParams } from "react-router-dom";
 import { formatNumber } from "utils";
 import { ProjectIDParams } from "types";
@@ -22,36 +22,35 @@ export default function AdminTriggerGeneralOptionRow({
   const functions = useFunctions();
   const updateGeneralOptionQuantity = httpsCallable<{ id?: string }, boolean>(
     functions,
-    "updateGeneralOptionQuantity"
+    "updateGeneralPriceQuantity_v0"
   );
   const { id } = useParams<ProjectIDParams>();
   const { data: project } = useProject(id || "");
-  const { data: buyingOptions, status: buyingOptionsStatus } =
-    useProjectBuyingOptions(id || "");
+  const { data: prices, status: pricesStatus } = useProjectPrices(id || "");
   const [newQuantity, setNewQuantity] = useState(0);
-  const disabled =
-    buyingOptions[buyingOptions.length - 1]?.quantity === newQuantity;
+  const [disabled, setDisabled] = useState(true);
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
   useEffect(() => {
-    const aux = buyingOptions.reduce((prev, curr) => {
-      if (curr?.discount === 0) return prev;
+    const aux = prices.reduce((prev, curr) => {
+      if (curr?.sharePrice === curr?.unit_amount) return prev;
       return prev + (curr?.quantity || 0);
     }, 0);
 
     setNewQuantity((project?.totalShares || 0) - aux);
-  }, [buyingOptions, buyingOptionsStatus, project]);
+    setDisabled(prices[prices.length - 1]?.quantity === newQuantity);
+  }, [newQuantity, prices, pricesStatus, project]);
 
   const handleUpdateGeneralOptionQuantity = () => {
     updateGeneralOptionQuantity({ id })
       .then(() => {
-        enqueueSnackbar(t("snackbar.buyingOptionEdited"), {
+        enqueueSnackbar(t("snackbar.projectGoalEdited"), {
           variant: "success",
         });
       })
       .catch(() => {
-        enqueueSnackbar(t("snackbar.buyingOptionNotEdited"), {
+        enqueueSnackbar(t("snackbar.projectGoalNotEdited"), {
           variant: "error",
         });
       });
@@ -68,7 +67,7 @@ export default function AdminTriggerGeneralOptionRow({
         </div>
       </TableCell>
       <TableCell align="right">
-        {formatNumber(buyingOptions[buyingOptions.length - 1]?.quantity || 0)}
+        {formatNumber(prices[prices.length - 1]?.quantity || 0)}
       </TableCell>
       <TableCell align="right">
         {disabled ? "-" : formatNumber(newQuantity)}

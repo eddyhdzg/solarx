@@ -21,11 +21,13 @@ export const CounterButtonLeft = styled(Button)({
   border: "none !important",
   borderTopRightRadius: 0,
   borderBottomRightRadius: 0,
+  flexGrow: 1,
 });
 export const CounterButtonRight = styled(Button)({
   border: "none !important",
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
+  flexGrow: 1,
 });
 
 export const CounterInput = styled(InputBase)(({ theme }) => ({

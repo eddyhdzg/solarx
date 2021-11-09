@@ -1,9 +1,9 @@
 import { styled, Grid, GridProps } from "@mui/material";
 import { GridItem } from "components";
 
-const Root = styled("div")(({ theme }) => ({
-  overflowY: "clip",
+const Background = styled("div")(({ theme }) => ({
   position: "relative",
+  backgroundImage: theme.custom.elevation[0],
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   paddingLeft: theme.spacing(2),
@@ -19,62 +19,84 @@ const Root = styled("div")(({ theme }) => ({
     paddingBottom: theme.spacing(3),
   },
 }));
+
 const HeaderGrid = styled(Grid)(({ theme }) => ({
   marginBottom: theme.spacing(1),
 }));
 
-const GreyBackground = styled("div")(({ theme }) => ({
-  backgroundImage: theme.custom.elevation[0],
-  width: "100%",
-  minHeight: "1000vh",
-  position: "absolute",
-  left: 0,
+const PrimaryContent = styled(Grid)(({ theme }) => ({
+  marginBottom: theme.spacing(8),
+}));
+
+const BodyGrid = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.up("lg")]: {
+    paddingRight: theme.spacing(0),
+  },
 }));
 
 const Tabs = styled("div")(({ theme }) => ({
-  position: "relative",
-  marginTop: 80,
-  top: theme.spacing(-5),
+  marginTop: theme.spacing(8),
   [theme.breakpoints.up("lg")]: {
-    marginTop: 120,
+    marginTop: 0,
+    position: "relative",
+    top: "-67px",
   },
 }));
 
 const Sticky = styled(GridItem)(({ theme }) => ({
   [theme.breakpoints.up("lg")]: {
     position: "sticky",
-    top: theme.spacing(10),
+    top: theme.spacing(5),
+    paddingBottom: theme.spacing(7),
     maxHeight: "100vh",
-    overflowY: "auto",
+    overflowY: "overlay",
+    "&::-webkit-scrollbar": {
+      width: 10,
+      backgroundColor: "transparent",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      borderRadius: 10,
+      backgroundColor: "transparent",
+    },
+    "&:hover": {
+      "&::-webkit-scrollbar-thumb": {
+        backgroundColor: theme.palette.divider,
+      },
+    },
   },
 }));
 
-const StickyContent = styled("div")(({ theme }) => ({
+const MaxWidth = styled("div")(({ theme }) => ({
   maxWidth: theme.spacing(60),
   marginLeft: "auto",
   marginRight: "auto",
   [theme.breakpoints.up("lg")]: {
-    paddingBottom: theme.spacing(15),
+    marginLeft: "unset",
+    marginRight: "auto",
   },
 }));
 
 interface ISegmentedControlCompoundComponents {
+  Background: React.FC<React.HTMLAttributes<HTMLDivElement>>;
   HeaderGrid: React.FC<GridProps>;
-  GreyBackground: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  PrimaryContent: React.FC<GridProps>;
+  BodyGrid: React.FC<GridProps>;
   Tabs: React.FC<React.HTMLAttributes<HTMLDivElement>>;
   Sticky: React.FC<GridProps>;
-  StickyContent: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  MaxWidth: React.FC<React.HTMLAttributes<HTMLDivElement>>;
 }
 
 const Project: React.FC<React.HTMLAttributes<HTMLDivElement>> &
-  ISegmentedControlCompoundComponents = (props) => {
-  return <Root {...props} />;
+  ISegmentedControlCompoundComponents = ({ children }) => {
+  return <>{children}</>;
 };
 
+Project.Background = Background;
 Project.HeaderGrid = HeaderGrid;
-Project.GreyBackground = GreyBackground;
+Project.PrimaryContent = PrimaryContent;
+Project.BodyGrid = BodyGrid;
 Project.Tabs = Tabs;
 Project.Sticky = Sticky;
-Project.StickyContent = StickyContent;
+Project.MaxWidth = MaxWidth;
 
 export default Project;

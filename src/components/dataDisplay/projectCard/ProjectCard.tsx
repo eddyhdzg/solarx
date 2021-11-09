@@ -4,7 +4,7 @@ import { Project } from "types";
 import { Link } from "react-router-dom";
 import { GradientLinearProgress } from "components";
 import { useTranslation } from "react-i18next";
-import { formatPercentage2Dec } from "utils";
+import { formatPercentage2Dec, formatMoney } from "utils";
 import {
   ProjectCardCard,
   ProjectSkeleton,
@@ -24,7 +24,6 @@ interface IProjectCardProps extends Project {
 }
 
 export default function ProjectCard({
-  // id,
   city,
   state,
   name,
@@ -32,7 +31,7 @@ export default function ProjectCard({
   sharePrice = 0,
   totalShares = 0,
   roi = 0,
-  coverImage,
+  images,
   url = "/crowdfunding/projects/",
 }: IProjectCardProps) {
   const { t } = useTranslation();
@@ -50,7 +49,7 @@ export default function ProjectCard({
         />
         <ProjectCardMedia
           component="img"
-          src={coverImage || undefined}
+          src={images?.length ? images[0] : undefined}
           alt={`project-${name}-img`}
           onLoad={() => setLoading(false)}
           loading={loading}
@@ -70,7 +69,7 @@ export default function ProjectCard({
               <SellOutlinedIcon />
               <ProjectCardDataTextWrapper>
                 <Typography variant="subtitle1">
-                  {sharePrice.toLocaleString()} MX
+                  {formatMoney(sharePrice)}
                 </Typography>
                 <Typography variant="caption" color="textSecondary">
                   {t("projects.sharePrice")}

@@ -1,5 +1,4 @@
 import {
-  FormControlLabel,
   Grid,
   Paper,
   Typography,
@@ -8,7 +7,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import { GridItem, Switch, StyledTextField, StyledSelect } from "components";
+import { GridItem, StyledTextField, StyledSelect } from "components";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { useTranslation } from "react-i18next";
 import { IProjectGeneralSchema } from "hooks";
@@ -261,22 +260,6 @@ export default function ProjectGeneralFormLayout({
                     </FormControl>
                   );
                 }}
-              />
-            </GridItem>
-            <GridItem xs={6}>
-              <Controller
-                name="archived"
-                control={control}
-                render={({ field }) => (
-                  <FormControlLabel
-                    control={
-                      <Switch name="project-archived" checked={field.value} />
-                    }
-                    label={t("projects.archived")}
-                    labelPlacement="start"
-                    {...field}
-                  />
-                )}
               />
             </GridItem>
           </Grid>

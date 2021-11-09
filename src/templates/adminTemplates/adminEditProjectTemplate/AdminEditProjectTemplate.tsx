@@ -5,7 +5,7 @@ import {
   EditProjectGeneralForm,
   EditProjectNumberForm,
   EditProjectMediaForm,
-  ProjectBuyingOptionsForm,
+  ProjectPriceForm,
   EditProjectDatesForm,
   EditProjectContentForm,
 } from "forms";
@@ -40,7 +40,7 @@ export default function AdminEditProjectTemplate() {
         >
           <Tab disableRipple label="General" />
           <Tab disableRipple label="Numbers" />
-          <Tab disableRipple label="Buying Options" />
+          <Tab disableRipple label="Prices" />
           <Tab disableRipple label="Media" />
           <Tab disableRipple label="CMS" />
           <Tab disableRipple label="Dates" />
@@ -57,7 +57,7 @@ export default function AdminEditProjectTemplate() {
               <EditProjectNumberForm />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="2">
-              <ProjectBuyingOptionsForm />
+              <ProjectPriceForm />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="3">
               <EditProjectMediaForm />

@@ -1,29 +1,27 @@
 import * as yup from "yup";
+import { ProjectContent } from "types";
 import { Notion_Regex } from "constant";
 
-export interface IEditProjectContentSchema {
-  generalContent?: string;
-  graphsContent?: string;
-  aboutContent?: string;
-}
+export interface IEditProjectContentSchema
+  extends Pick<ProjectContent, "about" | "general" | "graphs"> {}
 
 export const editProjectContentDefaultValues: IEditProjectContentSchema = {
-  generalContent: "",
-  graphsContent: "",
-  aboutContent: "",
+  about: "",
+  general: "",
+  graphs: "",
 };
 
 export const editProjectContentSchema: yup.SchemaOf<IEditProjectContentSchema> =
   yup.object({
-    generalContent: yup
+    about: yup
       .string()
       .matches(Notion_Regex, "Enter correct notion url!")
       .optional(),
-    graphsContent: yup
+    general: yup
       .string()
       .matches(Notion_Regex, "Enter correct notion url!")
       .optional(),
-    aboutContent: yup
+    graphs: yup
       .string()
       .matches(Notion_Regex, "Enter correct notion url!")
       .optional(),

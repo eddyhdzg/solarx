@@ -1,4 +1,4 @@
-import { TTimestamp } from "./projects.types";
+import { Timestamp } from "firebase/firestore";
 
 type DefaultUser = "DEFAULT" | null | undefined;
 type BetaUser = "BETA";
@@ -15,10 +15,11 @@ export type UserRole =
 
 export interface FirestoreUser {
   avatar?: string;
-  created?: TTimestamp | FirebaseFirestore.FieldValue;
+  created?: Timestamp | FirebaseFirestore.FieldValue;
   displayName?: string;
   email?: string;
-  lastUpdate?: TTimestamp | FirebaseFirestore.FieldValue;
   uid?: string;
   role?: UserRole;
+  stripeId?: string;
+  stripeLink?: string;
 }

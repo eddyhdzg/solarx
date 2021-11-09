@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import {
   useEditProjectMediaForm,
   useEditProjectMediaMutation,
-  useProject,
   IEditProjectMediaSchema,
   editProjectMediaDefaultValues,
+  useProjectContent,
 } from "hooks";
 import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ export default function EditProjectMediaForm() {
   const { reset, ...form } = useEditProjectMediaForm();
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProject(id || "");
+  const { data, status } = useProjectContent(id || "");
   const editProjectMediaMutation = useEditProjectMediaMutation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -27,7 +27,6 @@ export default function EditProjectMediaForm() {
     const defaultValues: IEditProjectMediaSchema = !data
       ? editProjectMediaDefaultValues
       : {
-          coverImage: data?.coverImage,
           images: data?.images,
         };
 
@@ -42,7 +41,7 @@ export default function EditProjectMediaForm() {
       values
     ) as IEditProjectMediaSchema;
 
-    editProjectMediaMutation(data.id || "", dirtyValues)
+    editProjectMediaMutation(id || "", dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })

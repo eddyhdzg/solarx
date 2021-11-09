@@ -1,5 +1,5 @@
 import { Row } from "react-table";
-import { Project } from "types";
+import { Project, ProjectPrice } from "types";
 import { formatNumber } from "utils";
 import { matchSorter } from "match-sorter";
 
@@ -35,9 +35,8 @@ fuzzyTextFilterFn.autoRemove = (val: string) => !val;
 export const stringToBoolean = (s: string) => (s === "false" ? false : !!s);
 
 export const calcGoal = (
-  sharePrice: number = 0,
-  discount: number = 0,
-  quantity: number = 0
+  unit_amount: ProjectPrice["unit_amount"] = 0,
+  quantity: ProjectPrice["quantity"] = 0
 ) => {
-  return (sharePrice - (sharePrice * discount) / 100) * quantity;
+  return unit_amount * quantity;
 };
