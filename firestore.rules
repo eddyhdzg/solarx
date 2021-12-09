@@ -35,9 +35,8 @@ service cloud.firestore {
       allow read;
       allow update: if myDocumentOrMod(uid);
 
-      match /privateUserData/data {
+      match /privateUserData/wallet {
         allow read: if myDocumentOrAdmin(uid);
-        allow update: if (myDocument(uid) && onlyAffectsFields(['name','lastNames']));
       }
 
       match /payment_methods/{id} {
@@ -59,13 +58,15 @@ service cloud.firestore {
 
       // Stripe
       match /checkout_sessions/{id} {
-        allow read, write: if request.auth.uid == uid;
+        allow read: if myDocumentOrAdmin(uid);
+        allow create: if myDocument(uid);
       }
       match /subscriptions/{id} {
         allow read: if request.auth.uid == uid;
       }
       match /payments/{id} {
-        allow read: if request.auth.uid == uid;
+        allow read: if myDocumentOrAdmin(uid);
+        allow update: if (myDocument(uid) && onlyAffectsFields(['id','status']));
       }
     }
 

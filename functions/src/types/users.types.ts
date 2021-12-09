@@ -23,3 +23,37 @@ export interface FirestoreUser {
   stripeId?: string;
   stripeLink?: string;
 }
+
+export interface UserHistory {
+  id?: string;
+  amount?: number;
+  currency?: "mxn" | "usd" | "sxp";
+  date?: Timestamp;
+  description?: string;
+  title?: string;
+  tags?: string[];
+}
+
+export interface UserTransaction {
+  id?: string;
+  cash?: number;
+  date?: Timestamp;
+  stocks?: number;
+  sxp?: number;
+  total?: number;
+}
+
+export interface UserWallet {
+  cash?: number;
+  stocks?: number;
+  sxp?: number;
+  total?: number;
+}
+
+export interface UserShares {
+  avatar?: string;
+  name?: string;
+  roi?: number;
+  sharePrice?: number;
+  shares?: number;
+}

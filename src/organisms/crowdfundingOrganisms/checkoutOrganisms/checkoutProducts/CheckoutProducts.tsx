@@ -58,9 +58,11 @@ export default function CheckoutProduct() {
           </Styled.Container>
           <Styled.Numbers>
             <Typography variant="subtitle1">{formatMoney(total)}</Typography>
-            <Typography variant="body2" color="textSecondary">
-              {formatMoney(unit_amount)} each
-            </Typography>
+            {Number(qty) > 1 && (
+              <Typography variant="body2" color="textSecondary">
+                {formatMoney(unit_amount)} each
+              </Typography>
+            )}
           </Styled.Numbers>
         </Styled.Li>
       </Styled.Ul>

@@ -1,21 +1,28 @@
-import { functions, admin } from "../config/firebase";
 import { Stripe } from "stripe";
+import { functions, admin } from "../config/firebase";
 import {
   FirestoreUser,
   CreateCrowdfundingPayment,
   ProjectPrice,
   Project,
+  UserWallet,
 } from "../types";
+import {
+  appendUserHistory,
+  updateUserSharesSummary,
+  assignUserShares,
+  updateUserWallet,
+  updateProject,
+  updateProjectPrice,
+} from "../subFunctions";
 
-//  const stripe = new Stripe(functions.config().stripe.secret, {
-//    apiVersion: '2020-08-27',
-//  });
-
-const key =
-  "sk_test_51IALxtLgJat5E8n5UJOh39yi8rwHbuplFbeHIqr0i5IXdouDkTJ46rZHe5mLj3DFECJL2d5s6i8j0iAYKwAPxpWI004JMY4Zwx";
-const stripe = new Stripe(key, {
+const stripe = new Stripe(functions.config().stripe.secret, {
   apiVersion: "2020-08-27",
 });
+
+// const stripe = new Stripe(key, {
+//   apiVersion: "2020-08-27",
+// });
 
 /**
  * When adding the payment method ID on the client,
@@ -26,11 +33,9 @@ exports.addPaymentMethodDetails = functions.firestore
   .onCreate(async (snap, _) => {
     try {
       const paymentMethodId = snap.data().id;
-
       const paymentMethod = await stripe.paymentMethods.retrieve(
         paymentMethodId
       );
-
       return snap.ref.set(paymentMethod, { merge: true });
     } catch (error) {
       throw new functions.https.HttpsError(
@@ -103,7 +108,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
       .collection("projects")
       .doc(projectId);
 
-    const priceDocRef = admin
+    const projectPriceDocRef = admin
       .firestore()
       .collection("projects")
       .doc(projectId)
@@ -120,18 +125,27 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
         );
       })) as Project;
 
+    const { stripeId = "" } = (await userDocRef
+      .get()
+      .then((res) => res.data())
+      .catch(() => ({}))) as FirestoreUser;
+
+    const description = `Crowdfund ${qty} share${
+      qty > 1 ? "s" : ""
+    } from ${name}`;
+
     const {
-      currency = "",
+      currency = "mxn",
       quantity = 0,
-      sharesSold = 0,
+      sharesSold = Number.MAX_SAFE_INTEGER,
       unit_amount = 0,
-    } = (await priceDocRef
+    } = (await projectPriceDocRef
       .get()
       .then((res) => res.data())
       .catch(() => {
         throw new functions.https.HttpsError(
           "cancelled",
-          "Price not found in db."
+          "Project not found in db."
         );
       })) as ProjectPrice;
 
@@ -145,11 +159,6 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
         "Out of stock, qty is more than the stocks left."
       );
     }
-
-    const { stripeId = "" } = (await userDocRef
-      .get()
-      .then((res) => res.data())
-      .catch(() => ({}))) as FirestoreUser;
 
     const paymentIntentData = {
       amount,
@@ -165,11 +174,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
       confirmation_method: "manual",
     });
 
-    const description = `Crowdfund ${qty} share${
-      qty > 1 ? "s" : ""
-    } from ${name}`;
-
-    const paymentIntent = stripe.paymentIntents.create(
+    const paymentIntent = await stripe.paymentIntents.create(
       {
         description,
         ...paymentIntentData,
@@ -178,22 +183,21 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
           priceId,
           projectId,
           qty,
+          idempotencyKey,
         },
         setup_future_usage: "off_session",
+        payment_method_types: ["card"],
       },
       {
         idempotencyKey,
       }
     );
+    if (paymentIntent.status === "succeeded")
+      await paymentsColRef
+        .doc(idempotencyKey)
+        .set(paymentIntent, { merge: true });
 
-    return paymentIntent
-      .then((payment) => {
-        paymentsColRef.doc(idempotencyKey).set(payment, { merge: true });
-        return payment.status;
-      })
-      .catch(() => {
-        throw new functions.https.HttpsError("cancelled", "Payment cancelled.");
-      });
+    return { ...paymentIntent, doc: idempotencyKey };
   }
 );
 
@@ -203,7 +207,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
  *
  * @see https://stripe.com/docs/payments/accept-a-payment-synchronously#web-confirm-payment
  */
-exports.confirmStripePayment = functions.firestore
+exports.confirmStripePayment_v0 = functions.firestore
   .document("users/{uid}/payments/{pushId}")
   .onUpdate(async (change, context) => {
     if (change.after.data().status === "requires_confirmation") {
@@ -211,5 +215,163 @@ exports.confirmStripePayment = functions.firestore
         change.after.data().id
       );
       change.after.ref.set(payment);
+    } else if (
+      change.after.data().status === "succeeded" &&
+      !change.after.data().metadata?.transaction
+    ) {
+      const { uid } = context.params;
+      const { id, amount_received, description, metadata } =
+        change.after.data() || {};
+      const { priceId, projectId, qty: stringQty } = metadata || {};
+      const qty = Number(stringQty);
+
+      return admin
+        .firestore()
+        .runTransaction(async (t) => {
+          const wallet = admin
+            .firestore()
+            .collection("users")
+            .doc(uid)
+            .collection("privateUserData")
+            .doc("wallet");
+
+          const userSharesProjectRef = admin
+            .firestore()
+            .collection("users")
+            .doc(uid)
+            .collection("userShares")
+            .doc(projectId);
+
+          const investors = await admin
+            .firestore()
+            .collection("projects")
+            .doc(projectId)
+            .collection("prices")
+            .get()
+            .then((snapshot) => {
+              const ids = snapshot.docs.reduce<string[]>(
+                (prev, curr) => {
+                  const { investors = [] } = curr.data() as ProjectPrice;
+                  return [...prev, ...investors];
+                },
+                [uid]
+              );
+
+              return [...new Set<string>(ids)].length;
+            })
+            .catch(() => {
+              return 0;
+            });
+
+          const {
+            cash = 0,
+            stocks = 0,
+            sxp = 0,
+          } = (await t.get(wallet)).data() as UserWallet;
+
+          const userSharesProject = await userSharesProjectRef.get();
+
+          const {
+            images,
+            name = "",
+            roi = 0,
+            sharePrice = 0,
+            sharesSold = 0,
+            totalShares = Number.MAX_SAFE_INTEGER,
+          } = (await admin
+            .firestore()
+            .collection("projects")
+            .doc(projectId)
+            .get()
+            .then((res) => res.data())
+            .catch(() => {
+              return {};
+            })) as Project;
+
+          const newStocks = stocks + sharePrice * qty;
+          const total = cash + sxp + newStocks;
+
+          updateUserSharesSummary({
+            t,
+            exists: userSharesProject.exists,
+            projectId,
+            qty: Number(qty),
+            uid,
+            avatar: images?.length ? images[0] : null,
+            name,
+            roi,
+            sharePrice,
+          });
+
+          appendUserHistory({
+            t,
+            uid: uid,
+            amount: -amount_received,
+            currency: "mxn",
+            description,
+            title: "Crowdfund",
+          });
+
+          updateUserWallet({
+            t,
+            uid,
+            cash,
+            stocks: newStocks,
+            sxp,
+            total,
+          });
+
+          updateProject({
+            t,
+            fundedDate: sharesSold >= totalShares,
+            investors,
+            projectId,
+            amount: amount_received,
+            qty: Number(qty),
+          });
+
+          updateProjectPrice({
+            t,
+            uid,
+            projectId,
+            priceId,
+            qty,
+          });
+        })
+        .then(() => {
+          assignUserShares({
+            priceId,
+            projectId,
+            qty: Number(qty),
+            uid,
+          })
+            .then(async () => {
+              const payment = await stripe.paymentIntents.update(id, {
+                metadata: {
+                  transaction: "succeeded",
+                  batch: "succeeded",
+                },
+              });
+              change.after.ref.update(payment);
+            })
+            .catch(async () => {
+              const payment = await stripe.paymentIntents.update(id, {
+                metadata: {
+                  transaction: "succeeded",
+                  batch: "failed",
+                },
+              });
+              change.after.ref.update(payment);
+            });
+        })
+        .catch(async () => {
+          const payment = await stripe.paymentIntents.update(id, {
+            metadata: {
+              transaction: "failed",
+              batch: "null",
+            },
+          });
+          change.after.ref.update(payment);
+        });
     }
   });

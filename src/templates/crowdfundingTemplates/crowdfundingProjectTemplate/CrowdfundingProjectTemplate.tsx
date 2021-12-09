@@ -46,6 +46,7 @@ export default function CrowdfundingProjectTemplate() {
               <ProjectSummary
                 goal={data?.goal}
                 investors={data?.investors}
+                raised={data?.raised}
                 roi={data?.roi}
                 sharePrice={data?.sharePrice}
                 sharesSold={data?.sharesSold}

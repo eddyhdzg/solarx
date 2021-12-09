@@ -1,19 +1,33 @@
+import { PaymentIntentStatus } from "types";
+
 export type CrowdfundingState = {
+  alert: {
+    open: boolean;
+    id?: string;
+    status?: PaymentIntentStatus;
+  };
   payment: {
-    loading: boolean;
+    processing: boolean;
   };
   method: {
-    open: boolean;
     loading: boolean;
+    open: boolean;
+    processing: boolean;
   };
 };
 
 export const initialCrowdfundingState: CrowdfundingState = {
+  alert: {
+    open: false,
+    id: undefined,
+    status: undefined,
+  },
   payment: {
-    loading: false,
+    processing: false,
   },
   method: {
-    open: false,
     loading: false,
+    open: false,
+    processing: false,
   },
 };

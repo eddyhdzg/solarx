@@ -1,5 +1,5 @@
 import { functions, admin } from "../config/firebase";
-import { Project, ProjectPrice } from "../types";
+import { Project, ProjectPrice, FirestoreUser } from "../types";
 
 const priceDefaultData: ProjectPrice = {
   active: true,
@@ -78,3 +78,38 @@ export const createLocalPrices_v0 = functions.https.onCall(async (data) => {
 
   return batch.commit();
 });
+
+export const createLocalUser_v0 = functions.firestore
+  .document("users/{uid}")
+  .onCreate(async (snap) => {
+    const { uid } = snap.data();
+
+    const newUser: FirestoreUser = {
+      displayName: "Eddy Hernández Local",
+      email: "eddyhdzg@gmail.com",
+      role: "SUPER_USER",
+      created: admin.firestore.FieldValue.serverTimestamp(),
+    };
+
+    const wallet = {
+      cash: 0,
+      stocks: 0,
+      sxp: 0,
+      total: 0,
+    };
+
+    return admin
+      .firestore()
+      .collection("users")
+      .doc(uid)
+      .set(newUser, { merge: true })
+      .then(() => {
+        return admin
+          .firestore()
+          .collection("users")
+          .doc(uid)
+          .collection("privateUserData")
+          .doc("wallet")
+          .set(wallet, { merge: true });
+      });
+  });

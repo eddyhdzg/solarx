@@ -57,10 +57,10 @@ export interface UserTransaction {
   sxp?: number;
   total?: number;
 }
-export interface UserPrivateData {
+export interface UserWallet {
   cash?: number;
-  fullName?: string;
-  lastNames?: string;
+  // fullName?: string;
+  // lastNames?: string;
   stocks?: number;
   sxp?: number;
   total?: number;

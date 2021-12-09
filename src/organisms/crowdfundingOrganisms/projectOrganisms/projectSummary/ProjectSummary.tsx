@@ -23,10 +23,14 @@ import {
 interface IProjectSummaryProps
   extends Pick<
     Project,
-    "goal" | "investors" | "roi" | "sharesSold" | "totalShares" | "sharePrice"
-  > {
-  raised?: number; // FIXME
-}
+    | "goal"
+    | "investors"
+    | "raised"
+    | "roi"
+    | "sharesSold"
+    | "totalShares"
+    | "sharePrice"
+  > {}
 
 export default function ProjectSummary({
   goal = 0,

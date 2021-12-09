@@ -1,18 +1,18 @@
 import { doc } from "firebase/firestore";
 import { useFirestore, useFirestoreDocData } from "reactfire";
-import { UserPrivateData } from "types";
+import { UserWallet } from "types";
 
-export default function useUserPrivateData(uid: string) {
+export default function useUserWallet(uid: string) {
   const firestore = useFirestore();
-  const userPrivateUserDataRef = doc(
+  const userWalletRef = doc(
     firestore,
     "users",
     uid,
     "privateUserData",
-    "data"
+    "wallet"
   );
 
-  return useFirestoreDocData<UserPrivateData>(userPrivateUserDataRef, {
+  return useFirestoreDocData<UserWallet>(userWalletRef, {
     initialData: null,
   });
 }

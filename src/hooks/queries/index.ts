@@ -1,6 +1,6 @@
 export { default as useCurrLastUserMonthlyRevenue } from "./useCurrLastUserMonthlyRevenue";
 export { default as useCurrUserPaymentMethods } from "./useCurrUserPaymentMethods";
-export { default as useCurrUserPrivateData } from "./useCurrUserPrivateData";
+export { default as useCurrUserWallet } from "./useCurrUserWallet";
 export { default as useCurrUserShares } from "./useCurrUserShares";
 export { default as useCurrUserTransactions } from "./useCurrUserTransactions";
 export { default as useFirestoreUser } from "./useFirestoreUser";
@@ -16,6 +16,6 @@ export { default as useProjectShares } from "./useProjectShares";
 export { default as useProjectSharesExist } from "./useProjectSharesExist";
 export { default as useUserHistory } from "./useUserHistory";
 export { default as useUserPaymentMethods } from "./useUserPaymentMethods";
-export { default as useUserPrivateData } from "./useUserPrivateData";
+export { default as useUserWallet } from "./useUserWallet";
 export { default as useUserShares } from "./useUserShares";
 export { default as useUserTransactions } from "./useUserTransactions";

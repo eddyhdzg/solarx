@@ -37,6 +37,8 @@ const useHandleCreatePaymentMethod = () => {
       return;
     }
 
+    dispatch({ type: "METHOD_TOGGLE_PROCESSING", payload: true });
+
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
@@ -52,6 +54,7 @@ const useHandleCreatePaymentMethod = () => {
 
     if (error) {
       console.log("[error]", error);
+      dispatch({ type: "METHOD_TOGGLE_PROCESSING", payload: false });
       return;
     }
 
@@ -69,6 +72,9 @@ const useHandleCreatePaymentMethod = () => {
         enqueueSnackbar(t("snackbar.paymentMethodCreatedError"), {
           variant: "error",
         });
+      })
+      .finally(() => {
+        dispatch({ type: "METHOD_TOGGLE_PROCESSING", payload: false });
       });
   };
 

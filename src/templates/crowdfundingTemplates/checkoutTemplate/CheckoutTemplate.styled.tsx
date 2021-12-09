@@ -39,8 +39,8 @@ export const HeaderContainer = styled("div")(({ theme }) => ({
   flexDirection: "column",
   marginLeft: "auto",
   marginRight: "auto",
-  width: "100%",
-  maxWidth: theme.spacing(45),
+  width: "85%",
+  maxWidth: theme.spacing(50),
 }));
 
 export const ProductsContainer = styled("div")(({ theme }) => ({
@@ -52,8 +52,8 @@ export const ProductsContainer = styled("div")(({ theme }) => ({
 
 export const BodyContainer = styled("div")(({ theme }) => ({
   margin: "auto",
-  width: "100%",
-  maxWidth: theme.spacing(45),
+  width: "85%",
+  maxWidth: theme.spacing(50),
 }));
 
 export const HeaderFooter = styled("div")(({ theme }) => ({

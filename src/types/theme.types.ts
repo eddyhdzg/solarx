@@ -89,9 +89,7 @@ declare module "@mui/material/styles" {
 }
 
 declare module "@mui/material/Button" {
-  interface ButtonPropsVariantOverrides {
-    paper: true;
-  }
+  interface ButtonPropsVariantOverrides {}
 }
 
 declare module "@mui/material/Chip" {

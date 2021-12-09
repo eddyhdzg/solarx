@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
-import { useCurrUserPrivateData, useCurrLastUserMonthlyRevenue } from "hooks";
+import { useCurrUserWallet, useCurrLastUserMonthlyRevenue } from "hooks";
 import { formatUnits, formatMoney } from "utils";
 import Styled from "./WalletTotalBalance.styled";
 
 export default function WalletTotalBalance() {
-  const { data } = useCurrUserPrivateData();
+  const { data } = useCurrUserWallet();
   const { data: last } = useCurrLastUserMonthlyRevenue();
   const { total = 0 } = data || {};
   const totalBalance = data ? formatUnits(total) : "-";

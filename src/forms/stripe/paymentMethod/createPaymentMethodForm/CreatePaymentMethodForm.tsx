@@ -1,10 +1,10 @@
 import { StripeProvider } from "providers";
 import { FormProvider } from "react-hook-form";
-import ProjectCheckoutFormLayout from "../PaymentMethodFormLayout";
 import {
   useCreatePaymentMethodForm,
   useHandleCreatePaymentMethod,
 } from "hooks";
+import ProjectCheckoutFormLayout from "../PaymentMethodFormLayout";
 
 export default function WrappedCreatePaymentMethodForm() {
   return (

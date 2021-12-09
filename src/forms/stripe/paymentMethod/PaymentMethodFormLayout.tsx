@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Collapse, Grid, Typography } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { Controller, useFormContext } from "react-hook-form";
 import { CardElement } from "@stripe/react-stripe-js";
 import {
@@ -98,13 +99,14 @@ export default function PaymentMethodFormLayout({
             </Grid>
 
             <Styled.ButtonContainer>
-              <Button
+              <LoadingButton
                 variant="outlined"
                 type="submit"
+                loading={method.processing}
                 disabled={!isValid || !isDirty || !complete}
               >
                 Add Payment Method
-              </Button>
+              </LoadingButton>
             </Styled.ButtonContainer>
           </form>
         </Styled.FormContainer>

@@ -6,3 +6,9 @@ export type PaymentIntentStatus =
   | "requires_confirmation"
   | "requires_payment_method"
   | "succeeded";
+
+export type PaymentIntentRes = {
+  doc: string;
+  id: string;
+  status: PaymentIntentStatus;
+};

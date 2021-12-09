@@ -109,7 +109,7 @@ const ProjectPriceCard = ({
               label={
                 discount
                   ? `Limited (${rest} left of ${quantity})`
-                  : `${quantity} left`
+                  : `${rest} left of ${quantity}`
               }
               variant="yellow"
               icon={<SellIcon />}
@@ -118,7 +118,7 @@ const ProjectPriceCard = ({
 
             {Boolean(investors.length) && (
               <StyledChip
-                label={`${investors} Investors`}
+                label={`${investors.length} Investors`}
                 variant="blue"
                 icon={<GroupsIcon />}
                 size="small"

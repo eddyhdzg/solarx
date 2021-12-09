@@ -6,12 +6,12 @@ import {
   linearProgressClasses,
   alpha,
 } from "@mui/material";
-import { useCurrUserPrivateData } from "hooks";
+import { useCurrUserWallet } from "hooks";
 import { formatMoney } from "utils";
 import Styled, { Color } from "./WalletBalance.styled";
 
 export default function WalletBalance() {
-  const { data } = useCurrUserPrivateData();
+  const { data } = useCurrUserWallet();
   const { cash = 0, stocks = 0, sxp = 0, total = 1 } = data || {};
 
   const map: {
