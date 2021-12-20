@@ -8,11 +8,13 @@ import {
 } from "@mui/material";
 import { useCurrUserWallet } from "hooks";
 import { formatMoney } from "utils";
+import { useTranslation } from "react-i18next";
 import Styled, { Color } from "./WalletBalance.styled";
 
 export default function WalletBalance() {
   const { data } = useCurrUserWallet();
   const { cash = 0, stocks = 0, sxp = 0, total = 1 } = data || {};
+  const { t } = useTranslation();
 
   const map: {
     color: Color;
@@ -24,21 +26,21 @@ export default function WalletBalance() {
     {
       color: "stocks",
       primary: data ? formatMoney(stocks) : "-",
-      secondary: "Stocks",
+      secondary: t("pages.wallet.balances.shares"),
       value: (stocks / total) * 100,
       Icon: Styled.ShowChartIcon,
     },
     {
       color: "cash",
       primary: data ? formatMoney(cash) : "-",
-      secondary: "Cash",
+      secondary: t("pages.wallet.balances.cash"),
       value: (cash / total) * 100,
       Icon: Styled.PaymentsIcon,
     },
     {
       color: "sxp",
       primary: data ? formatMoney(sxp) : "-",
-      secondary: "SolarX Points",
+      secondary: t("pages.wallet.balances.solarXPoints"),
       value: (sxp / total) * 100,
       Icon: Styled.StarsIcon,
     },
@@ -46,7 +48,9 @@ export default function WalletBalance() {
 
   return (
     <Paper>
-      <Styled.Title variant="subtitle1">My Budgets</Styled.Title>
+      <Styled.Title variant="subtitle1">
+        {t("pages.wallet.balances.balances")}
+      </Styled.Title>
       <List>
         {map
           .sort((a, b) => b.value - a.value)

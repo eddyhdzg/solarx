@@ -25,6 +25,8 @@ export default function Counter({
   error,
   max,
 }: ICounterProps) {
+  const disabled = max === 0;
+
   const handleChange = (num: number) => {
     if (num <= 1) setShares(1);
     else if (num >= max) setShares(max);
@@ -32,7 +34,7 @@ export default function Counter({
   };
 
   return (
-    <CounterRoot error={error}>
+    <CounterRoot error={error && !disabled}>
       <CounterButtonLeft
         variant="outlined"
         color="inherit"
@@ -53,11 +55,12 @@ export default function Counter({
           min: 1,
           max,
         }}
-        inputComponent={NumberFormatInput}
+        inputComponent={NumberFormatInput as any}
         onKeyDown={(e) => {
           if (e.key === "ArrowUp") handleChange(shares + 1);
           if (e.key === "ArrowDown") handleChange(shares - 1);
         }}
+        disabled={disabled}
       />
 
       <CounterButtonRight

@@ -45,7 +45,6 @@ export default function LocalTriggers() {
         });
       });
   };
-
   const handleCreateLocalPrices = () => {
     createLocalPrices({ id: pid })
       .then(() => {

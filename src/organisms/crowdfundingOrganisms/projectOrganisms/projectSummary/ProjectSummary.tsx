@@ -6,6 +6,7 @@ import {
   formatPercentage2Dec,
   formatNumber,
   fomatNumInYears,
+  formatllllCST,
 } from "utils";
 import { GradientLinearProgress, Counter } from "components";
 import { Project } from "types";
@@ -30,6 +31,7 @@ interface IProjectSummaryProps
     | "sharesSold"
     | "totalShares"
     | "sharePrice"
+    | "releaseDate"
   > {}
 
 export default function ProjectSummary({
@@ -40,14 +42,15 @@ export default function ProjectSummary({
   sharePrice = 0,
   sharesSold = 0,
   totalShares = 1,
+  releaseDate,
 }: IProjectSummaryProps) {
   const { t } = useTranslation();
-  const percentage = (sharesSold / totalShares) * 100;
+  const progress = Math.trunc((sharesSold / totalShares) * 100);
   const [shares, setShares] = useState(1);
   const handleChangeShares = (num: number) => {
     setShares(shares + num);
   };
-  const max = Math.min(totalShares - sharesSold, totalShares);
+  const max = totalShares;
   const error = shares < 1 || shares > max;
   const displaySharePrice = sharePrice;
   const yearlyRevenue = displaySharePrice * roi * 0.01 * shares;
@@ -58,7 +61,10 @@ export default function ProjectSummary({
       <div>
         <ProjectSummaryHeader>
           <Typography variant="h5" component="h4">
-            {formatPercentage(percentage)} {t("projects.funded")}
+            {formatPercentage(progress)}{" "}
+            {t("projects.funded", {
+              postProcess: "capitalize",
+            })}
           </Typography>
           <Typography variant="caption" color="textSecondary">
             {formatNumber(sharesSold)} / {formatNumber(totalShares)}{" "}
@@ -66,11 +72,12 @@ export default function ProjectSummary({
           </Typography>
         </ProjectSummaryHeader>
         <ProjectSummaryProgressWrapper>
-          <GradientLinearProgress value={percentage} />
+          <GradientLinearProgress value={progress} />
         </ProjectSummaryProgressWrapper>
         <Typography variant="body3" color="textSecondary">
-          {formatMoney(raised)} {t("pages.crowdfunding.project.raisedOf")}{" "}
-          {formatMoney(goal)}
+          {`${formatMoney(raised)} ${t(
+            "pages.crowdfunding.project.raisedOf"
+          )} ${formatMoney(goal)}`}
         </Typography>
       </div>
       <ProjectSummaryStyledDivider />
@@ -109,7 +116,9 @@ export default function ProjectSummary({
       <ul>
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("projects.shares")}
+            {t("projects.shares", {
+              postProcess: "capitalize",
+            })}
           </Typography>
           {max > 0 ? (
             <Counter
@@ -128,7 +137,9 @@ export default function ProjectSummary({
 
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("pages.crowdfunding.project.monthlyRevenue")}
+            {t("pages.crowdfunding.project.monthlyRevenue", {
+              postProcess: "capitalize",
+            })}
           </Typography>
           <Typography variant="subtitle1" align="right">
             {formatMoney(monthlyRevenue)}
@@ -137,7 +148,9 @@ export default function ProjectSummary({
 
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("pages.crowdfunding.project.yearlyRevenue")}
+            {t("pages.crowdfunding.project.yearlyRevenue", {
+              postProcess: "capitalize",
+            })}
           </Typography>
           <Typography variant="subtitle1" align="right">
             {formatMoney(yearlyRevenue)}
@@ -148,8 +161,23 @@ export default function ProjectSummary({
       <div>
         <ProjectSummarySubtitle>
           <ProjectSummaryDateIcon />
-          <Typography variant="body3" color="textSecondary">
-            Release Date Thu, November 11 2021 7:17 AM CST.
+          <Typography
+            variant="body3"
+            color="textSecondary"
+            sx={{
+              mr: 0.5,
+            }}
+          >
+            {t("pages.crowdfunding.project.releaseDate")}
+          </Typography>
+          <Typography
+            variant="body3"
+            color="textSecondary"
+            sx={{
+              textTransform: "capitalize",
+            }}
+          >
+            {formatllllCST(releaseDate?.seconds || 0)}
           </Typography>
         </ProjectSummarySubtitle>
       </div>

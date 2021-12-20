@@ -60,9 +60,11 @@ export default function AdminTriggerGeneralOptionRow({
     <TableRow>
       <TableCell component="th" scope="row">
         <div>
-          <Typography variant="subtitle1">General Option</Typography>
+          <Typography variant="subtitle1">
+            {t("forms.projectForm.generalOption")}
+          </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            Recalculate general option quantity depending on new buying options.
+            {t("forms.projectForm.generalOptionDescription")}
           </Typography>
         </div>
       </TableCell>
@@ -81,7 +83,7 @@ export default function AdminTriggerGeneralOptionRow({
             handleUpdateGeneralOptionQuantity();
           }}
         >
-          Trigger General Option
+          {t("forms.projectForm.updateGeneralOption")}
         </Button>
       </Styles.TableCellLast>
     </TableRow>

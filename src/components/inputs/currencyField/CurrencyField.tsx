@@ -2,7 +2,10 @@ import { forwardRef } from "react";
 import NumberFormat, { NumberFormatProps } from "react-number-format";
 
 interface ICurrencyFieldProps
-  extends Omit<NumberFormatProps, "value" | "min" | "max"> {
+  extends Omit<
+    NumberFormatProps<React.HTMLAttributes<HTMLInputElement>>,
+    "value" | "min" | "max"
+  > {
   onChange: (...event: any[]) => void;
   name: string;
   value: number;

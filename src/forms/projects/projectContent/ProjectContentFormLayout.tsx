@@ -51,7 +51,7 @@ export default function ProjectContentFormLayout({
                   return (
                     <StyledTextField
                       id="project-general"
-                      label="General Content"
+                      label={t("forms.projectForm.generalContent")}
                       variant="outlined"
                       fullWidth
                       required
@@ -82,7 +82,7 @@ export default function ProjectContentFormLayout({
                   return (
                     <StyledTextField
                       id="project-graphs"
-                      label="Graphs Content"
+                      label={t("forms.projectForm.graphsContent")}
                       variant="outlined"
                       fullWidth
                       required
@@ -113,7 +113,7 @@ export default function ProjectContentFormLayout({
                   return (
                     <StyledTextField
                       id="project-about"
-                      label="About Content"
+                      label={t("forms.projectForm.aboutContent")}
                       variant="outlined"
                       fullWidth
                       required

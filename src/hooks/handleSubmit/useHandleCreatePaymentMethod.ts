@@ -53,7 +53,6 @@ const useHandleCreatePaymentMethod = () => {
     });
 
     if (error) {
-      console.log("[error]", error);
       dispatch({ type: "METHOD_TOGGLE_PROCESSING", payload: false });
       return;
     }

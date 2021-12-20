@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo, PageTitle } from "components";
+import { Seo } from "components";
 import { useTranslation } from "react-i18next";
 import { CrowdfundingProjectsTemplate } from "templates";
 
@@ -20,9 +20,6 @@ export default function CrowdfundingProjectsPage() {
           "pages.crowdfunding.projects.crowdfundingProjectsDescription"
         )}
       />
-      <PageTitle>
-        {t("pages.crowdfunding.projects.crowdfundingProjects")}
-      </PageTitle>
       <CrowdfundingProjectsTemplate />
     </>
   );

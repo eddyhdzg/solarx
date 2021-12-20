@@ -65,9 +65,11 @@ export default function AdminTriggerGoalRow({
     <TableRow>
       <TableCell component="th" scope="row">
         <div>
-          <Typography variant="subtitle1">Goal</Typography>
+          <Typography variant="subtitle1">
+            {t("forms.projectForm.goal")}
+          </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            Recalculate goal depending on the new buying options.
+            {t("forms.projectForm.goalDescription")}
           </Typography>
         </div>
       </TableCell>
@@ -84,7 +86,7 @@ export default function AdminTriggerGoalRow({
             handleUpdateProjectGoal();
           }}
         >
-          Trigger Goal
+          {t("forms.projectForm.updateGoal")}
         </Button>
       </Styles.TableCellLast>
     </TableRow>

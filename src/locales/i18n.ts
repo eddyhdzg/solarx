@@ -13,6 +13,10 @@ const CapitalizeFirstLetter = (str: string) => {
   return str.length ? str.charAt(0).toUpperCase() + str.slice(1) : str;
 };
 
+const LowerFirstLetter = (str: string) => {
+  return str.length ? str.charAt(0).toLowerCase() + str.slice(1) : str;
+};
+
 const options = {
   order: ["localStorage", "navigator"],
   caches: ["localStorage"],
@@ -27,6 +31,13 @@ i18n
       return CapitalizeFirstLetter(value);
     },
   })
+  .use({
+    type: "postProcessor",
+    name: "lowercase",
+    process: function (value: string) {
+      return LowerFirstLetter(value);
+    },
+  })
   .use(initReactI18next)
   .init({
     detection: options,
@@ -37,7 +48,6 @@ i18n
       escapeValue: false,
     },
     debug: false,
-    postProcess: ["capitalize"],
   });
 
 export default i18n;

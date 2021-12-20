@@ -3,6 +3,7 @@ import { useProject } from "hooks";
 import { useParams } from "react-router-dom";
 import { formatMoney, formatNumber, fomaTimestampWithMinAndSec } from "utils";
 import { ProjectIDParams } from "types";
+import { useTranslation } from "react-i18next";
 import {
   AdminProjectSummaryBody,
   AdminProjectSummaryTitle,
@@ -13,26 +14,27 @@ import {
 export default function AdminProjectSummary() {
   const { id } = useParams<ProjectIDParams>();
   const { data } = useProject(id || "");
+  const { t } = useTranslation();
 
   return (
     <Paper>
       <AdminProjectSummaryBody>
         <AdminProjectSummaryTitle variant="h6" component="h6">
-          Summary
+          {t("pages.admin.project.summary")}
         </AdminProjectSummaryTitle>
         <Typography variant="subtitle1" gutterBottom>
-          General
+          {t("pages.admin.project.general")}
         </Typography>
         <AdminProjectSummaryUL>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Status*
+              {t("pages.admin.project.status")}
             </Typography>
             <Chip label={data?.status} variant="yellow" size="small" />
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Goal
+              {t("pages.admin.project.goal")}
             </Typography>
             <Typography variant="subtitle2">
               {formatMoney(data?.goal || 0)}
@@ -40,7 +42,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Investors
+              {t("pages.admin.project.investors")}
             </Typography>
             <Typography variant="subtitle2">
               {formatNumber(data?.investors || 0)}
@@ -48,7 +50,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Images
+              {t("pages.admin.project.images")}
             </Typography>
             <Typography variant="subtitle2">
               {data?.images?.length || 0}
@@ -58,12 +60,12 @@ export default function AdminProjectSummary() {
         <AdminProjectSummaryDivider />
 
         <Typography variant="subtitle1" gutterBottom>
-          Dates
+          {t("pages.admin.project.dates")}
         </Typography>
         <AdminProjectSummaryUL>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Created Date
+              {t("pages.admin.project.created")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.created ? fomaTimestampWithMinAndSec(data?.created) : "-"}
@@ -71,7 +73,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Release Date
+              {t("pages.admin.project.releaseDate")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.releaseDate
@@ -81,7 +83,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Funded Date
+              {t("pages.admin.project.funded")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.fundedDate
@@ -91,7 +93,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              Operation Date
+              {t("pages.admin.project.operationDate")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.operationDate

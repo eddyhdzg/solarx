@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Seo, PageTitle } from "components";
+import { Seo } from "components";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
 import { MoreHomeTemplate } from "templates";
@@ -18,7 +18,6 @@ export default function MoreHomePage() {
         title={t("pages.more.moreHome.more")}
         description={t("pages.more.moreHome.moreDescription")}
       />
-      <PageTitle>{t("pages.more.moreHome.more")}</PageTitle>
       <MoreHomeTemplate />
     </>
   );

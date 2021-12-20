@@ -2,16 +2,20 @@ import { Typography } from "@mui/material";
 import { Dot } from "components";
 import { useUserHistory, useDisplayUserHistory } from "hooks";
 import { useUser } from "reactfire";
+import { useTranslation } from "react-i18next";
 import Styled from "./WalletHistory.styled";
 
 export default function WalletHistory() {
   const user = useUser();
   const { data } = useUserHistory(user.data?.uid || "");
   const displayUserHistory = useDisplayUserHistory(data);
+  const { t } = useTranslation();
 
   return (
     <Styled.Paper>
-      <Styled.Title variant="subtitle1">History</Styled.Title>
+      <Styled.Title variant="subtitle1">
+        {t("pages.wallet.history.history")}
+      </Styled.Title>
       {displayUserHistory.map(([month, transactions]) => {
         return (
           <Styled.Month key={month}>
@@ -42,7 +46,14 @@ export default function WalletHistory() {
                         label={transaction.value}
                         variant={transaction.color}
                       />
-                      <Typography variant="body3" color="textSecondary">
+                      <Typography
+                        variant="body3"
+                        color="textSecondary"
+                        noWrap
+                        sx={{
+                          textTransform: "capitalize",
+                        }}
+                      >
                         {transaction.date}
                       </Typography>
                     </Styled.DataContainer>

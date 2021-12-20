@@ -14,7 +14,9 @@
       "copyLink": "Copiar enlace",
       "copied": "¡Copiado!",
       "copy": "Copiar",
-      "error": "Error"
+      "error": "Error",
+      "share": "acción",
+      "shares": "acciones"
     },
     "pages": {
       "admin": {
@@ -37,6 +39,24 @@
           "administratorProjects": "Proyectos de administrador",
           "administratorProjectsDescription": "Proyectos que solo los administradores pueden ver."
         },
+        "project": {
+          "general": "General",
+          "numbers": "Números",
+          "prices": "Precios",
+          "media": "Media",
+          "cms": "CMS",
+          "dates": "Fechas",
+          "triggers": "Triggers",
+          "summary": "Resumen",
+          "status": "Status",
+          "goal": "Meta",
+          "investors": "Inversionistas",
+          "images": "Imágenes",
+          "created": "Creada",
+          "releaseDate": "Lanzamiento",
+          "funded": "Fundada",
+          "operationDate": "Operación"
+        },
         "users": {
           "users": "usuarios",
           "usersDescription": "Gestionar usuarios como administrador."
@@ -45,7 +65,7 @@
           "local": "local",
           "localDescription": "Gestionar firestore local como administrador.",
           "triggers": "Ejecutables",
-          "createProduct": "Crear Product",
+          "createProduct": "Crear producto",
           "createProducts": "Crear un producto nuevo",
           "createPrices": "Crear precios",
           "create3Prices": "Crear 3 precios para un producto",
@@ -62,10 +82,32 @@
           "raisedOf": "levantado de",
           "monthlyRevenue": "ingreso mensual",
           "yearlyRevenue": "ingreso anual",
+          "releaseDate": "Fecha de lanzamiento:",
           "price": "Precio",
           "goToCheckout": "Ir a pago",
           "signInToProceedToPayment": "Inicie sesión para proceder al pago",
-          "showAllPhotos": "Ver más photos"
+          "showAllPhotos": "Ver más fotos",
+          "limited": "Limitada (quedan {{rest}} de {{quantity}})",
+          "notlimited": "Quedan {{rest}} de {{quantity}}",
+          "general": "General",
+          "graphs": "Gráficas",
+          "about": "Acerca de",
+          "discount": "Descuento {{discount}}%"
+        },
+        "checkout": {
+          "pay": "Pagar",
+          "cardDetails": "Detalles de tarjeta",
+          "selectPaymentMethod": "Selecciona método de pago",
+          "addNewPaymentMethod": "Agrega nuevo método de pago",
+          "nameOnCard": "Nombre en la tarjeta",
+          "addPaymentMethod": "Agregar método de pago",
+          "each": "cada una",
+          "qty": "Cant",
+          "updateQuantity": "Actualizar cantidad",
+          "update": "Actualizar",
+          "useAnyOfThe": "¡Usa cualquiera de las",
+          "stripeTestCards": " tarjetas de prueba de Stripe ",
+          "forThisDemo": "para este demo!"
         }
       },
       "more": {
@@ -98,7 +140,46 @@
       },
       "wallet": {
         "title": "Wallet",
-        "description": "Sección de la wallet."
+        "description": "Sección de la wallet.",
+        "sections": {
+          "balance": "Balance",
+          "shares": "Acciones",
+          "history": "Historial",
+          "timeline": "Línea del tiempo"
+        },
+        "totalBalance": {
+          "totalBalance": "Balance total",
+          "monthlyRevenue": "Ingreso mensual"
+        },
+        "balances": {
+          "balances": "Balances",
+          "cash": "Cash",
+          "shares": "Acciones",
+          "solarXPoints": "SolarX Points"
+        },
+        "shares": {
+          "shares": "Acciones",
+          "project": "Proyecto",
+          "sharePrice": "Precio por acción",
+          "totalPrice": "Precio total",
+          "roi": "ROI",
+          "monthlyRevenue": "Ingreso mensual",
+          "yearlyRevenue": "Ingreso mensual"
+        },
+        "history": {
+          "history": "Historial"
+        },
+        "timeline": {
+          "timeline": "Línea del tiempo",
+          "cash": "Cash",
+          "shares": "Acciones",
+          "solarXPoints": "SolarX Points",
+          "totalBalance": "Balance total",
+          "1 month": "1 mes",
+          "3 month": "3 meses",
+          "1 year": "1 año",
+          "historic": "Histórico"
+        }
       }
     },
     "locales": {
@@ -109,32 +190,56 @@
     },
     "forms": {
       "search": "Buscar",
-      "filter": "filtro",
-      "reset": "reset",
+      "filters": "filtros",
+      "reset": "resetear",
       "id": "ID",
       "name": "Nombre",
       "location": "Ubicación",
       "founded": "Fundada",
       "notFounded": "No Fundada",
-      "card": "tarjeta",
+      "cards": "tarjetas",
       "table": "tabla",
       "share": "compartir",
       "copyToClipboard": "Copiar al portapapeles",
       "copiedToClipboard": "Copiado al portapapeles ✅",
+      "clear": "Limpear",
+      "cancel": "Cancelar",
+      "ok": "OK",
       "projectForm": {
         "general": "General",
         "generalDescription": "Proporcione información básica sobre el proyecto.",
         "numbers": "Números",
         "numbersDescription": "Todos los datos numéricos del proyecto.",
+        "prices": "Precios",
+        "pricesDescription": "Precios para los primeros inversores o para el público en general.",
         "content": "Contenido",
         "contentDescription": "Contenido para enseñar el projecto.",
         "media": "Media",
         "mediaDescription": "Imágenes para mostrar el proyecto.",
         "dates": "Fechas",
         "datesDescription": "Proporcione las fechas importantes del projecto.",
+        "triggers": "Triggers",
+        "triggersDescription": "Funciones que el usuario puede ejecutar para actualizar los datos del proyecto.",
         "coverImage": "Imagen de portada desde stripe.",
         "images": "Imágenes",
-        "project": "Proyecto"
+        "generalContent": "Contentenido general",
+        "graphsContent": "Contentenido gráfico",
+        "aboutContent": "Contentenido acerca de",
+        "project": "Proyecto",
+        "status": "Status",
+        "current": "Actual",
+        "new": "Nuevo",
+        "sharePrice": "Share Price",
+        "sharePriceDescription": "Actualizar el precio de acción en todos los precios si no están sincronizados",
+        "updateSharePrices": "Actualizar precios",
+        "generalOption": "General Option",
+        "generalOptionDescription": "Volver a calcular la cantidad de la opcion generales con respecto a las nuevas opciones de compra",
+        "updateGeneralOption": "Actualizar opción general",
+        "goal": "Meta",
+        "goalDescription": "Recalcula la meta.",
+        "updateGoal": "Actualizar meta",
+        "generateShares": "Generar acciones",
+        "generateSharesDescription": "Genera las acciones cuando el proyecto esté listo."
       },
       "DragNDropfile": "Arrastre y suelte un archivo aquí, o haga clic para seleccionar un archivo",
       "DragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos"
@@ -150,7 +255,7 @@
       "roiShort": "ROI",
       "progress": "Progreso",
       "sharesRatio": "Acciones (financiadas / total)",
-      "shares": "acciones ",
+      "shares": "acciones",
       "ppa": "PPA",
       "created": "Creado",
       "archived": "Archivado",
@@ -161,6 +266,16 @@
       "ppaYears": "Años de PPA",
       "state": "Estado",
       "city": "Ciudad"
+    },
+    "prices": {
+      "id": "ID",
+      "quantity": "Cantidad",
+      "unitAmout": "Cantidad por unidad",
+      "sharePrice": "Precio de la acción",
+      "discount": "Descuento",
+      "description": "Descripción",
+      "investors": "Inversionistas",
+      "sold": "Vendidos"
     },
     "table": {
       "actions": "Acciones",

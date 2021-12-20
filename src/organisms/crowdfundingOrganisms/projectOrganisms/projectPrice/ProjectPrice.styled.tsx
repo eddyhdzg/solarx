@@ -11,7 +11,7 @@ import {
 
 export const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters {...props} />
-))(({ theme, expanded }) => ({
+))(({ theme, expanded, disabled }) => ({
   [`&.${accordionClasses.root}`]: {
     backgroundColor: theme.palette.background.paper,
     backgroundImage: theme.custom.elevation[2],
@@ -27,31 +27,39 @@ export const Accordion = styled((props: AccordionProps) => (
     "&:before": {
       display: "none",
     },
-    ...(expanded && {
-      borderWidth: 2,
-      borderColor: "transparent",
-      overflow: "visible",
-      position: "relative",
-      backgroundClip: "padding-box",
-      "& > ::before": {
-        content: '""',
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        zIndex: "-1",
-        margin: "-2px",
-        borderRadius: theme.spacing(1),
-        background: theme.custom.gradient,
-      },
-    }),
+    ...(expanded &&
+      !disabled && {
+        borderWidth: 2,
+        borderColor: "transparent",
+        overflow: "visible",
+        position: "relative",
+        backgroundClip: "padding-box",
+        "& > ::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: "-1",
+          margin: "-2px",
+          borderRadius: theme.spacing(1),
+          background: theme.custom.gradient,
+        },
+      }),
+  },
+  [`& .${accordionSummaryClasses.root}.${accordionClasses.disabled}`]: {
+    opacity: 0.5,
   },
 }));
 
-export const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
+export const AccordionSummary = styled(MuiAccordionSummary, {
+  shouldForwardProp: (prop) => prop !== "expanded",
+})(({ theme }) => ({ expanded }: { expanded: boolean }) => ({
   padding: theme.spacing(3),
   alignItems: "flex-start",
+  pointerEvents: expanded ? "none" : undefined,
+  userSelect: "text",
   [`& .${accordionSummaryClasses.content}`]: {
     margin: theme.spacing(0),
   },
@@ -83,10 +91,12 @@ export const StyledChip = styled(Chip)(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-export const StyledAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
+export const StyledAccordionDetails = styled(AccordionDetails, {
+  shouldForwardProp: (prop) => prop !== "disabled",
+})(({ theme }) => ({ disabled }: { disabled: boolean }) => ({
   borderEndEndRadius: theme.spacing(1),
   borderEndStartRadius: theme.spacing(1),
-  backgroundImage: theme.custom.elevation[1],
+  backgroundImage: disabled ? undefined : theme.custom.elevation[1],
   padding: theme.spacing(3),
   flexDirection: "column",
   alignItems: "stretch",

@@ -238,13 +238,14 @@ export default function ProjectGeneralFormLayout({
                 render={({ field: { value, ...field }, fieldState }) => {
                   return (
                     <FormControl fullWidth>
-                      <InputLabel htmlFor="project-status">Status</InputLabel>
+                      <InputLabel htmlFor="project-status">
+                        {t("forms.projectForm.status")}
+                      </InputLabel>
                       <StyledSelect
                         id="project-status"
-                        label="Status"
+                        label={t("forms.projectForm.status")}
                         variant="outlined"
                         native
-                        required
                         error={Boolean(fieldState.error)}
                         success={fieldState.isDirty}
                         value={value || ""}

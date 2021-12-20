@@ -16,7 +16,6 @@ import {
   ProjectCardDataTextWrapper,
   SavingsOutlinedIcon,
   ProjectCardSummary,
-  SharesTypography,
 } from "./ProjectCard.styled";
 
 interface IProjectCardProps extends Project {
@@ -35,7 +34,7 @@ export default function ProjectCard({
   url = "/crowdfunding/projects/",
 }: IProjectCardProps) {
   const { t } = useTranslation();
-  const progress = Math.floor((sharesSold / totalShares) * 100);
+  const progress = Math.trunc((sharesSold / totalShares) * 100);
   const [loading, setLoading] = useState(true);
 
   return (
@@ -90,12 +89,15 @@ export default function ProjectCard({
           </ProjectCardDataRow>
           <ProjectCardSummary>
             <Typography variant="body1">
-              {progress}% {t("projects.funded")}
+              {progress}%{" "}
+              {t("projects.funded", {
+                postProcess: "capitalize",
+              })}
             </Typography>
-            <SharesTypography variant="caption" color="textSecondary">
+            <Typography variant="caption" color="textSecondary">
               {sharesSold.toLocaleString()} / {totalShares.toLocaleString()}{" "}
               {t("projects.shares")}
-            </SharesTypography>
+            </Typography>
           </ProjectCardSummary>
           <GradientLinearProgress value={progress} />
         </CardContent>

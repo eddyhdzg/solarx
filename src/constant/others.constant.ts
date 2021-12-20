@@ -5,8 +5,10 @@ export const localeOptions: Locales[] = ["en", "es"];
 
 export const Notion_Regex = /^[a-zA-Z0-9_.-]*$/gi;
 
+type TimeTexts = "1 month" | "3 month" | "1 year" | "historic";
+
 export const timespans: {
-  text: string;
+  text: TimeTexts;
   value: Timespan;
 }[] = [
   {
@@ -22,7 +24,7 @@ export const timespans: {
     value: "1Y",
   },
   {
-    text: "Historic",
+    text: "historic",
     value: "H",
   },
 ];

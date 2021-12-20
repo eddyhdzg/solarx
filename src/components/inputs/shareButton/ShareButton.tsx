@@ -40,6 +40,9 @@ export default function ShareButton() {
       size="small"
       onClick={handleShareButton}
       color="inherit"
+      sx={{
+        textTransform: "capitalize",
+      }}
     >
       {t("forms.share")}
     </Button>
@@ -52,7 +55,14 @@ export default function ShareButton() {
       }
       onClick={setCopied}
     >
-      <Button startIcon={<IosShareRoundedIcon />} size="small" color="inherit">
+      <Button
+        startIcon={<IosShareRoundedIcon />}
+        size="small"
+        color="inherit"
+        sx={{
+          textTransform: "capitalize",
+        }}
+      >
         {t("forms.share")}
       </Button>
     </Tooltip>

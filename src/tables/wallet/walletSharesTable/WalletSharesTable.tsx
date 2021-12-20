@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { formatNumber, formatUnits, formatPercentage2Dec } from "utils";
 import { UserShare } from "types";
+import { useTranslation } from "react-i18next";
 import {
   StyledTableContainer,
   StyledTableHead,
@@ -20,18 +21,32 @@ interface WalletSharesTableProps {
 }
 
 export default function WalletSharesTable({ rows }: WalletSharesTableProps) {
+  const { t } = useTranslation();
+
   return (
     <StyledTableContainer>
       <Table aria-label="simple table">
         <StyledTableHead>
           <TableRow>
-            <StyledTableCellHeader>Project</StyledTableCellHeader>
-            <TableCell align="center">Shares</TableCell>
-            <TableCell align="right">Share Price</TableCell>
-            <TableCell align="right">Total Price</TableCell>
-            <TableCell align="right">ROI</TableCell>
-            <TableCell align="right">Monthly Revenue</TableCell>
-            <TableCell align="right">Yearly Revenue</TableCell>
+            <StyledTableCellHeader>
+              {t("pages.wallet.shares.project")}
+            </StyledTableCellHeader>
+            <TableCell align="center">
+              {t("pages.wallet.shares.shares")}
+            </TableCell>
+            <TableCell align="right">
+              {t("pages.wallet.shares.sharePrice")}
+            </TableCell>
+            <TableCell align="right">
+              {t("pages.wallet.shares.totalPrice")}
+            </TableCell>
+            <TableCell align="right">{t("pages.wallet.shares.roi")}</TableCell>
+            <TableCell align="right">
+              {t("pages.wallet.shares.monthlyRevenue")}
+            </TableCell>
+            <TableCell align="right">
+              {t("pages.wallet.shares.yearlyRevenue")}
+            </TableCell>
           </TableRow>
         </StyledTableHead>
         <TableBody>

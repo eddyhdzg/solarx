@@ -12,6 +12,7 @@ import shallow from "zustand/shallow";
 import { checkKeyDown } from "utils";
 import { GridItem, StyledTextField } from "components";
 import { SubmitForm } from "types";
+import { useTranslation } from "react-i18next";
 import AddCardIcon from "@mui/icons-material/AddCard";
 import Styled from "../ProjectCheckout.styled";
 
@@ -22,6 +23,7 @@ interface PaymentMethodFormLayoutProps {
 export default function PaymentMethodFormLayout({
   onSubmit,
 }: PaymentMethodFormLayoutProps) {
+  const { t } = useTranslation();
   const options = useCardElementOptions();
   const {
     control,
@@ -47,7 +49,7 @@ export default function PaymentMethodFormLayout({
         onClick={handleOpen}
         startIcon={<AddCardIcon />}
       >
-        Add new payment method
+        {t("pages.crowdfunding.checkout.addNewPaymentMethod")}
       </Button>
       <Collapse in={method.open} timeout="auto">
         <Styled.FormContainer>
@@ -80,7 +82,7 @@ export default function PaymentMethodFormLayout({
                     return (
                       <StyledTextField
                         id="name-on-card"
-                        label="Name on card"
+                        label={t("pages.crowdfunding.checkout.nameOnCard")}
                         variant="outlined"
                         fullWidth
                         required
@@ -105,7 +107,7 @@ export default function PaymentMethodFormLayout({
                 loading={method.processing}
                 disabled={!isValid || !isDirty || !complete}
               >
-                Add Payment Method
+                {t("pages.crowdfunding.checkout.addPaymentMethod")}
               </LoadingButton>
             </Styled.ButtonContainer>
           </form>

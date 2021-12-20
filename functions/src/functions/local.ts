@@ -80,15 +80,16 @@ export const createLocalPrices_v0 = functions.https.onCall(async (data) => {
 });
 
 export const createLocalUser_v0 = functions.firestore
-  .document("users/{uid}")
-  .onCreate(async (snap) => {
-    const { uid } = snap.data();
+  .document("/users/{uid}")
+  .onCreate(async (_, context) => {
+    const { uid } = context.params;
 
     const newUser: FirestoreUser = {
       displayName: "Eddy Hernández Local",
       email: "eddyhdzg@gmail.com",
       role: "SUPER_USER",
       created: admin.firestore.FieldValue.serverTimestamp(),
+      stripeId: "cus_KfCTgT6Gt0WBvM",
     };
 
     const wallet = {

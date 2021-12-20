@@ -44,7 +44,7 @@ export default function ProjectDatesFormLayout({
                 control={control}
                 render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
-                    label="Release Date"
+                    label={t("pages.admin.project.releaseDate")}
                     error={Boolean(fieldState.error)}
                     success={fieldState.isDirty}
                     {...field}
@@ -58,7 +58,7 @@ export default function ProjectDatesFormLayout({
                 control={control}
                 render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
-                    label="Funded Date"
+                    label={t("pages.admin.project.funded")}
                     error={Boolean(fieldState.error)}
                     success={fieldState.isDirty}
                     {...field}
@@ -72,7 +72,7 @@ export default function ProjectDatesFormLayout({
                 control={control}
                 render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
-                    label="Operation Date"
+                    label={t("pages.admin.project.operationDate")}
                     error={Boolean(fieldState.error)}
                     success={fieldState.isDirty}
                     {...field}

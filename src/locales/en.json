@@ -14,7 +14,9 @@
       "copyLink": "Copy link",
       "copied": "Copied!",
       "copy": "Copy",
-      "error": "Error"
+      "error": "Error",
+      "share": "share",
+      "shares": "shares"
     },
     "pages": {
       "admin": {
@@ -36,6 +38,24 @@
         "projects": {
           "administratorProjects": "Administrator projects",
           "administratorProjectsDescription": "Projects only administrators can see."
+        },
+        "project": {
+          "general": "General",
+          "numbers": "Numbers",
+          "prices": "Prices",
+          "media": "Media",
+          "cms": "CMS",
+          "dates": "Dates",
+          "triggers": "Triggers",
+          "summary": "Summary",
+          "status": "Status",
+          "goal": "Goal",
+          "investors": "Investors",
+          "images": "Images",
+          "created": "Created",
+          "releaseDate": "Release Date",
+          "funded": "Funded",
+          "operationDate": "Operation Date"
         },
         "users": {
           "users": "users",
@@ -62,10 +82,32 @@
           "raisedOf": "raised of",
           "monthlyRevenue": "monthly revenue",
           "yearlyRevenue": "yearly revenue",
+          "releaseDate": "Release date:",
           "price": "Price",
           "goToCheckout": "Go To Checkout",
           "signInToProceedToPayment": "Sign in to proceed to payment",
-          "showAllPhotos": "Show all photos"
+          "showAllPhotos": "Show all photos",
+          "limited": "Limited ({{rest}} left of {{quantity}})",
+          "notlimited": "{{rest}} left of {{quantity}}",
+          "general": "General",
+          "graphs": "Graphs",
+          "about": "About",
+          "discount": "Discount {{discount}}%"
+        },
+        "checkout": {
+          "pay": "Pay",
+          "cardDetails": "Card Details",
+          "selectPaymentMethod": "Select payment method",
+          "addNewPaymentMethod": "Add new payment method",
+          "nameOnCard": "Name on card",
+          "addPaymentMethod": "Add Payment Method",
+          "each": "each",
+          "qty": "Qty",
+          "updateQuantity": "Update quantity",
+          "update": "Update",
+          "useAnyOfThe": "Use any of the",
+          "stripeTestCards": " Stripe test cards ",
+          "forThisDemo": "for this demo!"
         }
       },
       "more": {
@@ -98,7 +140,46 @@
       },
       "wallet": {
         "title": "Wallet",
-        "description": "Wallet section."
+        "description": "Wallet section.",
+        "sections": {
+          "balance": "Balance",
+          "shares": "Shares",
+          "history": "History",
+          "timeline": "Timeline"
+        },
+        "totalBalance": {
+          "totalBalance": "Total balance",
+          "monthlyRevenue": "Monthly revenue"
+        },
+        "balances": {
+          "balances": "Balances",
+          "cash": "Cash",
+          "shares": "Shares",
+          "solarXPoints": "SolarX Points"
+        },
+        "shares": {
+          "shares": "Shares",
+          "project": "Project",
+          "sharePrice": "Share Price",
+          "totalPrice": "Total Price",
+          "roi": "ROI",
+          "monthlyRevenue": "Monthly revenue",
+          "yearlyRevenue": "Yearly revenue"
+        },
+        "history": {
+          "history": "History"
+        },
+        "timeline": {
+          "timeline": "Timeline",
+          "cash": "Cash",
+          "shares": "Shares",
+          "solarXPoints": "SolarX Points",
+          "totalBalance": "Total balance",
+          "1 month": "1 month",
+          "3 month": "3 months",
+          "1 year": "1 year",
+          "historic": "Historic"
+        }
       }
     },
     "locales": {
@@ -109,32 +190,56 @@
     },
     "forms": {
       "search": "Search",
-      "filter": "filter",
+      "filters": "filters",
       "reset": "reset",
       "id": "ID",
       "name": "Name",
       "location": "Location",
       "founded": "Founded",
       "notFounded": "Not Founded",
-      "card": "card",
+      "cards": "cards",
       "table": "table",
       "share": "share",
       "copyToClipboard": "Copy to clipboard",
       "copiedToClipboard": "Copied to clipboard ✅",
+      "clear": "Clear",
+      "cancel": "Cancel",
+      "ok": "OK",
       "projectForm": {
         "general": "General",
         "generalDescription": "Provide basic information about the project.",
         "numbers": "Numbers",
         "numbersDescription": "All numeric data of the project.",
+        "prices": "Prices",
+        "pricesDescription": "Prices for the early investors or for the general public.",
         "content": "Content",
         "contentDescription": "Content to showcase the project.",
         "media": "Media",
         "mediaDescription": "Images to showcase the project.",
         "dates": "Dates",
         "datesDescription": "Provide important dates about the project.",
+        "triggers": "Triggers",
+        "triggersDescription": "Proporcione las fechas importantes del projecto.",
         "coverImage": "Cover image from stripe.",
         "images": "Images",
-        "project": "Project"
+        "generalContent": "General content",
+        "graphsContent": "Graphs content",
+        "aboutContent": "About content",
+        "project": "Project",
+        "status": "Status",
+        "current": "Current",
+        "new": "New",
+        "sharePrice": "Share Price",
+        "sharePriceDescription": "Update sharePrice in all prices if they are unsync.",
+        "updateSharePrices": "Update share prices",
+        "generalOption": "General Option",
+        "generalOptionDescription": "Recalculate general option quantity depending on new buying options.",
+        "updateGeneralOption": "Update general option",
+        "goal": "Goal",
+        "goalDescription": "Recalculate goal.",
+        "updateGoal": "Update goal",
+        "generateShares": "Generate shares",
+        "generateSharesDescription": "Generate shares when the project is ready."
       },
       "DragNDropfile": "Drag 'n' drop some a file here, or click to select a file",
       "DragNDropfiles": "Drag 'n' drop some files here, or click to select files"
@@ -161,6 +266,16 @@
       "ppaYears": "PPA years",
       "state": "State",
       "city": "City"
+    },
+    "prices": {
+      "id": "ID",
+      "quantity": "Quantity",
+      "unitAmout": "Unit Amount",
+      "sharePrice": "Share Price",
+      "discount": "Discount",
+      "description": "Description",
+      "investors": "Investors",
+      "sold": "Sold"
     },
     "table": {
       "actions": "Actions",

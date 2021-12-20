@@ -18,8 +18,12 @@ import shallow from "zustand/shallow";
 import { projectSearchFilters } from "constant";
 import { fuzzyTextFilterFn } from "utils";
 import { ProjectSection } from "types";
+import { PageTitle } from "components";
+import { useTranslation } from "react-i18next";
+import { Container } from "@mui/material";
 
 export default function CrowdfundingProjectsTemplate() {
+  const { t } = useTranslation();
   const section: ProjectSection = "crowdfunding";
   const { data } = usePublicProjects();
   const { publicColumns } = useProjectsColumns({ section });
@@ -56,5 +60,12 @@ export default function CrowdfundingProjectsTemplate() {
     data: table?.data,
   });
 
-  return <ProjectsTableLayout table={table} section={section} />;
+  return (
+    <Container disableGutters maxWidth="xl">
+      <PageTitle>
+        {t("pages.crowdfunding.projects.crowdfundingProjects")}
+      </PageTitle>
+      <ProjectsTableLayout table={table} section={section} />
+    </Container>
+  );
 }

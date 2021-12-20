@@ -46,7 +46,11 @@ export default function FilterMenu() {
 
   return (
     <div>
-      <StyledTooltip title={t("forms.filter")}>
+      <StyledTooltip
+        title={t("forms.filters", {
+          postProcess: "capitalize",
+        })}
+      >
         <IconButton
           aria-label="project filter menu"
           aria-controls="project-filter-menu"
@@ -67,9 +71,15 @@ export default function FilterMenu() {
       >
         <Content>
           <Header>
-            <Typography variant="button">{t("forms.filter")}</Typography>
+            <Typography variant="button">
+              {t("forms.filters", {
+                postProcess: "capitalize",
+              })}
+            </Typography>
             <Button color="primary" onClick={handleReset}>
-              {t("forms.reset")}
+              {t("forms.reset", {
+                postProcess: "capitalize",
+              })}
             </Button>
           </Header>
           <form noValidate autoComplete="off">

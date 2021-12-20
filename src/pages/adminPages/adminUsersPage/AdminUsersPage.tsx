@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo, PageTitle } from "components";
+import { Seo } from "components";
 import { useTranslation } from "react-i18next";
 import { AdminUsersTemplate } from "templates";
 
@@ -20,7 +20,6 @@ export default function AdminUsersPage() {
         })}
         description={t("pages.admin.users.usersDescription")}
       />
-      <PageTitle>{t("pages.admin.users.users")}</PageTitle>
       <AdminUsersTemplate />
     </>
   );

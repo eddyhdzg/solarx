@@ -51,8 +51,12 @@ export default function ProjectsTableLayout({
             <StyledTooltip
               title={
                 projects?.projectType === "cards"
-                  ? t("forms.card")
-                  : t("forms.table")
+                  ? t("forms.cards", {
+                      postProcess: "capitalize",
+                    })
+                  : t("forms.table", {
+                      postProcess: "capitalize",
+                    })
               }
             >
               <IconButton

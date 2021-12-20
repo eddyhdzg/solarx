@@ -10,12 +10,13 @@ import {
 } from "recharts";
 import { useState } from "react";
 import { formatMoney, formatUnits } from "utils";
+import { useTranslation } from "react-i18next";
+import { MoneyType } from "types";
 import {
   WalletChartRoot,
   lineChartMargins,
   useWalletChartStyles,
 } from "./WalletTimelineChart.styled";
-import { MoneyType } from "types";
 
 interface IWalletChartProps {
   data: {
@@ -30,33 +31,39 @@ interface IWalletChartProps {
 export default function WalletTimelineChart({ data }: IWalletChartProps) {
   const { tooltipContentStyle, totalBalance, sxp, stocks, cash } =
     useWalletChartStyles();
+  const { t } = useTranslation();
 
   const [hide, setHide] = useState({
-    "Total Balance": false,
-    Cash: false,
-    Stocks: false,
-    "SolarX Points": false,
+    [t("pages.wallet.timeline.cash")]: false,
+    [t("pages.wallet.timeline.shares")]: false,
+    [t("pages.wallet.timeline.solarXPoints")]: false,
+    [t("pages.wallet.timeline.totalBalance")]: false,
   });
 
   const [opacity, setOpacity] = useState({
-    "Total Balance": 1,
-    Cash: 1,
-    Stocks: 1,
-    "SolarX Points": 1,
+    [t("pages.wallet.timeline.cash")]: 1,
+    [t("pages.wallet.timeline.shares")]: 1,
+    [t("pages.wallet.timeline.solarXPoints")]: 1,
+    [t("pages.wallet.timeline.totalBalance")]: 1,
   });
 
   const handleMouseEnter = ({ dataKey }: any) => {
     setOpacity({
-      "Total Balance": 0.3,
-      Cash: 0.3,
-      Stocks: 0.3,
-      "SolarX Points": 0.3,
+      [t("pages.wallet.timeline.cash")]: 0.3,
+      [t("pages.wallet.timeline.shares")]: 0.3,
+      [t("pages.wallet.timeline.solarXPoints")]: 0.3,
+      [t("pages.wallet.timeline.totalBalance")]: 0.3,
       [dataKey]: 1,
     });
   };
 
   const handleMouseLeave = () => {
-    setOpacity({ "Total Balance": 1, Cash: 1, Stocks: 1, "SolarX Points": 1 });
+    setOpacity({
+      [t("pages.wallet.timeline.cash")]: 1,
+      [t("pages.wallet.timeline.shares")]: 1,
+      [t("pages.wallet.timeline.solarXPoints")]: 1,
+      [t("pages.wallet.timeline.totalBalance")]: 1,
+    });
   };
 
   const handleClick = ({ dataKey }: any) => {
@@ -84,35 +91,35 @@ export default function WalletTimelineChart({ data }: IWalletChartProps) {
           />
           <Line
             type="monotone"
-            dataKey="Total Balance"
+            dataKey={t("pages.wallet.timeline.totalBalance")}
             stroke={totalBalance}
             activeDot={{ r: 6 }}
-            strokeOpacity={opacity["Total Balance"]}
-            hide={hide["Total Balance"]}
+            strokeOpacity={opacity[t("pages.wallet.timeline.totalBalance")]}
+            hide={hide[t("pages.wallet.timeline.totalBalance")]}
           />
           <Line
             type="monotone"
-            dataKey="Stocks"
+            dataKey={t("pages.wallet.timeline.shares")}
             stroke={stocks}
             activeDot={{ r: 6 }}
-            strokeOpacity={opacity["Stocks"]}
-            hide={hide["Stocks"]}
+            strokeOpacity={opacity[t("pages.wallet.timeline.shares")]}
+            hide={hide[t("pages.wallet.timeline.shares")]}
           />
           <Line
             type="monotone"
-            dataKey="Cash"
+            dataKey={t("pages.wallet.timeline.cash")}
             stroke={cash}
             activeDot={{ r: 6 }}
-            strokeOpacity={opacity["Cash"]}
-            hide={hide["Cash"]}
+            strokeOpacity={t("pages.wallet.timeline.cash")}
+            hide={hide[t("pages.wallet.timeline.cash")]}
           />
           <Line
             type="monotone"
-            dataKey="SolarX Points"
+            dataKey={t("pages.wallet.timeline.solarXPoints")}
             stroke={sxp}
             activeDot={{ r: 6 }}
-            strokeOpacity={opacity["SolarX Points"]}
-            hide={hide["SolarX Points"]}
+            strokeOpacity={t("pages.wallet.timeline.solarXPoints")}
+            hide={hide[t("pages.wallet.timeline.solarXPoints")]}
           />
         </LineChart>
       </ResponsiveContainer>

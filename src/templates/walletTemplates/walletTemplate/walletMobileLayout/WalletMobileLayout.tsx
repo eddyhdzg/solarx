@@ -9,6 +9,7 @@ import {
 } from "organisms";
 import { Grid } from "@mui/material";
 import { GridItem } from "components";
+import { useTranslation } from "react-i18next";
 import {
   StyledTabs,
   StyledTab,
@@ -16,7 +17,9 @@ import {
 } from "./WalletMobileLayout.styled";
 
 export default function WalletMobileLayout() {
+  const { t } = useTranslation();
   const [tabIndex, setTabIndex] = useState(0);
+
   return (
     <TabContext value={tabIndex.toString()}>
       <StyledTabs
@@ -27,10 +30,10 @@ export default function WalletMobileLayout() {
         centered
         variant="scrollable"
       >
-        <StyledTab label="Balance" />
-        <StyledTab label="Shares" />
-        <StyledTab label="History" />
-        <StyledTab label="Timeline" />
+        <StyledTab label={t("pages.wallet.sections.balance")} />
+        <StyledTab label={t("pages.wallet.sections.shares")} />
+        <StyledTab label={t("pages.wallet.sections.history")} />
+        <StyledTab label={t("pages.wallet.sections.timeline")} />
       </StyledTabs>
       <StyledTabPanel value="0">
         <Grid container spacing={3}>

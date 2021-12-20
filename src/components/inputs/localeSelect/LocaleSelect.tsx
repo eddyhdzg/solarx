@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { locale } from "dayjs";
 import {
   FormControl,
   FormControlProps,
@@ -10,6 +12,10 @@ import { LanguageIcon, LanguageSelect } from "./LocaleSelect.styled";
 
 const LocaleSelect: React.FC<FormControlProps> = (props) => {
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    locale(i18n.language);
+  }, [i18n.language]);
 
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     const newLocale = event.target.value as Locales;

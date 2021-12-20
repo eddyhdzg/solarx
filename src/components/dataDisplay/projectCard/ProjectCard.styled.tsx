@@ -3,7 +3,6 @@ import {
   CardMedia,
   Skeleton,
   styled,
-  Typography,
   CardMediaProps,
 } from "@mui/material";
 import SellOutlined from "@mui/icons-material/SellOutlined";
@@ -91,7 +90,3 @@ export const ProjectCardSummary = styled("div")(({ theme }) => ({
   alignItems: "flex-end",
   marginBottom: theme.spacing(1),
 }));
-
-export const SharesTypography = styled(Typography)({
-  textTransform: "lowercase",
-});

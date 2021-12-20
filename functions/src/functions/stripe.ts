@@ -20,10 +20,6 @@ const stripe = new Stripe(functions.config().stripe.secret, {
   apiVersion: "2020-08-27",
 });
 
-// const stripe = new Stripe(key, {
-//   apiVersion: "2020-08-27",
-// });
-
 /**
  * When adding the payment method ID on the client,
  * this function is triggered to retrieve the payment method details.
@@ -36,6 +32,7 @@ exports.addPaymentMethodDetails = functions.firestore
       const paymentMethod = await stripe.paymentMethods.retrieve(
         paymentMethodId
       );
+
       return snap.ref.set(paymentMethod, { merge: true });
     } catch (error) {
       throw new functions.https.HttpsError(
@@ -187,6 +184,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
         },
         setup_future_usage: "off_session",
         payment_method_types: ["card"],
+        receipt_email: context.auth.token.email,
       },
       {
         idempotencyKey,

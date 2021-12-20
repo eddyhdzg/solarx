@@ -43,7 +43,7 @@ const theme = createTheme({
       sm: 768,
       md: 960,
       lg: 1280,
-      xl: 1920,
+      xl: 1600,
     },
   },
   components: {

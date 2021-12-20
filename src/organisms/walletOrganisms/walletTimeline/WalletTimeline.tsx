@@ -1,16 +1,23 @@
 import { useState, useMemo } from "react";
-import { Button, ButtonGroup, Typography } from "@mui/material";
+import { Button, Typography, ButtonGroup } from "@mui/material";
 import { Timespan } from "types";
 import { timespans, secondsHash } from "constant";
 import { useBreakpoint, useCurrUserTransactions } from "hooks";
 import { formatStock1M, formatStock1Y, getFirebseTime } from "utils";
+import { useTranslation } from "react-i18next";
 import WalletChart from "./walletTimelineChart/WalletTimelineChart";
-import Styled from "./WalletTimeline.styled";
+import {
+  Paper,
+  Header,
+  ButtonGroupContainer,
+  TitleContainer,
+} from "./WalletTimeline.styled";
 
 export default function WalletTimeline() {
   const [timespan, setTimespan] = useState<Timespan>("H");
   const xs = useBreakpoint("xs");
   const { data } = useCurrUserTransactions("asc");
+  const { t } = useTranslation();
 
   const handleChange = (newTimespan: Timespan) => {
     setTimespan(newTimespan);
@@ -42,38 +49,50 @@ export default function WalletTimeline() {
 
       return {
         name,
-        Cash: col?.cash,
-        Stocks: col?.stocks,
-        "SolarX Points": col?.sxp,
-        "Total Balance": col?.total,
+        [t("pages.wallet.timeline.cash")]: col?.cash,
+        [t("pages.wallet.timeline.shares")]: col?.stocks,
+        [t("pages.wallet.timeline.solarXPoints")]: col?.sxp,
+        [t("pages.wallet.timeline.totalBalance")]: col?.total,
       };
     });
-  }, [data, timespan]);
+  }, [data, timespan, t]);
 
   return (
-    <Styled.Paper>
-      <Styled.ButtonGroupContainer>
-        <Typography variant="subtitle1">Timeline</Typography>
-        <ButtonGroup
-          variant="outlined"
-          aria-label="timespan button group"
-          color="secondary"
-          size={xs ? "medium" : "small"}
-        >
-          {timespans.map(({ value, text }) => {
-            return (
-              <Button
-                key={value}
-                color={timespan === value ? "inherit" : "secondary"}
-                onClick={() => handleChange(value)}
-              >
-                {text}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
-      </Styled.ButtonGroupContainer>
+    <Paper>
+      <Header>
+        <TitleContainer>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              mb: 1,
+              mr: 2,
+            }}
+          >
+            {t("pages.wallet.timeline.timeline")}
+          </Typography>
+        </TitleContainer>
+        <ButtonGroupContainer>
+          <ButtonGroup
+            variant="outlined"
+            aria-label="timespan button group"
+            color="secondary"
+            size={xs ? "medium" : "small"}
+          >
+            {timespans.map(({ value, text }) => {
+              return (
+                <Button
+                  key={value}
+                  color={timespan === value ? "inherit" : "secondary"}
+                  onClick={() => handleChange(value)}
+                >
+                  {t(`pages.wallet.timeline.${text}`)}
+                </Button>
+              );
+            })}
+          </ButtonGroup>
+        </ButtonGroupContainer>
+      </Header>
       <WalletChart data={chartData} />
-    </Styled.Paper>
+    </Paper>
   );
 }

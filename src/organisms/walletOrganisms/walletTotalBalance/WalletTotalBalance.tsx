@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { useCurrUserWallet, useCurrLastUserMonthlyRevenue } from "hooks";
-import { formatUnits, formatMoney } from "utils";
+import { formatUnits, formatHistoryValue } from "utils";
+import { useTranslation } from "react-i18next";
 import Styled from "./WalletTotalBalance.styled";
 
 export default function WalletTotalBalance() {
@@ -8,7 +9,8 @@ export default function WalletTotalBalance() {
   const { data: last } = useCurrLastUserMonthlyRevenue();
   const { total = 0 } = data || {};
   const totalBalance = data ? formatUnits(total) : "-";
-  const { amount } = last || {};
+  const { amount, currency } = last || {};
+  const { t } = useTranslation();
 
   return (
     <Styled.Paper>
@@ -21,16 +23,16 @@ export default function WalletTotalBalance() {
             </Styled.TotalBalance>
           </Styled.Div>
           <Typography variant="subtitle1" color="textSecondary">
-            Total Balance
+            {t("pages.wallet.totalBalance.totalBalance")}
           </Typography>
         </div>
         {amount && (
           <Styled.CashWrapper>
             <Styled.Cash variant="subtitle1">
-              +{formatMoney(amount)}
+              {formatHistoryValue(amount, currency)}
             </Styled.Cash>
             <Typography variant="subtitle3" color="textSecondary">
-              Monthly Revenue
+              {t("pages.wallet.totalBalance.monthlyRevenue")}
             </Typography>
           </Styled.CashWrapper>
         )}

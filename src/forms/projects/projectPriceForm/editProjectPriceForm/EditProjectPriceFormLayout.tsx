@@ -50,7 +50,7 @@ export default function EditProjectPriceForm({
                 decimalScale: 0,
               }}
               InputProps={{
-                inputComponent: NumberFormatInput,
+                inputComponent: NumberFormatInput as any,
               }}
               {...field}
             />

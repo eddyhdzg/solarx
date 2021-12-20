@@ -25,11 +25,12 @@ export const Month = styled("div")(({ theme }) => ({
 
 export const MonthTitle = styled(Typography)(({ theme }) => ({
   paddingBottom: theme.spacing(1.5),
+  textTransform: "capitalize",
 }));
 
 export const Li = styled("li")(({ theme }) => ({
   display: "flex",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "space-between",
   "&:not(:first-of-type)": {
     paddingTop: theme.spacing(1.5),
@@ -42,10 +43,11 @@ export const Li = styled("li")(({ theme }) => ({
   },
 }));
 
-export const DescriptionContainer = styled("div")({
+export const DescriptionContainer = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-});
+  marginRight: theme.spacing(1),
+}));
 
 export const DescriptionTexts = styled("div")({
   display: "flex",

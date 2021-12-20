@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useScrollRight } from "hooks";
+import { useTranslation } from "react-i18next";
 import AdminTriggerGeneralOptionRow from "./adminTriggersRows/AdminTriggerGeneralOptionRow";
 import AdminTriggerGoalRow from "./adminTriggersRows/AdminTriggerGoalRow";
 import AdminTriggerSharePrice from "./adminTriggersRows/AdminTriggerSharePrice";
@@ -16,20 +17,21 @@ import Styles from "./AdminTriggers.styled";
 
 export default function AdminTriggers() {
   const [ref, scroll] = useScrollRight();
+  const { t } = useTranslation();
 
   return (
     <Paper>
       <Styles.Body>
         <div>
           <Typography variant="h6" component="h6" gutterBottom>
-            Triggers
+            {t("forms.projectForm.triggers")}
           </Typography>
           <Styles.Subtitle
             variant="subtitle3"
             color="textSecondary"
             component="p"
           >
-            Trigger functions on user command to update the project's data.
+            {t("forms.projectForm.triggersDescription")}
           </Styles.Subtitle>
         </div>
         <TableContainer ref={ref}>
@@ -37,8 +39,12 @@ export default function AdminTriggers() {
             <TableHead>
               <TableRow>
                 <TableCell />
-                <TableCell align="right">Current</TableCell>
-                <TableCell align="right">New</TableCell>
+                <TableCell align="right">
+                  {t("forms.projectForm.current")}
+                </TableCell>
+                <TableCell align="right">
+                  {t("forms.projectForm.new")}
+                </TableCell>
                 <TableCell align="right" />
               </TableRow>
             </TableHead>

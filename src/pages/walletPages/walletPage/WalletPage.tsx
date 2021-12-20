@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Seo, PageTitle, AuthWrapper } from "components";
+import { Seo } from "components";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
 import { WalletTemplate } from "templates";
@@ -18,14 +18,7 @@ export default function WalletPage() {
         title={t("pages.wallet.title")}
         description={t("pages.wallet.description")}
       />
-      <PageTitle>
-        {t("pages.wallet.title", {
-          postProcess: "capitalize",
-        })}
-      </PageTitle>
-      <AuthWrapper>
-        <WalletTemplate />
-      </AuthWrapper>
+      <WalletTemplate />
     </>
   );
 }

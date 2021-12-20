@@ -10,6 +10,7 @@ dayjs.extend(timezone);
 dayjs.extend(utc);
 dayjs.extend(localizedFormat);
 dayjs.tz.guess();
+dayjs.locale("es");
 
 // 1000 => 1,000
 // 1000.505 => 1,000.51
@@ -69,7 +70,14 @@ export const formatMonthAndYear = (seconds: Timestamp["seconds"]) => {
   return dayjs.unix(seconds)?.tz()?.format("MMMM YYYY");
 };
 
-// Thu, Aug 16, 2018 8:02 PM
+// Dic 21, 2021 5:15 PM
 export const formatllll = (seconds: Timestamp["seconds"]) => {
-  return dayjs.unix(seconds)?.tz()?.format("llll");
+  return dayjs.unix(seconds)?.tz()?.format("MMM D, YYYY h:mm A");
+};
+
+export const formatllllCST = (seconds: Timestamp["seconds"]) => {
+  return dayjs
+    .unix(seconds)
+    ?.tz("America/Mexico_City")
+    ?.format("MMM D, YYYY h:mm A CST");
 };

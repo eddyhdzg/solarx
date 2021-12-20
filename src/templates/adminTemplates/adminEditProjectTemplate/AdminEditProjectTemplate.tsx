@@ -12,12 +12,14 @@ import {
 import { AdminTriggers, AdminProjectSummary } from "organisms";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
+import { useTranslation } from "react-i18next";
 import {
   EditProjectTabsContainer,
   EditProjectTabPanel,
 } from "./AdminEditProjectTemplate.styled";
 
 export default function AdminEditProjectTemplate() {
+  const { t } = useTranslation();
   const { search, pathname } = useLocation();
   const { tab = "0" } = queryString.parse(search) as { tab: string };
   const history = useHistory();
@@ -38,13 +40,13 @@ export default function AdminEditProjectTemplate() {
           selectionFollowsFocus
           variant="scrollable"
         >
-          <Tab disableRipple label="General" />
-          <Tab disableRipple label="Numbers" />
-          <Tab disableRipple label="Prices" />
-          <Tab disableRipple label="Media" />
-          <Tab disableRipple label="CMS" />
-          <Tab disableRipple label="Dates" />
-          <Tab disableRipple label="Triggers" />
+          <Tab disableRipple label={t("pages.admin.project.general")} />
+          <Tab disableRipple label={t("pages.admin.project.numbers")} />
+          <Tab disableRipple label={t("pages.admin.project.prices")} />
+          <Tab disableRipple label={t("pages.admin.project.media")} />
+          <Tab disableRipple label={t("pages.admin.project.cms")} />
+          <Tab disableRipple label={t("pages.admin.project.dates")} />
+          <Tab disableRipple label={t("pages.admin.project.triggers")} />
         </Tabs>
       </EditProjectTabsContainer>
       <Grid container spacing={3}>

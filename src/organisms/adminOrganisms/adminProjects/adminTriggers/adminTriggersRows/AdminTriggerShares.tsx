@@ -46,9 +46,11 @@ export default function AdminTriggerSharesRow({
     <Styles.LastRow>
       <TableCell component="th" scope="row">
         <div>
-          <Typography variant="subtitle1">Stocks</Typography>
+          <Typography variant="subtitle1">
+            {t("forms.projectForm.generateShares")}
+          </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            Generate stocks for the project.
+            {t("forms.projectForm.generateSharesDescription")}
           </Typography>
         </div>
       </TableCell>
@@ -67,7 +69,7 @@ export default function AdminTriggerSharesRow({
             handleCreateShares();
           }}
         >
-          Trigger Stocks
+          {t("forms.projectForm.generateShares")}
         </Button>
       </Styles.TableCellLast>
     </Styles.LastRow>

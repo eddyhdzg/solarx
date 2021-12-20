@@ -8,5 +8,6 @@ export const Item = styled(GridItem)({
 });
 
 export const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  minWidth: theme.spacing(20),
   marginRight: theme.spacing(2),
 }));

@@ -34,7 +34,6 @@ export const ProjectSummaryLi = styled("li")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  textTransform: "capitalize",
   flexWrap: "wrap",
   "&:not(:last-child)": {
     marginBottom: theme.spacing(3),

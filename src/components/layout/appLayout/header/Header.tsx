@@ -29,6 +29,9 @@ const Header: React.FC = () => {
                 component={Link}
                 to={backButton.url}
                 color="primary"
+                sx={{
+                  textTransform: "capitalize",
+                }}
               >
                 {backButton.text}
               </Button>

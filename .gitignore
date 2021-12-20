@@ -29,6 +29,7 @@ firestore-debug.log
 ui-debug.log
 .firebase
 /functions/lib
+/functions/.runtimeconfig.json
 
 # env
 # .env

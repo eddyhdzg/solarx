@@ -4,11 +4,13 @@ import { ProjectIDParams } from "types";
 import { useProject, useQueryParams, useProjectPrice } from "hooks";
 import { Skeleton, Typography } from "@mui/material";
 import { formatMoney } from "utils";
+import { useTranslation } from "react-i18next";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import CheckoutProductModal from "./checkoutProductModal/CheckoutProductModal";
 import Styled from "./CheckoutProducts.styled";
 
 export default function CheckoutProduct() {
+  const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
   const { qty = "0", pid = "" } = useQueryParams() as {
     qty: string;
@@ -52,7 +54,7 @@ export default function CheckoutProduct() {
                 size="small"
                 onClick={handleOpen}
               >
-                Qty {qty}
+                {t("pages.crowdfunding.checkout.qty")} {qty}
               </Styled.Button>
             </Styled.Data>
           </Styled.Container>
@@ -60,7 +62,8 @@ export default function CheckoutProduct() {
             <Typography variant="subtitle1">{formatMoney(total)}</Typography>
             {Number(qty) > 1 && (
               <Typography variant="body2" color="textSecondary">
-                {formatMoney(unit_amount)} each
+                {formatMoney(unit_amount)}{" "}
+                {t("pages.crowdfunding.checkout.each")}
               </Typography>
             )}
           </Styled.Numbers>

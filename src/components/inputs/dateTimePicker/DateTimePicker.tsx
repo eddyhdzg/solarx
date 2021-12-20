@@ -7,6 +7,7 @@ import {
 import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import EventIcon from "@mui/icons-material/Event";
 import { StyledTextField } from "components";
+import { useTranslation } from "react-i18next";
 
 interface IDateTimePickerProps
   extends Omit<MobileDatePickerProps, "renderInput"> {
@@ -21,12 +22,16 @@ export default function DateTimePicker({
   value,
   onChange,
 }: IDateTimePickerProps) {
+  const { t } = useTranslation();
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <MobileDateTimePicker
         label={label}
         value={value}
         onChange={onChange}
+        okText={t("forms.ok")}
+        cancelText={t("forms.cancel")}
+        clearText={t("forms.clear")}
         renderInput={(params) => (
           <StyledTextField
             {...params}

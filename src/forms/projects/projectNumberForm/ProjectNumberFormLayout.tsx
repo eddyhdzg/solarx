@@ -67,7 +67,7 @@ export default function ProjectNumberFormLayout({
                         decimalScale: 2,
                       }}
                       InputProps={{
-                        inputComponent: NumberFormatInput,
+                        inputComponent: NumberFormatInput as any,
                         endAdornment: (
                           <InputAdornment position="end">%</InputAdornment>
                         ),
@@ -98,7 +98,7 @@ export default function ProjectNumberFormLayout({
                       thousandSeparator: true,
                     }}
                     InputProps={{
-                      inputComponent: CurrencyField,
+                      inputComponent: CurrencyField as any,
                       startAdornment: (
                         <InputAdornment position="start">$</InputAdornment>
                       ),
@@ -132,7 +132,7 @@ export default function ProjectNumberFormLayout({
                       decimalScale: 0,
                     }}
                     InputProps={{
-                      inputComponent: NumberFormatInput,
+                      inputComponent: NumberFormatInput as any,
                     }}
                     {...field}
                   />
@@ -158,7 +158,7 @@ export default function ProjectNumberFormLayout({
                       min: 0,
                     }}
                     InputProps={{
-                      inputComponent: NumberFormatInput,
+                      inputComponent: NumberFormatInput as any,
                     }}
                     {...field}
                   />

@@ -2,7 +2,10 @@ import { forwardRef } from "react";
 import NumberFormat, { NumberFormatProps } from "react-number-format";
 
 interface INumberFormatInputProps
-  extends Omit<NumberFormatProps, "min" | "max"> {
+  extends Omit<
+    NumberFormatProps<React.HTMLAttributes<HTMLInputElement>>,
+    "min" | "max"
+  > {
   onChange: (...event: any[]) => void;
   name: string;
   min?: number;

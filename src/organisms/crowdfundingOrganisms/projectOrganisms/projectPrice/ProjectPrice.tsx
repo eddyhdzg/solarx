@@ -7,7 +7,7 @@ import RadioButtonGradientChecked from "assets/icons/RadioButtonGradientChecked"
 import { Project, ProjectPrice } from "types";
 import { formatNumber } from "utils";
 import { useSigninCheck } from "reactfire";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import {
   Accordion,
   AccordionSummary,
@@ -55,12 +55,14 @@ const ProjectPriceCard = ({
   const [shares, setShares] = useState(1);
   const { data: signinResult } = useSigninCheck();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const handleChangeShares = (num: number) => {
     setShares(shares + num);
   };
 
   const rest = quantity - sharesSold;
+  const disabled = rest <= 0;
   const max = Math.min(rest, 500);
   const error = shares < 1 || shares > max;
   const discount = Math.round((1 - unit_amount / sharePrice) * 100);
@@ -69,7 +71,11 @@ const ProjectPriceCard = ({
   const newRoi = (sharePrice * roi) / unit_amount;
 
   return (
-    <Accordion expanded={expanded} onChange={() => onClick(id)}>
+    <Accordion
+      expanded={expanded}
+      onChange={() => onClick(id)}
+      disabled={disabled}
+    >
       <AccordionSummary
         expandIcon={
           expanded ? (
@@ -80,10 +86,7 @@ const ProjectPriceCard = ({
         }
         aria-controls="panel1bh-content"
         id="panel1bh-header"
-        sx={{
-          pointerEvents: expanded ? "none" : undefined,
-          userSelect: "text",
-        }}
+        expanded={expanded}
       >
         <AccordionSummaryContent>
           <InnerContent>
@@ -93,7 +96,9 @@ const ProjectPriceCard = ({
                 mb: 3,
               }}
             >
-              {formatMoney(unit_amount)} / share
+              {formatMoney(unit_amount)}
+              {" / "}
+              {t("common.share")}
             </Typography>
           </InnerContent>
           <Typography
@@ -108,8 +113,11 @@ const ProjectPriceCard = ({
             <StyledChip
               label={
                 discount
-                  ? `Limited (${rest} left of ${quantity})`
-                  : `${rest} left of ${quantity}`
+                  ? t("pages.crowdfunding.project.limited", { rest, quantity })
+                  : t("pages.crowdfunding.project.notlimited", {
+                      rest,
+                      quantity,
+                    })
               }
               variant="yellow"
               icon={<SellIcon />}
@@ -134,7 +142,7 @@ const ProjectPriceCard = ({
           </Chips>
         </AccordionSummaryContent>
       </AccordionSummary>
-      <StyledAccordionDetails>
+      <StyledAccordionDetails disabled={disabled}>
         <Ul>
           <Li>
             <Typography variant="body2" color="textSecondary">
@@ -156,7 +164,7 @@ const ProjectPriceCard = ({
                   color: "success.main",
                 }}
               >
-                {`Discount ${discount}%`}
+                {t("pages.crowdfunding.project.discount", { discount })}
               </Typography>
               <Typography
                 variant="subtitle1"
@@ -183,12 +191,20 @@ const ProjectPriceCard = ({
           color="primary"
           variant="contained"
           size="large"
-          disabled={!signinResult?.signedIn}
+          disabled={!signinResult?.signedIn || rest <= 0}
           fullWidth
           component={Link}
           to={{
             pathname: `${pathname}/checkout`,
             search: `?qty=${shares}&pid=${id}`,
+          }}
+          onKeyPress={(e: any) => {
+            if (e.key === " ") {
+              history.push({
+                pathname: `${pathname}/checkout`,
+                search: `?qty=${shares}&pid=${id}`,
+              });
+            }
           }}
         >
           {signinResult?.signedIn

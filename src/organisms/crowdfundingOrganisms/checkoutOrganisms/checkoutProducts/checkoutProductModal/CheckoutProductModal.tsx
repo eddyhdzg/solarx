@@ -9,6 +9,7 @@ import {
 } from "hooks";
 import { ProjectIDParams } from "types";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface CheckoutProductModalProps {
@@ -20,6 +21,7 @@ export default function CheckoutProductModal({
   open,
   handleClose,
 }: CheckoutProductModalProps) {
+  const { t } = useTranslation();
   const {
     values: { qty = "0" },
     setValue,
@@ -65,7 +67,9 @@ export default function CheckoutProductModal({
           }}
         >
           <div>
-            <Typography variant="subtitle1">Update quantity</Typography>
+            <Typography variant="subtitle1">
+              {t("pages.crowdfunding.checkout.updateQuantity")}
+            </Typography>
             <Typography variant="body3" color="textSecondary">
               {name}
             </Typography>
@@ -109,7 +113,7 @@ export default function CheckoutProductModal({
             onClick={handleSetRouterQty}
             fullWidth
           >
-            Update
+            {t("pages.crowdfunding.checkout.update")}
           </Button>
         </Box>
       </Box>

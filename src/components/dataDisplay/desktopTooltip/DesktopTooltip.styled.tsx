@@ -1,10 +1,11 @@
-import { styled, Tooltip, tooltipClasses } from "@mui/material";
+import { styled, Tooltip, tooltipClasses, TooltipProps } from "@mui/material";
 
-export const DesktopTooltipRoot = styled(Tooltip)(({ theme }) => ({
+export const DesktopTooltipRoot = styled(
+  ({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  )
+)({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.black,
-    borderWidth: 2,
-    borderColor: theme.palette.divider,
-    borderStyle: "solid",
+    textTransform: "capitalize",
   },
-}));
+});

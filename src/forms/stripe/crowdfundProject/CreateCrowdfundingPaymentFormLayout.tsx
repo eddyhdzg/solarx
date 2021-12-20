@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useFormContext } from "react-hook-form";
 import {
@@ -6,6 +6,7 @@ import {
   useCrowdfundingStore,
   useHandleCreateCrowdfundingPayment,
   useQueryParams,
+  useProjectPrice,
 } from "hooks";
 import { ProjectIDParams } from "types";
 import { PaymentMethods } from "organisms";
@@ -14,8 +15,11 @@ import { checkKeyDown } from "utils";
 import shallow from "zustand/shallow";
 import { useParams } from "react-router-dom";
 import { StripeProvider } from "providers";
+import { useTranslation } from "react-i18next";
 
 const PayButtonContainer = () => {
+  const { t } = useTranslation();
+
   const {
     formState: { isValid },
     handleSubmit,
@@ -26,6 +30,9 @@ const PayButtonContainer = () => {
     pid: string;
     qty: string;
   };
+  const {
+    data: { quantity = 0, sharesSold = 0 },
+  } = useProjectPrice(id, pid);
   const { payment } = useCrowdfundingStore(
     ({ payment }) => ({ payment }),
     shallow
@@ -41,6 +48,9 @@ const PayButtonContainer = () => {
     });
   });
 
+  const left = quantity - sharesSold;
+  const numberQty = Number(qty) || 0;
+
   return (
     <form
       noValidate
@@ -54,9 +64,9 @@ const PayButtonContainer = () => {
         type="submit"
         fullWidth
         loading={payment.processing}
-        disabled={!isValid}
+        disabled={!isValid || left <= numberQty}
       >
-        Pay
+        {t("pages.crowdfunding.checkout.pay")}
       </LoadingButton>
     </form>
   );
@@ -71,6 +81,7 @@ const WrappedPayButtonContainer = () => {
 };
 
 const CreateCrowdfundingPaymentFormLayout: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Box
@@ -78,9 +89,18 @@ const CreateCrowdfundingPaymentFormLayout: React.FC = () => {
           mb: 1.5,
         }}
       >
-        <Typography variant="subtitle1">Card Details</Typography>
+        <Typography variant="subtitle1">
+          {t("pages.crowdfunding.checkout.cardDetails")}
+        </Typography>
         <Typography variant="caption" color="textSecondary">
-          Select payment method
+          {t("pages.crowdfunding.checkout.selectPaymentMethod")}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {t("pages.crowdfunding.checkout.useAnyOfThe")}
+          <Link href="https://stripe.com/docs/testing#international-cards">
+            {t("pages.crowdfunding.checkout.stripeTestCards")}
+          </Link>
+          {t("pages.crowdfunding.checkout.forThisDemo")}
         </Typography>
       </Box>
       <Box

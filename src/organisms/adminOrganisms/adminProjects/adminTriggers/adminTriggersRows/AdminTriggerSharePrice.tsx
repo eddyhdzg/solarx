@@ -19,6 +19,7 @@ interface AdminTriggerRowProps {
 export default function AdminTriggerSharePrice({
   scrolled,
 }: AdminTriggerRowProps) {
+  const { t } = useTranslation();
   const role = useRole();
   const functions = useFunctions();
   const updatePricesSharePrice = httpsCallable<{ id?: string }, boolean>(
@@ -33,7 +34,6 @@ export default function AdminTriggerSharePrice({
   } = useProject(id || "");
   const { data: prices, status: pricesStatus } = useProjectPrices(id || "");
   const { enqueueSnackbar } = useSnackbar();
-  const { t } = useTranslation();
   const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
@@ -59,9 +59,11 @@ export default function AdminTriggerSharePrice({
     <TableRow>
       <TableCell component="th" scope="row">
         <div>
-          <Typography variant="subtitle1">Share Price</Typography>
+          <Typography variant="subtitle1">
+            {t("forms.projectForm.sharePrice")}
+          </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            Update sharePrice in all prices if they are unsync.
+            {t("forms.projectForm.sharePriceDescription")}
           </Typography>
         </div>
       </TableCell>
@@ -78,7 +80,7 @@ export default function AdminTriggerSharePrice({
             handleUpdatePricesSharePrice();
           }}
         >
-          Update Share Prices
+          {t("forms.projectForm.updateSharePrices")}
         </Button>
       </Styles.TableCellLast>
     </TableRow>
