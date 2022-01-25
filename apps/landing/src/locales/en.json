@@ -1,0 +1,26 @@
+{
+  "translation": {
+    "pages": {
+      "landing": {
+        "title": "SolarX - Coming Soon",
+        "description": "Website is coming soon.",
+        "comingSoon": "Coming Soon",
+        "investInSolarEnergy": "Invest in Solar Energy and make a monthly passive income.",
+        "email": "Email",
+        "notifyMe": "Notify Me",
+        "notifyMeWhen": "* Notify me when the website is launched *"
+      }
+    },
+    "locales": {
+      "english": "English",
+      "en": "English",
+      "spanish": "Español",
+      "es": "Español"
+    },
+    "snackbar": {
+      "emailAdded": "Email Added! 🔥",
+      "emailAlready": "Email already registered.",
+      "emailError": "Error, please try again later. 😔"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "translation": {
+    "pages": {
+      "landing": {
+        "title": "SolarX - Próximamente",
+        "description": "Próximamente lanzaremos la aplicación web.",
+        "comingSoon": "Próximamente",
+        "investInSolarEnergy": "Invierte en Energía Solar y obten ingresos pasivos mensuales.",
+        "email": "Correo electrónico",
+        "notifyMe": "Notifícame",
+        "notifyMeWhen": "* Notifícame cuando se lance la aplicación web *"
+      }
+    },
+    "locales": {
+      "english": "English",
+      "en": "English",
+      "spanish": "Español",
+      "es": "Español"
+    },
+    "snackbar": {
+      "emailAdded": "¡Correo electrónico agregado! 🔥",
+      "emailAlready": "Correo electrónico ya registrado.",
+      "emailError": "Error, inténtalo de nuevo más tarde. 😔"
+    }
+  }
+}

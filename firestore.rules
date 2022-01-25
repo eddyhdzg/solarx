@@ -19,6 +19,10 @@ service cloud.firestore {
       return request.auth.uid == uid;
     }
 
+    function isAdmin() {
+      return isOneOfRoles(['ADMIN', 'MODERATOR', 'SUPER_USER']);
+    }
+
     function myDocumentOrAdmin(uid) {
       return request.auth.uid == uid || isOneOfRoles(['ADMIN', 'MODERATOR', 'SUPER_USER']);
     }
@@ -33,40 +37,30 @@ service cloud.firestore {
 
     match /users/{uid} {
       allow read;
-      allow update: if myDocumentOrMod(uid);
+      allow update: if (myDocument(uid) && onlyAffectsFields(['avatar','displayName']));
+      allow update: if (isAdmin() && onlyAffectsFields(['role']));
 
       match /privateUserData/wallet {
         allow read: if myDocumentOrAdmin(uid);
       }
-
-      match /payment_methods/{id} {
-        allow read: if myDocumentOrAdmin(uid);
-        allow create: if myDocument(uid);
-      }
-
       match /userHistory/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
-
       match /userShares/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
-
       match /userTransactions/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
 
-      // Stripe
-      match /checkout_sessions/{id} {
-        allow read: if myDocumentOrAdmin(uid);
-        allow create: if myDocument(uid);
-      }
-      match /subscriptions/{id} {
-        allow read: if request.auth.uid == uid;
-      }
+      // Stripe Extension
       match /payments/{id} {
         allow read: if myDocumentOrAdmin(uid);
         allow update: if (myDocument(uid) && onlyAffectsFields(['id','status']));
+      }
+      match /payment_methods/{id} {
+        allow read: if myDocumentOrAdmin(uid);
+        allow create: if (myDocument(uid) && onlyAffectsFields(['id']));
       }
     }
 
@@ -90,7 +84,11 @@ service cloud.firestore {
     }
 
     match /shares/{sid} {
-      allow read: if request.query.limit <= 20;
+      allow read;
+    }
+
+    match /newsletter/{email} {
+    	allow read, create;
     }
   }
 }

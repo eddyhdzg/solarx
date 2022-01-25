@@ -28,8 +28,18 @@ firebase-debug.log
 firestore-debug.log
 ui-debug.log
 .firebase
-/functions/lib
-/functions/.runtimeconfig.json
+
+# dashboard
+/apps/dashboard/build
+/apps/dashboard/node_modules
+
+#functions
+/apps/functions/lib
+/apps/functions/.runtimeconfig.json
+
+# landing
+/apps/landing/build
+/apps/landing/node_modules
 
 # env
 # .env

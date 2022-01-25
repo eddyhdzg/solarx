@@ -2,13 +2,17 @@
   "projects": {
     "default": "solarx-dev",
     "dev": "solarx-dev",
-    "prod": "solarx-prod"
+    "prod": "solarx-prod",
+    "solarx-dev": "solarx-dev"
   },
   "targets": {
     "solarx-dev": {
       "hosting": {
         "dashboard": [
           "solarx-dev-dashboard"
+        ],
+        "landing": [
+          "solarx-dev"
         ]
       }
     },
