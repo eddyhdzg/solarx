@@ -1,11 +1,9 @@
 import ProjectsTable from "./projectsTable/ProjectsTable";
 import ProjectCards from "./projectCards/ProjectCards";
-import FilterChips from "./filterChips/FilterChips";
-import FilterMenu from "./filterMenu/FilterMenu";
 import { IconButton } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import { GlobalFilter } from "components";
+import { GlobalFilter, ProjectFilters } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { Project, ProjectSection } from "solarx-types";
@@ -44,10 +42,9 @@ export default function ProjectsTableLayout({
     <>
       <ActionsContainer>
         <ActionsWrapper>
-          <FilterChips />
           <InputsWrapper>
             <GlobalFilter />
-            <FilterMenu />
+            <ProjectFilters count={table.preGlobalFilteredRows.length} />
             <StyledTooltip
               title={
                 projects?.projectType === "cards"

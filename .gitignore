@@ -41,6 +41,8 @@ ui-debug.log
 /apps/landing/build
 /apps/landing/node_modules
 
+# solarx-ui
+/packages/solarx-ui/node_modules
 # env
 # .env
 # .env.dev

@@ -4,6 +4,7 @@ import {
   TableCell,
   TableRow,
   TableFooter,
+  TableSortLabel,
 } from "@mui/material";
 import { CustomTablePagination } from "components";
 import { Project } from "solarx-types";
@@ -45,15 +46,16 @@ export default function ProjectsTable({
                         className: column?.className,
                       },
                     ])}
+                    sx={{
+                      minWidth: column?.minWidth ? column.minWidth : undefined,
+                    }}
                   >
                     {column.render("Header")}
-                    <span>
-                      {column.isSorted
-                        ? column.isSortedDesc
-                          ? " 🔽"
-                          : " 🔼"
-                        : ""}
-                    </span>
+                    <TableSortLabel
+                      active={column.isSorted}
+                      direction={column.isSortedDesc ? "desc" : "asc"}
+                      tabIndex={-1}
+                    />
                   </TableCell>
                 )
               )}

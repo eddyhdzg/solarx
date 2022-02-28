@@ -14,6 +14,9 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "serve": "turbo run serve -s build",
+    "========== STORYBOOK ==========": "",
+    "storybook": "turbo run storybook",
+    "build-storybook": "turbo run build-storybook",
     "========== DASHBOARD ==========": "",
     "build:dashboard:dev": "cd apps/landing && npm run build:dev",
     "hosting:dashboard:dev": "cd apps/landing && npm run hosting:dev",
@@ -60,6 +63,14 @@
       "lint": {},
       "dev": {
         "cache": false
+      },
+      "storybook": {
+        "cache": false
+      },
+      "build-storybook": {
+        "outputs": [
+          "storybook-static/**"
+        ]
       }
     }
   },

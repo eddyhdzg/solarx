@@ -7,8 +7,8 @@ export const getPanelsRatio = ({ sharesSold, totalShares }: Project) => {
   return `${sharesSold?.toLocaleString()} / ${totalShares?.toLocaleString()}`;
 };
 
-export const getProgress = ({ sharesSold = 0, totalShares = 0 }: Project) => {
-  return `${formatNumber((sharesSold / totalShares) * 100)} %`;
+export const getProgress = ({ sharesSold = 0, totalShares = 1 }: Project) => {
+  return `${formatNumber((sharesSold / totalShares) * 100)}%`;
 };
 
 export const sortShares = (a: Row<Project>, b: Row<Project>) => {

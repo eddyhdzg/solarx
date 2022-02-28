@@ -254,7 +254,7 @@
       "id": "id",
       "projectName": "Project Name",
       "location": "Location",
-      "funded": "funded",
+      "funded": "Funded",
       "notFunded": "Not Funded",
       "basePrice": "Base Price",
       "roi": "ROI (Return On Investment)",
@@ -264,7 +264,7 @@
       "shares": "shares ",
       "ppa": "PPA",
       "created": "Created",
-      "archived": "Archived",
+      "active": "Active",
       "investors": "Investors",
       "businessType": "Business Type",
       "company": "Company",
@@ -287,6 +287,11 @@
       "actions": "Actions",
       "rowsPerPage": "Rows per page:",
       "displayedRows": "{{from}}-{{to}} of {{count}}"
+    },
+    "filters": {
+      "filters": "Filters",
+      "selected": "Selected:",
+      "results": "Results"
     },
     "dates": {
       "year_one": "year",

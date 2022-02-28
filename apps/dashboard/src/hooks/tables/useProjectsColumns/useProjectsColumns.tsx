@@ -11,8 +11,9 @@ import {
 import { Chip, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Column } from "react-table";
+import { Column, Row, Cell } from "react-table";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { LinearWithValueLabel } from "components";
 
 interface IColumns {
   publicColumns: Column<object>[];
@@ -25,24 +26,26 @@ interface IuseProjectsColumnsArgs {
 
 const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
   const { t } = useTranslation();
-  const columns: IColumns = useMemo(() => {
+
+  const columns = useMemo(() => {
     const commonColumns = [
       {
         id: "id",
         Header: t("projects.id"),
         accessor: "id",
+        minWidth: 160,
       },
       {
         id: "name",
         Header: t("projects.projectName"),
         accessor: "name",
-        filter: "fuzzyText",
+        minWidth: 160,
       },
       {
         id: "location",
         Header: t("projects.location"),
         accessor: ({ city, state }: Project) => `${city}, ${state}`,
-        filter: "fuzzyText",
+        minWidth: 160,
       },
       {
         id: "funded",
@@ -51,17 +54,28 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
           (row.sharesSold ?? 0) >= (row.totalShares ?? 0) ? true : false,
         Cell: ({ value }: { value: boolean }) =>
           value ? (
-            <Chip color="primary" size="small" label={t("projects.funded")} />
+            <Chip size="small" label={t("projects.funded")} variant="green" />
           ) : (
-            ""
+            <Chip size="small" label={t("projects.notFunded")} disabled />
           ),
         sortType: "basic",
+        minWidth: 160,
       },
       {
         id: "basePrice",
         Header: t("projects.basePrice"),
         accessor: ({ basePrice = 0 }: Project) => formatMoney(basePrice),
         className: "alignRight",
+        filter: (
+          rows: Row<Project>[],
+          _: string,
+          filterValue: [number, number]
+        ) => {
+          return rows.filter((row: Row<Project>) => {
+            const value = (row.original.basePrice || 0) / 100;
+            return filterValue[0] <= value && value <= filterValue[1];
+          });
+        },
       },
       {
         id: "roi",
@@ -74,7 +88,14 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         Header: t("projects.progress"),
         accessor: ({ sharesSold, totalShares }: Project) =>
           getProgress({ sharesSold, totalShares }),
-        className: "alignRight",
+
+        Cell: (cell: Cell<Project>) => (
+          <LinearWithValueLabel
+            label={cell.value}
+            sharesSold={cell.row.original.sharesSold}
+            totalShares={cell.row.original.totalShares}
+          />
+        ),
       },
       {
         id: "shares",
@@ -122,10 +143,14 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     const privateColumns = [
       ...commonColumns,
       {
-        Header: t("projects.archived"),
+        Header: t("projects.active"),
         accessor: "active",
         Cell: ({ value }: { value: boolean }) =>
-          !value ? <Chip color="error" size="small" label="Archived" /> : "",
+          !value ? (
+            <Chip size="small" label="Active" variant="green" />
+          ) : (
+            <Chip size="small" label="Not Active" variant="red" />
+          ),
         sortType: "basic",
       },
       {
@@ -148,7 +173,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     ];
 
     return { publicColumns, privateColumns };
-  }, [section, t]);
+  }, [section, t]) as IColumns;
 
   return { ...columns };
 };

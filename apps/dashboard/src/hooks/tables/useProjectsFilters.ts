@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useQueryParams } from "hooks";
+import { useRouterState } from "hooks";
 import { useAsyncDebounce, TableInstance } from "react-table";
 
 interface useProjectsFiltersProps {
@@ -17,12 +17,9 @@ export default function useProjectsFilters({
   data,
 }: useProjectsFiltersProps) {
   const {
-    id = "",
-    name = "",
-    location = "",
-    funded = "",
-    search = "",
-  } = useQueryParams();
+    values: { funded = "", search = "", basePriceFrom = "", basePriceTo = "" },
+    onReset,
+  } = useRouterState();
 
   const performantChange = useAsyncDebounce((name, value) => {
     setFilter(name, value);
@@ -34,10 +31,16 @@ export default function useProjectsFilters({
 
   useEffect(() => {
     setGlobalFilter(search);
-    setFilter("id", id?.toString());
-    setFilter("name", name?.toString());
-    setFilter("location", location?.toString());
     setFilter("funded", funded?.toString());
+    if (basePriceFrom && basePriceTo) {
+      // @ts-ignore
+      setFilter("basePrice", [
+        // @ts-ignore
+        Number(basePriceFrom),
+        // @ts-ignore
+        Number(basePriceTo),
+      ]);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
@@ -46,18 +49,20 @@ export default function useProjectsFilters({
   }, [search, performantGlobalChange]);
 
   useEffect(() => {
-    performantChange("id", id);
-  }, [id, performantChange]);
-
-  useEffect(() => {
-    performantChange("name", name);
-  }, [name, performantChange]);
-
-  useEffect(() => {
-    performantChange("location", location);
-  }, [location, performantChange]);
-
-  useEffect(() => {
     performantChange("funded", funded);
   }, [funded, performantChange]);
+
+  useEffect(() => {
+    if (basePriceFrom && basePriceTo) {
+      if (basePriceFrom === "0" && basePriceTo === "2000") {
+        onReset(["basePriceFrom", "basePriceTo"]);
+      } else {
+        performantChange("basePrice", [
+          Number(basePriceFrom),
+          Number(basePriceTo),
+        ]);
+      }
+    } else performantChange("basePrice", undefined);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [basePriceFrom, basePriceTo, performantChange]);
 }

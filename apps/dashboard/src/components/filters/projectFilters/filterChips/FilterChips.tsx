@@ -6,7 +6,7 @@ import { StyledUl, StyledChip } from "./FilterChips.styled";
 export default function FilterChips() {
   const { t } = useTranslation();
   const {
-    values: { id = "", name = "", location = "", funded = "" },
+    values: { funded = "", basePriceFrom = "", basePriceTo = "" },
     onReset,
   } = useRouterState();
 
@@ -14,26 +14,12 @@ export default function FilterChips() {
     onReset([field]);
   };
 
+  const handleDeleteMultiple = (fields: string[]) => {
+    onReset(fields);
+  };
+
   return (
     <StyledUl>
-      {id && (
-        <li>
-          <StyledChip label={id} onDelete={handleDelete("id")} />
-        </li>
-      )}
-
-      {name && (
-        <li>
-          <StyledChip label={name} onDelete={handleDelete("name")} />
-        </li>
-      )}
-
-      {location && (
-        <li>
-          <StyledChip label={location} onDelete={handleDelete("location")} />
-        </li>
-      )}
-
       {funded && (
         <li>
           <StyledChip
@@ -43,6 +29,17 @@ export default function FilterChips() {
                 : t("projects.notFunded")
             }
             onDelete={handleDelete("funded")}
+          />
+        </li>
+      )}
+
+      {Boolean(basePriceFrom) && Boolean(basePriceTo) && (
+        <li>
+          <StyledChip
+            label={`$${basePriceFrom} MXN - $${basePriceTo} MXN`}
+            onDelete={() => {
+              handleDeleteMultiple(["basePriceTo", "basePriceFrom"]);
+            }}
           />
         </li>
       )}

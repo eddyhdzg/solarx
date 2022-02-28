@@ -56,6 +56,9 @@ const theme = createTheme({
     },
     MuiChip: {
       styleOverrides: {
+        label: {
+          fontWeight: 600,
+        },
         icon: {
           color: "inherit",
           fontSize: "inherit",
@@ -68,13 +71,6 @@ const theme = createTheme({
           style: {
             color: "#80B0ff",
             backgroundColor: "#80B0ff15",
-          },
-        },
-        {
-          props: { variant: "green" },
-          style: {
-            color: "#7de8be",
-            backgroundColor: "#7de8be15",
           },
         },
         {

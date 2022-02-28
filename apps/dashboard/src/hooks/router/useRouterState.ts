@@ -30,6 +30,18 @@ const useRouterState = () => {
     });
   };
 
+  const onSliderChange = (name: string, num: number[]) => {
+    const newQueries = {
+      ...searchParams,
+      [`${name}From`]: num[0],
+      [`${name}To`]: num[1],
+    };
+    history.replace({
+      pathname,
+      search: queryString.stringify(newQueries),
+    });
+  };
+
   const onReset = (names: string[]) => {
     const reset: { [key: string]: undefined } = {};
     const resetObject = names.reduce((acc, cur) => {
@@ -55,12 +67,20 @@ const useRouterState = () => {
     });
   };
 
+  const resetParams = () => {
+    history.replace({
+      pathname,
+    });
+  };
+
   return {
     values: searchParams,
     onInputChange,
     onSelectChange,
     onReset,
     setValue,
+    onSliderChange,
+    resetParams,
   };
 };
 
