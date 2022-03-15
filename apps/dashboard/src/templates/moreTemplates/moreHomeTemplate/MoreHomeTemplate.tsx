@@ -18,6 +18,13 @@ export default function MoreHomeTemplate() {
       <Grid container spacing={3}>
         <GridItem xs={6} sm={4} md={3}>
           <SectionButton
+            title={t("pages.more.history.history")}
+            to="/more/history"
+            emoji="📜"
+          />
+        </GridItem>
+        <GridItem xs={6} sm={4} md={3}>
+          <SectionButton
             title={t("pages.more.profile.profile")}
             to="/more/profile"
             emoji="👤"

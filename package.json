@@ -13,13 +13,13 @@
     "dev:packages": "turbo run dev -w packages",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "serve": "turbo run serve -s build",
+    "serve": "turbo run serve",
     "========== STORYBOOK ==========": "",
     "storybook": "turbo run storybook",
     "build-storybook": "turbo run build-storybook",
     "========== DASHBOARD ==========": "",
-    "build:dashboard:dev": "cd apps/landing && npm run build:dev",
-    "hosting:dashboard:dev": "cd apps/landing && npm run hosting:dev",
+    "build:dashboard:dev": "cd apps/dashboard && npm run build:dev",
+    "hosting:dashboard:dev": "cd apps/dashboard && npm run hosting:dev",
     "========== LANDING ==========": "",
     "build:landing:dev": "cd apps/landing && npm run build:dev",
     "hosting:landing:dev": "cd apps/landing && npm run hosting:dev",
@@ -60,6 +60,7 @@
           "build"
         ]
       },
+      "serve": {},
       "lint": {},
       "dev": {
         "cache": false

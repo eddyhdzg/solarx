@@ -8,6 +8,7 @@
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "serve": "serve -s build",
     "========= CI - DEV ========": "",
     "build:dev": "env-cmd -f .env.dev react-scripts build",
     "hosting:dev": "env-cmd -f .env.dev npm run build && firebase deploy --only hosting:dashboard -P dev",

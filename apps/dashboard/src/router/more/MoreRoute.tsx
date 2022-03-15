@@ -1,5 +1,10 @@
 import { Switch, Route } from "react-router-dom";
-import { MoreHomePage, PreferencesPage, AccountInformationPage } from "pages";
+import {
+  MoreHomePage,
+  PreferencesPage,
+  AccountInformationPage,
+  HistoryPage,
+} from "pages";
 
 const MoreRoute = () => {
   return (
@@ -9,6 +14,9 @@ const MoreRoute = () => {
       </Route>
       <Route exact path="/more/preferences">
         <PreferencesPage />
+      </Route>
+      <Route exact path="/more/history">
+        <HistoryPage />
       </Route>
       <Route exact path="/more/profile">
         <AccountInformationPage />

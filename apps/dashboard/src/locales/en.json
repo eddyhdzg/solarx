@@ -141,6 +141,10 @@
         "moreHome": {
           "more": "More",
           "moreDescription": "More section."
+        },
+        "history": {
+          "history": "History",
+          "historyDescription": "User's history."
         }
       },
       "wallet": {

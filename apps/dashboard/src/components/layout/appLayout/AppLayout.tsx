@@ -1,6 +1,6 @@
 import Header from "./header/Header";
 import Navigation from "./navigation/Navigation";
-import { StyledLayout, Notch, Main, Toolbar, Offset } from "./AppLayout.styled";
+import { StyledLayout, Notch, Toolbar, Offset } from "./AppLayout.styled";
 
 const Layout: React.FC = ({ children }) => {
   return (
@@ -8,11 +8,11 @@ const Layout: React.FC = ({ children }) => {
       <Notch />
       <Header />
       <Navigation />
-      <Main>
+      <main>
         <Toolbar />
         {children}
         <Offset />
-      </Main>
+      </main>
     </StyledLayout>
   );
 };

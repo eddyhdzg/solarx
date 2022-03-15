@@ -50,3 +50,8 @@ ui-debug.log
 
 # Custom
 # package-lock.json
+
+
+# Turbo
+*/**/turbo-build.log
+*/**/turbo-serve.log

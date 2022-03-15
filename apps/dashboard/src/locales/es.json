@@ -141,6 +141,10 @@
         "moreHome": {
           "more": "Más",
           "moreDescription": "Más sección."
+        },
+        "history": {
+          "history": "Historial",
+          "historyDescription": "Historial del usuario."
         }
       },
       "wallet": {

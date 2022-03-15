@@ -15,14 +15,6 @@ export const Notch = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.grey[900],
 }));
 
-export const Main = styled("main")(({ theme }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(2),
-  [theme.breakpoints.up("sm")]: {
-    padding: theme.spacing(3),
-  },
-}));
-
 export const Toolbar = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
