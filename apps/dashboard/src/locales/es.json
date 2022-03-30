@@ -145,6 +145,14 @@
         "history": {
           "history": "Historial",
           "historyDescription": "Historial del usuario."
+        },
+        "receipt": {
+          "receipt": "Recivo",
+          "receiptDescription": "Recivo.",
+          "date": "FECHA",
+          "paymentMethod": "MÉTODO DE PAGO",
+          "summary": "RESUMEN",
+          "each": "cada una"
         }
       },
       "wallet": {
@@ -309,7 +317,8 @@
       "more": "más",
       "project": "proyecto",
       "projects": "proyectos",
-      "wallet": "wallet"
+      "wallet": "wallet",
+      "history": "historial"
     },
     "snackbar": {
       "userEdited": "Usuario editado! 🔥",

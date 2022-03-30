@@ -5,13 +5,11 @@ export interface IGridItemProps extends GridProps {
 }
 
 export const GridItem = styled(
-  ({ xxs, ...rest }: IGridItemProps) => {
+  ({ xxs = 12, className, ...rest }: IGridItemProps) => {
     const xxsClass = `MuiGrid-grid-xxs-${xxs}`;
-    return <Grid item className={xxsClass} {...rest} />;
+    return <Grid item {...rest} className={xxsClass} />;
   },
-  {
-    shouldForwardProp: (prop) => prop !== "xxs",
-  }
+  {}
 )(() => ({}));
 
 export default GridItem;

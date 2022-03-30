@@ -102,7 +102,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             exists: userSharesProject.exists,
             name,
             projectId,
-            quantity: Number(qty),
+            quantity: qty,
             roi,
             uid,
           });
@@ -131,7 +131,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             investors: newInvestors,
             projectId,
             amount: amount_received,
-            qty: Number(qty),
+            qty,
           });
 
           await updateProjectPrice({
@@ -153,7 +153,7 @@ exports.confirmStripePayment_v0 = functions.firestore
           assignUserShares({
             priceId,
             projectId,
-            qty: Number(qty),
+            qty,
             uid,
           })
             .then(async () => {

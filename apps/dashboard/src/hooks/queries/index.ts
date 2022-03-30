@@ -16,6 +16,8 @@ export { default as useProjectSharesExist } from "./useProjectSharesExist";
 export { default as usePublicProjects } from "./usePublicProjects";
 export { default as useShares } from "./useShares";
 export { default as useUserHistory } from "./useUserHistory";
+export { default as useUserHistoryDoc } from "./useUserHistoryDoc";
+export { default as useUserPaymentDoc } from "./useUserPaymentDoc";
 export { default as useUserPaymentMethods } from "./useUserPaymentMethods";
 export { default as useUserWallet } from "./useUserWallet";
 export { default as useUserShares } from "./useUserShares";

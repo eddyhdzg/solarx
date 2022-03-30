@@ -4,6 +4,7 @@ import {
   PreferencesPage,
   AccountInformationPage,
   HistoryPage,
+  ReceiptPage,
 } from "pages";
 
 const MoreRoute = () => {
@@ -17,6 +18,9 @@ const MoreRoute = () => {
       </Route>
       <Route exact path="/more/history">
         <HistoryPage />
+      </Route>
+      <Route exact path="/more/history/receipt">
+        <ReceiptPage />
       </Route>
       <Route exact path="/more/profile">
         <AccountInformationPage />

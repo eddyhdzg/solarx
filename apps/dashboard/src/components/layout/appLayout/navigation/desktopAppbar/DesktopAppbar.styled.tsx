@@ -6,6 +6,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemButtonProps,
+  listItemButtonClasses,
 } from "@mui/material";
 import { NavLink, NavLinkProps } from "react-router-dom";
 
@@ -55,6 +56,9 @@ export const DesktopAppbarLi = styled(
   borderRadius: theme.shape.borderRadius,
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
+  [`&.Mui-selected .MuiListItemIcon-root`]: {
+    color: theme.palette.primary.main,
+  },
   "&:first-of-type": {
     marginTop: 0,
   },

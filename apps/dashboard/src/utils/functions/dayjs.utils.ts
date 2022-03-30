@@ -35,6 +35,11 @@ export const formatllll = (seconds: Timestamp["seconds"]) => {
   return dayjs.unix(seconds)?.tz()?.format("MMM D, YYYY h:mm A");
 };
 
+// Dic 21, 2021 5:15 PM
+export const formatDisplayDate = (seconds: Timestamp["seconds"] = 0) => {
+  return dayjs.unix(seconds)?.tz()?.format("MMM D • h:mm A");
+};
+
 export const formatllllCST = (seconds: Timestamp["seconds"]) => {
   return dayjs
     .unix(seconds)

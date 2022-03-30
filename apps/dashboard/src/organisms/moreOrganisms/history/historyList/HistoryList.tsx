@@ -4,20 +4,19 @@ import {
   ListItemButton,
   ListItemText,
   ListItemAvatar,
-  ListItemSecondaryAction,
-  Typography,
   ListSubheader,
 } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SavingsIcon from "@mui/icons-material/Savings";
 import { useUser } from "reactfire";
-import { useDisplayUserHistory, useUserHistory } from "hooks";
+import { useUserHistory, useFormatedUserHistory } from "hooks";
+import { Link } from "react-router-dom";
 
 export default function HistoryList() {
   const user = useUser();
   const { data } = useUserHistory(user.data?.uid);
-  const displayUserHistory = useDisplayUserHistory(data);
+  const displayUserHistory = useFormatedUserHistory(data);
 
   return (
     <>
@@ -34,6 +33,9 @@ export default function HistoryList() {
                   lineHeight: "unset",
                   mb: 1,
                   textTransform: "capitalize",
+                  ml: {
+                    sm: 2,
+                  },
                 }}
               >
                 {month}
@@ -45,38 +47,59 @@ export default function HistoryList() {
           >
             {transactions.map((transaction) => {
               return (
-                <ListItemButton key={transaction.date}>
+                <ListItemButton
+                  key={transaction.id}
+                  component={Link}
+                  to={`/more/history/receipt?id=${transaction.id}`}
+                >
                   <ListItemAvatar>
-                    <Avatar>
+                    <Avatar src={transaction.avatar}>
                       <SavingsIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <ListItemText
-                    primary={transaction.title}
-                    secondary={transaction.date}
-                  />
-                  <ListItemSecondaryAction>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flex: 1,
+                    }}
+                  >
+                    <ListItemText
+                      primary={transaction.title}
+                      secondary={transaction.date}
+                      sx={{
+                        textTransform: "capitalize",
+                        whiteSpace: "nowrap",
+                        minWidth: "auto",
+                      }}
+                    />
+                    <Box>
+                      <ListItemText
+                        primary={transaction.value}
+                        secondary={transaction.description}
+                        sx={{
+                          textAlign: "right",
+                          [` .MuiListItemText-primary`]: {
+                            fontWeight: 700,
+                          },
+                          [` .MuiListItemText-secondary`]: {
+                            pl: 1.5,
+                          },
+                        }}
+                      />
+                    </Box>
                     <Box
                       sx={{
                         display: "flex",
                         alignItems: "center",
                       }}
                     >
-                      <Box>
-                        <Typography variant="subtitle1">
-                          {transaction.value}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary">
-                          {transaction.description}
-                        </Typography>
-                      </Box>
                       <ChevronRightIcon
                         sx={{
                           ml: 2,
                         }}
                       />
                     </Box>
-                  </ListItemSecondaryAction>
+                  </Box>
                 </ListItemButton>
               );
             })}
