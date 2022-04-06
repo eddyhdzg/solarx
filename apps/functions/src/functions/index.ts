@@ -1,4 +1,4 @@
-// export * from "./local";
+export * from "./local";
 export * from "./prices";
 export * from "./projects";
 export * from "./shares/createShares";

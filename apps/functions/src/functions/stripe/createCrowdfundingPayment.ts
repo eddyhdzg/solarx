@@ -58,9 +58,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
     }
 
     const userDocRef = db.collection("users").doc(context.auth?.uid || "");
-
     const paymentsColRef = userDocRef.collection("payments");
-
     const projectDocRef = db.collection("projects").doc(projectId);
 
     const projectPriceDocRef = db
@@ -147,11 +145,11 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
         idempotencyKey,
       }
     );
+
     if (paymentIntent.status === "succeeded")
       await paymentsColRef
         .doc(idempotencyKey)
         .set(paymentIntent, { merge: true });
-
     return { ...paymentIntent, doc: idempotencyKey };
   }
 );

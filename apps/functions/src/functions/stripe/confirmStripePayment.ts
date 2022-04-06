@@ -19,12 +19,7 @@ import {
 exports.confirmStripePayment_v0 = functions.firestore
   .document("users/{uid}/payments/{pushId}")
   .onUpdate(async (change, context) => {
-    if (change.after.data().status === "requires_confirmation") {
-      const payment = await stripe.paymentIntents.confirm(
-        change.after.data().id
-      );
-      return change.after.ref.set(payment);
-    } else if (
+    if (
       change.after.data().status === "succeeded" &&
       !change.after.data().metadata?.transaction
     ) {
@@ -184,5 +179,10 @@ exports.confirmStripePayment_v0 = functions.firestore
           });
           return change.after.ref.update(payment);
         });
+    } else if (change.after.data().status === "requires_confirmation") {
+      const payment = await stripe.paymentIntents.confirm(
+        change.after.data().id
+      );
+      return change.after.ref.set(payment);
     }
   });

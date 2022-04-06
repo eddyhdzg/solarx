@@ -12,7 +12,6 @@ exports.addPaymentMethodDetails = functions.firestore
       const paymentMethod = await stripe.paymentMethods.retrieve(
         paymentMethodId
       );
-
       return snap.ref.set(paymentMethod, { merge: true });
     } catch (error) {
       throw new functions.https.HttpsError(
