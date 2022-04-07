@@ -1,6 +1,11 @@
 {
-  "extends": "tsconfig/react-app.json",
-  "compilerOptions": {},
+  "extends": "tsconfig/base.json",
+  "compilerOptions": {
+    "downlevelIteration": true,
+    "outDir": "lib",
+  },
   "exclude": ["lib", "node_modules"],
-  "include": ["./src"],
+  "include": [
+    "src"
+  ]
 }

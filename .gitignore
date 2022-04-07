@@ -36,6 +36,7 @@ ui-debug.log
 #functions
 /apps/functions/lib
 /apps/functions/.runtimeconfig.json
+/apps/functions/node_modules
 
 # landing
 /apps/landing/build
