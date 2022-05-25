@@ -41,7 +41,7 @@ export interface UserHistory {
   description?: string;
   tags?: string[];
   title?: string;
-  type: "crowdfund";
+  type?: "crowdfund";
   payment?: string;
 }
 

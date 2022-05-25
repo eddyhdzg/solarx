@@ -17,6 +17,7 @@ export default function HistoryList() {
   const user = useUser();
   const { data } = useUserHistory(user.data?.uid);
   const displayUserHistory = useFormatedUserHistory(data);
+  console.log(data, displayUserHistory);
 
   return (
     <>

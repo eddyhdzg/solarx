@@ -11,6 +11,7 @@ export default function ReceiptData() {
   };
   const user = useUser();
   const { data: payment } = useUserPaymentDoc(user.data?.uid, id);
+  console.log(payment);
 
   return (
     <Box
