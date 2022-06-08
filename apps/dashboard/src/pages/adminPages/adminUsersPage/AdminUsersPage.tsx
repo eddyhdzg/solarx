@@ -15,9 +15,7 @@ export default function AdminUsersPage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.users.users", {
-          postProcess: "capitalize",
-        })}
+        title={t("pages.admin.users.users")}
         description={t("pages.admin.users.usersDescription")}
       />
       <AdminUsersTemplate />

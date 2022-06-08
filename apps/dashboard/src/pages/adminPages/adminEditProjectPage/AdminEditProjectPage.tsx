@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo, PageTitle } from "components";
+import { Seo } from "components";
 import { useTranslation } from "react-i18next";
 import { AdminEditProjectTemplate } from "templates";
 
@@ -18,7 +18,6 @@ export default function AdminEditProjectPage() {
         title={t("pages.admin.editProject.editProject")}
         description={t("pages.admin.editProject.editProjectDescription")}
       />
-      <PageTitle>{t("pages.admin.editProject.editProject")}</PageTitle>
       <AdminEditProjectTemplate />
     </>
   );

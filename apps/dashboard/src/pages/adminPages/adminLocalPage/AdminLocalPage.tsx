@@ -15,9 +15,7 @@ export default function AdminLocalPage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.local.local", {
-          postProcess: "capitalize",
-        })}
+        title={t("pages.admin.local.local")}
         description={t("pages.admin.local.localDescription")}
       />
       <AdminLocalTemplate />

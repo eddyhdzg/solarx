@@ -10,8 +10,9 @@ export default function CrowdfundingProjectsTemplate() {
   const section: ProjectSection = "crowdfunding";
   const { data } = usePublicProjects();
   const table = useProjectsTable({ data, section });
+
   return (
-    <Container disableGutters maxWidth="xl">
+    <Container maxWidth="xl">
       <PageTitle>
         {t("pages.crowdfunding.projects.crowdfundingProjects")}
       </PageTitle>

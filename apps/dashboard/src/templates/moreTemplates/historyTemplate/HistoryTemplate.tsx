@@ -1,15 +1,15 @@
 import { Box, Container } from "@mui/material";
 import { HistoryList } from "organisms";
 import { useTranslation } from "react-i18next";
-import { PageTitle, ContentContainer } from "components";
+import { PageTitle } from "components";
 
 export default function HistoryTemplate() {
   const { t } = useTranslation();
   return (
-    <Container disableGutters maxWidth="xl">
-      <ContentContainer>
+    <>
+      <Container maxWidth="xl">
         <PageTitle>{t("pages.more.history.history")}</PageTitle>
-      </ContentContainer>
+      </Container>
       <Box
         sx={{
           maxWidth: {
@@ -19,6 +19,6 @@ export default function HistoryTemplate() {
       >
         <HistoryList />
       </Box>
-    </Container>
+    </>
   );
 }

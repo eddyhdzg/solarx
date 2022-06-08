@@ -2,22 +2,7 @@ import { styled, Grid, GridProps } from "@mui/material";
 import { GridItem } from "components";
 
 const Background = styled("div")(({ theme }) => ({
-  position: "relative",
   backgroundImage: theme.custom.elevation[0],
-  marginLeft: theme.spacing(-2),
-  marginRight: theme.spacing(-2),
-  paddingLeft: theme.spacing(2),
-  paddingRight: theme.spacing(2),
-  marginBottom: theme.spacing(-2),
-  paddingBottom: theme.spacing(2),
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(-3),
-    marginRight: theme.spacing(-3),
-    paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3),
-    marginBottom: theme.spacing(-3),
-    paddingBottom: theme.spacing(3),
-  },
 }));
 
 const HeaderGrid = styled(Grid)(({ theme }) => ({

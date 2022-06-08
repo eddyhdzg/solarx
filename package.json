@@ -44,37 +44,6 @@
     "prettier": "^2.5.1",
     "turbo": "latest"
   },
-  "turbo": {
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          "dist/**",
-          ".next/**"
-        ]
-      },
-      "test": {
-        "dependsOn": [
-          "build"
-        ]
-      },
-      "serve": {},
-      "lint": {},
-      "dev": {
-        "cache": false
-      },
-      "storybook": {
-        "cache": false
-      },
-      "build-storybook": {
-        "outputs": [
-          "storybook-static/**"
-        ]
-      }
-    }
-  },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"

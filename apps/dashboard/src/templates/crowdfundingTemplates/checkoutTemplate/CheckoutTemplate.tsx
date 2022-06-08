@@ -11,7 +11,15 @@ import { CreateCrowdfundingPaymentForm } from "forms";
 export default function CheckoutTemplate() {
   return (
     <>
-      <Container disableGutters maxWidth="xl">
+      <Box
+        sx={{
+          mb: {
+            xxs: 2,
+            sm: 3,
+          },
+        }}
+      />
+      <Container maxWidth="xl">
         <Styled.Paper>
           <Styled.Header>
             <Styled.HeaderContainer>

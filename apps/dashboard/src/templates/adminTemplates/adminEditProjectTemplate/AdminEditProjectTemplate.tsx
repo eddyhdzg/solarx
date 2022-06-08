@@ -1,5 +1,5 @@
-import { GridItem } from "components";
-import { Tabs, Tab, Grid } from "@mui/material";
+import { PageTitle, GridItem } from "components";
+import { Container, Tabs, Tab, Grid } from "@mui/material";
 import { TabContext } from "@mui/lab";
 import {
   EditProjectGeneralForm,
@@ -32,7 +32,8 @@ export default function AdminEditProjectTemplate() {
   };
 
   return (
-    <>
+    <Container maxWidth="xl">
+      <PageTitle>{t("pages.admin.editProject.editProject")}</PageTitle>
       <EditProjectTabsContainer>
         <Tabs
           value={Number(tab)}
@@ -79,6 +80,6 @@ export default function AdminEditProjectTemplate() {
           </GridItem>
         </TabContext>
       </Grid>
-    </>
+    </Container>
   );
 }

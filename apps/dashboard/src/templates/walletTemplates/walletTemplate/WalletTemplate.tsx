@@ -9,12 +9,8 @@ export default function WalletTemplate() {
   const lg = useBreakpoint("lg");
   const { t } = useTranslation();
   return (
-    <Container maxWidth="xl" disableGutters>
-      <PageTitle>
-        {t("pages.wallet.title", {
-          postProcess: "capitalize",
-        })}
-      </PageTitle>
+    <Container maxWidth="xl">
+      <PageTitle>{t("pages.wallet.title")}</PageTitle>
       <AuthWrapper>
         {lg ? <WalletDesktopLayout /> : <WalletMobileLayout />}
       </AuthWrapper>

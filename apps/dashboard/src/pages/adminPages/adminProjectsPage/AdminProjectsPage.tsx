@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo, PageTitle } from "components";
+import { Seo } from "components";
 import { useTranslation } from "react-i18next";
 import { AdminProjectsTemplate } from "templates";
 
@@ -18,7 +18,6 @@ export default function AdminProjectsPage() {
         title={t("pages.admin.projects.administratorProjects")}
         description={t("pages.admin.projects.administratorProjectsDescription")}
       />
-      <PageTitle>{t("pages.admin.projects.administratorProjects")}</PageTitle>
       <AdminProjectsTemplate />
     </>
   );

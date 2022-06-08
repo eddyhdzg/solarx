@@ -1,14 +1,10 @@
-import { Typography, styled, Chip } from "@mui/material";
+import { styled, Chip } from "@mui/material";
 
 export const ProjectHeaderRoot = styled("div")({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "flex-end",
 });
-
-export const ProjectName = styled(Typography)(({ theme }) => ({
-  marginBottom: theme.spacing(1.5),
-})) as typeof Typography;
 
 export const ProjectHeaderWrapper = styled("div")({
   display: "flex",

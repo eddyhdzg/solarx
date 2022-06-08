@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Seo, PageTitle } from "components";
+import { Seo } from "components";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
 import { PreferencesTemplate } from "templates";
@@ -18,7 +18,6 @@ export default function PreferencesPage() {
         title={t("pages.more.preferences.preferences")}
         description={t("pages.more.preferences.preferencesDescription")}
       />
-      <PageTitle>{t("pages.more.preferences.preferences")}</PageTitle>
       <PreferencesTemplate />
     </>
   );

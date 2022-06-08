@@ -13,7 +13,7 @@ export default function MoreHomeTemplate() {
   }, [onChangeRoute]);
 
   return (
-    <Container maxWidth="xl" disableGutters>
+    <Container maxWidth="xl">
       <PageTitle>{t("pages.more.moreHome.more")}</PageTitle>
       <Grid container spacing={3}>
         <GridItem xs={6} sm={4} md={3}>

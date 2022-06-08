@@ -12,8 +12,12 @@ import { useUsersColumns, useStore, useUsersFilters } from "hooks";
 import shallow from "zustand/shallow";
 import { usersSearchFilters } from "constant";
 import { fuzzyTextFilterFn } from "utils";
+import { useTranslation } from "react-i18next";
+import { PageTitle } from "components";
+import { Container } from "@mui/material";
 
 export default function AdminUsersTemplate() {
+  const { t } = useTranslation();
   const { data: firestoreUsers } = useFirestoreUsers();
   const usersColumns = useUsersColumns();
   const globalFilter = useFuzzyGlobalFilter(usersSearchFilters);
@@ -48,5 +52,10 @@ export default function AdminUsersTemplate() {
     data: table?.data,
   });
 
-  return <UsersTableLayout table={table} />;
+  return (
+    <Container maxWidth="xl">
+      <PageTitle>{t("pages.admin.users.users")}</PageTitle>
+      <UsersTableLayout table={table} />
+    </Container>
+  );
 }

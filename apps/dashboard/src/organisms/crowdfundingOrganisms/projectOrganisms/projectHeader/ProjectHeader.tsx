@@ -1,11 +1,10 @@
 import { Project } from "solarx-types";
-import { ShareButton } from "components";
+import { ShareButton, PageTitle } from "components";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import WorkOutlineRoundedIcon from "@mui/icons-material/WorkOutlineRounded";
 import {
   ProjectHeaderRoot,
-  ProjectName,
   ProjectHeaderWrapper,
   StyledChip,
   ShareButtonContainer,
@@ -26,9 +25,9 @@ const ProjectHeader: React.FC<IProjectHeader> = ({
   return (
     <ProjectHeaderRoot>
       <div>
-        <ProjectName variant="h4" component="h3">
+        <PageTitle component="h3" variant="h4">
           {name}
-        </ProjectName>
+        </PageTitle>
         <ProjectHeaderWrapper>
           <StyledChip
             label={`${city}, ${state}`}
