@@ -1,4 +1,4 @@
-import { CreditCardIcon } from "components";
+import { CreditCardIcon, CreditCardIconProps } from "atomic";
 import {
   ListItemButton,
   ListItemButtonProps,
@@ -10,7 +10,6 @@ import {
   List,
   ListProps,
 } from "@mui/material";
-import { CreditCardIconProps } from "../../../../components/dataDisplay/creditCardIcon/CreditCardIcon";
 
 export const StyledList = styled(List)({
   width: "100%",

@@ -4,3 +4,12 @@ export interface CreateCrowdfundingPayment {
   projectId?: string;
   qty?: number;
 }
+
+export type StripePaymentProcessorBrand =
+  | "amex"
+  | "diners"
+  | "discover"
+  | "jcb"
+  | "mastercard"
+  | "unionpay"
+  | "visa";

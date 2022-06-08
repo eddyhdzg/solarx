@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CardActionArea, CardContent, Typography } from "@mui/material";
 import { Project } from "solarx-types";
 import { Link } from "react-router-dom";
-import { GradientLinearProgress } from "components";
+import { GradientLinearProgress } from "atomic";
 import { useTranslation } from "react-i18next";
 import { formatPercentage2Dec, formatMoney } from "utils";
 import {

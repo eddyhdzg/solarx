@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { AdminWrapper } from "components";
+import { AdminWrapper } from "atomic";
 import {
   AdminHomePage,
   AdminEditProjectPage,

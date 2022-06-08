@@ -1,23 +1,24 @@
 import { useState } from "react";
+import { useSigninCheck } from "reactfire";
+import { useCustomAuth } from "hooks";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { SignInWithGoogle } from "atomic";
 import {
   Avatar,
+  Menu,
   MenuItem,
   ListItemIcon,
   Divider,
   IconButton,
   Tooltip,
+  menuClasses,
 } from "@mui/material";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useSigninCheck } from "reactfire";
-import { useCustomAuth } from "hooks";
-import { SignInWithGoogle } from "components";
-import { useTranslation } from "react-i18next";
-import { AccountButtonMenu } from "./AccountButton.styled";
-import { Link } from "react-router-dom";
 
-export default function AccountMenu() {
+export default function AccountButton() {
   const { t } = useTranslation();
   const { signOut } = useCustomAuth();
   const { data: signinResult } = useSigninCheck();
@@ -52,13 +53,19 @@ export default function AccountMenu() {
       ) : (
         <SignInWithGoogle />
       )}
-      <AccountButtonMenu
+      <Menu
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         onClick={handleClose}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        sx={(theme) => ({
+          [`& .${menuClasses.paper}`]: {
+            mt: 1.5,
+            minWidth: theme.spacing(25),
+          },
+        })}
       >
         <MenuItem component={Link} to="/more/profile">
           <ListItemIcon>
@@ -79,7 +86,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           {t("auth.signOut")}
         </MenuItem>
-      </AccountButtonMenu>
+      </Menu>
     </>
   );
 }

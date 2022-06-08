@@ -1,6 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  LinearProgress,
+  Typography,
+  linearProgressClasses,
+} from "@mui/material";
 import { Project } from "solarx-types";
-import { GradientLinearProgress } from "./LinearWithValueLabel.styled";
 
 interface LinearWithValueLabelProps
   extends Pick<Project, "sharesSold" | "totalShares"> {
@@ -17,13 +21,19 @@ export default function LinearWithValueLabel({
     <Box sx={{ width: "100%", textAlign: "right" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Box sx={{ width: "100%" }}>
-          <GradientLinearProgress
+          <LinearProgress
             variant="determinate"
             value={value}
             aria-label="progress-bar"
-            sx={{
+            sx={(theme) => ({
               width: 80,
-            }}
+              borderRadius: 1,
+              backgroundColor: theme.palette.grey[700],
+              [`& .${linearProgressClasses.bar}`]: {
+                background: theme.custom.gradient,
+                borderRadius: 1,
+              },
+            })}
           />
         </Box>
         <Box sx={{ minWidth: 32 }}>

@@ -9,5 +9,6 @@ export * from "./shares.types";
 export * from "./store.types";
 export * from "./stripe.types";
 export * from "./theme.types";
+export * from "./typeFest.types";
 export * from "./users.types";
 export * from "./wallet.types";

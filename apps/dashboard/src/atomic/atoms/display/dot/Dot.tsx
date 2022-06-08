@@ -1,6 +1,6 @@
-import { useTheme } from "@mui/material";
-import { DotRoot } from "./Dot.styled";
+import { Box, useTheme } from "@mui/material";
 
+// FIXME
 export interface IDotProps {
   color?: "default" | "green" | "red" | "stocks" | "totalBalance";
 }
@@ -15,5 +15,15 @@ export default function Dot({ color = "default" }: IDotProps) {
     totalBalance: theme.custom.totalBalance,
   };
 
-  return <DotRoot backgroundColor={colorMap[color]} />;
+  return (
+    <Box
+      sx={{
+        p: 0.5,
+        mr: 1.5,
+        borderRadius: "50%",
+        display: "inline-block",
+        backgroundColor: colorMap[color],
+      }}
+    />
+  );
 }

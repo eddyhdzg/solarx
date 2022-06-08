@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { TBaseRoutes } from "solarx-types";
 import { RouterTree } from "hooks/router/useRouterTree";
-import { DesktopTooltip } from "components";
+import { DesktopTooltip } from "atomic";
 import logo from "assets/images/logo.svg";
 import {
   DesktopAppbarDrawer,

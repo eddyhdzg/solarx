@@ -1,5 +1,6 @@
 import { Container } from "@mui/material";
-import { PageTitle, AuthWrapper } from "components";
+import { PageTitle } from "components";
+import { AuthWrapper } from "atomic";
 import { AccountInformationForm } from "forms";
 import { useTranslation } from "react-i18next";
 
