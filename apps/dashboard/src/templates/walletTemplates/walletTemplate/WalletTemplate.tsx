@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
 import { useBreakpoint } from "hooks";
-import { PageTitle } from "components";
+import { PageTitle } from "atomic";
 import { AuthWrapper } from "atomic";
 import { useTranslation } from "react-i18next";
 import WalletDesktopLayout from "./walletDesktopLayout/WalletDesktopLayout";

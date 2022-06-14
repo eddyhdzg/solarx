@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ProjectsTableLayout } from "tables";
-import { PageTitle } from "components";
+import { PageTitle } from "atomic";
 import { Container } from "@mui/material";
 import { ProjectSection } from "solarx-types";
 import { useProjectsTable, usePublicProjects } from "hooks";

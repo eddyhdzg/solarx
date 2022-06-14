@@ -1,7 +1,7 @@
+import { Box, Chip } from "@mui/material";
 import { useRouterState } from "hooks";
 import { stringToBoolean } from "utils";
 import { useTranslation } from "react-i18next";
-import { StyledUl, StyledChip } from "./FilterChips.styled";
 
 export default function FilterChips() {
   const { t } = useTranslation();
@@ -19,30 +19,45 @@ export default function FilterChips() {
   };
 
   return (
-    <StyledUl>
+    <Box
+      component="ul"
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        ml: 0.5,
+      }}
+    >
       {funded && (
         <li>
-          <StyledChip
+          <Chip
             label={
               stringToBoolean(funded.toString())
                 ? t("projects.funded")
                 : t("projects.notFunded")
             }
             onDelete={handleDelete("funded")}
+            sx={{
+              ml: 0.5,
+              mb: 0.5,
+            }}
           />
         </li>
       )}
 
       {Boolean(basePriceFrom) && Boolean(basePriceTo) && (
         <li>
-          <StyledChip
+          <Chip
             label={`$${basePriceFrom} MXN - $${basePriceTo} MXN`}
             onDelete={() => {
               handleDeleteMultiple(["basePriceTo", "basePriceFrom"]);
             }}
+            sx={{
+              ml: 0.5,
+              mb: 0.5,
+            }}
           />
         </li>
       )}
-    </StyledUl>
+    </Box>
   );
 }

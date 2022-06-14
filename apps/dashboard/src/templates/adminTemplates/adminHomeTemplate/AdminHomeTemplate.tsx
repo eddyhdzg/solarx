@@ -1,5 +1,6 @@
 import { Container, Grid } from "@mui/material";
-import { GridItem, SectionButton, PageTitle } from "components";
+import { GridItem } from "components";
+import { PageTitle, SectionButton } from "atomic";
 import { useTranslation } from "react-i18next";
 
 export default function AdminHomeTemplate() {

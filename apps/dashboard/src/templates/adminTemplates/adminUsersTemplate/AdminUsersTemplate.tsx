@@ -13,7 +13,7 @@ import shallow from "zustand/shallow";
 import { usersSearchFilters } from "constant";
 import { fuzzyTextFilterFn } from "utils";
 import { useTranslation } from "react-i18next";
-import { PageTitle } from "components";
+import { PageTitle } from "atomic";
 import { Container } from "@mui/material";
 
 export default function AdminUsersTemplate() {

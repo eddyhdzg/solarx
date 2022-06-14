@@ -8,7 +8,8 @@ import {
   fomatNumInYears,
   formatllllCST,
 } from "utils";
-import { GradientLinearProgress, Counter } from "components";
+import { Counter } from "components";
+import { GradientLinearProgress } from "atomic";
 import { Project } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import {

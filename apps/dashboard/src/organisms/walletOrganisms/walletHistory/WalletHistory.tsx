@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { Dot } from "components";
+import { Dot } from "atomic";
 import { useUserHistory, useDisplayUserHistory } from "hooks";
 import { useUser } from "reactfire";
 import { useTranslation } from "react-i18next";

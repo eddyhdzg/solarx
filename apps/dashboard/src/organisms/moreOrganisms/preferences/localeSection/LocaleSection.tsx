@@ -1,20 +1,29 @@
-import { Divider, Typography, Grid } from "@mui/material";
-import { LocaleSelect, SectionBlock, GridItem } from "components";
+import { Box, Paper, Divider, Typography, Grid } from "@mui/material";
+import { LocaleSelect, GridItem } from "components";
 import { useTranslation } from "react-i18next";
 
 export default function LocaleSection() {
   const { t } = useTranslation();
-  const { Row } = SectionBlock;
 
   return (
-    <SectionBlock>
-      <Row>
+    <Paper>
+      <Box
+        sx={{
+          py: 2,
+          px: 3,
+        }}
+      >
         <Typography variant="subtitle1">
           {t("pages.more.preferences.language")}
         </Typography>
-      </Row>
+      </Box>
       <Divider />
-      <Row>
+      <Box
+        sx={{
+          py: 2,
+          px: 3,
+        }}
+      >
         <Grid container spacing={3}>
           <GridItem xs={5} sm={4}>
             <Typography variant="body2">
@@ -25,7 +34,7 @@ export default function LocaleSection() {
             <LocaleSelect fullWidth />
           </GridItem>
         </Grid>
-      </Row>
-    </SectionBlock>
+      </Box>
+    </Paper>
   );
 }

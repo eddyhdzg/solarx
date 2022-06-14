@@ -13,12 +13,12 @@ export default function GradientLinearProgress({
       aria-label="progress-bar"
       value={value}
       sx={(theme) => ({
-        height: 1,
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: theme.palette.grey[700],
+        height: 8,
+        borderRadius: 1,
+        backgroundColor: "grey.700",
         "& .MuiLinearProgress-bar": {
           background: theme.custom.gradient,
-          borderRadius: theme.shape.borderRadius,
+          borderRadius: 1,
         },
       })}
     />

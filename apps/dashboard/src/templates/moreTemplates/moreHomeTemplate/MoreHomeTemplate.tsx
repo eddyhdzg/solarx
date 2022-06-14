@@ -1,6 +1,7 @@
 import { Grid, Container } from "@mui/material";
 import { useEffect } from "react";
-import { GridItem, SectionButton, PageTitle } from "components";
+import { GridItem } from "components";
+import { PageTitle, SectionButton } from "atomic";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
 

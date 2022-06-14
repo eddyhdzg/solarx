@@ -1,6 +1,5 @@
-import { Typography, Link } from "@mui/material";
+import { Paper, Typography, Link } from "@mui/material";
 import { Link as RouterLink, LinkProps } from "react-router-dom";
-import { SectionButtonPaper } from "./SectionButton.styled";
 
 interface ISectionButtonProps {
   title: string;
@@ -15,12 +14,16 @@ export default function SectionButton({
 }: ISectionButtonProps) {
   return (
     <Link component={RouterLink} to={to}>
-      <SectionButtonPaper>
+      <Paper
+        sx={{
+          p: 2,
+        }}
+      >
         <Typography variant="h6">{emoji}</Typography>
         <Typography noWrap variant="subtitle1">
           {title}
         </Typography>
-      </SectionButtonPaper>
+      </Paper>
     </Link>
   );
 }

@@ -9,7 +9,7 @@ export interface CreditCardIconProps {
   style?: React.CSSProperties;
 }
 
-export function CreditCardIcon({ card, ...rest }: CreditCardIconProps) {
+export default function CreditCardIcon({ card, ...rest }: CreditCardIconProps) {
   switch (card) {
     case "amex":
       return <Amex {...rest} />;

@@ -1,6 +1,7 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
-import { GridItem, DropzoneField, ImagesPreview } from "components";
+import { GridItem, DropzoneField } from "components";
+import { ImagesPreview } from "atomic";
 import { IEditProjectMediaSchema, useProject } from "hooks";
 import { SubmitForm, ProjectIDParams } from "solarx-types";
 import { useTranslation } from "react-i18next";

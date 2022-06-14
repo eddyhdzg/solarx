@@ -7,8 +7,10 @@ import {
   InputLabel,
   SelectChangeEvent,
   Select,
+  Box,
+  Paper,
 } from "@mui/material";
-import { SectionBlock, GridItem } from "components";
+import { GridItem } from "components";
 import { useTranslation } from "react-i18next";
 import { useRole, usePrivateProjects } from "hooks";
 import { moderatorArray } from "constant";
@@ -22,7 +24,6 @@ export default function LocalTriggers() {
   const role = useRole();
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const { Row } = SectionBlock;
   const functions = useFunctions();
   const { data: projects } = usePrivateProjects();
   const handleChange = (e: SelectChangeEvent) => {
@@ -60,14 +61,24 @@ export default function LocalTriggers() {
   };
 
   return (
-    <SectionBlock>
-      <Row>
+    <Paper>
+      <Box
+        sx={{
+          py: 2,
+          px: 3,
+        }}
+      >
         <Typography variant="subtitle1">
           {t("pages.admin.local.triggers")}
         </Typography>
-      </Row>
+      </Box>
       <Divider />
-      <Row>
+      <Box
+        sx={{
+          py: 2,
+          px: 3,
+        }}
+      >
         <Grid container spacing={3}>
           <GridItem sm={5}>
             <Typography variant="body2">
@@ -87,8 +98,13 @@ export default function LocalTriggers() {
             </Button>
           </Item>
         </Grid>
-      </Row>
-      <Row>
+      </Box>
+      <Box
+        sx={{
+          py: 2,
+          px: 3,
+        }}
+      >
         <Grid container spacing={3}>
           <GridItem sm={5}>
             <Typography variant="body2">
@@ -131,7 +147,7 @@ export default function LocalTriggers() {
             </Button>
           </Item>
         </Grid>
-      </Row>
-    </SectionBlock>
+      </Box>
+    </Paper>
   );
 }

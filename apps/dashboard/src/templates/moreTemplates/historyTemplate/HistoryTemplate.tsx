@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import { HistoryList } from "organisms";
 import { useTranslation } from "react-i18next";
-import { PageTitle } from "components";
+import { PageTitle } from "atomic";
 
 export default function HistoryTemplate() {
   const { t } = useTranslation();
