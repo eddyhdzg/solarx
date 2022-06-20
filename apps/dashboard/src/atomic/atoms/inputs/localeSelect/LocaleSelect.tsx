@@ -3,12 +3,14 @@ import { locale } from "dayjs";
 import {
   FormControl,
   FormControlProps,
+  Select,
+  nativeSelectClasses,
   SelectChangeEvent,
 } from "@mui/material";
 import { localeOptions } from "constant";
 import { useTranslation } from "react-i18next";
 import { Locales } from "solarx-types";
-import { LanguageIcon, LanguageSelect } from "./LocaleSelect.styled";
+import Language from "@mui/icons-material/Language";
 
 const LocaleSelect: React.FC<FormControlProps> = (props) => {
   const { t, i18n } = useTranslation();
@@ -24,13 +26,28 @@ const LocaleSelect: React.FC<FormControlProps> = (props) => {
 
   return (
     <FormControl variant="outlined" {...props}>
-      <LanguageIcon />
-      <LanguageSelect
+      <Language
+        sx={{
+          margin: "auto",
+          position: "absolute",
+          top: 0,
+          left: 12,
+          bottom: 0,
+          pointerEvents: "none",
+        }}
+      />
+      <Select
         native
         value={i18n.language}
         onChange={handleChange}
         inputProps={{
           id: "locale-select",
+        }}
+        sx={{
+          maxWidth: 320,
+          [`& .${nativeSelectClasses.select}`]: {
+            pl: 6,
+          },
         }}
       >
         {localeOptions.map((option) => {
@@ -40,7 +57,7 @@ const LocaleSelect: React.FC<FormControlProps> = (props) => {
             </option>
           );
         })}
-      </LanguageSelect>
+      </Select>
     </FormControl>
   );
 };

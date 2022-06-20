@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { formatMoney } from "utils";
-import { Counter } from "components";
+import { Counter } from "atomic";
 import RadioButtonGradientChecked from "assets/icons/RadioButtonGradientChecked";
 import { Project, ProjectPrice } from "solarx-types";
 import { formatNumber } from "utils";

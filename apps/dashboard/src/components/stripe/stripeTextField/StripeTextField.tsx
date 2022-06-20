@@ -9,7 +9,7 @@ import {
   IdealBankElement,
 } from "@stripe/react-stripe-js";
 import { TextFieldProps } from "@mui/material";
-import { StyledTextField } from "components";
+import { StyledTextField } from "atomic";
 import StripeInput from "./stripeInput/StripeInput";
 
 type StripeElement =

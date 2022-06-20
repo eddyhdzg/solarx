@@ -1,11 +1,11 @@
 import { Grid, InputAdornment, Paper, Typography, Button } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 import {
-  NumberFormatInput,
-  GridItem,
-  StyledTextField,
   CurrencyField,
-} from "components";
+  GridItem,
+  NumberFormatInput,
+  StyledTextField,
+} from "atomic";
 import { IEditProjectNumberSchema } from "hooks";
 import { useTranslation } from "react-i18next";
 import { checkKeyDown } from "utils";

@@ -1,5 +1,4 @@
-import { GridItem } from "components";
-import { PageTitle } from "atomic";
+import { GridItem, PageTitle } from "atomic";
 import { Box, Container, Grid } from "@mui/material";
 import { LocaleSection } from "organisms";
 import { useTranslation } from "react-i18next";

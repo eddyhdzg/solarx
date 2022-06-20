@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useProject, useHeader } from "hooks";
-import { CenterLoader, Seo } from "components";
+import { Seo } from "components";
+import { CenterLoader } from "atomic";
 import { useTranslation } from "react-i18next";
 import { CheckoutTemplate } from "templates";
 import { ProjectIDParams } from "solarx-types";

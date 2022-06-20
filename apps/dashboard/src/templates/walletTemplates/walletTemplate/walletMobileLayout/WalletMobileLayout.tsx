@@ -8,7 +8,7 @@ import {
   WalletTimeline,
 } from "organisms";
 import { Grid } from "@mui/material";
-import { GridItem } from "components";
+import { GridItem } from "atomic";
 import { useTranslation } from "react-i18next";
 import {
   StyledTabs,

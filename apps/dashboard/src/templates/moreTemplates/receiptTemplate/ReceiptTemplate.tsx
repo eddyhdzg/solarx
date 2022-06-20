@@ -1,6 +1,5 @@
 import { Box, Container, Paper, Grid } from "@mui/material";
-import { GridItem } from "components";
-import { PageTitle } from "atomic";
+import { GridItem, PageTitle } from "atomic";
 import { useBreakpoint } from "hooks";
 import {
   ReceiptActions,

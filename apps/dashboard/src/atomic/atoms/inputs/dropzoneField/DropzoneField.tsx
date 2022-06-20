@@ -2,7 +2,8 @@ import { useFormContext, Controller } from "react-hook-form";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { DropzoneFieldBox, CloudUploadIcon } from "./DropzoneField.styled";
+import CloudUpload from "@mui/icons-material/CloudUpload";
+import { DropzoneFieldBox } from "./DropzoneField.styled";
 
 interface IDropzoneProps extends DropzoneOptions {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -29,7 +30,11 @@ const Dropzone = ({
       {...getRootProps({ className: "dropzone" })}
     >
       <input {...getInputProps({ onChange })} />
-      <CloudUploadIcon />
+      <CloudUpload
+        sx={{
+          mb: 2,
+        }}
+      />
       <Typography variant="body2" component="p" color="inherit">
         {text}
       </Typography>
@@ -41,7 +46,7 @@ interface IDropzoneFieldProps extends DropzoneOptions {
   name: string;
 }
 
-const DropzoneField = ({ name, ...rest }: IDropzoneFieldProps) => {
+export default function DropzoneField({ name, ...rest }: IDropzoneFieldProps) {
   const { control } = useFormContext();
 
   return (
@@ -68,6 +73,4 @@ const DropzoneField = ({ name, ...rest }: IDropzoneFieldProps) => {
       defaultValue={null}
     />
   );
-};
-
-export default DropzoneField;
+}

@@ -1,7 +1,7 @@
 import { IconButton, TableCell, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Controller, useFormContext } from "react-hook-form";
-import { NumberFormatInput, StyledTextField } from "components";
+import { NumberFormatInput, StyledTextField } from "atomic";
 import { SubmitForm, ProjectPrice } from "solarx-types";
 import { IEditProjectPriceSchema } from "hooks";
 import { formatMoney, formatPercentage2Dec } from "utils";

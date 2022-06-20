@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { GridItem } from "components";
+import { GridItem } from "atomic";
 import {
   WalletHistory,
   WalletBalance,

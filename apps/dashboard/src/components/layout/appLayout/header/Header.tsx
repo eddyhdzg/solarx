@@ -1,19 +1,13 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, AppBar, Toolbar, Box } from "@mui/material";
 import { HideOnScroll } from "components";
 import { AccountButton } from "atomic";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import shallow from "zustand/shallow";
 import { useStore } from "hooks";
 import { Link } from "react-router-dom";
-import {
-  StyledAppBar,
-  StyledToolbar,
-  BackButtonWrapper,
-  ActionsWrapper,
-} from "./Header.styled";
 
-const Header: React.FC = () => {
+export default function Header() {
   const { backButton } = useStore(
     ({ backButton }) => ({ backButton }),
     shallow
@@ -21,9 +15,27 @@ const Header: React.FC = () => {
 
   return (
     <HideOnScroll>
-      <StyledAppBar position="fixed" color="default">
-        <StyledToolbar>
-          <BackButtonWrapper>
+      <AppBar
+        position="fixed"
+        color="default"
+        sx={(theme) => ({
+          paddingTop: "env(safe-area-inset-top)",
+          zIndex: theme.zIndex.drawer - 1,
+        })}
+      >
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
+            pl: {
+              sm: 10,
+            },
+          }}
+        >
+          <Box
+            sx={{
+              ml: "env(safe-area-inset-left)",
+            }}
+          >
             {backButton.text && backButton.url && (
               <Button
                 startIcon={<ArrowBackRoundedIcon />}
@@ -37,14 +49,19 @@ const Header: React.FC = () => {
                 {backButton.text}
               </Button>
             )}
-          </BackButtonWrapper>
-          <ActionsWrapper>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              ml: 1,
+              marginRight: "env(safe-area-inset-right)",
+            }}
+          >
             <AccountButton />
-          </ActionsWrapper>
-        </StyledToolbar>
-      </StyledAppBar>
+          </Box>
+        </Toolbar>
+      </AppBar>
     </HideOnScroll>
   );
-};
-
-export default Header;
+}

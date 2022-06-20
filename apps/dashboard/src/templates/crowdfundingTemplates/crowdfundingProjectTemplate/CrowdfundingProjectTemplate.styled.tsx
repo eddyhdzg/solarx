@@ -1,5 +1,5 @@
 import { styled, Grid, GridProps } from "@mui/material";
-import { GridItem } from "components";
+import { GridItem } from "atomic";
 
 const Background = styled("div")(({ theme }) => ({
   backgroundImage: theme.custom.elevation[0],

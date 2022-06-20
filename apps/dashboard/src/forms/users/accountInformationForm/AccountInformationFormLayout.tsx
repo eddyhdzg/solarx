@@ -1,5 +1,5 @@
 import { Button, Divider, Grid, Typography } from "@mui/material";
-import { GridItem, StyledTextField } from "components";
+import { GridItem, StyledTextField } from "atomic";
 import { IEditUserSchema, useFirestoreUser } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 import { checkKeyDown } from "utils";

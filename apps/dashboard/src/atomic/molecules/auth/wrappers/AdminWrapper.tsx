@@ -1,6 +1,5 @@
 import { useIsAdmin } from "hooks";
-import { CenterLoader } from "components";
-import { MessagePaper } from "atomic";
+import { CenterLoader, MessagePaper } from "atomic";
 import { useTranslation } from "react-i18next";
 
 export default function AdminWrapper({

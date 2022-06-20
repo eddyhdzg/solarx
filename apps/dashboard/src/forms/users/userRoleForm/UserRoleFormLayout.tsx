@@ -1,7 +1,7 @@
 import { useRole, IEditRoleSchema } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 import { FormControl, InputLabel } from "@mui/material";
-import { StyledSelect } from "components";
+import { StyledSelect } from "atomic";
 import { UserRole } from "solarx-types";
 
 interface IRoleSelectProps {

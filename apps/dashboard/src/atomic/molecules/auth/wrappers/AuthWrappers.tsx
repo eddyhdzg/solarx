@@ -1,6 +1,5 @@
 import { useSigninCheck } from "reactfire";
-import { CenterLoader } from "components";
-import { MessagePaper } from "atomic";
+import { CenterLoader, MessagePaper } from "atomic";
 import { useTranslation } from "react-i18next";
 
 export default function AuthWrapper({

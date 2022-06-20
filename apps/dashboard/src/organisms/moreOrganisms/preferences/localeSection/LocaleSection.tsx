@@ -1,5 +1,5 @@
 import { Box, Paper, Divider, Typography, Grid } from "@mui/material";
-import { LocaleSelect, GridItem } from "components";
+import { GridItem, LocaleSelect } from "atomic";
 import { useTranslation } from "react-i18next";
 
 export default function LocaleSection() {

@@ -1,6 +1,4 @@
-export * from "./dataDisplay";
 export * from "./filters";
-export * from "./inputs";
 export * from "./navigation";
 export * from "./notion";
 export * from "./layout";

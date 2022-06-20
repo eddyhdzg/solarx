@@ -6,8 +6,8 @@ import {
 } from "@mui/lab";
 import AdapterDayjs from "@mui/lab/AdapterDayjs";
 import EventIcon from "@mui/icons-material/Event";
-import { StyledTextField } from "components";
 import { useTranslation } from "react-i18next";
+import { StyledTextField } from "atomic";
 
 interface IDateTimePickerProps
   extends Omit<MobileDatePickerProps, "renderInput"> {

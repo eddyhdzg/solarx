@@ -1,5 +1,4 @@
-import { GridItem } from "components";
-import { PageTitle } from "atomic";
+import { GridItem, PageTitle } from "atomic";
 import { Container, Tabs, Tab, Grid } from "@mui/material";
 import { TabContext } from "@mui/lab";
 import {

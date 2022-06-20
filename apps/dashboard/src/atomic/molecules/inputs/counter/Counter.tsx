@@ -1,3 +1,4 @@
+import { NumberFormatInput } from "atomic";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import {
@@ -6,7 +7,6 @@ import {
   CounterButtonLeft,
   CounterButtonRight,
 } from "./Counter.styled";
-import { NumberFormatInput } from "components";
 
 interface ICounterProps {
   onChangeShares: (num: number) => void;

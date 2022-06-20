@@ -7,7 +7,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-import { GridItem, StyledTextField, StyledSelect } from "components";
+import { GridItem, StyledSelect, StyledTextField } from "atomic";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { useTranslation } from "react-i18next";
 import { IProjectGeneralSchema } from "hooks";

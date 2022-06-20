@@ -33,11 +33,11 @@ export const socialMediaLinks: {
   {
     ariaLabel: "youtube",
     Component: YouTubeIcon,
-    disabled: true,
+    href: "https://www.youtube.com/channel/UC60uHxkjTyDWPALsUId4VOw",
   },
   {
     ariaLabel: "linkedin",
     Component: LinkedInIcon,
-    disabled: true,
+    href: "https://www.linkedin.com/company/solarx-app",
   },
 ];

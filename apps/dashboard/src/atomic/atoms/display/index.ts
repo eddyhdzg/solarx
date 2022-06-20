@@ -1,3 +1,4 @@
+export { default as CenterLoader } from "./centerLoader/CenterLoader";
 export {
   default as CreditCardIcon,
   type CreditCardIconProps,
