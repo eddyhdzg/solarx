@@ -1,9 +1,13 @@
-import { styled, Tab, tabClasses } from "@mui/material";
-import { Size } from "./SegmentedControl";
+import { styled, Tab, tabClasses, TabProps } from "@mui/material";
+import { SegmentSize } from "solarx-types";
 
-export const StyledSegment = styled(Tab, {
+export interface ISegmentProps extends TabProps {
+  size?: SegmentSize;
+}
+
+const Segment: React.ComponentType<ISegmentProps> = styled(Tab, {
   shouldForwardProp: (prop) => prop !== "size",
-})(({ theme }) => ({ size = "medium" }: { size?: Size }) => ({
+})(({ theme }) => ({ size = "medium" }: { size?: SegmentSize }) => ({
   "&:hover": {
     color: theme.palette.text.primary,
   },
@@ -22,3 +26,5 @@ export const StyledSegment = styled(Tab, {
     color: theme.palette.text.primary,
   },
 }));
+
+export default Segment;

@@ -1,9 +1,16 @@
-import { styled, Tabs, tabsClasses } from "@mui/material";
-import { Size } from "./SegmentedControl";
+import { styled, Tabs, tabsClasses, TabsProps } from "@mui/material";
+import { SegmentSize } from "solarx-types";
 
-export const StyledSegmentedControl = styled(Tabs, {
-  shouldForwardProp: (prop) => prop !== "size",
-})(({ theme }) => ({ size = "medium" }: { size: Size }) => ({
+interface SegmentedControlProps extends TabsProps {
+  size?: SegmentSize;
+}
+
+const SegmentedControl: React.ComponentType<SegmentedControlProps> = styled(
+  Tabs,
+  {
+    shouldForwardProp: (prop) => prop !== "size",
+  }
+)(({ theme }) => ({ size = "medium" }: { size?: SegmentSize }) => ({
   justifyContent: "center",
   maxWidth: "100%",
   overflow: "visible",
@@ -49,3 +56,5 @@ export const StyledSegmentedControl = styled(Tabs, {
     },
   },
 }));
+
+export default SegmentedControl;

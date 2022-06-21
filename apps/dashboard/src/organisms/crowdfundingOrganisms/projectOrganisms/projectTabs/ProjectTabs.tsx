@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { SegmentedControl } from "components";
-import { Notion } from "components";
+import { Notion, Segment, SegmentedControl } from "atomic";
 import { TabContext } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { ProjectTabsContainer, StyledTabPanel } from "./ProjectTabs.styled";
@@ -23,16 +22,17 @@ export default function ProjectTabs(props: IProjectTabsProps) {
             value={tabIndex}
             onChange={(_, index) => setTabIndex(index)}
             selectionFollowsFocus
+            variant="scrollable"
           >
-            <SegmentedControl.Segment
+            <Segment
               disableRipple
               label={t("pages.crowdfunding.project.general")}
             />
-            <SegmentedControl.Segment
+            <Segment
               disableRipple
               label={t("pages.crowdfunding.project.graphs")}
             />
-            <SegmentedControl.Segment
+            <Segment
               disableRipple
               label={t("pages.crowdfunding.project.about")}
             />

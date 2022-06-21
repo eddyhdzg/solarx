@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Seo } from "components";
+import { Seo } from "atomic";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
 import { MoreHomeTemplate } from "templates";

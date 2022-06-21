@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, AppBar, Toolbar, Box } from "@mui/material";
-import { HideOnScroll } from "components";
-import { AccountButton } from "atomic";
+import { AccountButton, HideOnScroll } from "atomic";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import shallow from "zustand/shallow";
 import { useStore } from "hooks";

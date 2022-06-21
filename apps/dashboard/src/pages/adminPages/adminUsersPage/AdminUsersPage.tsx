@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo } from "components";
+import { Seo } from "atomic";
 import { useTranslation } from "react-i18next";
 import { AdminUsersTemplate } from "templates";
 
