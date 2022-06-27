@@ -12,7 +12,7 @@ import {
   // connectFirestoreEmulator,
   getFirestore,
 } from "firebase/firestore";
-import firebaseConfig from "fb/firebaseConfig";
+import { firebaseConfig } from "utils";
 import {
   // connectFunctionsEmulator,
   getFunctions,

@@ -4,66 +4,66 @@ import { RouterTree } from "hooks/router/useRouterTree";
 import { DesktopTooltip } from "atomic";
 import logo from "assets/images/logo.svg";
 import {
-  DesktopAppbarDrawer,
-  DesktopAppbarContent,
-  DesktopAppbarUl,
-  DesktopAppbarLi,
-  DesktopAppbarLiIcon,
-} from "./DesktopAppbar.styled";
+  DesktopAppBarDrawer,
+  DesktopAppBarContent,
+  DesktopAppBarUl,
+  DesktopAppBarLi,
+  DesktopAppBarLiIcon,
+} from "./DesktopAppBar.styled";
 
-interface IDesktopAppbarProps {
+interface IDesktopAppBarProps {
   routerTree: RouterTree;
   getMemoryRoute: (baseRoute: TBaseRoutes) => string;
 }
 
-const DesktopAppbar: React.FC<IDesktopAppbarProps> = ({
+const DesktopAppBar: React.FC<IDesktopAppBarProps> = ({
   routerTree,
   getMemoryRoute,
-}: IDesktopAppbarProps) => {
+}: IDesktopAppBarProps) => {
   const routes = Object.entries(routerTree);
   const more = [routes.pop()!];
 
   return (
-    <DesktopAppbarDrawer variant="permanent">
-      <DesktopAppbarContent>
+    <DesktopAppBarDrawer variant="permanent">
+      <DesktopAppBarContent>
         <div>
-          <DesktopAppbarUl>
-            <DesktopAppbarLi component={NavLink} to="/wallet">
-              <DesktopAppbarLiIcon>
+          <DesktopAppBarUl>
+            <DesktopAppBarLi component={NavLink} to="/wallet">
+              <DesktopAppBarLiIcon>
                 <img src={logo} height={24} width={24} alt="nav-logo" />
-              </DesktopAppbarLiIcon>
-            </DesktopAppbarLi>
+              </DesktopAppBarLiIcon>
+            </DesktopAppBarLi>
             {routes.map(([route, { icon: Icon, title }]) => (
               <DesktopTooltip key={route} title={title} placement="right">
-                <DesktopAppbarLi
+                <DesktopAppBarLi
                   component={NavLink}
                   to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
                 >
-                  <DesktopAppbarLiIcon>{<Icon />}</DesktopAppbarLiIcon>
-                </DesktopAppbarLi>
+                  <DesktopAppBarLiIcon>{<Icon />}</DesktopAppBarLiIcon>
+                </DesktopAppBarLi>
               </DesktopTooltip>
             ))}
-          </DesktopAppbarUl>
+          </DesktopAppBarUl>
         </div>
         <div>
-          <DesktopAppbarUl>
+          <DesktopAppBarUl>
             {more?.map(([route, { icon: Icon, title }]) => (
               <DesktopTooltip key={route} title={title} placement="right">
-                <DesktopAppbarLi
+                <DesktopAppBarLi
                   component={NavLink}
                   to={getMemoryRoute(route as TBaseRoutes)}
                   activeClassName="Mui-selected"
                 >
-                  <DesktopAppbarLiIcon>{<Icon />}</DesktopAppbarLiIcon>
-                </DesktopAppbarLi>
+                  <DesktopAppBarLiIcon>{<Icon />}</DesktopAppBarLiIcon>
+                </DesktopAppBarLi>
               </DesktopTooltip>
             ))}
-          </DesktopAppbarUl>
+          </DesktopAppBarUl>
         </div>
-      </DesktopAppbarContent>
-    </DesktopAppbarDrawer>
+      </DesktopAppBarContent>
+    </DesktopAppBarDrawer>
   );
 };
 
-export default DesktopAppbar;
+export default DesktopAppBar;

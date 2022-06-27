@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { NavLink, NavLinkProps } from "react-router-dom";
 
-export const DesktopAppbarDrawer = styled(Drawer)(({ theme }) => ({
+export const DesktopAppBarDrawer = styled(Drawer)(({ theme }) => ({
   [`& .${drawerClasses.paper}`]: {
     borderColor: "transparent",
     backgroundColor: theme.palette.grey[900],
@@ -17,7 +17,7 @@ export const DesktopAppbarDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-export const DesktopAppbarContent = styled("div")(({ theme }) => ({
+export const DesktopAppBarContent = styled("div")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   flex: "auto",
@@ -35,12 +35,12 @@ export const DesktopAppbarContent = styled("div")(({ theme }) => ({
   },
 }));
 
-export const DesktopAppbarUl = styled(List)(({ theme }) => ({
+export const DesktopAppBarUl = styled(List)(({ theme }) => ({
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
 }));
 
-export const DesktopAppbarLi = styled(
+export const DesktopAppBarLi = styled(
   (
     props: ListItemButtonProps & {
       component: typeof NavLink;
@@ -66,6 +66,6 @@ export const DesktopAppbarLi = styled(
   },
 }));
 
-export const DesktopAppbarLiIcon = styled(ListItemIcon)({
+export const DesktopAppBarLiIcon = styled(ListItemIcon)({
   minWidth: "auto",
 });

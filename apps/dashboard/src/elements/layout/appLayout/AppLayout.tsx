@@ -1,12 +1,11 @@
-import Header from "./header/Header";
-import Navigation from "./navigation/Navigation";
+import { NavBar, Navigation } from "atomic";
 import { StyledLayout, Notch, Toolbar, Offset } from "./AppLayout.styled";
 
 const Layout: React.FC = ({ children }) => {
   return (
     <StyledLayout>
       <Notch />
-      <Header />
+      <NavBar />
       <Navigation />
       <main>
         <Toolbar />

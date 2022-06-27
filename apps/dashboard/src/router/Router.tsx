@@ -1,7 +1,7 @@
-import { Route, Switch } from "react-router";
 import { useRouterTree } from "hooks";
-import { AppLayout } from "components";
 import { CenterLoader } from "atomic";
+import { AppLayout } from "elements";
+import { Route, Switch } from "react-router";
 import { Redirect } from "react-router-dom";
 
 export default function Router() {

@@ -1,12 +1,12 @@
 import React from "react";
-import { Button, AppBar, Toolbar, Box } from "@mui/material";
 import { AccountButton, HideOnScroll } from "atomic";
-import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import shallow from "zustand/shallow";
 import { useStore } from "hooks";
 import { Link } from "react-router-dom";
+import { Button, AppBar, Toolbar, Box } from "@mui/material";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
-export default function Header() {
+export default function NavBar() {
   const { backButton } = useStore(
     ({ backButton }) => ({ backButton }),
     shallow

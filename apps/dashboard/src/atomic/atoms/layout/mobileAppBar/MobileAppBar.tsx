@@ -6,14 +6,14 @@ import {
   StyledAppBar,
   StyledBottomNavigation,
   StyledBottomNavigationAction,
-} from "./MobileAppbar.styled";
+} from "./MobileAppBar.styled";
 
-interface IMobileAppbarProps {
+interface IMobileAppBarProps {
   routerTree: RouterTree;
   getMemoryRoute: (baseRoute: TBaseRoutes) => string;
 }
 
-const MobileAppbar: React.FC<IMobileAppbarProps> = ({
+const MobileAppBar: React.FC<IMobileAppBarProps> = ({
   routerTree,
   getMemoryRoute,
 }) => {
@@ -46,4 +46,4 @@ const MobileAppbar: React.FC<IMobileAppbarProps> = ({
   );
 };
 
-export default MobileAppbar;
+export default MobileAppBar;

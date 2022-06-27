@@ -3,8 +3,7 @@ import { useRouterMemo, useRouterTree } from "hooks";
 import { TBaseRoutes } from "solarx-types";
 import shallow from "zustand/shallow";
 import { useTheme, useMediaQuery } from "@mui/material";
-import DesktopAppbar from "./desktopAppbar/DesktopAppbar";
-import MobileAppbar from "./mobileAppbar/MobileAppbar";
+import { MobileAppBar, DesktopAppBar } from "atomic";
 import { RouterTree } from "hooks/router/useRouterTree";
 
 export default function Navigation() {
@@ -32,8 +31,8 @@ const NavigationHelper = ({ routerTree }: INavigationHelperProps) => {
   const isTablet = useMediaQuery(theme.breakpoints.up("sm"));
 
   return isTablet ? (
-    <DesktopAppbar routerTree={routerTree} getMemoryRoute={getMemoryRoute} />
+    <DesktopAppBar routerTree={routerTree} getMemoryRoute={getMemoryRoute} />
   ) : (
-    <MobileAppbar routerTree={routerTree} getMemoryRoute={getMemoryRoute} />
+    <MobileAppBar routerTree={routerTree} getMemoryRoute={getMemoryRoute} />
   );
 };
