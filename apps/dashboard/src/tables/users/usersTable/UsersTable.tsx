@@ -5,7 +5,7 @@ import {
   TableRow,
   TableFooter,
 } from "@mui/material";
-import { CustomTablePagination } from "components";
+import { CustomTablePagination } from "atomic";
 import { TableInstance, HeaderGroup, Row, Cell } from "react-table";
 import { FirestoreUser } from "solarx-types";
 import { StyledPaper, StyledTableHead } from "./UsersTable.styled";

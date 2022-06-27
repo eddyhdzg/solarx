@@ -12,8 +12,8 @@ import { Chip, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Column, Row, Cell } from "react-table";
+import { LinearWithValueLabel } from "atomic";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { LinearWithValueLabel } from "components";
 
 interface IColumns {
   publicColumns: Column<object>[];
@@ -88,7 +88,6 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         Header: t("projects.progress"),
         accessor: ({ sharesSold, totalShares }: Project) =>
           getProgress({ sharesSold, totalShares }),
-
         Cell: (cell: Cell<Project>) => (
           <LinearWithValueLabel
             label={cell.value}

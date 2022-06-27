@@ -1,5 +1,5 @@
 import { TablePagination } from "@mui/material";
-import { TablePaginationActions } from "components";
+import { TablePaginationActions } from "atomic";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { useTranslation } from "react-i18next";

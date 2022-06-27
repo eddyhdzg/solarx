@@ -1,4 +1,4 @@
-import { FilterSearch } from "components";
+import { FilterSearch } from "atomic";
 import { useRouterState } from "hooks";
 
 export default function GlobalFilter() {

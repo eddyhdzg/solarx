@@ -9,8 +9,7 @@ import {
   IdealBankElement,
 } from "@stripe/react-stripe-js";
 import { TextFieldProps } from "@mui/material";
-import { StyledTextField } from "atomic";
-import StripeInput from "./stripeInput/StripeInput";
+import { StripeInput, StyledTextField } from "atomic";
 
 type StripeElement =
   | typeof AuBankAccountElement
@@ -29,7 +28,7 @@ interface StripeTextFieldProps<T extends StripeElement>
   stripeElement?: T;
 }
 
-export const StripeTextField = <T extends StripeElement>(
+const StripeTextField = <T extends StripeElement>(
   props: StripeTextFieldProps<T>
 ) => {
   const {

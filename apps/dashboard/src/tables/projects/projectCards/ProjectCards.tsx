@@ -1,5 +1,4 @@
-import { ProjectCard } from "atomic";
-import { CustomTablePagination } from "components";
+import { CustomTablePagination, ProjectCard } from "atomic";
 import { TableInstance } from "react-table";
 import { Project, ProjectSection } from "solarx-types";
 import { ProjectCardsGird, PaginationContainer } from "./ProjectCards.styled";

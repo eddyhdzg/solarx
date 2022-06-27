@@ -1,13 +1,13 @@
-import * as React from "react";
+import { forwardRef, useState, useImperativeHandle } from "react";
 import { useTheme, InputBaseComponentProps, alpha } from "@mui/material";
 
-const StripeInput = React.forwardRef<any, InputBaseComponentProps>(
+const StripeInput = forwardRef<any, InputBaseComponentProps>(
   function StripeInput(props, ref) {
     const { component: Component, options, ...other } = props;
     const theme = useTheme();
-    const [mountNode, setMountNode] = React.useState<any | null>(null);
+    const [mountNode, setMountNode] = useState<any | null>(null);
 
-    React.useImperativeHandle(
+    useImperativeHandle(
       ref,
       () => ({
         focus: () => mountNode.focus(),

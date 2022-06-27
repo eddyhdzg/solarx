@@ -1,14 +1,15 @@
-import ProjectsTable from "./projectsTable/ProjectsTable";
-import ProjectCards from "./projectCards/ProjectCards";
 import { IconButton } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import { GlobalFilter, ProjectFilters } from "components";
+import { ProjectFilters } from "components";
+import { GlobalFilter } from "atomic";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { Project, ProjectSection } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import { TableInstance } from "react-table";
+import ProjectsTable from "./projectsTable/ProjectsTable";
+import ProjectCards from "./projectCards/ProjectCards";
 import {
   ActionsContainer,
   ActionsWrapper,

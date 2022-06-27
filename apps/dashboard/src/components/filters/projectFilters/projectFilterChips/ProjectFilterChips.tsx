@@ -3,7 +3,7 @@ import { useRouterState } from "hooks";
 import { stringToBoolean } from "utils";
 import { useTranslation } from "react-i18next";
 
-export default function FilterChips() {
+export default function ProjectFilterChips() {
   const { t } = useTranslation();
   const {
     values: { funded = "", basePriceFrom = "", basePriceTo = "" },

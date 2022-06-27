@@ -2,7 +2,7 @@ import { Box, Typography, alpha } from "@mui/material";
 import FilterDrawer from "./FilterDrawer";
 import FundedSection from "./filterSections/FundedSection";
 import BasePriceSection from "./filterSections/BasePriceSection";
-import FilterChips from "./filterChips/FilterChips";
+import ProjectFilterChips from "./projectFilterChips/ProjectFilterChips";
 import { useTranslation } from "react-i18next";
 
 interface ProjectFiltersProps {
@@ -33,7 +33,7 @@ export default function ProjectFilters(props: ProjectFiltersProps) {
         >
           {t("filters.selected")}
         </Typography>
-        <FilterChips />
+        <ProjectFilterChips />
       </Box>
       <Box
         sx={{

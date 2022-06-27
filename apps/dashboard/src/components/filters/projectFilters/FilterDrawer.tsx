@@ -8,9 +8,9 @@ import {
   drawerClasses,
   Typography,
 } from "@mui/material";
-import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
 import { useBreakpoint, useRouterState } from "hooks";
 import { useTranslation } from "react-i18next";
+import FilterListRoundedIcon from "@mui/icons-material/FilterListRounded";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface FilterDrawerProps {

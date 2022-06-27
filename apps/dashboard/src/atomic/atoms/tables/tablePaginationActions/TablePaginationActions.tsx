@@ -1,9 +1,8 @@
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { TablePaginationActionsRoot } from "./TablePaginationActions.styled";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -15,11 +14,12 @@ interface TablePaginationActionsProps {
   ) => void;
 }
 
-export default function TablePaginationActions(
-  props: TablePaginationActionsProps
-) {
-  const { count, page, rowsPerPage, onPageChange } = props;
-
+export default function TablePaginationActions({
+  count,
+  page,
+  rowsPerPage,
+  onPageChange,
+}: TablePaginationActionsProps) {
   const handleFirstPageButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -45,7 +45,12 @@ export default function TablePaginationActions(
   };
 
   return (
-    <TablePaginationActionsRoot>
+    <Box
+      sx={{
+        flexShrink: 0,
+        ml: 2.5,
+      }}
+    >
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
@@ -74,6 +79,6 @@ export default function TablePaginationActions(
       >
         <LastPageIcon />
       </IconButton>
-    </TablePaginationActionsRoot>
+    </Box>
   );
 }

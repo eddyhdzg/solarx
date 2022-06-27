@@ -1,5 +1,6 @@
 export { default as CurrencyField } from "./currencyField/CurrencyField";
 export { default as DropzoneField } from "./dropzoneField/DropzoneField";
+export { default as FilterSearch } from "./filterSearch/FilterSearch";
 export { default as LocaleSelect } from "./localeSelect/LocaleSelect";
 export { default as NumberFormatInput } from "./numberFormatInput/NumberFormatInput";
 export { default as SectionButton } from "./sectionButton/SectionButton";
