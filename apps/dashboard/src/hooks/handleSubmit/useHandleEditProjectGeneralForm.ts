@@ -1,22 +1,23 @@
 import { useEffect } from "react";
 import {
-  useEditProjectGeneralForm,
   useEditProjectGeneralMutation,
-  IProjectGeneralSchema,
+  EditProjectGeneralSchema,
   useProject,
-  projectGeneralDefaultValues,
+  editProjectGeneralDefaultValues,
 } from "hooks";
-import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { mexicanStates } from "constant";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
 import { ProjectIDParams } from "solarx-types";
-import ProjectGeneralFormLayout from "../ProjectGeneralFormLayout";
+import { UseFormReset, UseFormHandleSubmit, FormState } from "react-hook-form";
 
-export default function EditProjectGeneralForm() {
-  const { reset, ...form } = useEditProjectGeneralForm();
+export default function useHandleEditProjectGeneralForm(
+  formState: FormState<EditProjectGeneralSchema>,
+  handleSubmit: UseFormHandleSubmit<EditProjectGeneralSchema>,
+  reset: UseFormReset<EditProjectGeneralSchema>
+) {
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
@@ -24,8 +25,8 @@ export default function EditProjectGeneralForm() {
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    const defaultValues: IProjectGeneralSchema = !data
-      ? projectGeneralDefaultValues
+    const defaultValues: EditProjectGeneralSchema = !data
+      ? editProjectGeneralDefaultValues
       : {
           businessType: data?.businessType,
           city: data?.city,
@@ -41,13 +42,13 @@ export default function EditProjectGeneralForm() {
     reset(defaultValues);
   }, [status, data, reset]);
 
-  const onSubmit = form.handleSubmit((values, e) => {
+  const onSubmit = handleSubmit((values, e) => {
     e?.preventDefault();
 
     const dirtyValues = getDirtyValues(
-      form?.formState?.dirtyFields,
+      formState?.dirtyFields,
       values
-    ) as IProjectGeneralSchema;
+    ) as EditProjectGeneralSchema;
 
     editProjectGeneralMutation(data.id || "", dirtyValues)
       .then(() => {
@@ -58,9 +59,5 @@ export default function EditProjectGeneralForm() {
       });
   });
 
-  return (
-    <FormProvider reset={reset} {...form}>
-      <ProjectGeneralFormLayout title="Edit" onSubmit={onSubmit} />
-    </FormProvider>
-  );
+  return onSubmit;
 }

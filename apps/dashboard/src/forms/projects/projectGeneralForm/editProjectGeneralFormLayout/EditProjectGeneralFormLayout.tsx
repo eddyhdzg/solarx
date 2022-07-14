@@ -10,28 +10,26 @@ import {
 import { GridItem, StyledSelect, StyledTextField } from "atomic";
 import { mexicanStates, mexicanCities, businessTypes } from "constant";
 import { useTranslation } from "react-i18next";
-import { IProjectGeneralSchema } from "hooks";
-import { ProjectForms, SubmitForm } from "solarx-types";
+import { EditProjectGeneralSchema } from "hooks";
+import { SubmitForm } from "solarx-types";
 import { checkKeyDown } from "utils";
 import { Controller, useFormContext } from "react-hook-form";
-import { Section, Titles, Actions } from "../ProjectForms.styled";
+import { Section, Titles, Actions } from "../../ProjectForms.styled";
 
-interface IProjectGeneralFormLayoutProps {
-  title: ProjectForms;
+interface ProjectGeneralFormLayoutProps {
   onSubmit: SubmitForm;
 }
 
-export default function ProjectGeneralFormLayout({
-  title,
+export default function EditProjectGeneralFormLayout({
   onSubmit,
-}: IProjectGeneralFormLayoutProps) {
+}: ProjectGeneralFormLayoutProps) {
   const { t } = useTranslation();
   const {
     control,
     setValue,
     watch,
     formState: { isValid, isDirty },
-  } = useFormContext<IProjectGeneralSchema>();
+  } = useFormContext<EditProjectGeneralSchema>();
   const [formState] = watch(["state"]);
 
   return (
@@ -252,11 +250,21 @@ export default function ProjectGeneralFormLayout({
                         {...field}
                       >
                         <option aria-label="None" value="" disabled />
-                        <option value="coming soon">Coming Soon</option>
-                        <option value="fundraising">Fundraising</option>
-                        <option value="operating">Operating</option>
-                        <option value="funded">Funded</option>
-                        <option value="canceled">Canceled</option>
+                        <option value="coming soon">
+                          {t("projects.status.comingSoon")}
+                        </option>
+                        <option value="funding">
+                          {t("projects.status.funding")}
+                        </option>
+                        <option value="funded">
+                          {t("projects.status.funded")}
+                        </option>
+                        <option value="operating">
+                          {t("projects.status.operating")}
+                        </option>
+                        <option value="canceled">
+                          {t("projects.status.canceled")}
+                        </option>
                       </StyledSelect>
                     </FormControl>
                   );
@@ -272,9 +280,7 @@ export default function ProjectGeneralFormLayout({
             disabled={!isValid || !isDirty}
             type="submit"
           >
-            {title === "Create"
-              ? t("pages.admin.createProject.title")
-              : t("pages.admin.editProject.editProject")}
+            {t("pages.admin.editProject.editProject")}
           </Button>
         </Actions>
       </Paper>

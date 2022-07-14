@@ -154,7 +154,8 @@
           "summary": "RESUMEN",
           "each": "cada una",
           "questions?": "Questions?",
-          "contactEmail": "eddy@solarx.app"
+          "contactEmail": "eddy@solarx.app",
+          "sharableReceipt": "URL de recibo compartible"
         }
       },
       "wallet": {
@@ -285,7 +286,14 @@
       "totalShares": "Total de acciones",
       "ppaYears": "Años de PPA",
       "state": "Estado",
-      "city": "Ciudad"
+      "city": "Ciudad",
+      "status": {
+        "comingSoon": "Próximamente",
+        "funding": "Financiando",
+        "funded": "Financiado",
+        "operating": "Operando",
+        "canceled": "Cancelado"
+      }
     },
     "prices": {
       "id": "ID",

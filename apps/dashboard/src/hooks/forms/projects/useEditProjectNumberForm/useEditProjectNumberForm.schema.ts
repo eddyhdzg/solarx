@@ -1,17 +1,17 @@
 import * as yup from "yup";
 import { Project } from "solarx-types";
 
-export interface IEditProjectNumberSchema
+export interface EditProjectNumberSchema
   extends Pick<Project, "roi" | "basePrice" | "totalShares" | "ppa"> {}
 
-export const editProjectNumberDefaultValues: IEditProjectNumberSchema = {
+export const editProjectNumberDefaultValues: EditProjectNumberSchema = {
   roi: 0,
   basePrice: 1,
   totalShares: 1,
   ppa: 0,
 };
 
-export const editProjectNumberSchema: yup.SchemaOf<IEditProjectNumberSchema> =
+export const editProjectNumberSchema: yup.SchemaOf<EditProjectNumberSchema> =
   yup
     .object()
     .shape({

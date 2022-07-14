@@ -1,5 +1,5 @@
 import { useFirestore } from "reactfire";
-import { IEditProjectNumberSchema } from "hooks";
+import { EditProjectNumberSchema } from "hooks";
 import { doc, updateDoc } from "firebase/firestore";
 
 export default function useEditProjectNumberMutation() {
@@ -7,7 +7,7 @@ export default function useEditProjectNumberMutation() {
 
   const editProjectNumberMutation = (
     id: string,
-    data: IEditProjectNumberSchema
+    data: EditProjectNumberSchema
   ) => {
     const projectDocRef = doc(firestore, "projects", id);
     return updateDoc(projectDocRef, data);

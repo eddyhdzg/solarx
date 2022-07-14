@@ -1,33 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
-  useEditProjectNumberForm,
   useEditProjectNumberMutation,
   useProject,
-  IEditProjectNumberSchema,
+  EditProjectNumberSchema,
   editProjectNumberDefaultValues,
 } from "hooks";
-import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
 import { ProjectIDParams } from "solarx-types";
-import ProjectNumberFormLayout from "../ProjectNumberFormLayout";
+import { FormState, UseFormHandleSubmit, UseFormReset } from "react-hook-form";
 
-export default function EditProjectNumberForm() {
-  const { reset, ...form } = useEditProjectNumberForm();
+export default function useHandleEditProjectNumberForm(
+  formState: FormState<EditProjectNumberSchema>,
+  handleSubmit: UseFormHandleSubmit<EditProjectNumberSchema>,
+  reset: UseFormReset<EditProjectNumberSchema>
+) {
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProject(id || "");
   const editProjectNumberMutation = useEditProjectNumberMutation();
   const { enqueueSnackbar } = useSnackbar();
-  // FIXME Remove useState
-  const [defaultValues, setDefaultValues] = useState(
-    editProjectNumberDefaultValues
-  );
 
   useEffect(() => {
-    const newDefaultValues: IEditProjectNumberSchema = !data
+    const defaultValues: EditProjectNumberSchema = !data
       ? editProjectNumberDefaultValues
       : {
           roi: data?.roi,
@@ -36,17 +33,16 @@ export default function EditProjectNumberForm() {
           ppa: data?.ppa,
         };
 
-    setDefaultValues(newDefaultValues);
-    reset(newDefaultValues);
+    reset(defaultValues);
   }, [status, data, reset]);
 
-  const onSubmit = form.handleSubmit((values, e) => {
+  const onSubmit = handleSubmit((values, e) => {
     e?.preventDefault();
 
     const dirtyValues = getDirtyValues(
-      form?.formState?.dirtyFields,
+      formState?.dirtyFields,
       values
-    ) as IEditProjectNumberSchema;
+    ) as EditProjectNumberSchema;
 
     editProjectNumberMutation(data.id || "", dirtyValues)
       .then(() => {
@@ -57,12 +53,5 @@ export default function EditProjectNumberForm() {
       });
   });
 
-  return (
-    <FormProvider reset={reset} {...form}>
-      <ProjectNumberFormLayout
-        onSubmit={onSubmit}
-        defaultValues={defaultValues}
-      />
-    </FormProvider>
-  );
+  return onSubmit;
 }

@@ -286,7 +286,14 @@
       "totalShares": "Total Shares",
       "ppaYears": "PPA years",
       "state": "State",
-      "city": "City"
+      "city": "City",
+      "status": {
+        "comingSoon": "Coming Soon",
+        "funding": "Funding",
+        "funded": "Funded",
+        "operating": "Operating",
+        "canceled": "Canceled"
+      }
     },
     "prices": {
       "id": "ID",

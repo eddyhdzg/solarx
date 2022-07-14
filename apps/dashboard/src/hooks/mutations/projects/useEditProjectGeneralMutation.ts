@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { Project } from "solarx-types";
-import { IProjectGeneralSchema } from "hooks";
+import { EditProjectGeneralSchema } from "hooks";
 import { doc, updateDoc } from "firebase/firestore";
 
 export default function useProjectGeneralMutation() {
@@ -8,7 +8,7 @@ export default function useProjectGeneralMutation() {
 
   const editProjectGeneralMutation = (
     id: string,
-    { state, ...data }: IProjectGeneralSchema
+    { state, ...data }: EditProjectGeneralSchema
   ) => {
     const project: Project = {
       ...data,

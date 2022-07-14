@@ -6,26 +6,24 @@ import {
   NumberFormatInput,
   StyledTextField,
 } from "atomic";
-import { IEditProjectNumberSchema } from "hooks";
+import { EditProjectNumberSchema } from "hooks";
 import { useTranslation } from "react-i18next";
 import { checkKeyDown } from "utils";
 import { SubmitForm } from "solarx-types";
-import { Section, Titles, Actions } from "../ProjectForms.styled";
+import { Section, Titles, Actions } from "../../ProjectForms.styled";
 
-interface IProjectNumberFormLayoutProps {
+interface ProjectNumberFormLayoutProps {
   onSubmit: SubmitForm;
-  defaultValues: IEditProjectNumberSchema;
 }
 
 export default function ProjectNumberFormLayout({
   onSubmit,
-  defaultValues,
-}: IProjectNumberFormLayoutProps) {
+}: ProjectNumberFormLayoutProps) {
   const { t } = useTranslation();
   const {
     control,
     formState: { isValid, isDirty },
-  } = useFormContext<IEditProjectNumberSchema>();
+  } = useFormContext<EditProjectNumberSchema>();
 
   return (
     <form
@@ -59,7 +57,7 @@ export default function ProjectNumberFormLayout({
                       required
                       error={Boolean(fieldState.error)}
                       helperText={fieldState.error?.message}
-                      success={Number(field.value) !== defaultValues.roi}
+                      success={fieldState.isDirty}
                       inputProps={{
                         inputMode: "decimal",
                         min: 0,
@@ -91,7 +89,7 @@ export default function ProjectNumberFormLayout({
                     required
                     error={Boolean(fieldState.error)}
                     helperText={fieldState.error?.message}
-                    success={Number(field.value) !== defaultValues.basePrice}
+                    success={fieldState.isDirty}
                     inputProps={{
                       inputMode: "numeric",
                       min: 1,
@@ -124,7 +122,7 @@ export default function ProjectNumberFormLayout({
                     required
                     error={Boolean(fieldState.error)}
                     helperText={fieldState.error?.message}
-                    success={Number(field.value) !== defaultValues.totalShares}
+                    success={fieldState.isDirty}
                     inputProps={{
                       inputMode: "numeric",
                       min: 1,
@@ -152,7 +150,7 @@ export default function ProjectNumberFormLayout({
                     required
                     error={Boolean(fieldState.error)}
                     helperText={fieldState.error?.message}
-                    success={Number(field.value) !== defaultValues.ppa}
+                    success={fieldState.isDirty}
                     inputProps={{
                       inputMode: "decimal",
                       min: 0,

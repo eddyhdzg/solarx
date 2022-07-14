@@ -1,11 +1,11 @@
 import { Timestamp } from "./firebase.types";
 
 export type ProjectStatus =
-  | "canceled"
-  | "fundraising"
+  | "coming soon"
+  | "funding"
   | "funded"
   | "operating"
-  | "coming soon";
+  | "canceled";
 
 export interface Project {
   id?: string;
@@ -74,4 +74,3 @@ export interface ProjectContent {
 export type Notion = string | null | undefined;
 export type ProjectsType = "cards" | "table";
 export type ProjectSection = "crowdfunding" | "admin/projects";
-export type ProjectForms = "Edit" | "Create";

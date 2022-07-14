@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { Project } from "solarx-types";
 import { MexicanState } from "constant";
 
-export interface IProjectGeneralSchema
+export interface EditProjectGeneralSchema
   extends Pick<
     Project,
     "businessType" | "city" | "company" | "name" | "status"
@@ -10,7 +10,7 @@ export interface IProjectGeneralSchema
   state: MexicanState | null;
 }
 
-export const projectGeneralDefaultValues: IProjectGeneralSchema = {
+export const editProjectGeneralDefaultValues: EditProjectGeneralSchema = {
   businessType: "",
   city: "",
   company: "",
@@ -19,7 +19,7 @@ export const projectGeneralDefaultValues: IProjectGeneralSchema = {
   status: "coming soon",
 };
 
-export const projectGeneralSchema: yup.SchemaOf<IProjectGeneralSchema> =
+export const editProjectGeneralSchema: yup.SchemaOf<EditProjectGeneralSchema> =
   yup.object({
     businessType: yup
       .string()
@@ -38,5 +38,7 @@ export const projectGeneralSchema: yup.SchemaOf<IProjectGeneralSchema> =
       .nullable()
       .default("")
       .required("Value is required"),
-    status: yup.mixed().required("Value is required"),
+    status: yup
+      .mixed()
+      .oneOf(["coming soon", "funding", "funded", "operating", "canceled"]),
   });
