@@ -8,5 +8,6 @@ export default function useUserHistoryDoc(uid: string = " ", id: string = " ") {
 
   return useFirestoreDocData<UserHistory>(useUserHistoryRef, {
     initialData: null,
+    idField: "id",
   });
 }

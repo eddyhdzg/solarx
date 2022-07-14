@@ -1,7 +1,15 @@
 import { Box, Typography, alpha, Button } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
+import { useTranslation } from "react-i18next";
+import { useQueryParams, useUserHistoryDoc } from "hooks";
+import { useUser } from "reactfire";
 
 export default function ReceiptActions() {
+  const { t } = useTranslation();
+  const { id } = useQueryParams();
+  const user = useUser();
+  const { data } = useUserHistoryDoc(user.data?.uid, id);
+
   return (
     <Box
       sx={[
@@ -23,24 +31,29 @@ export default function ReceiptActions() {
       ]}
     >
       <Box>
-        <Typography variant="subtitle1">Questions?</Typography>
-        <Typography variant="body1" color="textSecondary">
-          eddy@solarx.app
+        <Typography variant="subtitle2">
+          {t("pages.more.receipt.questions?")}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {t("pages.more.receipt.contactEmail")}
         </Typography>
       </Box>
-      <Button
-        href="https://pay.stripe.com/receipts/acct_1IALxtLgJat5E8n5/ch_3KVpr8LgJat5E8n53WNiLhBt/rcpt_LCEJeVohV5oG9aa63m8yMXLF4BNKYXO"
-        color="inherit"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <LaunchIcon
-          sx={{
-            mx: 1,
-          }}
-        />
-        Sharable Receipt URL
-      </Button>
+      {data?.receipt_url && (
+        <Button
+          href={data?.receipt_url}
+          color="inherit"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LaunchIcon
+            fontSize="small"
+            sx={{
+              mx: 1,
+            }}
+          />
+          {t("pages.more.receipt.sharableReceipt")}
+        </Button>
+      )}
     </Box>
   );
 }

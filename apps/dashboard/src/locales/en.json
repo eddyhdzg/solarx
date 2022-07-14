@@ -152,7 +152,10 @@
           "date": "DATE",
           "paymentMethod": "PAYMENT METHOD",
           "summary": "SUMMARY",
-          "each": "each"
+          "each": "each",
+          "questions?": "Questions?",
+          "contactEmail": "eddy@solarx.app",
+          "sharableReceipt": "Sharable Receipt URL"
         }
       },
       "wallet": {

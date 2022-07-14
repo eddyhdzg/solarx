@@ -26,10 +26,7 @@ const PayButtonContainer = () => {
   } = useFormContext<CreateCrowdfundingPaymentFormSchema>();
   const handleCreateCrowdfundingPayment = useHandleCreateCrowdfundingPayment();
   const { id } = useParams<ProjectIDParams>();
-  const { pid = "", qty = "0" } = useQueryParams() as {
-    pid: string;
-    qty: string;
-  };
+  const { pid = "", qty = "0" } = useQueryParams();
   const {
     data: { quantity = 0, sharesSold = 0 },
   } = useProjectPrice(id, pid);

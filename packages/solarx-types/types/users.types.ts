@@ -34,15 +34,20 @@ export interface FirestoreUser {
 }
 export interface UserHistory {
   id?: string;
-  avatar?: string;
   amount?: number;
+  avatar?: string;
+  card?: {
+    brand?: string;
+    last4?: string;
+  };
   currency?: "mxn" | "usd" | "sxp";
   date?: Timestamp;
   description?: string;
-  tags?: string[];
+  qty?: number;
+  receipt_number?: string;
+  receipt_url?: string;
   title?: string;
   type?: "crowdfund";
-  payment?: string;
 }
 
 export interface UserShare {

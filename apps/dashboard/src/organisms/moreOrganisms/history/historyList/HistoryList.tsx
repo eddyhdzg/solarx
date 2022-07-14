@@ -5,8 +5,8 @@ import {
   ListItemText,
   ListItemAvatar,
   ListSubheader,
+  Avatar,
 } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SavingsIcon from "@mui/icons-material/Savings";
 import { useUser } from "reactfire";
@@ -17,7 +17,6 @@ export default function HistoryList() {
   const user = useUser();
   const { data } = useUserHistory(user.data?.uid);
   const displayUserHistory = useFormatedUserHistory(data);
-  console.log(data, displayUserHistory);
 
   return (
     <>
@@ -44,6 +43,8 @@ export default function HistoryList() {
             }
             sx={{
               pb: 5,
+              position: "sticky",
+              top: 0,
             }}
           >
             {transactions.map((transaction) => {

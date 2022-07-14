@@ -1,16 +1,26 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { formatAbsoluteWithCurreny } from "utils";
-import { useQueryParams, useUserPaymentDoc } from "hooks";
+import { useQueryParams, useUserHistoryDoc } from "hooks";
 import { useUser } from "reactfire";
 
 export default function ReceiptSummary() {
   const { t } = useTranslation();
-  const { id } = useQueryParams() as {
-    id: string;
-  };
+  const { id } = useQueryParams();
   const user = useUser();
-  const { data: payment } = useUserPaymentDoc(user.data?.uid, id);
+  const { data } = useUserHistoryDoc(user.data?.uid, id);
+  const title = data?.title || "-";
+  const description = data?.description || "-";
+  const amount =
+    typeof data?.amount === "number"
+      ? formatAbsoluteWithCurreny(data?.amount, data?.currency)
+      : "-";
+  const each =
+    Number(data?.qty) > 1 &&
+    `${formatAbsoluteWithCurreny(
+      (data?.amount || 0) / Number(data?.qty),
+      data?.currency
+    )} ${t("pages.more.receipt.each")}`;
 
   return (
     <Box
@@ -42,17 +52,19 @@ export default function ReceiptSummary() {
             mr: 1.5,
           }}
         >
-          <Box
-            component="img"
-            src="https://files.stripe.com/links/MDB8YWNjdF8xSUFMeHRMZ0phdDVFOG41fGZsX3Rlc3RfSTJZZmZRNUc3SVhPdndZQUJSWTRKbjho00XSSzMWWi"
-            height={48}
-            width={48}
-            alt="project-avatar"
-            sx={{
-              borderRadius: 1,
-              mr: 1.5,
-            }}
-          />
+          {data?.avatar && (
+            <Box
+              component="img"
+              src={data?.avatar}
+              height={48}
+              width={48}
+              alt="project-avatar"
+              sx={{
+                borderRadius: 1,
+                mr: 1.5,
+              }}
+            />
+          )}
           <Box
             sx={{
               display: "flex",
@@ -60,11 +72,9 @@ export default function ReceiptSummary() {
               justifyContent: "space-between",
             }}
           >
-            <Typography variant="subtitle1">
-              {payment?.metadata?.title}
-            </Typography>
+            <Typography variant="subtitle1">{title}</Typography>
             <Typography variant="body2" color="textSecondary">
-              {payment?.metadata?.description}
+              {description}
             </Typography>
           </Box>
         </Box>
@@ -72,20 +82,16 @@ export default function ReceiptSummary() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            justifyContent: each ? "space-between" : "center",
             textAlign: "right",
           }}
         >
-          <Typography variant="subtitle1">
-            {formatAbsoluteWithCurreny(payment?.amount, payment?.currency)}
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            {Number(payment?.metadata?.quantity) > 1 &&
-              `${formatAbsoluteWithCurreny(
-                payment?.amount || 0 / Number(payment?.metadata?.quantity),
-                payment?.currency
-              )} ${t("pages.more.receipt.each")}`}
-          </Typography>
+          <Typography variant="subtitle1">{amount}</Typography>
+          {each && (
+            <Typography variant="body2" color="textSecondary">
+              {each}
+            </Typography>
+          )}
         </Box>
       </Box>
     </Box>

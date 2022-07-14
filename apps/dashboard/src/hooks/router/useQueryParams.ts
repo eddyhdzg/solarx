@@ -3,5 +3,5 @@ import qs from "query-string";
 
 export default function useQueryParams() {
   const { search } = useLocation();
-  return qs.parse(search);
+  return qs.parse(search) as { [key: string]: string | undefined };
 }

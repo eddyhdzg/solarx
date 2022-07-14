@@ -39,9 +39,9 @@ export const formatPercentage2Dec = (num: number) => {
 
 // Visa • 4242
 // -
-export const formatPaymentMethod = (data: PaymentData | undefined) => {
-  if (data?.length) {
-    return `${data[0].payment_method_details?.card?.brand} • ${data[0].payment_method_details?.card?.last4}`;
+export const formatPaymentMethod = (brand?: string, last4?: string) => {
+  if (brand && last4) {
+    return `${brand} • ${last4}`;
   }
   return "-";
 };

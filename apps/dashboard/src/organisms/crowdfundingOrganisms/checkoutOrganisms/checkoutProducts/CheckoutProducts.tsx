@@ -12,10 +12,7 @@ import Styled from "./CheckoutProducts.styled";
 export default function CheckoutProduct() {
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
-  const { qty = "0", pid = "" } = useQueryParams() as {
-    qty: string;
-    pid: string;
-  };
+  const { qty = "0", pid = "" } = useQueryParams();
   const {
     data: { images = [], name = "" },
   } = useProject(id || "");

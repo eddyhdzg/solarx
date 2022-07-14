@@ -1,17 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { formatDisplayDate, formatPaymentMethod } from "utils";
-import { useQueryParams, useUserHistoryDoc, useUserPaymentDoc } from "hooks";
+import { useQueryParams, useUserHistoryDoc } from "hooks";
 import { useUser } from "reactfire";
 
 export default function ReceiptData() {
   const { t } = useTranslation();
-  const { id } = useQueryParams() as {
-    id: string;
-  };
+  const { id } = useQueryParams();
   const user = useUser();
-  const { data: payment } = useUserPaymentDoc(user.data?.uid, id);
-  console.log(payment);
+  const { data } = useUserHistoryDoc(user.data?.uid, id);
 
   return (
     <Box
@@ -37,7 +34,7 @@ export default function ReceiptData() {
             textTransform: "capitalize",
           }}
         >
-          {payment?.created ? formatDisplayDate(payment?.created) : "-"}
+          {data?.date ? formatDisplayDate(data?.date?.seconds) : "-"}
         </Typography>
       </Box>
       <Box
@@ -60,7 +57,7 @@ export default function ReceiptData() {
             textTransform: "capitalize",
           }}
         >
-          {formatPaymentMethod(payment?.charges?.data)}
+          {formatPaymentMethod(data?.card?.brand, data?.card?.last4)}
         </Typography>
       </Box>
     </Box>

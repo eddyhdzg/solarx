@@ -152,7 +152,9 @@
           "date": "FECHA",
           "paymentMethod": "MÉTODO DE PAGO",
           "summary": "RESUMEN",
-          "each": "cada una"
+          "each": "cada una",
+          "questions?": "Questions?",
+          "contactEmail": "eddy@solarx.app"
         }
       },
       "wallet": {
