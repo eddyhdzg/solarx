@@ -1,29 +1,30 @@
 import { useEffect } from "react";
 import {
-  useEditProjectContentForm,
   useEditProjectContentMutation,
-  IEditProjectContentSchema,
+  EditProjectContentSchema,
   editProjectContentDefaultValues,
   useProjectContent,
 } from "hooks";
-import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
 import { ProjectIDParams } from "solarx-types";
-import ProjectContentFormLayout from "../ProjectContentFormLayout";
+import { UseFormReset, UseFormHandleSubmit, FormState } from "react-hook-form";
 
-export default function EditProjectContentForm() {
-  const { reset, ...form } = useEditProjectContentForm();
+export default function useHandleEditProjectContentForm(
+  formState: FormState<EditProjectContentSchema>,
+  handleSubmit: UseFormHandleSubmit<EditProjectContentSchema>,
+  reset: UseFormReset<EditProjectContentSchema>
+) {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProjectContent(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data, status } = useProjectContent(id);
   const editProjectContentMutation = useEditProjectContentMutation();
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    const defaultValues: IEditProjectContentSchema = !data
+    const defaultValues: EditProjectContentSchema = !data
       ? editProjectContentDefaultValues
       : {
           about: data?.about || "",
@@ -34,15 +35,15 @@ export default function EditProjectContentForm() {
     reset(defaultValues);
   }, [data, status, reset]);
 
-  const onSubmit = form.handleSubmit((values, e) => {
+  const onSubmit = handleSubmit((values, e) => {
     e?.preventDefault();
 
     const dirtyValues = getDirtyValues(
-      form?.formState?.dirtyFields,
+      formState?.dirtyFields,
       values
-    ) as IEditProjectContentSchema;
+    ) as EditProjectContentSchema;
 
-    editProjectContentMutation(id || "", dirtyValues)
+    editProjectContentMutation(id, dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })
@@ -51,9 +52,5 @@ export default function EditProjectContentForm() {
       });
   });
 
-  return (
-    <FormProvider reset={reset} {...form}>
-      <ProjectContentFormLayout onSubmit={onSubmit} />
-    </FormProvider>
-  );
+  return onSubmit;
 }

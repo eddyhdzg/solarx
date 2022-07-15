@@ -19,8 +19,8 @@ export default function useHandleEditProjectGeneralForm(
   reset: UseFormReset<EditProjectGeneralSchema>
 ) {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProject(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data, status } = useProject(id);
   const editProjectGeneralMutation = useEditProjectGeneralMutation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -50,7 +50,7 @@ export default function useHandleEditProjectGeneralForm(
       values
     ) as EditProjectGeneralSchema;
 
-    editProjectGeneralMutation(data.id || "", dirtyValues)
+    editProjectGeneralMutation(id, dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })

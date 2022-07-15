@@ -11,11 +11,11 @@ import Styled from "./CheckoutProducts.styled";
 
 export default function CheckoutProduct() {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
+  const { id = "" } = useParams<ProjectIDParams>();
   const { qty = "0", pid = "" } = useQueryParams();
   const {
     data: { images = [], name = "" },
-  } = useProject(id || "");
+  } = useProject(id );
   const {
     data: { unit_amount = 0 },
   } = useProjectPrice(id, pid);

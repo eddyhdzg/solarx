@@ -8,8 +8,8 @@ import { ProjectIDParams } from "solarx-types";
 
 export default function CheckoutPage() {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
-  const { status, data } = useProject(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { status, data } = useProject(id);
   const { onChangeRoute } = useHeader();
 
   useEffect(() => {

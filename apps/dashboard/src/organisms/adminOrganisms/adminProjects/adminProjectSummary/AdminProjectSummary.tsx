@@ -12,8 +12,8 @@ import {
 } from "./AdminProjectSummary.styled";
 
 export default function AdminProjectSummary() {
-  const { id } = useParams<ProjectIDParams>();
-  const { data } = useProject(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data } = useProject(id);
   const { t } = useTranslation();
 
   return (
@@ -60,7 +60,6 @@ export default function AdminProjectSummary() {
           </li>
         </AdminProjectSummaryUL>
         <AdminProjectSummaryDivider />
-
         <Typography variant="subtitle1" gutterBottom>
           {t("pages.admin.project.dates")}
         </Typography>

@@ -18,8 +18,8 @@ export default function useHandleEditProjectMediaForm(
   reset: UseFormReset<EditProjectMediaSchema>
 ) {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProjectContent(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data, status } = useProjectContent(id);
   const editProjectMediaMutation = useEditProjectMediaMutation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -42,7 +42,7 @@ export default function useHandleEditProjectMediaForm(
       values
     ) as EditProjectMediaSchema;
 
-    editProjectMediaMutation(id || "", dirtyValues)
+    editProjectMediaMutation(id, dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })

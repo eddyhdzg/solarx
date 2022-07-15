@@ -260,7 +260,8 @@
         "goalDescription": "Recalcula la meta.",
         "updateGoal": "Actualizar meta",
         "generateShares": "Generar acciones",
-        "generateSharesDescription": "Genera las acciones cuando el proyecto esté listo."
+        "generateSharesDescription": "Genera las acciones cuando el proyecto esté listo.",
+        "notionLink": "https://www.notion.so/solarxapp/"
       },
       "DragNDropfile": "Arrastre y suelte un archivo aquí, o haga clic para seleccionar un archivo",
       "DragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos"

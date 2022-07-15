@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { Project } from "solarx-types";
-import { IEditProjectDatesSchema } from "hooks";
+import { EditProjectDatesSchema } from "hooks";
 import { doc, updateDoc } from "firebase/firestore";
 import { toTimestamp } from "utils";
 
@@ -9,7 +9,7 @@ export default function useEditProjectDatesMutation() {
 
   const editProjectDatesMutation = (
     id: string,
-    { fundedDate, releaseDate, operationDate }: IEditProjectDatesSchema
+    { fundedDate, releaseDate, operationDate }: EditProjectDatesSchema
   ) => {
     const project: Project = {
       ...(fundedDate !== undefined && {

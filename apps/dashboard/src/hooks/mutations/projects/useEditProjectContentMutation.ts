@@ -1,5 +1,5 @@
 import { useFirestore } from "reactfire";
-import { IEditProjectContentSchema } from "hooks";
+import { EditProjectContentSchema } from "hooks";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function useEditProjectContentMutation() {
@@ -7,7 +7,7 @@ export default function useEditProjectContentMutation() {
 
   const editProjectContentMutation = (
     id: string,
-    data: IEditProjectContentSchema
+    data: EditProjectContentSchema
   ) => {
     const projectDocRef = doc(firestore, "projects", id, "data", "content");
     return setDoc(projectDocRef, data, { merge: true });

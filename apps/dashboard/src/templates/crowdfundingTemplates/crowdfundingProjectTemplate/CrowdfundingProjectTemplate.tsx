@@ -13,9 +13,9 @@ import { Container } from "@mui/material";
 import Styled from "./CrowdfundingProjectTemplate.styled";
 
 export default function CrowdfundingProjectTemplate() {
-  const { id } = useParams<ProjectIDParams>();
-  const { status, data } = useProject(id || "");
-  const { status: contentStatus, data: content } = useProjectContent(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { status, data } = useProject(id);
+  const { status: contentStatus, data: content } = useProjectContent(id);
   const lg = useBreakpoint("lg");
 
   if (status === "loading" || contentStatus === "loading") {

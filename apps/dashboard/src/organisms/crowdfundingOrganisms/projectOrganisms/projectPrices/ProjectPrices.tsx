@@ -13,8 +13,8 @@ interface IProjectBuyingOptionsProps {
 export default function ProjectBuyingOptions({
   roi,
 }: IProjectBuyingOptionsProps) {
-  const { id } = useParams<ProjectIDParams>();
-  const { data } = useProjectPrices(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data } = useProjectPrices(id);
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState<string | undefined>(undefined);
   const handleChange = (panel: string | undefined) => {

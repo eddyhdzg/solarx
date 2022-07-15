@@ -2,16 +2,16 @@ import * as yup from "yup";
 import { ProjectContent } from "solarx-types";
 import { Notion_Regex } from "constant";
 
-export interface IEditProjectContentSchema
+export interface EditProjectContentSchema
   extends Pick<ProjectContent, "about" | "general" | "graphs"> {}
 
-export const editProjectContentDefaultValues: IEditProjectContentSchema = {
+export const editProjectContentDefaultValues: EditProjectContentSchema = {
   about: "",
   general: "",
   graphs: "",
 };
 
-export const editProjectContentSchema: yup.SchemaOf<IEditProjectContentSchema> =
+export const editProjectContentSchema: yup.SchemaOf<EditProjectContentSchema> =
   yup.object({
     about: yup
       .string()

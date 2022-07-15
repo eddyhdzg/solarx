@@ -1,29 +1,30 @@
 import { useEffect } from "react";
 import {
-  IEditProjectDatesSchema,
+  EditProjectDatesSchema,
   useProject,
-  useEditProjectDatesForm,
   editProjectDatesDefaultValues,
   useEditProjectDatesMutation,
 } from "hooks";
-import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
 import { ProjectIDParams } from "solarx-types";
-import ProjectDatesFormLayout from "../ProjectDatesFormLayout";
+import { UseFormReset, UseFormHandleSubmit, FormState } from "react-hook-form";
 
-export default function EditProjectDatesForm() {
-  const { reset, ...form } = useEditProjectDatesForm();
+export default function useHandleEditProjectDatesForm(
+  formState: FormState<EditProjectDatesSchema>,
+  handleSubmit: UseFormHandleSubmit<EditProjectDatesSchema>,
+  reset: UseFormReset<EditProjectDatesSchema>
+) {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProject(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data, status } = useProject(id);
   const editProjectDatesMutation = useEditProjectDatesMutation();
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
-    const defaultValues: IEditProjectDatesSchema = !data
+    const defaultValues: EditProjectDatesSchema = !data
       ? editProjectDatesDefaultValues
       : {
           fundedDate: data?.fundedDate?.toDate() || null,
@@ -34,15 +35,15 @@ export default function EditProjectDatesForm() {
     reset(defaultValues);
   }, [status, data, reset]);
 
-  const onSubmit = form.handleSubmit((values, e) => {
+  const onSubmit = handleSubmit((values, e) => {
     e?.preventDefault();
 
     const dirtyValues = getDirtyValues(
-      form?.formState?.dirtyFields,
+      formState?.dirtyFields,
       values
-    ) as IEditProjectDatesSchema;
+    ) as EditProjectDatesSchema;
 
-    editProjectDatesMutation(data.id || "", dirtyValues)
+    editProjectDatesMutation(id, dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })
@@ -51,9 +52,5 @@ export default function EditProjectDatesForm() {
       });
   });
 
-  return (
-    <FormProvider reset={reset} {...form}>
-      <ProjectDatesFormLayout onSubmit={onSubmit} />
-    </FormProvider>
-  );
+  return onSubmit;
 }

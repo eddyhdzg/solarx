@@ -18,8 +18,8 @@ export default function useHandleEditProjectNumberForm(
   reset: UseFormReset<EditProjectNumberSchema>
 ) {
   const { t } = useTranslation();
-  const { id } = useParams<ProjectIDParams>();
-  const { data, status } = useProject(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data, status } = useProject(id);
   const editProjectNumberMutation = useEditProjectNumberMutation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -44,7 +44,7 @@ export default function useHandleEditProjectNumberForm(
       values
     ) as EditProjectNumberSchema;
 
-    editProjectNumberMutation(data.id || "", dirtyValues)
+    editProjectNumberMutation(id, dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.projectEdited"), { variant: "success" });
       })

@@ -1,7 +1,7 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 import { GridItem, StyledTextField } from "atomic";
-import { IEditProjectContentSchema } from "hooks";
+import { EditProjectContentSchema } from "hooks";
 import { SubmitForm } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import { checkKeyDown } from "utils";
@@ -10,20 +10,20 @@ import {
   Titles,
   Actions,
   StyledInputAdornment,
-} from "../ProjectForms.styled";
+} from "../../ProjectForms.styled";
 
-interface IProjectContentFormLayoutProps {
+interface EditProjectContentFormLayoutProps {
   onSubmit: SubmitForm;
 }
 
-export default function ProjectContentFormLayout({
+export default function EditProjectContentFormLayout({
   onSubmit,
-}: IProjectContentFormLayoutProps) {
+}: EditProjectContentFormLayoutProps) {
   const { t } = useTranslation();
   const {
     control,
     formState: { isValid, isDirty },
-  } = useFormContext<IEditProjectContentSchema>();
+  } = useFormContext<EditProjectContentSchema>();
 
   return (
     <form
@@ -64,7 +64,7 @@ export default function ProjectContentFormLayout({
                       InputProps={{
                         startAdornment: (
                           <StyledInputAdornment position="start">
-                            https://www.notion.so/solarxapp/
+                            {t("forms.projectForm.notionLink")}
                           </StyledInputAdornment>
                         ),
                       }}
@@ -95,7 +95,7 @@ export default function ProjectContentFormLayout({
                       InputProps={{
                         startAdornment: (
                           <StyledInputAdornment position="start">
-                            https://www.notion.so/solarxapp/
+                            {t("forms.projectForm.notionLink")}
                           </StyledInputAdornment>
                         ),
                       }}
@@ -126,7 +126,7 @@ export default function ProjectContentFormLayout({
                       InputProps={{
                         startAdornment: (
                           <StyledInputAdornment position="start">
-                            https://www.notion.so/solarxapp/
+                            {t("forms.projectForm.notionLink")}
                           </StyledInputAdornment>
                         ),
                       }}

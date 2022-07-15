@@ -22,8 +22,8 @@ import {
 } from "../ProjectForms.styled";
 
 export default function ProjectPriceForm() {
-  const { id } = useParams<ProjectIDParams>();
-  const { data: prices } = useProjectPrices(id || "");
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data: prices } = useProjectPrices(id);
   const [ref, scroll] = useScrollRight();
   const { t } = useTranslation();
 

@@ -1,24 +1,24 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
 import { DateTimePicker, GridItem } from "atomic";
 import { useTranslation } from "react-i18next";
-import { IEditProjectDatesSchema } from "hooks";
+import { EditProjectDatesSchema } from "hooks";
 import { SubmitForm } from "solarx-types";
 import { checkKeyDown } from "utils";
 import { Controller, useFormContext } from "react-hook-form";
-import { Section, Titles, Actions } from "../ProjectForms.styled";
+import { Section, Titles, Actions } from "../../ProjectForms.styled";
 
-interface IProjectDatesFormLayoutProps {
+interface EditProjectDatesFormLayoutProps {
   onSubmit: SubmitForm;
 }
 
-export default function ProjectDatesFormLayout({
+export default function EditProjectDatesFormLayout({
   onSubmit,
-}: IProjectDatesFormLayoutProps) {
+}: EditProjectDatesFormLayoutProps) {
   const { t } = useTranslation();
   const {
     control,
     formState: { isValid, isDirty },
-  } = useFormContext<IEditProjectDatesSchema>();
+  } = useFormContext<EditProjectDatesSchema>();
 
   return (
     <form

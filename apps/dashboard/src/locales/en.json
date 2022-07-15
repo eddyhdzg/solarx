@@ -260,7 +260,8 @@
         "goalDescription": "Recalculate goal.",
         "updateGoal": "Update goal",
         "generateShares": "Generate shares",
-        "generateSharesDescription": "Generate shares when the project is ready."
+        "generateSharesDescription": "Generate shares when the project is ready.",
+        "notionLink": "https://www.notion.so/solarxapp/"
       },
       "DragNDropfile": "Drag 'n' drop some a file here, or click to select a file",
       "DragNDropfiles": "Drag 'n' drop some files here, or click to select files"
