@@ -43,12 +43,14 @@ const CurrencyField = forwardRef<
     <NumberFormat
       {...rest}
       getInputRef={ref}
+      isNumericString
+      autoComplete="off"
       decimalScale={2}
       allowNegative={false}
       value={Number(value) / 100}
       onValueChange={(e) => {
-        if (e.value === "") handleChange();
-        else handleChange(parseFloat(e.value) * 100);
+        if (e.value === "") return;
+        handleChange(parseFloat(e.value) * 100);
       }}
       onKeyDown={keyDown}
     />

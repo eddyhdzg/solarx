@@ -10,9 +10,9 @@ import {
 import { useProjectPrices, useScrollRight } from "hooks";
 import { useParams } from "react-router-dom";
 import { ProjectIDParams } from "solarx-types";
-import EditProjectBuyingOptionForm from "./editProjectPriceForm/EditProjectPriceForm";
-import EditProjectPriceRow from "./editProjectPriceRow/EditProjectPriceRow";
 import { useTranslation } from "react-i18next";
+import EditProjectBuyingOptionForm from "./editProjectPriceForm/EditProjectPriceForm";
+import StandardProjectPriceRow from "./standardProjectPriceRow/StandardProjectPriceRow";
 import {
   Titles,
   StyledTableContainer,
@@ -52,7 +52,7 @@ export default function ProjectPriceForm() {
                   {t("prices.quantity")}
                 </TableCellNumber>
                 <TableCellNumber align="right">
-                  {t("prices.unitAmout")}
+                  {t("prices.salePrice")}
                 </TableCellNumber>
                 <TableCellNumber align="right">
                   {t("prices.basePrice")}
@@ -82,7 +82,7 @@ export default function ProjectPriceForm() {
                     {...price}
                   />
                 ) : (
-                  <EditProjectPriceRow
+                  <StandardProjectPriceRow
                     key={price.id}
                     scrolled={scroll}
                     {...price}

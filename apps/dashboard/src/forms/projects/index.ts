@@ -5,7 +5,7 @@ export { default as EditProjectDatesForm } from "./projectDatesForm/editProjectD
 // General
 export { default as EditProjectGeneralForm } from "./projectGeneralForm/EditProjectGeneralForm";
 // Media
-export { default as EditProjectMediaForm } from "./projectMediaForm/editProjectMediaForm/EditProjectMediaForm";
+export { default as EditProjectMediaForm } from "./projectMediaForm/EditProjectMediaForm";
 // Number
 export { default as EditProjectNumberForm } from "./projectNumberForm/EditProjectNumberForm";
 // Price

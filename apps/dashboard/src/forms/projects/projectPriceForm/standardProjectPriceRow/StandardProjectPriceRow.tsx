@@ -3,17 +3,17 @@ import { ProjectPrice } from "solarx-types";
 import { formatMoney, formatNumber } from "utils";
 import { TableCellLast } from "../../ProjectForms.styled";
 
-interface IEditProjectPriceRowProps extends ProjectPrice {
+interface StandardProjectPriceRowProps extends ProjectPrice {
   scrolled: boolean;
 }
 
-export default function EditProjectPriceRow({
+export default function StandardProjectPriceRow({
   scrolled,
   basePrice = 1,
   quantity = 0,
   unit_amount = 1,
   ...price
-}: IEditProjectPriceRowProps) {
+}: StandardProjectPriceRowProps) {
   return (
     <TableRow>
       <TableCell component="th" scope="row">
@@ -22,10 +22,10 @@ export default function EditProjectPriceRow({
       <TableCell align="right">{formatNumber(quantity)}</TableCell>
       <TableCell align="right">{formatMoney(unit_amount)}</TableCell>
       <TableCell align="right">{formatMoney(basePrice)}</TableCell>
-      <TableCell align="right">0%</TableCell>
+      <TableCell align="right">-</TableCell>
       <TableCell>{price?.description}</TableCell>
-      <TableCell align="right">{price?.sharesSold}</TableCell>
       <TableCell align="right">{price?.investors}</TableCell>
+      <TableCell align="right">{price?.sharesSold}</TableCell>
       <TableCellLast align="right" scrolled={scrolled} />
     </TableRow>
   );

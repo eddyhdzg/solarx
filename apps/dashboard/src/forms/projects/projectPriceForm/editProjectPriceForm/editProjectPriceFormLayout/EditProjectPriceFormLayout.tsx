@@ -1,13 +1,13 @@
-import { IconButton, TableCell, TableRow } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import { Controller, useFormContext } from "react-hook-form";
 import { NumberFormatInput, StyledTextField } from "atomic";
 import { SubmitForm, ProjectPrice } from "solarx-types";
-import { IEditProjectPriceSchema } from "hooks";
+import { EditProjectPriceSchema } from "hooks";
 import { formatMoney, formatPercentage2Dec } from "utils";
-import { TableCellLast } from "../../ProjectForms.styled";
+import { IconButton, TableCell, TableRow } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { TableCellLast } from "../../../ProjectForms.styled";
 
-interface IEditProjectPriceFormProps extends ProjectPrice {
+interface EditProjectPriceFormProps extends ProjectPrice {
   onSubmit: SubmitForm;
   scrolled: boolean;
 }
@@ -18,11 +18,11 @@ export default function EditProjectPriceForm({
   basePrice = 1,
   unit_amount = 1,
   ...price
-}: IEditProjectPriceFormProps) {
+}: EditProjectPriceFormProps) {
   const {
     control,
     formState: { isValid, isDirty },
-  } = useFormContext<IEditProjectPriceSchema>();
+  } = useFormContext<EditProjectPriceSchema>();
   const discount = (1 - unit_amount / basePrice) * 100;
 
   return (
@@ -61,8 +61,8 @@ export default function EditProjectPriceForm({
       <TableCell align="right">{formatMoney(basePrice)}</TableCell>
       <TableCell align="right">{formatPercentage2Dec(discount)}</TableCell>
       <TableCell>{price?.description}</TableCell>
-      <TableCell align="right">{price?.sharesSold}</TableCell>
       <TableCell align="right">{price?.investors}</TableCell>
+      <TableCell align="right">{price?.sharesSold}</TableCell>
       <TableCellLast align="right" scrolled={scrolled}>
         <IconButton
           disabled={!isValid || !isDirty}

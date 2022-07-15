@@ -1,66 +1,27 @@
-import { useEffect } from "react";
-import {
-  IEditProjectPriceSchema,
-  useEditProjectPriceForm,
-  useEditProjectPricesMutation,
-} from "hooks";
+import { useEditProjectPriceForm, useHandleEditProjectPriceForm } from "hooks";
 import { FormProvider } from "react-hook-form";
 import { ProjectPrice } from "solarx-types";
-import { getDirtyValues } from "utils";
-import { useSnackbar } from "notistack";
-import { useTranslation } from "react-i18next";
-import EditProjectPriceFormLayout from "./EditProjectPriceFormLayout";
+import EditProjectPriceFormLayout from "./editProjectPriceFormLayout/EditProjectPriceFormLayout";
 
-interface IEditProjectPriceFormContextProps extends ProjectPrice {
+interface EditProjectPriceFormProps extends ProjectPrice {
   projectId?: string;
   scrolled: boolean;
 }
 
-export default function EditProjectPriceFormContext({
-  projectId,
-  quantity,
-  scrolled,
-  ...price
-}: IEditProjectPriceFormContextProps) {
-  const { reset, ...form } = useEditProjectPriceForm();
-  const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
-
-  useEffect(() => {
-    reset({ quantity });
-  }, [quantity, reset]);
-
-  const editProjectPrice = useEditProjectPricesMutation();
-
-  const onSubmit = form.handleSubmit((values, e) => {
-    e?.preventDefault();
-
-    const dirtyValues = getDirtyValues(
-      form?.formState?.dirtyFields,
-      values
-    ) as IEditProjectPriceSchema;
-
-    editProjectPrice(projectId || "", price?.id || "", dirtyValues)
-      .then(() => {
-        enqueueSnackbar(t("snackbar.priceEdited"), {
-          variant: "success",
-        });
-        reset();
-      })
-      .catch(() => {
-        enqueueSnackbar(t("snackbar.priceNotEdited"), {
-          variant: "error",
-        });
-      });
-  });
+export default function EditProjectPriceForm(props: EditProjectPriceFormProps) {
+  const form = useEditProjectPriceForm();
+  const onSubmit = useHandleEditProjectPriceForm(
+    form.formState,
+    form.handleSubmit,
+    props.projectId,
+    props.id,
+    props.quantity,
+    form.reset
+  );
 
   return (
-    <FormProvider reset={reset} {...form}>
-      <EditProjectPriceFormLayout
-        onSubmit={onSubmit}
-        scrolled={scrolled}
-        {...price}
-      />
+    <FormProvider {...form}>
+      <EditProjectPriceFormLayout onSubmit={onSubmit} {...props} />
     </FormProvider>
   );
 }

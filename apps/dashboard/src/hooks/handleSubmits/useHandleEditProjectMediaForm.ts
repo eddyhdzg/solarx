@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 import {
-  useEditProjectMediaForm,
   useEditProjectMediaMutation,
-  IEditProjectMediaSchema,
+  EditProjectMediaSchema,
   editProjectMediaDefaultValues,
   useProjectContent,
 } from "hooks";
-import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { getDirtyValues } from "utils";
 import { ProjectIDParams } from "solarx-types";
-import ProjectMediaFormLayout from "../ProjectMediaFormLayout";
+import { UseFormReset, UseFormHandleSubmit, FormState } from "react-hook-form";
 
-export default function EditProjectMediaForm() {
-  const { reset, ...form } = useEditProjectMediaForm();
+export default function useHandleEditProjectMediaForm(
+  formState: FormState<EditProjectMediaSchema>,
+  handleSubmit: UseFormHandleSubmit<EditProjectMediaSchema>,
+  reset: UseFormReset<EditProjectMediaSchema>
+) {
   const { t } = useTranslation();
   const { id } = useParams<ProjectIDParams>();
   const { data, status } = useProjectContent(id || "");
@@ -24,7 +25,7 @@ export default function EditProjectMediaForm() {
 
   useEffect(() => {
     // @ts-ignore
-    const defaultValues: IEditProjectMediaSchema = !data
+    const defaultValues: EditProjectMediaSchema = !data
       ? editProjectMediaDefaultValues
       : {
           images: data?.images,
@@ -33,13 +34,13 @@ export default function EditProjectMediaForm() {
     reset(defaultValues);
   }, [status, data, reset]);
 
-  const onSubmit = form.handleSubmit((values, e) => {
+  const onSubmit = handleSubmit((values, e) => {
     e?.preventDefault();
 
     const dirtyValues = getDirtyValues(
-      form?.formState?.dirtyFields,
+      formState?.dirtyFields,
       values
-    ) as IEditProjectMediaSchema;
+    ) as EditProjectMediaSchema;
 
     editProjectMediaMutation(id || "", dirtyValues)
       .then(() => {
@@ -50,9 +51,5 @@ export default function EditProjectMediaForm() {
       });
   });
 
-  return (
-    <FormProvider reset={reset} {...form}>
-      <ProjectMediaFormLayout onSubmit={onSubmit} />
-    </FormProvider>
-  );
+  return onSubmit;
 }

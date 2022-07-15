@@ -298,7 +298,7 @@
     "prices": {
       "id": "ID",
       "quantity": "Quantity",
-      "unitAmout": "Unit Amount",
+      "salePrice": "Sale Price",
       "basePrice": "Base Price",
       "discount": "Discount",
       "description": "Description",

@@ -40,9 +40,10 @@ const NumberFormatInput = forwardRef<
       {...rest}
       getInputRef={ref}
       isNumericString
+      autoComplete="off"
       onValueChange={(e) => {
-        if (e.value === "") handleChange();
-        else handleChange(parseFloat(e.value));
+        if (e.value === "") return;
+        handleChange(parseFloat(e.value));
       }}
       onKeyDown={keyDown}
     />

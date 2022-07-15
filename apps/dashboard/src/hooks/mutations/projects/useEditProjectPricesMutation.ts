@@ -1,6 +1,6 @@
 import { useFirestore } from "reactfire";
 import { doc, updateDoc } from "firebase/firestore";
-import { IEditProjectPriceSchema } from "hooks";
+import { EditProjectPriceSchema } from "hooks";
 
 export default function useEditProjectPricesMutation() {
   const firestore = useFirestore();
@@ -8,7 +8,7 @@ export default function useEditProjectPricesMutation() {
   const editProjectPrice = (
     projectId: string,
     priceId: string,
-    values: IEditProjectPriceSchema
+    values: EditProjectPriceSchema
   ) => {
     const projectPricesDocRef = doc(
       firestore,

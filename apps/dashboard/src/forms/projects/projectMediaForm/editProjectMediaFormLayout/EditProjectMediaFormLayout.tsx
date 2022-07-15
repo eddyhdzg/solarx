@@ -1,32 +1,33 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
 import { useFormContext } from "react-hook-form";
 import { DropzoneField, GridItem, ImagesPreview } from "atomic";
-import { IEditProjectMediaSchema, useProject } from "hooks";
+import { EditProjectMediaSchema, useProject } from "hooks";
 import { SubmitForm, ProjectIDParams } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import { checkKeyDown } from "utils";
+import { useParams } from "react-router-dom";
 import {
   Section,
   Titles,
   Actions,
   ImageTypography,
   Img,
-} from "../ProjectForms.styled";
-import { useParams } from "react-router-dom";
+} from "../../ProjectForms.styled";
 
-interface IProjectMediaFormLayoutProps {
+interface EditProjectMediaFormLayoutProps {
   onSubmit: SubmitForm;
 }
 
-export default function ProjectMediaFormLayout({
+export default function EditProjectMediaFormLayout({
   onSubmit,
-}: IProjectMediaFormLayoutProps) {
-  const { id } = useParams<ProjectIDParams>();
-  const { data } = useProject(id || "");
+}: EditProjectMediaFormLayoutProps) {
+  const { id = "" } = useParams<ProjectIDParams>();
   const { t } = useTranslation();
+  const { data } = useProject(id);
   const {
     formState: { isValid, isDirty },
-  } = useFormContext<IEditProjectMediaSchema>();
+  } = useFormContext<EditProjectMediaSchema>();
+  const coverImg = data?.images?.length ? data?.images[0] : undefined;
 
   return (
     <form
@@ -48,22 +49,19 @@ export default function ProjectMediaFormLayout({
           <ImageTypography variant="caption">
             {t("forms.projectForm.coverImage")}
           </ImageTypography>
-          <Img
-            src={data?.images?.length ? data?.images[0] : undefined}
-            alt="project"
-          />
+          <Img src={coverImg} alt="project" />
           <ImageTypography variant="caption">
             {t("forms.projectForm.images")}
           </ImageTypography>
           <Grid container spacing={3}>
-            <GridItem sm={6}>
+            <GridItem sm={9} lg={6}>
               <DropzoneField
                 name="images"
                 accept={["image/jpg", "image/jpeg", "image/gif", "image/png"]}
                 multiple
               />
             </GridItem>
-            <GridItem sm={6}>
+            <GridItem lg={6}>
               <ImagesPreview name="images" />
             </GridItem>
           </Grid>

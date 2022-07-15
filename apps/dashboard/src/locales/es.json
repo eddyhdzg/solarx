@@ -298,7 +298,7 @@
     "prices": {
       "id": "ID",
       "quantity": "Cantidad",
-      "unitAmout": "Cantidad por unidad",
+      "salePrice": "Precio de Venta",
       "basePrice": "Precio Base",
       "discount": "Descuento",
       "description": "Descripción",

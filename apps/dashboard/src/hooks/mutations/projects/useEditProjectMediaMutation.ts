@@ -1,5 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
-import { IEditProjectMediaSchema } from "hooks";
+import { EditProjectMediaSchema } from "hooks";
 import { useFirestore, useStorage } from "reactfire";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -9,7 +9,7 @@ export default function useEditProjectMediaMutation() {
 
   const uploadImages = async (
     id: string,
-    images: IEditProjectMediaSchema["images"]
+    images: EditProjectMediaSchema["images"]
   ) => {
     const projectFirestoreDocRef = doc(
       firestore,
@@ -64,7 +64,7 @@ export default function useEditProjectMediaMutation() {
 
   const editProjectMediaMutation = async (
     id: string | undefined,
-    { images }: IEditProjectMediaSchema
+    { images }: EditProjectMediaSchema
   ) => {
     if (!id) return new Error("ID Error");
     let imagesPromises: Promise<void> | undefined;

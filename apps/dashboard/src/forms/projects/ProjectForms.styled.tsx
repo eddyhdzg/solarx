@@ -51,11 +51,11 @@ export const TableCellLast = styled(TableCell, {
   shouldForwardProp: (prop) => prop !== "scrolled",
 })(({ theme }) => (props: { scrolled: boolean }) => ({
   position: "sticky",
-  right: -1,
+  right: 0,
   backgroundColor: theme.palette.background.default,
   backgroundImage: theme.custom.elevation[3],
   boxShadow: props.scrolled
-    ? "inset 10px 0 8px -8px rgba(0,0,0,0.2)"
+    ? "inset 12px 0 8px -10px rgb(230 230 230 / 80%)"
     : undefined,
 }));
 
