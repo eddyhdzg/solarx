@@ -1,7 +1,5 @@
 import {
   styled,
-  Typography,
-  TypographyProps,
   Table as MuiTable,
   TableProps,
   TableCell,
@@ -9,39 +7,6 @@ import {
   TableRow,
   TableRowProps,
 } from "@mui/material";
-
-const Body = styled("div")(({ theme }) => ({
-  padding: theme.spacing(2),
-  "& button": {
-    marginLeft: theme.spacing(2),
-    whiteSpace: "nowrap",
-  },
-}));
-
-export const Subtitle = styled(
-  (props: TypographyProps & { component: "p" }) => <Typography {...props} />
-)(({ theme }) => ({
-  marginBottom: theme.spacing(3),
-}));
-
-const Ul = styled("ul")(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  overflow: "auto",
-}));
-
-const Li = styled("li")(({ theme }) => ({
-  display: "flex",
-  alignItems: "flex-end",
-  justifyContent: "space-between",
-  "&:not(:last-child)": {
-    marginBottom: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
-    borderBottomColor: theme.palette.divider,
-    borderBottomWidth: 1,
-    borderBottomStyle: "solid",
-  },
-}));
 
 export const Table = styled(MuiTable)({
   whiteSpace: "nowrap",
@@ -65,10 +30,6 @@ export const LastRow = styled(TableRow)({
 });
 
 interface IAdminTriggersCompoundComponents {
-  Body: React.FC<React.DOMAttributes<HTMLDivElement>>;
-  Subtitle: React.FC<TypographyProps & { component: "p" }>;
-  Ul: React.FC<React.DOMAttributes<HTMLUListElement>>;
-  Li: React.FC<React.DOMAttributes<HTMLLIElement>>;
   Table: React.FC<TableProps>;
   TableCellLast: React.FC<TableCellProps & { scrolled: boolean }>;
   LastRow: React.FC<TableRowProps>;
@@ -80,10 +41,6 @@ const AdminTriggers: React.FC & IAdminTriggersCompoundComponents = ({
   return <>{children}</>;
 };
 
-AdminTriggers.Body = Body;
-AdminTriggers.Subtitle = Subtitle;
-AdminTriggers.Ul = Ul;
-AdminTriggers.Li = Li;
 AdminTriggers.TableCellLast = TableCellLast;
 AdminTriggers.Table = Table;
 AdminTriggers.LastRow = LastRow;

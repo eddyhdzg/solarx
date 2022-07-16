@@ -9,3 +9,5 @@ export { default as useHandleEditProjectGeneralForm } from "./useHandleEditProje
 export { default as useHandleEditProjectMediaForm } from "./useHandleEditProjectMediaForm";
 export { default as useHandleEditProjectNumberForm } from "./useHandleEditProjectNumberForm";
 export { default as useHandleEditProjectPriceForm } from "./useHandleEditProjectPriceForm";
+export { default as useHandleTriggerSharePrice } from "./useHandleTriggerSharePrice";
+export { default as useHandleTriggerStandard } from "./useHandleTriggerStandard";

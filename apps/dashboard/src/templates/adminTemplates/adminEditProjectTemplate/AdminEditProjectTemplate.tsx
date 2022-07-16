@@ -5,11 +5,12 @@ import {
   EditProjectGeneralForm,
   EditProjectNumberForm,
   EditProjectMediaForm,
-  ProjectPriceForm,
+  EditProjectPricesForm,
   EditProjectDatesForm,
   EditProjectContentForm,
+  ProjectTriggersForm,
 } from "forms";
-import { AdminTriggers, AdminProjectSummary } from "organisms";
+import { AdminProjectSummary } from "organisms";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import { useTranslation } from "react-i18next";
@@ -60,7 +61,7 @@ export default function AdminEditProjectTemplate() {
               <EditProjectNumberForm />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="2">
-              <ProjectPriceForm />
+              <EditProjectPricesForm />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="3">
               <EditProjectMediaForm />
@@ -72,7 +73,7 @@ export default function AdminEditProjectTemplate() {
               <EditProjectDatesForm />
             </EditProjectTabPanel>
             <EditProjectTabPanel value="6">
-              <AdminTriggers />
+              <ProjectTriggersForm />
             </EditProjectTabPanel>
           </GridItem>
           <GridItem md={5} lg={4} xl={3}>

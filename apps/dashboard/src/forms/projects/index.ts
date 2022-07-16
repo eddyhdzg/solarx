@@ -3,5 +3,5 @@ export { default as EditProjectDatesForm } from "./projectDatesForm/EditProjectD
 export { default as EditProjectGeneralForm } from "./projectGeneralForm/EditProjectGeneralForm";
 export { default as EditProjectMediaForm } from "./projectMediaForm/EditProjectMediaForm";
 export { default as EditProjectNumberForm } from "./projectNumberForm/EditProjectNumberForm";
-export { default as ProjectPriceForm } from "./projectPriceForm/ProjectPriceForm";
+export { default as EditProjectPricesForm } from "./projectPricesForm/EditProjectPricesForm";
 export { default as ProjectTriggersForm } from "./projectTriggersForm/ProjectTriggersForm";

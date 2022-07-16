@@ -21,7 +21,7 @@ import {
   TableCellNumber,
 } from "../ProjectForms.styled";
 
-export default function ProjectPriceForm() {
+export default function EditProjectPricesForm() {
   const { id = "" } = useParams<ProjectIDParams>();
   const { data: prices } = useProjectPrices(id);
   const [ref, scroll] = useScrollRight();

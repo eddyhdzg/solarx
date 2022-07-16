@@ -1,19 +1,23 @@
 import {
   Paper,
   Typography,
+  Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
 import { useScrollRight } from "hooks";
 import { useTranslation } from "react-i18next";
-import AdminTriggerGeneralOptionRow from "./adminTriggersRows/AdminTriggerGeneralOptionRow";
-import AdminTriggerGoalRow from "./adminTriggersRows/AdminTriggerGoalRow";
-import AdminTriggerSharePrice from "./adminTriggersRows/AdminTriggerSharePrice";
-import AdminTriggerShares from "./adminTriggersRows/AdminTriggerShares";
-import Styles from "./AdminTriggers.styled";
+import TriggerStandardSharesQuantity from "./projectTriggerRows/TriggerStandardSharesQuantity";
+import AdminTriggerGoalRow from "./projectTriggerRows/AdminTriggerGoalRow";
+import TriggerSharePrice from "./projectTriggerRows/TriggerSharePrice";
+import AdminTriggerShares from "./projectTriggerRows/AdminTriggerShares";
+import {
+  Titles,
+  StyledTableContainer,
+  TableContent,
+} from "../ProjectForms.styled";
 
 export default function ProjectTriggersForm() {
   const [ref, scroll] = useScrollRight();
@@ -21,21 +25,22 @@ export default function ProjectTriggersForm() {
 
   return (
     <Paper>
-      <Styles.Body>
-        <div>
+      <TableContent>
+        <Titles>
           <Typography variant="h6" component="h6" gutterBottom>
             {t("forms.projectForm.triggers")}
           </Typography>
-          <Styles.Subtitle
-            variant="subtitle3"
-            color="textSecondary"
-            component="p"
-          >
+          <Typography variant="subtitle3" color="textSecondary">
             {t("forms.projectForm.triggersDescription")}
-          </Styles.Subtitle>
-        </div>
-        <TableContainer ref={ref}>
-          <Styles.Table aria-label="triggers table">
+          </Typography>
+        </Titles>
+        <StyledTableContainer ref={ref}>
+          <Table
+            aria-label="triggers table"
+            sx={{
+              whiteSpace: "nowrap",
+            }}
+          >
             <TableHead>
               <TableRow>
                 <TableCell />
@@ -45,18 +50,20 @@ export default function ProjectTriggersForm() {
                 <TableCell align="right">
                   {t("forms.projectForm.new")}
                 </TableCell>
-                <TableCell align="right" />
+                <TableCell align="right">
+                  {t("forms.projectForm.triggers")}
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <AdminTriggerSharePrice scrolled={scroll} />
-              <AdminTriggerGeneralOptionRow scrolled={scroll} />
+              <TriggerSharePrice scrolled={scroll} />
+              <TriggerStandardSharesQuantity scrolled={scroll} />
               <AdminTriggerGoalRow scrolled={scroll} />
               <AdminTriggerShares scrolled={scroll} />
             </TableBody>
-          </Styles.Table>
-        </TableContainer>
-      </Styles.Body>
+          </Table>
+        </StyledTableContainer>
+      </TableContent>
     </Paper>
   );
 }
