@@ -1,46 +1,47 @@
 import { Typography, Button, TableCell, TableRow } from "@mui/material";
+import { useRole, useHandleTriggerGoal, useProject } from "hooks";
+import { useParams } from "react-router-dom";
+import { formatMoney } from "utils";
 import { moderatorArray } from "constant";
 import { useTranslation } from "react-i18next";
-import DoneIcon from "@mui/icons-material/Done";
-import CloseIcon from "@mui/icons-material/Close";
-import { useRole, useHandleTriggerSharePrice } from "hooks";
+import { ProjectIDParams } from "solarx-types";
 import { TableCellLast } from "../../ProjectForms.styled";
 
-interface TriggerSharePriceProps {
+interface TriggerGoalProps {
   scrolled: boolean;
 }
 
-export default function TriggerSharePrice({
-  scrolled,
-}: TriggerSharePriceProps) {
-  const { t } = useTranslation();
+export default function TriggerGoal({ scrolled }: TriggerGoalProps) {
   const role = useRole();
-  const { disabled, handleTriggerSharePrice } = useHandleTriggerSharePrice();
+  const { t } = useTranslation();
+  const { id = "" } = useParams<ProjectIDParams>();
+  const { data: project } = useProject(id);
+  const { disabled, handleTriggerGoal, newGoal } = useHandleTriggerGoal();
 
   return (
     <TableRow>
       <TableCell component="th" scope="row">
         <div>
           <Typography variant="subtitle1">
-            {t("forms.projectForm.sharePrice")}
+            {t("forms.projectForm.goal")}
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            {t("forms.projectForm.sharePriceDescription")}
+            {t("forms.projectForm.goalDescription")}
           </Typography>
         </div>
       </TableCell>
+      <TableCell align="right">{formatMoney(project?.goal)}</TableCell>
       <TableCell align="right">
-        {disabled ? <DoneIcon /> : <CloseIcon />}
+        {disabled ? "-" : formatMoney(newGoal)}
       </TableCell>
-      <TableCell align="right">{!disabled ? <DoneIcon /> : "-"}</TableCell>
       <TableCellLast scrolled={Boolean(scrolled)} align="right">
         <Button
           size="large"
           variant="contained"
           disabled={!moderatorArray.has(role) || disabled}
-          onClick={handleTriggerSharePrice}
+          onClick={handleTriggerGoal}
         >
-          {t("forms.projectForm.updateSharePrices")}
+          {t("forms.projectForm.updateGoal")}
         </Button>
       </TableCellLast>
     </TableRow>

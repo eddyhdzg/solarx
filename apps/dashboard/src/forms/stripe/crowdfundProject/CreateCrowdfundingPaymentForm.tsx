@@ -1,8 +1,8 @@
 import { FormProvider } from "react-hook-form";
-import CreateCrowdfundingPaymentFormLayout from "../CreateCrowdfundingPaymentFormLayout";
 import { useCreateCrowdfundingPayment } from "hooks";
+import CreateCrowdfundingPaymentFormLayout from "./createCrowdfundingPaymentFormLayout/CreateCrowdfundingPaymentFormLayout";
 
-export default function CreateCrowdfundingPayment() {
+export default function CreateCrowdfundingPaymentForm() {
   const form = useCreateCrowdfundingPayment();
 
   return (

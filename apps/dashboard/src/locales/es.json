@@ -112,7 +112,10 @@
           "update": "Actualizar",
           "useAnyOfThe": "¡Usa cualquiera de las",
           "stripeTestCards": " tarjetas de prueba de Stripe ",
-          "forThisDemo": "para este demo!"
+          "forThisDemo": "para este demo!",
+          "poweredBy": "Desarrollado por",
+          "terms": "Términos",
+          "privacy": "Privacidad"
         }
       },
       "more": {

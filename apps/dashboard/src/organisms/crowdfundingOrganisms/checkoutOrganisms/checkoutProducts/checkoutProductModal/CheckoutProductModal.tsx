@@ -27,11 +27,10 @@ export default function CheckoutProductModal({
     setValue,
   } = useRouterState();
   const [shares, setShares] = useState(Number(qty));
-
   const { pid = "" } = useQueryParams();
   const { id } = useParams<ProjectIDParams>();
   const { data: project } = useProject(id);
-  const { data: price } = useProjectPrice(id, pid as string);
+  const { data: price } = useProjectPrice(id, pid);
   const { name } = project;
   const { quantity = 0, sharesSold = 0 } = price;
   const rest = quantity - sharesSold;
@@ -51,7 +50,7 @@ export default function CheckoutProductModal({
     <Modal open={open} onClose={handleClose}>
       <Box
         sx={{
-          position: "absolute" as "absolute",
+          position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",

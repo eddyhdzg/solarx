@@ -3,9 +3,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import {
   createCrowdfundingPaymentSchema,
   createCrowdfundingPaymentDefaultValues,
-} from "./useCreateCrowdfundingPayment.schema";
+} from "./useCreateCrowdfundingPaymentForm.schema";
 
-export default function useCreateCrowdfundingPayment() {
+export default function useCreateCrowdfundingPaymentForm() {
   const form = useForm({
     resolver: yupResolver(createCrowdfundingPaymentSchema),
     mode: "onChange",

@@ -7,7 +7,7 @@ export interface IGridItemProps extends GridProps {
 export const GridItem = styled(
   ({ xxs = 12, className, ...rest }: IGridItemProps) => {
     const xxsClass = `MuiGrid-grid-xxs-${xxs}`;
-    return <Grid item {...rest} className={xxsClass} />;
+    return <Grid item {...rest} className={[xxsClass, className].join(" ")} />;
   },
   {}
 )(() => ({}));
