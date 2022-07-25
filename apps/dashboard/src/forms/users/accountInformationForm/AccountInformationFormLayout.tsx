@@ -2,7 +2,7 @@ import { Button, Divider, Grid, Typography } from "@mui/material";
 import { GridItem, StyledTextField } from "atomic";
 import { IEditUserSchema, useFirestoreUser } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
-import { checkKeyDown } from "utils";
+import { preventEnter } from "utils";
 import { useTranslation } from "react-i18next";
 import { SubmitForm } from "solarx-types";
 import {
@@ -34,7 +34,7 @@ export default function AccountInformationFormLayout({
     <form
       noValidate
       autoComplete="off"
-      onKeyDown={(e) => checkKeyDown(e)}
+      onKeyDown={preventEnter}
       onSubmit={onSubmit}
     >
       <StyledPaper>

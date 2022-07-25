@@ -53,7 +53,7 @@ export default function AdminUsersTemplate() {
   });
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>{t("pages.admin.users.users")}</PageTitle>
       <UsersTableLayout table={table} />
     </Container>

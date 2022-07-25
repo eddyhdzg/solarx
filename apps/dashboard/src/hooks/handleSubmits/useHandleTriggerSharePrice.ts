@@ -32,12 +32,12 @@ export default function useHandleTriggerSharePrice() {
   const handleTriggerSharePrice = () => {
     updatePricesSharePrice({ id })
       .then(() => {
-        enqueueSnackbar(t("snackbar.sharePricesUpdated"), {
+        enqueueSnackbar(t("snackbar.panelsPricesUpdated"), {
           variant: "success",
         });
       })
       .catch(() => {
-        enqueueSnackbar(t("snackbar.sharePricesNotUpdated"), {
+        enqueueSnackbar(t("snackbar.panelsPricesNotUpdated"), {
           variant: "error",
         });
       });

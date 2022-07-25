@@ -29,20 +29,20 @@ interface IWalletChartProps {
 }
 
 export default function WalletTimelineChart({ data }: IWalletChartProps) {
-  const { tooltipContentStyle, totalBalance, sxp, stocks, cash } =
+  const { tooltipContentStyle, totalBalance, sxp, panels, cash } =
     useWalletChartStyles();
   const { t } = useTranslation();
 
   const [hide, setHide] = useState({
     [t("pages.wallet.timeline.cash")]: false,
-    [t("pages.wallet.timeline.shares")]: false,
+    [t("pages.wallet.timeline.panels")]: false,
     [t("pages.wallet.timeline.solarXPoints")]: false,
     [t("pages.wallet.timeline.totalBalance")]: false,
   });
 
   const [opacity, setOpacity] = useState({
     [t("pages.wallet.timeline.cash")]: 1,
-    [t("pages.wallet.timeline.shares")]: 1,
+    [t("pages.wallet.timeline.panels")]: 1,
     [t("pages.wallet.timeline.solarXPoints")]: 1,
     [t("pages.wallet.timeline.totalBalance")]: 1,
   });
@@ -50,7 +50,7 @@ export default function WalletTimelineChart({ data }: IWalletChartProps) {
   const handleMouseEnter = ({ dataKey }: any) => {
     setOpacity({
       [t("pages.wallet.timeline.cash")]: 0.3,
-      [t("pages.wallet.timeline.shares")]: 0.3,
+      [t("pages.wallet.timeline.panels")]: 0.3,
       [t("pages.wallet.timeline.solarXPoints")]: 0.3,
       [t("pages.wallet.timeline.totalBalance")]: 0.3,
       [dataKey]: 1,
@@ -60,7 +60,7 @@ export default function WalletTimelineChart({ data }: IWalletChartProps) {
   const handleMouseLeave = () => {
     setOpacity({
       [t("pages.wallet.timeline.cash")]: 1,
-      [t("pages.wallet.timeline.shares")]: 1,
+      [t("pages.wallet.timeline.panels")]: 1,
       [t("pages.wallet.timeline.solarXPoints")]: 1,
       [t("pages.wallet.timeline.totalBalance")]: 1,
     });
@@ -99,11 +99,11 @@ export default function WalletTimelineChart({ data }: IWalletChartProps) {
           />
           <Line
             type="monotone"
-            dataKey={t("pages.wallet.timeline.shares")}
-            stroke={stocks}
+            dataKey={t("pages.wallet.timeline.panels")}
+            stroke={panels}
             activeDot={{ r: 6 }}
-            strokeOpacity={opacity[t("pages.wallet.timeline.shares")]}
-            hide={hide[t("pages.wallet.timeline.shares")]}
+            strokeOpacity={opacity[t("pages.wallet.timeline.panels")]}
+            hide={hide[t("pages.wallet.timeline.panels")]}
           />
           <Line
             type="monotone"

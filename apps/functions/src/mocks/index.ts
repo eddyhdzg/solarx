@@ -25,7 +25,7 @@ export const mockProject: Project = {
   ppa: 0,
   releaseDate: null,
   roi: 1,
-  sharesSold: 0,
+  panelsSold: 0,
   state: "",
   status: "coming soon",
 };
@@ -43,7 +43,7 @@ export const mockProjectPrice: ProjectPrice = {
   quantity: 1,
   recurring: null,
   basePrice: 1000,
-  sharesSold: 0,
+  panelsSold: 0,
   tax_behavior: "unspecified",
   tiers: null,
   tiers_mode: null,

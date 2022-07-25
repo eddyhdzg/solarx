@@ -26,7 +26,7 @@ export const updateProject = async ({
     }),
     investors,
     raised: FieldValue.increment(amount),
-    sharesSold: FieldValue.increment(qty),
+    panelsSold: FieldValue.increment(qty),
   });
 };
 
@@ -53,7 +53,7 @@ export const updateProjectPrice = async ({
 
   t.update(projectPriceRef, {
     investors: newInvestors,
-    sharesSold: FieldValue.increment(qty),
+    panelsSold: FieldValue.increment(qty),
   });
 };
 

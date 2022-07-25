@@ -22,10 +22,10 @@ export default function TriggerSharePrice({
       <TableCell component="th" scope="row">
         <div>
           <Typography variant="subtitle1">
-            {t("forms.projectForm.sharePrice")}
+            {t("forms.projectForm.panelPrice")}
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            {t("forms.projectForm.sharePriceDescription")}
+            {t("forms.projectForm.panelPriceDescription")}
           </Typography>
         </div>
       </TableCell>
@@ -40,7 +40,7 @@ export default function TriggerSharePrice({
           disabled={!moderatorArray.has(role) || disabled}
           onClick={handleTriggerSharePrice}
         >
-          {t("forms.projectForm.updateSharePrices")}
+          {t("forms.projectForm.updatePanelPrices")}
         </Button>
       </TableCellLast>
     </TableRow>

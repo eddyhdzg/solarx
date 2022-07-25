@@ -29,23 +29,23 @@ export default function WalletSharesTable({ rows }: WalletSharesTableProps) {
         <StyledTableHead>
           <TableRow>
             <StyledTableCellHeader>
-              {t("pages.wallet.shares.project")}
+              {t("pages.wallet.panels.project")}
             </StyledTableCellHeader>
             <TableCell align="right">
-              {t("pages.wallet.shares.basePrice")}
+              {t("pages.wallet.panels.basePrice")}
             </TableCell>
             <TableCell align="center">
-              {t("pages.wallet.shares.quantity")}
+              {t("pages.wallet.panels.quantity")}
             </TableCell>
             <TableCell align="right">
-              {t("pages.wallet.shares.total")}
+              {t("pages.wallet.panels.total")}
             </TableCell>
-            <TableCell align="right">{t("pages.wallet.shares.roi")}</TableCell>
+            <TableCell align="right">{t("pages.wallet.panels.roi")}</TableCell>
             <TableCell align="right">
-              {t("pages.wallet.shares.monthlyRevenue")}
+              {t("pages.wallet.panels.monthlyRevenue")}
             </TableCell>
             <TableCell align="right">
-              {t("pages.wallet.shares.yearlyRevenue")}
+              {t("pages.wallet.panels.yearlyRevenue")}
             </TableCell>
           </TableRow>
         </StyledTableHead>

@@ -16,7 +16,7 @@ export const createLocalUser_v0 = functions.firestore
 
     const wallet = {
       cash: 0,
-      stocks: 0,
+      panels: 0,
       sxp: 0,
       total: 0,
     };

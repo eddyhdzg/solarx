@@ -16,7 +16,7 @@ export const addPriceData_v0 = functions.firestore
     const projectPrice: ProjectPrice = {
       investors: 0,
       quantity: 1,
-      sharesSold: 0,
+      panelsSold: 0,
       basePrice,
     };
 

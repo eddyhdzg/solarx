@@ -12,8 +12,8 @@ import { useTranslation } from "react-i18next";
 import Styled, { Color } from "./WalletBalance.styled";
 
 export default function WalletBalance() {
-  const { data } = useCurrUserWallet();
-  const { cash = 0, stocks = 0, sxp = 0, total = 1 } = data || {};
+  const { data = {} } = useCurrUserWallet();
+  const { cash = 0, panels = 0, sxp = 0, total = 1 } = data;
   const { t } = useTranslation();
 
   const map: {
@@ -24,10 +24,10 @@ export default function WalletBalance() {
     Icon: React.FC;
   }[] = [
     {
-      color: "stocks",
-      primary: data ? formatMoney(stocks) : "-",
-      secondary: t("pages.wallet.balances.shares"),
-      value: (stocks / total) * 100,
+      color: "panels",
+      primary: data ? formatMoney(panels) : "-",
+      secondary: t("pages.wallet.balances.panels"),
+      value: (panels / total) * 100,
       Icon: Styled.ShowChartIcon,
     },
     {

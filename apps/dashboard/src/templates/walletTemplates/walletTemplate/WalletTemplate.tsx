@@ -10,7 +10,7 @@ export default function WalletTemplate() {
   const lg = useBreakpoint("lg");
   const { t } = useTranslation();
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>{t("pages.wallet.title")}</PageTitle>
       <AuthWrapper>
         {lg ? <WalletDesktopLayout /> : <WalletMobileLayout />}

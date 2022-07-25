@@ -8,7 +8,7 @@ import {
 } from "atomic";
 import { EditProjectNumberSchema } from "hooks";
 import { useTranslation } from "react-i18next";
-import { checkKeyDown } from "utils";
+import { preventEnter } from "utils";
 import { SubmitForm } from "solarx-types";
 import { Section, Titles, Actions } from "../../ProjectForms.styled";
 
@@ -29,7 +29,7 @@ export default function ProjectNumberFormLayout({
     <form
       noValidate
       autoComplete="off"
-      onKeyDown={(e) => checkKeyDown(e)}
+      onKeyDown={preventEnter}
       onSubmit={onSubmit}
     >
       <Paper>

@@ -1,5 +1,3 @@
-import { PaymentData } from "solarx-types";
-
 // 1000 => 1,000
 // 1000.505 => 1,000.51
 export const formatNumber = (num: number) => {

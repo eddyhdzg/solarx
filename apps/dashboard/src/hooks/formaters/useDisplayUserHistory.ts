@@ -3,12 +3,14 @@ import { UserHistory } from "solarx-types";
 import {
   formatMonthAndYear,
   toColor,
+  toDot,
   formatllll,
   formatHistoryValue,
 } from "utils";
 
 interface DisplayUserHistory {
-  color?: "red" | "green";
+  color?: "red" | "teal";
+  dot?: "red" | "cash";
   title?: string;
   description?: string;
   value?: string;
@@ -27,6 +29,7 @@ export default function useDisplayUserHistory(userHistory: UserHistory[]) {
 
         const transaction: DisplayUserHistory = {
           color: toColor(Number(curr.amount)),
+          dot: toDot(Number(curr.amount)),
           title: curr.title,
           description: curr.description,
           value: formatHistoryValue(curr.amount, curr.currency),

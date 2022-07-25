@@ -12,7 +12,7 @@ export default function AdminProjectsTemplate() {
   const table = useProjectsTable({ data, section });
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>
         {t("pages.crowdfunding.projects.crowdfundingProjects")}
       </PageTitle>

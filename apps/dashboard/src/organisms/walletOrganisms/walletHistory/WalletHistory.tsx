@@ -27,7 +27,7 @@ export default function WalletHistory() {
                 return (
                   <Styled.Li key={transaction.date}>
                     <Styled.DescriptionContainer>
-                      <Dot color={transaction.color} />
+                      <Dot color={transaction.dot} />
                       <Styled.DescriptionTexts>
                         <Styled.DescriptionTitle variant="subtitle2">
                           {transaction.title}

@@ -1,17 +1,17 @@
+import { DotColor } from "solarx-types";
 import { Box, useTheme } from "@mui/material";
 
-// FIXME
 export interface IDotProps {
-  color?: "default" | "green" | "red" | "stocks" | "totalBalance";
+  color?: DotColor;
 }
 
 export default function Dot({ color = "default" }: IDotProps) {
   const theme = useTheme();
   const colorMap = {
     default: theme.palette.text.primary,
-    green: theme.custom.cash,
-    red: theme.palette.error.main,
-    stocks: theme.custom.stocks,
+    cash: theme.custom.cash,
+    red: theme.custom.red,
+    sxp: theme.custom.sxp,
     totalBalance: theme.custom.totalBalance,
   };
 

@@ -50,7 +50,7 @@ export default function WalletTimeline() {
       return {
         name,
         [t("pages.wallet.timeline.cash")]: col?.cash,
-        [t("pages.wallet.timeline.shares")]: col?.stocks,
+        [t("pages.wallet.timeline.panels")]: col?.panels,
         [t("pages.wallet.timeline.solarXPoints")]: col?.sxp,
         [t("pages.wallet.timeline.totalBalance")]: col?.total,
       };

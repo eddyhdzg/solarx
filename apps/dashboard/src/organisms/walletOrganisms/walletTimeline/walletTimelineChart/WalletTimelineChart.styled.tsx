@@ -21,7 +21,6 @@ export const useWalletChartStyles = () => {
     borderColor: theme.palette.divider,
   };
 
-  const { totalBalance, stocks, cash, sxp } = theme.custom;
-
-  return { tooltipContentStyle, totalBalance, stocks, cash, sxp };
+  const { totalBalance, panels, cash, sxp } = theme.custom;
+  return { tooltipContentStyle, totalBalance, panels, cash, sxp };
 };

@@ -2,7 +2,13 @@ import { formatUnits, formatUnitsWithDecimals } from "./format.utils";
 
 export const toColor = (n: number) => {
   if (n < 0) return "red";
-  if (n > 0) return "green";
+  if (n > 0) return "teal";
+  return undefined;
+};
+
+export const toDot = (n: number) => {
+  if (n < 0) return "red";
+  if (n > 0) return "cash";
   return undefined;
 };
 

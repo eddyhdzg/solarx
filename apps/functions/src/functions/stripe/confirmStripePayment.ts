@@ -65,7 +65,7 @@ exports.confirmStripePayment_v0 = functions.firestore
 
           const {
             cash = 0,
-            stocks = 0,
+            panels = 0,
             sxp = 0,
           } = (await t.get(wallet)).data() as UserWallet;
 
@@ -76,7 +76,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             name = "",
             roi = 0,
             basePrice = 0,
-            sharesSold = 0,
+            panelsSold = 0,
             totalShares = Number.MAX_SAFE_INTEGER,
           } = (await db
             .collection("projects")
@@ -87,7 +87,7 @@ exports.confirmStripePayment_v0 = functions.firestore
               return {};
             })) as Project;
 
-          const newStocks = stocks + basePrice * qty;
+          const newStocks = panels + basePrice * qty;
           const total = cash + sxp + newStocks;
 
           await updateUserSharesSummary({
@@ -115,14 +115,14 @@ exports.confirmStripePayment_v0 = functions.firestore
             t,
             uid,
             cash,
-            stocks: newStocks,
+            panels: newStocks,
             sxp,
             total,
           });
 
           await updateProject({
             t,
-            fundedDate: sharesSold >= totalShares,
+            fundedDate: panelsSold >= totalShares,
             investors: newInvestors,
             projectId,
             amount: amount_received,

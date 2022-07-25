@@ -8,7 +8,7 @@ export const projectSearchFilters = [
   "basePrice",
   "roi",
   "progress",
-  "shares",
+  "panels",
   "ppa",
   "created",
 ];

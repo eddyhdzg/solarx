@@ -17,7 +17,7 @@ describe("updateGeneralPriceQuantity_v0", () => {
       .collection("projects")
       .doc(pid)
       .collection("prices")
-      .add({ ...mockProjectPrice, sharePrice: 900 });
+      .add({ ...mockProjectPrice, panelsPrice: 900 });
 
     await wrapped(
       {

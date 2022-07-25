@@ -24,10 +24,10 @@ export default function TriggerGenerateShares({
       <TableCell component="th" scope="row">
         <div>
           <Typography variant="subtitle1">
-            {t("forms.projectForm.generateShares")}
+            {t("forms.projectForm.generatePanels")}
           </Typography>
           <Typography variant="subtitle2" color="textSecondary">
-            {t("forms.projectForm.generateSharesDescription")}
+            {t("forms.projectForm.generatePanelsDescription")}
           </Typography>
         </div>
       </TableCell>
@@ -44,7 +44,7 @@ export default function TriggerGenerateShares({
           disabled={disabled}
           onClick={handleTriggerGenerateShares}
         >
-          {t("forms.projectForm.generateShares")}
+          {t("forms.projectForm.generatePanels")}
         </Button>
       </TableCellLast>
     </TableRow>

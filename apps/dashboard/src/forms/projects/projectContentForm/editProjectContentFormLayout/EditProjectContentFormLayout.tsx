@@ -4,7 +4,7 @@ import { GridItem, StyledTextField } from "atomic";
 import { EditProjectContentSchema } from "hooks";
 import { SubmitForm } from "solarx-types";
 import { useTranslation } from "react-i18next";
-import { checkKeyDown } from "utils";
+import { preventEnter } from "utils";
 import {
   Section,
   Titles,
@@ -29,7 +29,7 @@ export default function EditProjectContentFormLayout({
     <form
       noValidate
       autoComplete="off"
-      onKeyDown={(e) => checkKeyDown(e)}
+      onKeyDown={preventEnter}
       onSubmit={onSubmit}
     >
       <Paper>

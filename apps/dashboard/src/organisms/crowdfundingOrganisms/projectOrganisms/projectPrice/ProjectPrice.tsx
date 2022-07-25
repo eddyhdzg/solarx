@@ -30,7 +30,7 @@ interface TProjectPriceCardProps
     | "description"
     | "investors"
     | "quantity"
-    | "sharesSold"
+    | "panelsSold"
     | "basePrice"
     | "unit_amount"
   > {
@@ -44,7 +44,7 @@ const ProjectPriceCard = ({
   description,
   investors,
   quantity = 0,
-  sharesSold = 0,
+  panelsSold = 0,
   basePrice = 1,
   unit_amount = 0,
   onClick,
@@ -52,22 +52,22 @@ const ProjectPriceCard = ({
   roi = 0,
 }: TProjectPriceCardProps) => {
   const { t } = useTranslation();
-  const [shares, setShares] = useState(1);
+  const [panels, setShares] = useState(1);
   const { data: signinResult } = useSigninCheck();
   const { pathname } = useLocation();
   const history = useHistory();
 
   const handleChangeShares = (num: number) => {
-    setShares(shares + num);
+    setShares(panels + num);
   };
 
-  const rest = quantity - sharesSold;
+  const rest = quantity - panelsSold;
   const disabled = rest <= 0;
   const max = Math.min(rest, 500);
-  const error = shares < 1 || shares > max;
+  const error = panels < 1 || panels > max;
   const discount = Math.round((1 - unit_amount / basePrice) * 100);
-  const discountedMoney = (basePrice - unit_amount) * shares;
-  const totalDisplayPrice = unit_amount * shares;
+  const discountedMoney = (basePrice - unit_amount) * panels;
+  const totalDisplayPrice = unit_amount * panels;
   const newRoi = (basePrice * roi) / unit_amount;
 
   return (
@@ -98,7 +98,7 @@ const ProjectPriceCard = ({
             >
               {formatMoney(unit_amount)}
               {" / "}
-              {t("common.share")}
+              {t("common.panel")}
             </Typography>
           </InnerContent>
           <Typography
@@ -137,7 +137,7 @@ const ProjectPriceCard = ({
 
             <StyledChip
               label={`ROI ${formatNumber(newRoi)}%`}
-              variant="green"
+              variant="teal"
               icon={<SellIcon />}
               size="small"
             />
@@ -148,10 +148,10 @@ const ProjectPriceCard = ({
         <Ul>
           <Li>
             <Typography variant="body2" color="textSecondary">
-              {t("projects.shares")}
+              {t("projects.panels")}
             </Typography>
             <Counter
-              shares={shares}
+              panels={panels}
               onChangeShares={handleChangeShares}
               setShares={setShares}
               error={error}
@@ -198,13 +198,13 @@ const ProjectPriceCard = ({
           component={Link}
           to={{
             pathname: `${pathname}/checkout`,
-            search: `?qty=${shares}&pid=${id}`,
+            search: `?qty=${panels}&pid=${id}`,
           }}
           onKeyPress={(e: any) => {
             if (e.key === " ") {
               history.push({
                 pathname: `${pathname}/checkout`,
-                search: `?qty=${shares}&pid=${id}`,
+                search: `?qty=${panels}&pid=${id}`,
               });
             }
           }}

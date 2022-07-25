@@ -18,7 +18,7 @@ export const addProjectData_v0 = functions.firestore
       ppa: 0,
       releaseDate: null,
       roi: 1,
-      sharesSold: 0,
+      panelsSold: 0,
       state: "",
       status: "coming soon",
       totalShares: 1,

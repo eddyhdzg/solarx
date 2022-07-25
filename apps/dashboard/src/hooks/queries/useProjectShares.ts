@@ -1,17 +1,17 @@
 import { collection, query, where, limit } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { Share } from "solarx-types";
+import { Panel } from "solarx-types";
 
 export default function useProjectShares(projectId: string = "null") {
   const firestore = useFirestore();
-  const sharesRef = collection(firestore, "shares");
-  const sharesQuery = query(
-    sharesRef,
+  const panelsRef = collection(firestore, "panels");
+  const panelsQuery = query(
+    panelsRef,
     where("projectId", "==", projectId),
     limit(20)
   );
 
-  return useFirestoreCollectionData<Share>(sharesQuery, {
+  return useFirestoreCollectionData<Panel>(panelsQuery, {
     initialData: [],
     idField: "id",
   });

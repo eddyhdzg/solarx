@@ -28,7 +28,7 @@ export interface Project {
   ppa?: number; // Custom
   releaseDate?: Timestamp | null; // Custom
   roi?: number; // Custom
-  sharesSold?: number; // Custom
+  panelsSold?: number; // Custom
   state?: string; // Custom
   status?: ProjectStatus; // Custom
   tax_code?: null;
@@ -49,7 +49,7 @@ export interface ProjectPrice {
   product?: string;
   quantity?: number; // Custom
   recurring?: null;
-  sharesSold?: number; // Custom
+  panelsSold?: number; // Custom
   tax_behavior?: "unspecified";
   tiers?: null;
   tiers_mode?: null;

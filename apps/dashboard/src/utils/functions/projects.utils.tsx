@@ -3,17 +3,17 @@ import { Project, ProjectPrice } from "solarx-types";
 import { formatNumber } from "utils";
 import { matchSorter } from "match-sorter";
 
-export const getPanelsRatio = ({ sharesSold, totalShares }: Project) => {
-  return `${sharesSold?.toLocaleString()} / ${totalShares?.toLocaleString()}`;
+export const getPanelsRatio = ({ panelsSold, totalShares }: Project) => {
+  return `${panelsSold?.toLocaleString()} / ${totalShares?.toLocaleString()}`;
 };
 
-export const getProgress = ({ sharesSold = 0, totalShares = 1 }: Project) => {
-  return `${formatNumber((sharesSold / totalShares) * 100)}%`;
+export const getProgress = ({ panelsSold = 0, totalShares = 1 }: Project) => {
+  return `${formatNumber((panelsSold / totalShares) * 100)}%`;
 };
 
 export const sortShares = (a: Row<Project>, b: Row<Project>) => {
-  const aRatio = (a.original.sharesSold || 0) / (a.original.totalShares || 1);
-  const bRatio = (b.original.sharesSold || 0) / (b.original.totalShares || 1);
+  const aRatio = (a.original.panelsSold || 0) / (a.original.totalShares || 1);
+  const bRatio = (b.original.panelsSold || 0) / (b.original.totalShares || 1);
 
   if (a === b) return 0;
   return aRatio > bRatio ? 1 : -1;

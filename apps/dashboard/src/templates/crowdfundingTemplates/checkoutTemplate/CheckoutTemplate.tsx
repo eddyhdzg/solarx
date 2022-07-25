@@ -19,7 +19,7 @@ export default function CheckoutTemplate() {
           },
         }}
       />
-      <Container maxWidth="xl">
+      <Container maxWidth="2xl">
         <Styled.Paper>
           <Styled.Header>
             <Styled.HeaderContainer>

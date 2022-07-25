@@ -31,7 +31,7 @@ export default function WalletMobileLayout() {
         variant="scrollable"
       >
         <StyledTab label={t("pages.wallet.sections.balance")} />
-        <StyledTab label={t("pages.wallet.sections.shares")} />
+        <StyledTab label={t("pages.wallet.sections.panels")} />
         <StyledTab label={t("pages.wallet.sections.history")} />
         <StyledTab label={t("pages.wallet.sections.timeline")} />
       </StyledTabs>

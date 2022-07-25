@@ -26,23 +26,23 @@ export default function CheckoutProductModal({
     values: { qty = "0" },
     setValue,
   } = useRouterState();
-  const [shares, setShares] = useState(Number(qty));
+  const [panels, setShares] = useState(Number(qty));
   const { pid = "" } = useQueryParams();
   const { id } = useParams<ProjectIDParams>();
   const { data: project } = useProject(id);
   const { data: price } = useProjectPrice(id, pid);
   const { name } = project;
-  const { quantity = 0, sharesSold = 0 } = price;
-  const rest = quantity - sharesSold;
+  const { quantity = 0, panelsSold = 0 } = price;
+  const rest = quantity - panelsSold;
   const max = Math.min(rest, 500);
-  const error = shares < 1 || shares > max;
+  const error = panels < 1 || panels > max;
 
   const handleChangeShares = (num: number) => {
-    setShares(shares + num);
+    setShares(panels + num);
   };
 
   const handleSetRouterQty = () => {
-    setValue("qty", shares);
+    setValue("qty", panels);
     handleClose();
   };
 
@@ -99,7 +99,7 @@ export default function CheckoutProductModal({
             }}
           >
             <Counter
-              shares={shares}
+              panels={panels}
               onChangeShares={handleChangeShares}
               setShares={setShares}
               error={error}
@@ -108,7 +108,7 @@ export default function CheckoutProductModal({
           </Box>
           <Button
             variant="contained"
-            disabled={shares === Number(qty)}
+            disabled={panels === Number(qty)}
             onClick={handleSetRouterQty}
             fullWidth
           >

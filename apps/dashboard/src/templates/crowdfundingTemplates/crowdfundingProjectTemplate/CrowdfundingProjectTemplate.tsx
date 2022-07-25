@@ -24,7 +24,7 @@ export default function CrowdfundingProjectTemplate() {
 
   return (
     <>
-      <Container maxWidth="xl">
+      <Container maxWidth="2xl">
         <Styled.HeaderGrid container spacing={4}>
           <GridItem lg={8}>
             <ProjectHeader
@@ -49,7 +49,7 @@ export default function CrowdfundingProjectTemplate() {
                 raised={data?.raised}
                 roi={data?.roi}
                 basePrice={data?.basePrice}
-                sharesSold={data?.sharesSold}
+                panelsSold={data?.panelsSold}
                 totalShares={data?.totalShares}
                 releaseDate={data?.releaseDate}
               />
@@ -58,7 +58,7 @@ export default function CrowdfundingProjectTemplate() {
         </Styled.PrimaryContent>
       </Container>
       <Styled.Background>
-        <Container maxWidth="xl">
+        <Container maxWidth="2xl">
           <Styled.BodyGrid container spacing={4}>
             <GridItem lg={8}>
               {lg && (

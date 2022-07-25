@@ -18,7 +18,7 @@ describe("addFirstUserTransaction_v0", () => {
 
     const wallet: UserWallet = {
       cash: 0,
-      stocks: 0,
+      panels: 0,
       sxp: 0,
       total: 0,
     };
@@ -52,7 +52,7 @@ describe("addFirstUserTransaction_v0", () => {
     expect(userTransaction.data()).toEqual(
       expect.objectContaining({
         cash: 0,
-        stocks: 0,
+        panels: 0,
         sxp: 0,
         total: 0,
       })

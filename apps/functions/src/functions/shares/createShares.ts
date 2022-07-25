@@ -4,7 +4,7 @@ import { Project, ProjectPrice, FirestoreUser, Share } from "solarx-types";
 export const createShares_v0 = functions.https.onCall(async (data, context) => {
   const pid = data?.id;
   const role: FirestoreUser["role"] = context.auth?.token?.role;
-  const sharesColRef = db.collection("shares");
+  const panelsColRef = db.collection("panels");
 
   if (role !== "SUPER_USER") {
     throw new functions.https.HttpsError(
@@ -13,13 +13,13 @@ export const createShares_v0 = functions.https.onCall(async (data, context) => {
     );
   }
 
-  const shares = await db
-    .collection("shares")
+  const panels = await db
+    .collection("panels")
     .where("projectId", "==", pid)
     .limit(1)
     .get();
 
-  if (shares.size) {
+  if (panels.size) {
     throw new functions.https.HttpsError(
       "failed-precondition",
       `"Shares for project: ${pid} already exist"`
@@ -55,7 +55,7 @@ export const createShares_v0 = functions.https.onCall(async (data, context) => {
   const batches: FirebaseFirestore.WriteBatch[] = [];
 
   projectPrice.forEach(({ priceId, unit_amount = 0, quantity = 0 }) => {
-    const share: Share = {
+    const panels: Share = {
       basePrice,
       owner: null,
       priceId,
@@ -72,7 +72,7 @@ export const createShares_v0 = functions.https.onCall(async (data, context) => {
       const currBatchSize = Math.min(left, 500);
 
       for (let i = 0; i < currBatchSize; i++) {
-        batch.set(sharesColRef.doc(), share);
+        batch.set(panelsColRef.doc(), panels);
       }
 
       batches.push(batch);

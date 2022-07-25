@@ -7,7 +7,7 @@ export default function HistoryTemplate() {
   const { t } = useTranslation();
   return (
     <>
-      <Container maxWidth="xl">
+      <Container maxWidth="2xl">
         <PageTitle>{t("pages.more.history.history")}</PageTitle>
       </Container>
       <Box

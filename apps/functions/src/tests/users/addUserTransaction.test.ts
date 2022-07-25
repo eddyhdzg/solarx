@@ -18,14 +18,14 @@ describe("addUserTransaction_v0", () => {
 
     const beforeWallet: UserWallet = {
       cash: 0,
-      stocks: 0,
+      panels: 0,
       sxp: 0,
       total: 0,
     };
 
     const afterWallet: UserWallet = {
       cash: 10000,
-      stocks: 0,
+      panels: 0,
       sxp: 0,
       total: 0,
     };
@@ -66,7 +66,7 @@ describe("addUserTransaction_v0", () => {
     expect(userTransaction.data()).toEqual(
       expect.objectContaining({
         cash: 10000,
-        stocks: 0,
+        panels: 0,
         sxp: 0,
         total: 0,
       })

@@ -10,7 +10,7 @@ import {
 
 interface ICounterProps {
   onChangeShares: (num: number) => void;
-  shares: number;
+  panels: number;
   setShares:
     | React.Dispatch<React.SetStateAction<number>>
     | ((num: number) => void);
@@ -20,7 +20,7 @@ interface ICounterProps {
 
 export default function Counter({
   onChangeShares,
-  shares,
+  panels,
   setShares,
   error,
   max,
@@ -38,15 +38,15 @@ export default function Counter({
       <CounterButtonLeft
         variant="outlined"
         color="inherit"
-        disabled={shares <= 1}
+        disabled={panels <= 1}
         onClick={() => onChangeShares(-1)}
       >
         <RemoveRoundedIcon />
       </CounterButtonLeft>
 
       <CounterInput
-        id="shares-counter"
-        value={shares}
+        id="panels-counter"
+        value={panels}
         onChange={(value) => {
           if (value) handleChange(Number(value));
         }}
@@ -57,8 +57,8 @@ export default function Counter({
         }}
         inputComponent={NumberFormatInput as any}
         onKeyDown={(e) => {
-          if (e.key === "ArrowUp") handleChange(shares + 1);
-          if (e.key === "ArrowDown") handleChange(shares - 1);
+          if (e.key === "ArrowUp") handleChange(panels + 1);
+          if (e.key === "ArrowDown") handleChange(panels - 1);
         }}
         disabled={disabled}
       />
@@ -66,7 +66,7 @@ export default function Counter({
       <CounterButtonRight
         variant="outlined"
         color="inherit"
-        disabled={max <= shares}
+        disabled={max <= panels}
         onClick={() => onChangeShares(1)}
       >
         <AddRoundedIcon />

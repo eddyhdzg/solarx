@@ -10,7 +10,7 @@ export default function WalletShares() {
   return (
     <StyledPaper>
       <StyledTypography variant="subtitle1">
-        {t("pages.wallet.shares.shares")}
+        {t("pages.wallet.panels.panels")}
       </StyledTypography>
       <WalletSharesTable rows={data} />
     </StyledPaper>

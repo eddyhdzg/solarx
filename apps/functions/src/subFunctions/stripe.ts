@@ -8,7 +8,7 @@ interface AssignUserSharesProps {
   uid: string;
 }
 
-// asign user shares under shares collection
+// asign user panels under panels collection
 export const assignUserShares = async ({
   priceId,
   projectId,
@@ -16,7 +16,7 @@ export const assignUserShares = async ({
   uid,
 }: AssignUserSharesProps) => {
   return await db
-    .collection("shares")
+    .collection("panels")
     .where("projectId", "==", projectId)
     .where("priceId", "==", priceId)
     .where("status", "==", "available")
@@ -26,12 +26,12 @@ export const assignUserShares = async ({
       if (querySnapshot.size < qty) {
         throw new functions.https.HttpsError(
           "failed-precondition",
-          "batch write error, not enough shares available."
+          "batch write error, not enough panels available."
         );
       }
       const batch = db.batch();
-      querySnapshot.forEach((share) => {
-        batch.update(share.ref, { owner: uid, status: "owned" });
+      querySnapshot.forEach((panels) => {
+        batch.update(panels.ref, { owner: uid, status: "owned" });
       });
       return batch.commit();
     });
@@ -114,7 +114,7 @@ interface UpdateUserWalletProps {
   t: FirebaseFirestore.Transaction;
   uid: string;
   cash: number;
-  stocks: number;
+  panels: number;
   sxp: number;
   total: number;
 }
@@ -123,7 +123,7 @@ export const updateUserWallet = async ({
   t,
   uid,
   cash,
-  stocks,
+  panels,
   sxp,
   total,
 }: UpdateUserWalletProps) => {
@@ -135,7 +135,7 @@ export const updateUserWallet = async ({
 
   return t.update(wallet, {
     cash,
-    stocks,
+    panels,
     sxp,
     total,
   });

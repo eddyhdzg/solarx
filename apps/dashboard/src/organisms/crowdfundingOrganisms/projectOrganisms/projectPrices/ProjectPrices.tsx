@@ -23,7 +23,7 @@ export default function ProjectBuyingOptions({
 
   const reduced = data.reduce<[ProjectPrice[], ProjectPrice[]]>(
     (prev, curr) => {
-      if ((curr?.sharesSold || 0) >= (curr?.quantity || 0)) {
+      if ((curr?.panelsSold || 0) >= (curr?.quantity || 0)) {
         return [prev[0], [...prev[1], curr]];
       } else {
         return [[...prev[0], curr], prev[1]];

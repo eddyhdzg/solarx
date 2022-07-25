@@ -48,7 +48,7 @@ describe("createUser_v0", () => {
     expect(userWalletSnapshot.id).toBe("wallet");
     expect(userWalletSnapshot.data()).toEqual({
       cash: 0,
-      stocks: 0,
+      panels: 0,
       sxp: 0,
       total: 0,
     });

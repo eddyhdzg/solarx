@@ -7,7 +7,7 @@ import { StyledRoot } from "./AdminLocalTemplate.styled";
 export default function AdminLocalTemplate() {
   const { t } = useTranslation();
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>{t("pages.admin.local.local")}</PageTitle>
       <StyledRoot>
         <Grid container direction="row" spacing={4}>

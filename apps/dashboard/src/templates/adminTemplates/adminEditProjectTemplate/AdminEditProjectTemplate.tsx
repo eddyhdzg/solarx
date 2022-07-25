@@ -33,7 +33,7 @@ export default function AdminEditProjectTemplate() {
   };
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>{t("pages.admin.editProject.editProject")}</PageTitle>
       <EditProjectTabsContainer>
         <Tabs

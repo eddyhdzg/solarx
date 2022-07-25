@@ -3,8 +3,8 @@ import { Timestamp } from "solarx-types";
 import i18next from "i18next";
 
 // 4-Jul-2021
-export const formatTimestamp = (date: Timestamp) =>
-  dayjs.unix(date.seconds).format("D-MMM-YYYY");
+export const formatTimestamp = (date?: Timestamp) =>
+  dayjs.unix(date?.seconds || 0).format("D-MMM-YYYY");
 
 export const formatStock1Y = (seconds: Timestamp["seconds"]) => {
   return dayjs.unix(seconds).format("MMM D YYYY");

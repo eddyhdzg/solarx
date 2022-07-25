@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export default function AccountInformationTemplate() {
   const { t } = useTranslation();
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>{t("pages.more.profile.profile")}</PageTitle>
       <AuthWrapper>
         <AccountInformationForm />

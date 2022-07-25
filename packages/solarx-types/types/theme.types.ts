@@ -38,7 +38,6 @@ declare module "@mui/material/styles" {
     custom: {
       gradient: string;
       gradient2: string;
-      login: string;
       glassBackground: {
         backgroundColor: string;
         backdropFilter: string;
@@ -46,8 +45,10 @@ declare module "@mui/material/styles" {
       cash: string;
       totalBalance: string;
       sxp: string;
-      stocks: string;
+      panels: string;
+      red: string;
       border: string;
+      grey950: string;
       elevation: {
         0: string;
         1: string;
@@ -66,7 +67,6 @@ declare module "@mui/material/styles" {
   interface ThemeOptions {
     custom?: {
       gradient?: string;
-      login?: string;
       glassBackground?: {
         backgroundColor?: string;
         backdropFilter?: string;
@@ -74,7 +74,7 @@ declare module "@mui/material/styles" {
       cash?: string;
       totalBalance?: string;
       sxp?: string;
-      stocks?: string;
+      panels?: string;
       border?: string;
       elevation?: {
         1?: string;
@@ -91,7 +91,7 @@ declare module "@mui/material/styles" {
   }
 
   interface BreakpointOverrides {
-    xxs: true;
+    "2xl": true;
   }
 }
 
@@ -102,9 +102,9 @@ declare module "@mui/material/Button" {
 declare module "@mui/material/Chip" {
   interface ChipPropsVariantOverrides {
     blue: true;
-    green: true;
-    yellow: true;
     red: true;
+    teal: true;
+    yellow: true;
   }
 }
 

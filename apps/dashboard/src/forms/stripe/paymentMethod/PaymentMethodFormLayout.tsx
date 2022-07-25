@@ -9,7 +9,7 @@ import {
   useCrowdfundingStore,
 } from "hooks";
 import shallow from "zustand/shallow";
-import { checkKeyDown } from "utils";
+import { preventEnter } from "utils";
 import { GridItem, StyledTextField } from "atomic";
 import { SubmitForm } from "solarx-types";
 import { useTranslation } from "react-i18next";
@@ -56,8 +56,8 @@ export default function PaymentMethodFormLayout({
           <form
             noValidate
             autoComplete="off"
+            onKeyDown={preventEnter}
             onSubmit={onSubmit}
-            onKeyDown={checkKeyDown}
           >
             <Grid container spacing={3}>
               <GridItem>

@@ -4,7 +4,7 @@ import { DropzoneField, GridItem, ImagesPreview } from "atomic";
 import { EditProjectMediaSchema, useProject } from "hooks";
 import { SubmitForm, ProjectIDParams } from "solarx-types";
 import { useTranslation } from "react-i18next";
-import { checkKeyDown } from "utils";
+import { preventEnter } from "utils";
 import { useParams } from "react-router-dom";
 import {
   Section,
@@ -33,7 +33,7 @@ export default function EditProjectMediaFormLayout({
     <form
       noValidate
       autoComplete="off"
-      onKeyDown={(e) => checkKeyDown(e)}
+      onKeyDown={preventEnter}
       onSubmit={onSubmit}
     >
       <Paper>

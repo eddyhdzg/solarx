@@ -16,7 +16,7 @@ import ShowChart from "@mui/icons-material/ShowChart";
 import Payments from "@mui/icons-material/Payments";
 import Stars from "@mui/icons-material/Stars";
 
-export type Color = "stocks" | "cash" | "sxp";
+export type Color = "panels" | "cash" | "sxp"; // FIXME
 
 export const Title = styled(Typography)(({ theme }) => ({
   paddingTop: theme.spacing(3),
@@ -77,7 +77,7 @@ export const AccountBalanceWalletIcon = styled(AccountBalanceWallet)(
 );
 
 export const ShowChartIcon = styled(ShowChart)(({ theme }) => ({
-  color: theme.custom.stocks,
+  color: theme.custom.panels,
 }));
 
 export const PaymentsIcon = styled(Payments)(({ theme }) => ({

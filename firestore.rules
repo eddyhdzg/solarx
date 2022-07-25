@@ -83,7 +83,7 @@ service cloud.firestore {
         }
     }
 
-    match /shares/{sid} {
+    match /panels/{sid} {
       allow read;
     }
 

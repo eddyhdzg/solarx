@@ -1,20 +1,27 @@
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { yellow, grey } from "@mui/material/colors";
+import { createTheme, responsiveFontSizes, alpha } from "@mui/material/styles";
+import { amber, blue, grey, red, teal, yellow } from "@mui/material/colors";
 
 const customTheme = {
   custom: {
-    gradient: "linear-gradient(60deg, #FBDE51, #F2805A)",
-    gradient2: "linear-gradient(60deg, #EBCE41, #E2704A)",
-    login: "linear-gradient(135deg,rgb(48, 50, 54), rgb(31, 32, 35))",
+    gradient: `linear-gradient(60deg, ${yellow[400]}, ${amber[900]})`,
+    gradient2: `linear-gradient(60deg, ${alpha(yellow[400], 0.9)}, ${alpha(
+      amber[900],
+      0.9
+    )})`,
     glassBackground: {
-      backgroundColor: "#212121E5",
+      backgroundColor: alpha(grey[900], 0.9),
       backdropFilter: "blur(10px)",
     },
+    blue: blue[300],
+    red: red[300],
+    teal: teal[300],
+    yellow: yellow[300],
     cash: "#00BFA5",
     totalBalance: "#fff",
     sxp: "#80B0FF",
-    stocks: yellow[500],
+    panels: yellow[500],
     border: "#313537",
+    grey950: "#121212",
     elevation: {
       0: "linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03))",
       1: "linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))",
@@ -37,14 +44,14 @@ const theme = createTheme({
     secondary: grey,
   },
   breakpoints: {
-    keys: ["xxs", "xs", "sm", "md", "lg", "xl"],
+    keys: ["xs", "sm", "md", "lg", "xl", "2xl"],
     values: {
-      xxs: 0,
-      xs: 400,
-      sm: 768,
-      md: 960,
-      lg: 1280,
-      xl: 1600,
+      xs: 0,
+      sm: 400,
+      md: 768,
+      lg: 1024,
+      xl: 1440,
+      "2xl": 1920,
     },
   },
   components: {
@@ -57,6 +64,9 @@ const theme = createTheme({
     },
     MuiChip: {
       styleOverrides: {
+        label: {
+          fontWeight: 600,
+        },
         icon: {
           color: "inherit",
           fontSize: "inherit",
@@ -67,36 +77,29 @@ const theme = createTheme({
         {
           props: { variant: "blue" },
           style: {
-            color: "#80B0ff",
-            backgroundColor: "#80B0ff15",
-          },
-        },
-        {
-          props: { variant: "green" },
-          style: {
-            color: "#7de8be",
-            backgroundColor: "#7de8be15",
+            color: customTheme.custom.blue,
+            backgroundColor: alpha(customTheme.custom.blue, 0.15),
           },
         },
         {
           props: { variant: "yellow" },
           style: {
-            color: "#fad452",
-            backgroundColor: "#fad45215",
+            color: customTheme.custom.yellow,
+            backgroundColor: alpha(customTheme.custom.yellow, 0.15),
           },
         },
         {
           props: { variant: "red" },
           style: {
-            color: "#f44336",
-            backgroundColor: "rgba(250, 82, 82, 0.15)",
+            color: customTheme.custom.red,
+            backgroundColor: alpha(customTheme.custom.red, 0.15),
           },
         },
         {
-          props: { variant: "green" },
+          props: { variant: "teal" },
           style: {
-            color: "#00BFA5",
-            backgroundColor: "rgba(0, 191, 165, 0.15)",
+            color: customTheme.custom.teal,
+            backgroundColor: alpha(customTheme.custom.teal, 0.15),
           },
         },
       ],
@@ -105,7 +108,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: "none",
-          backgroundColor: "#212121",
+          backgroundColor: grey[900],
         },
       },
     },
@@ -121,7 +124,7 @@ const theme = createTheme({
         {
           props: { variant: "contained", color: "inherit" },
           style: {
-            backgroundColor: `#121212 !important`,
+            backgroundColor: `${customTheme.custom.grey950} !important`,
             backgroundImage: `${customTheme.custom.elevation[6]} !important`,
           },
         },

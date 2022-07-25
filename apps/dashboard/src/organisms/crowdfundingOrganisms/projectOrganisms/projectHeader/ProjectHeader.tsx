@@ -43,7 +43,7 @@ const ProjectHeader: React.FC<IProjectHeader> = ({
           />
           <StyledChip
             label={businessType}
-            variant="green"
+            variant="teal"
             icon={<WorkOutlineRoundedIcon />}
             size="small"
           />

@@ -63,7 +63,7 @@ export interface UserTransaction {
   id?: string;
   cash?: number;
   date?: Timestamp;
-  stocks?: number;
+  panels?: number;
   sxp?: number;
   total?: number;
 }
@@ -71,7 +71,7 @@ export interface UserWallet {
   cash?: number;
   // fullName?: string;
   // lastNames?: string;
-  stocks?: number;
+  panels?: number;
   sxp?: number;
   total?: number;
 }

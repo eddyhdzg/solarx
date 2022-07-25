@@ -6,7 +6,7 @@ export default function AdminHomeTemplate() {
   const { t } = useTranslation();
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="2xl">
       <PageTitle>
         {t("pages.admin.adminHome.admin", {
           postProcess: "capitalize",

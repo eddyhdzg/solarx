@@ -28,7 +28,7 @@ interface IProjectSummaryProps
     | "investors"
     | "raised"
     | "roi"
-    | "sharesSold"
+    | "panelsSold"
     | "totalShares"
     | "basePrice"
     | "releaseDate"
@@ -40,20 +40,20 @@ export default function ProjectSummary({
   roi = 0,
   raised = 0,
   basePrice = 0,
-  sharesSold = 0,
+  panelsSold = 0,
   totalShares = 1,
   releaseDate,
 }: IProjectSummaryProps) {
   const { t } = useTranslation();
-  const progress = Math.trunc((sharesSold / totalShares) * 100);
-  const [shares, setShares] = useState(1);
+  const progress = Math.trunc((panelsSold / totalShares) * 100);
+  const [panels, setShares] = useState(1);
   const handleChangeShares = (num: number) => {
-    setShares(shares + num);
+    setShares(panels + num);
   };
   const max = totalShares;
-  const error = shares < 1 || shares > max;
+  const error = panels < 1 || panels > max;
   const displaySharePrice = basePrice;
-  const yearlyRevenue = displaySharePrice * roi * 0.01 * shares;
+  const yearlyRevenue = displaySharePrice * roi * 0.01 * panels;
   const monthlyRevenue = yearlyRevenue / 12;
   const numInYears = basePrice / ((basePrice * roi * 0.01) / 12) / 12;
 
@@ -68,8 +68,8 @@ export default function ProjectSummary({
             })}
           </Typography>
           <Typography variant="caption" color="textSecondary">
-            {formatNumber(sharesSold)} / {formatNumber(totalShares)}{" "}
-            {t("projects.shares")}
+            {formatNumber(panelsSold)} / {formatNumber(totalShares)}{" "}
+            {t("projects.panels")}
           </Typography>
         </ProjectSummaryHeader>
         <ProjectSummaryProgressWrapper>
@@ -113,13 +113,13 @@ export default function ProjectSummary({
       <ul>
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("projects.shares", {
+            {t("projects.panels", {
               postProcess: "capitalize",
             })}
           </Typography>
           {max > 0 ? (
             <Counter
-              shares={shares || 0}
+              panels={panels || 0}
               onChangeShares={handleChangeShares}
               setShares={setShares}
               error={error}

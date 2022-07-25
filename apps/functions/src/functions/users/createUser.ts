@@ -14,7 +14,7 @@ export const createUser_v0 = functions.auth.user().onCreate(async (snap) => {
 
   const wallet: UserWallet = {
     cash: 0,
-    stocks: 0,
+    panels: 0,
     sxp: 0,
     total: 0,
   };

@@ -23,18 +23,18 @@ interface IProjectCardProps extends Project {
 }
 
 export default function ProjectCard({
-  city,
-  state,
-  name,
-  sharesSold = 0,
   basePrice = 0,
-  totalShares = 0,
-  roi = 0,
+  city,
   images,
+  name,
+  panelsSold = 0,
+  roi = 0,
+  state,
+  totalShares = 1,
   url = "/crowdfunding/projects/",
 }: IProjectCardProps) {
   const { t } = useTranslation();
-  const progress = Math.trunc((sharesSold / totalShares) * 100);
+  const progress = Math.trunc((panelsSold / totalShares) * 100);
   const [loading, setLoading] = useState(true);
 
   return (
@@ -95,8 +95,8 @@ export default function ProjectCard({
               })}
             </Typography>
             <Typography variant="caption" color="textSecondary">
-              {sharesSold.toLocaleString()} / {totalShares.toLocaleString()}{" "}
-              {t("projects.shares")}
+              {panelsSold.toLocaleString()} / {totalShares.toLocaleString()}{" "}
+              {t("projects.panels")}
             </Typography>
           </ProjectCardSummary>
           <GradientLinearProgress value={progress} />

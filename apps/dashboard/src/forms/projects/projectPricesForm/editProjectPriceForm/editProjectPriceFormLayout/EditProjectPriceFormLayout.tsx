@@ -62,7 +62,7 @@ export default function EditProjectPriceForm({
       <TableCell align="right">{formatPercentage2Dec(discount)}</TableCell>
       <TableCell>{price?.description}</TableCell>
       <TableCell align="right">{price?.investors}</TableCell>
-      <TableCell align="right">{price?.sharesSold}</TableCell>
+      <TableCell align="right">{price?.panelsSold}</TableCell>
       <TableCellLast align="right" scrolled={scrolled}>
         <IconButton
           disabled={!isValid || !isDirty}

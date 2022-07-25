@@ -11,7 +11,7 @@ import {
 import { ProjectIDParams } from "solarx-types";
 import { PaymentMethods } from "organisms";
 import { CreatePaymentMethodForm } from "forms";
-import { checkKeyDown } from "utils";
+import { preventEnter } from "utils";
 import shallow from "zustand/shallow";
 import { useParams } from "react-router-dom";
 import { StripeProvider } from "providers";
@@ -28,7 +28,7 @@ const PayButtonContainer = () => {
   const { id } = useParams<ProjectIDParams>();
   const { pid = "", qty = "0" } = useQueryParams();
   const {
-    data: { quantity = 0, sharesSold = 0 },
+    data: { quantity = 0, panelsSold = 0 },
   } = useProjectPrice(id, pid);
   const { payment } = useCrowdfundingStore(
     ({ payment }) => ({ payment }),
@@ -45,7 +45,7 @@ const PayButtonContainer = () => {
     });
   });
 
-  const left = quantity - sharesSold;
+  const left = quantity - panelsSold;
   const numberQty = Number(qty) || 0;
   const disabled = !isValid || left < numberQty;
 
@@ -53,7 +53,7 @@ const PayButtonContainer = () => {
     <form
       noValidate
       autoComplete="off"
-      onKeyDown={checkKeyDown}
+      onKeyDown={preventEnter}
       onSubmit={onSubmit}
     >
       <LoadingButton

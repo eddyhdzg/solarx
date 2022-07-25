@@ -17,6 +17,6 @@ export const getDirtyValues = (
   );
 };
 
-export const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+export const preventEnter = (e: React.KeyboardEvent<HTMLFormElement>) => {
   if (e?.code === "Enter") e.preventDefault();
 };

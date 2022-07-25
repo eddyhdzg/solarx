@@ -51,10 +51,10 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         id: "funded",
         Header: t("projects.funded"),
         accessor: (row: Project) =>
-          (row.sharesSold ?? 0) >= (row.totalShares ?? 0) ? true : false,
+          (row.panelsSold ?? 0) >= (row.totalShares ?? 0) ? true : false,
         Cell: ({ value }: { value: boolean }) =>
           value ? (
-            <Chip size="small" label={t("projects.funded")} variant="green" />
+            <Chip size="small" label={t("projects.funded")} variant="teal" />
           ) : (
             <Chip size="small" label={t("projects.notFunded")} disabled />
           ),
@@ -86,21 +86,21 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       {
         id: "progress",
         Header: t("projects.progress"),
-        accessor: ({ sharesSold, totalShares }: Project) =>
-          getProgress({ sharesSold, totalShares }),
+        accessor: ({ panelsSold, totalShares }: Project) =>
+          getProgress({ panelsSold, totalShares }),
         Cell: (cell: Cell<Project>) => (
           <LinearWithValueLabel
             label={cell.value}
-            sharesSold={cell.row.original.sharesSold}
+            panelsSold={cell.row.original.panelsSold}
             totalShares={cell.row.original.totalShares}
           />
         ),
       },
       {
-        id: "shares",
-        Header: t("projects.sharesRatio"),
-        accessor: ({ sharesSold, totalShares }: Project) =>
-          getPanelsRatio({ sharesSold, totalShares }),
+        id: "panels",
+        Header: t("projects.panelsRatio"),
+        accessor: ({ panelsSold, totalShares }: Project) =>
+          getPanelsRatio({ panelsSold, totalShares }),
         className: "alignRight",
         sortType: sortShares,
       },
@@ -146,7 +146,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         accessor: "active",
         Cell: ({ value }: { value: boolean }) =>
           !value ? (
-            <Chip size="small" label="Active" variant="green" />
+            <Chip size="small" label="Active" variant="teal" />
           ) : (
             <Chip size="small" label="Not Active" variant="red" />
           ),

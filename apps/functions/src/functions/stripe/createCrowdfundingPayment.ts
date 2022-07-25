@@ -82,14 +82,14 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
       .then((res) => res.data())
       .catch(() => ({}))) as FirestoreUser;
 
-    const description = `Crowdfund ${qty} share${
+    const description = `Crowdfund ${qty} panels${
       qty > 1 ? "s" : ""
     } from ${name}`;
 
     const {
       currency = "mxn",
       quantity = 0,
-      sharesSold = Number.MAX_SAFE_INTEGER,
+      panelsSold = Number.MAX_SAFE_INTEGER,
       unit_amount = 0,
     } = (await projectPriceDocRef
       .get()
@@ -102,13 +102,13 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
       })) as ProjectPrice;
 
     const amount = unit_amount * qty;
-    const left = quantity - sharesSold;
+    const left = quantity - panelsSold;
     const outOfStock = Boolean(qty > left);
 
     if (outOfStock) {
       throw new functions.https.HttpsError(
         "cancelled",
-        "Out of stock, qty is more than the stocks left."
+        "Out of stock, qty is more than the panels left."
       );
     }
 

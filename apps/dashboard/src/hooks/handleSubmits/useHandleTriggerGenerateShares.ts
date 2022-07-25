@@ -22,12 +22,12 @@ export default function useHandleTriggerGenerateShares() {
   const handleTriggerGenerateShares = () => {
     createShares({ id })
       .then(() => {
-        enqueueSnackbar(t("snackbar.sharesCreated"), {
+        enqueueSnackbar(t("snackbar.panelsCreated"), {
           variant: "success",
         });
       })
       .catch(() => {
-        enqueueSnackbar(t("snackbar.sharesNotCreated"), {
+        enqueueSnackbar(t("snackbar.panelsNotCreated"), {
           variant: "error",
         });
       });
