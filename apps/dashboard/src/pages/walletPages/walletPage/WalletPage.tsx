@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { Seo } from "atomic";
+import { Seo, WalletTemplate } from "atomic";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { WalletTemplate } from "templates";
 
 export default function WalletPage() {
   const { t } = useTranslation();

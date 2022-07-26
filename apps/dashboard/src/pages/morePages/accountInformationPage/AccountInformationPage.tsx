@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo } from "atomic";
+import { Seo, AccountInformationTemplate } from "atomic";
 import { useTranslation } from "react-i18next";
-import { AccountInformationTemplate } from "templates";
 
 export default function AccountInformationPage() {
   const { onChangeRoute } = useHeader();

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { Seo } from "atomic";
+import { Seo, PreferencesTemplate } from "atomic";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { PreferencesTemplate } from "templates";
 
 export default function PreferencesPage() {
   const { onChangeRoute } = useHeader();

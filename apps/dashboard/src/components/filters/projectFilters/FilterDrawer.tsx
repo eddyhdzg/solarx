@@ -89,11 +89,11 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({ count, children }) => {
             overflow: "hidden",
             borderTopLeftRadius: 12,
             borderTopRightRadius: {
-              xxs: 12,
-              sm: 0,
+              xs: 12,
+              md: 0,
             },
             borderBottomLeftRadius: {
-              sm: 12,
+              md: 12,
             },
           },
         }}

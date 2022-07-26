@@ -10,11 +10,11 @@ export default function MessagePaper({ message }: IMessagePaperProps) {
       sx={(theme) => ({
         maxWidth: theme.spacing(100),
         py: {
-          xxs: 4,
+          xs: 4,
           md: 8,
         },
         px: {
-          xxs: 2,
+          xs: 2,
           md: 4,
         },
       })}

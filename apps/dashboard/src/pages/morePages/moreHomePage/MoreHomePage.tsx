@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { Seo } from "atomic";
+import { Seo, MoreHomeTemplate } from "atomic";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { MoreHomeTemplate } from "templates";
 
 export default function MoreHomePage() {
   const { onChangeRoute } = useHeader();

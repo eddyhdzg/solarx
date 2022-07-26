@@ -9,8 +9,8 @@ export default function Hero() {
       sx={{
         textAlign: "center",
         mt: {
-          xxs: 10,
-          xs: 12,
+          xs: 10,
+          sm: 12,
         },
         mb: 6,
       }}

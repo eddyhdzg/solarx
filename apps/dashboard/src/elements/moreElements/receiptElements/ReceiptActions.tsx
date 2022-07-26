@@ -16,12 +16,12 @@ export default function ReceiptActions() {
         (theme) => ({
           backgroundColor: alpha(theme.palette.common.white, 0.05),
           py: {
-            xxs: 2,
-            sm: 3,
+            xs: 2,
+            md: 3,
           },
           px: {
-            xxs: 3,
-            sm: 6,
+            xs: 3,
+            md: 6,
           },
           borderEndStartRadius: theme.shape.borderRadius,
           borderEndEndRadius: theme.shape.borderRadius,

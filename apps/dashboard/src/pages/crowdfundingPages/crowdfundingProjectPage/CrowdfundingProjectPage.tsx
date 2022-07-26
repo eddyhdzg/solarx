@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useProject, useHeader } from "hooks";
-import { CenterLoader, Seo } from "atomic";
+import { CenterLoader, Seo, CrowdfundingProjectTemplate } from "atomic";
 import { useTranslation } from "react-i18next";
-import { CrowdfundingProjectTemplate } from "templates";
 import { ProjectIDParams } from "solarx-types";
 
 export default function CrowdfundingProjectPage() {

@@ -31,7 +31,6 @@ export default function ProjectsTableLayout({
     ({ dispatch, projects }) => ({ dispatch, projects }),
     shallow
   );
-
   const handleProjectTypeChange = () => {
     dispatch({
       type: "PROJECTS_TOGGLE_TYPE",

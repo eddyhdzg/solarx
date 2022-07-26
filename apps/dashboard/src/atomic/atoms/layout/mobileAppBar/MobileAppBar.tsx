@@ -33,8 +33,8 @@ const MobileAppBar: React.FC<IMobileAppBarProps> = ({
               <Icon
                 sx={{
                   fontSize: {
-                    xxs: "1.25rem",
-                    xs: "1.5rem",
+                    xs: "1.25rem",
+                    sm: "1.5rem",
                   },
                 }}
               />

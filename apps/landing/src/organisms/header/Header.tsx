@@ -26,8 +26,8 @@ export default function Header() {
           src={Logo}
           sx={{
             width: {
-              xxs: 120,
-              sm: 140,
+              xs: 120,
+              md: 140,
             },
           }}
           alt="logo"

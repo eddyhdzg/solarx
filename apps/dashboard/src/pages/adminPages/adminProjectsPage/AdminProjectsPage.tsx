@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo } from "atomic";
+import { Seo, AdminProjectsTemplate } from "atomic";
 import { useTranslation } from "react-i18next";
-import { AdminProjectsTemplate } from "templates";
 
 export default function AdminProjectsPage() {
   const { t } = useTranslation();

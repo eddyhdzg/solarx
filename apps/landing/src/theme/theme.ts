@@ -131,7 +131,6 @@ const theme = createTheme({
       ],
     },
     MuiGrid: {
-      defaultProps: {},
       variants: [
         {
           props: {

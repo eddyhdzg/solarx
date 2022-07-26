@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-import { Seo } from "atomic";
+import { Seo, HistoryTemplate } from "atomic";
 import { useHeader } from "hooks";
 import { useTranslation } from "react-i18next";
-import { HistoryTemplate } from "templates";
 
 export default function HistoryPage() {
   const { onChangeRoute } = useHeader();

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo } from "atomic";
+import { Seo, CrowdfundingProjectsTemplate } from "atomic";
 import { useTranslation } from "react-i18next";
-import { CrowdfundingProjectsTemplate } from "templates";
 
 export default function CrowdfundingProjectsPage() {
   const { onChangeRoute } = useHeader();

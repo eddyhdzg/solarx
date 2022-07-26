@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo } from "atomic";
+import { Seo, AdminLocalTemplate } from "atomic";
 import { useTranslation } from "react-i18next";
-import { AdminLocalTemplate } from "templates";
 
 export default function AdminLocalPage() {
   const { onChangeRoute } = useHeader();

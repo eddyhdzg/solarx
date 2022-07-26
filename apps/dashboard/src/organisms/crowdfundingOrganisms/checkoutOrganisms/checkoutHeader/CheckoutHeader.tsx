@@ -18,7 +18,7 @@ export default function CheckoutHeader() {
         display: "flex",
         flexDirection: "column",
         alignItems: {
-          xxs: "center",
+          xs: "center",
           md: "flex-start",
         },
         borderStartEndRadius: {

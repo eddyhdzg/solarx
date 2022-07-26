@@ -20,8 +20,8 @@ export default function ReceiptHeader() {
       sx={{
         mb: 8,
         textAlign: {
-          xxs: "right",
-          sm: "unset",
+          xs: "right",
+          md: "unset",
         },
       }}
     >

@@ -1,7 +1,7 @@
 import { styled } from "@mui/material";
 
 export const StyledLayout = styled("div")(({ theme }) => ({
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up("md")]: {
     marginLeft: theme.spacing(7),
   },
 }));
@@ -26,7 +26,7 @@ export const Toolbar = styled("div")(({ theme }) => ({
 
 export const Offset = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
-  [theme.breakpoints.up("sm")]: {
+  [theme.breakpoints.up("md")]: {
     minHeight: "unset",
   },
 }));

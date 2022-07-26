@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useHeader } from "hooks";
-import { Seo } from "atomic";
+import { Seo, AdminUsersTemplate } from "atomic";
 import { useTranslation } from "react-i18next";
-import { AdminUsersTemplate } from "templates";
 
 export default function AdminUsersPage() {
   const { onChangeRoute } = useHeader();
