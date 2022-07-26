@@ -10,7 +10,7 @@ import {
   Box,
   Paper,
 } from "@mui/material";
-import { GridItem } from "atomic";
+import { GridItem } from "components";
 import { useTranslation } from "react-i18next";
 import { useRole, usePrivateProjects } from "hooks";
 import { moderatorArray } from "constant";

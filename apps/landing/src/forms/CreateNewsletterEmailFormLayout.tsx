@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { SubmitForm } from "solarx-types";
 import { CreateNewsletterEmailFormFormSchema } from "hooks";
 import { Box } from "@mui/material";
-import { Input } from "./CreateNewsletterEmailFormLayout.styled";
 import { CTA } from "components";
+import { Input } from "./CreateNewsletterEmailFormLayout.styled";
 
 interface CreateNewsletterEmailFormLayoutProps {
   onSubmit: SubmitForm;

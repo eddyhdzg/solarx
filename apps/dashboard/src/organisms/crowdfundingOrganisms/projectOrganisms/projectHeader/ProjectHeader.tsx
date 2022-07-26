@@ -1,5 +1,5 @@
 import { Project } from "solarx-types";
-import { ShareButton, PageTitle } from "atomic";
+import { ShareButton, PageTitle } from "components";
 import PlaceIcon from "@mui/icons-material/Place";
 import BusinessRoundedIcon from "@mui/icons-material/BusinessRounded";
 import WorkOutlineRoundedIcon from "@mui/icons-material/WorkOutlineRounded";

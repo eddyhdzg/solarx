@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Notion, Segment, SegmentedControl } from "atomic";
+import { Notion, Segment, SegmentedControl } from "components";
 import { TabContext } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { ProjectTabsContainer, StyledTabPanel } from "./ProjectTabs.styled";

@@ -1,12 +1,12 @@
 import { Switch, Route } from "react-router-dom";
-import { AdminWrapper } from "atomic";
 import {
+  AdminWrapper,
   AdminHomePage,
   AdminEditProjectPage,
   AdminProjectsPage,
   AdminUsersPage,
   AdminLocalPage,
-} from "pages";
+} from "components";
 import { FirebaseStorageProvider } from "providers";
 
 const AdminRoute = () => {

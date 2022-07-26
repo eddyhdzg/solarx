@@ -1,4 +1,4 @@
-import { CreditCardIcon, CreditCardIconProps } from "atomic";
+import { CreditCardIcon, CreditCardIconProps } from "components";
 import {
   ListItemButton,
   ListItemButtonProps,

@@ -1,13 +1,12 @@
 import { IconButton } from "@mui/material";
-import ViewListIcon from "@mui/icons-material/ViewList";
-import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import { ProjectFilters } from "components";
-import { GlobalFilter } from "atomic";
+import { GlobalFilter, ProjectFilters } from "components";
 import { useStore } from "hooks";
 import shallow from "zustand/shallow";
 import { Project, ProjectSection } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import { TableInstance } from "react-table";
+import ViewListIcon from "@mui/icons-material/ViewList";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ProjectsTable from "./projectsTable/ProjectsTable";
 import ProjectCards from "./projectCards/ProjectCards";
 import {

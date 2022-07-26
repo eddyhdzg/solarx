@@ -1,5 +1,5 @@
 import { styled, FormControl } from "@mui/material";
-import { GridItem } from "atomic";
+import { GridItem } from "components";
 
 export const Item = styled(GridItem)({
   display: "flex",

@@ -6,7 +6,7 @@ import {
   TableFooter,
   TableSortLabel,
 } from "@mui/material";
-import { CustomTablePagination } from "atomic";
+import { CustomTablePagination } from "components";
 import { Project } from "solarx-types";
 import { HeaderGroup, TableInstance, Row, Cell } from "react-table";
 import { StyledPaper, StyledTableHead } from "./ProjectsTable.styled";

@@ -3,7 +3,7 @@ import {
   CrowdfundingProjectPage,
   CrowdfundingProjectsPage,
   CheckoutPage,
-} from "pages";
+} from "components";
 
 const CrowdfundingRoute = () => {
   return (

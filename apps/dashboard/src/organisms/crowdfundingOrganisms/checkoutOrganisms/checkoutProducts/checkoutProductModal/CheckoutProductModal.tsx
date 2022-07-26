@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Modal, IconButton, Typography } from "@mui/material";
-import { Counter } from "atomic";
+import { Counter } from "components";
 import {
   useRouterState,
   useProject,

@@ -1,6 +1,6 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
-import { GridItem, StyledTextField } from "atomic";
+import { GridItem, StyledTextField } from "components";
 import { EditProjectContentSchema } from "hooks";
 import { SubmitForm } from "solarx-types";
 import { useTranslation } from "react-i18next";

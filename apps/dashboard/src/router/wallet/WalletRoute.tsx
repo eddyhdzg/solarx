@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { WalletPage } from "pages";
+import { WalletPage } from "components";
 
 const WalletRoute = () => {
   return (

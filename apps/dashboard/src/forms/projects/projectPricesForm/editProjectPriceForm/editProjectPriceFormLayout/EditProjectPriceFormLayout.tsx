@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from "react-hook-form";
-import { NumberFormatInput, StyledTextField } from "atomic";
+import { NumberFormatInput, StyledTextField } from "components";
 import { SubmitForm, ProjectPrice } from "solarx-types";
 import { EditProjectPriceSchema } from "hooks";
 import { formatMoney, formatPercentage2Dec } from "utils";

@@ -5,7 +5,7 @@ import {
   AccountInformationPage,
   HistoryPage,
   ReceiptPage,
-} from "pages";
+} from "components";
 
 const MoreRoute = () => {
   return (

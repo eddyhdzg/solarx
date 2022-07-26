@@ -10,7 +10,7 @@ import {
 } from "hooks";
 import shallow from "zustand/shallow";
 import { preventEnter } from "utils";
-import { GridItem, StyledTextField } from "atomic";
+import { GridItem, StyledTextField } from "components";
 import { SubmitForm } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import AddCardIcon from "@mui/icons-material/AddCard";

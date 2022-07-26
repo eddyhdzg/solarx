@@ -5,7 +5,7 @@ import {
   GridItem,
   NumberFormatInput,
   StyledTextField,
-} from "atomic";
+} from "components";
 import { EditProjectNumberSchema } from "hooks";
 import { useTranslation } from "react-i18next";
 import { preventEnter } from "utils";

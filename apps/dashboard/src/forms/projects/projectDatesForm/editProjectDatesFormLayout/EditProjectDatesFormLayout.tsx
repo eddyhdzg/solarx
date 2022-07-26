@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography, Button } from "@mui/material";
-import { DateTimePicker, GridItem } from "atomic";
+import { DateTimePicker, GridItem } from "components";
 import { useTranslation } from "react-i18next";
 import { EditProjectDatesSchema } from "hooks";
 import { SubmitForm } from "solarx-types";
