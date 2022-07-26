@@ -9,6 +9,7 @@ export default function ReceiptData() {
   const { id } = useQueryParams();
   const user = useUser();
   const { data } = useUserHistoryDoc(user.data?.uid, id);
+  const date = data?.date ? formatDisplayDate(data?.date?.seconds) : "-";
 
   return (
     <Box
@@ -34,7 +35,7 @@ export default function ReceiptData() {
             textTransform: "capitalize",
           }}
         >
-          {data?.date ? formatDisplayDate(data?.date?.seconds) : "-"}
+          {date}
         </Typography>
       </Box>
       <Box

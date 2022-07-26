@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
 import { useQueryParams, useUserHistoryDoc } from "hooks";
 import { useUser } from "reactfire";
 import { formatAbsoluteWithCurreny } from "utils";
+import { Box, Typography } from "@mui/material";
 
 export default function ReceiptHeader() {
   const { id } = useQueryParams();

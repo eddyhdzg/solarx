@@ -6,7 +6,7 @@ import {
   CheckoutProducts,
 } from "organisms";
 import Styled from "./CheckoutTemplate.styled";
-import { CreateCrowdfundingPaymentForm } from "forms";
+import { CreateCrowdfundingPaymentForm } from "components";
 
 export default function CheckoutTemplate() {
   return (

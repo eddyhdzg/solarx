@@ -1,7 +1,6 @@
-import { GridItem, PageTitle } from "components";
-import { Box, Container, Tabs, Tab, Grid } from "@mui/material";
-import { TabContext } from "@mui/lab";
 import {
+  GridItem,
+  PageTitle,
   EditProjectGeneralForm,
   EditProjectNumberForm,
   EditProjectMediaForm,
@@ -9,7 +8,9 @@ import {
   EditProjectDatesForm,
   EditProjectContentForm,
   ProjectTriggersForm,
-} from "forms";
+} from "components";
+import { Box, Container, Tabs, Tab, Grid } from "@mui/material";
+import { TabContext } from "@mui/lab";
 import { AdminProjectSummary } from "organisms";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";

@@ -1,4 +1,4 @@
-import { styled, FormControl } from "@mui/material";
+import { styled } from "@mui/material";
 import { GridItem } from "components";
 
 export const Item = styled(GridItem)({
@@ -6,8 +6,3 @@ export const Item = styled(GridItem)({
   justifyContent: "flex-end",
   alignItems: "center",
 });
-
-export const StyledFormControl = styled(FormControl)(({ theme }) => ({
-  minWidth: theme.spacing(20),
-  marginRight: theme.spacing(2),
-}));

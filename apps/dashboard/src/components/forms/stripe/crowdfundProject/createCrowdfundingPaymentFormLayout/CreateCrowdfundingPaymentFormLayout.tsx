@@ -10,7 +10,7 @@ import {
 } from "hooks";
 import { ProjectIDParams } from "solarx-types";
 import { PaymentMethods } from "organisms";
-import { CreatePaymentMethodForm } from "forms";
+import { CreatePaymentMethodForm } from "components";
 import { preventEnter } from "utils";
 import shallow from "zustand/shallow";
 import { useParams } from "react-router-dom";

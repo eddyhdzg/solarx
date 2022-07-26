@@ -1,6 +1,5 @@
 import { Container } from "@mui/material";
-import { PageTitle, AuthWrapper } from "components";
-import { AccountInformationForm } from "forms";
+import { PageTitle, AuthWrapper, AccountInformationForm } from "components";
 import { useTranslation } from "react-i18next";
 
 export default function AccountInformationTemplate() {

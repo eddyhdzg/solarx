@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { UserRoleForm } from "forms";
-import { FirestoreUser, UserRole } from "solarx-types";
 import { Avatar } from "@mui/material";
+import { useMemo } from "react";
+import { UserRoleForm } from "components";
+import { FirestoreUser, UserRole } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import { formatTimestampWithMinAndSec } from "utils";
 import { Column } from "react-table";

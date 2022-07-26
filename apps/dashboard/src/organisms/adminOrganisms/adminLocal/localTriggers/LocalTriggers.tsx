@@ -9,56 +9,29 @@ import {
   Select,
   Box,
   Paper,
+  FormControl,
 } from "@mui/material";
 import { GridItem } from "components";
-import { useTranslation } from "react-i18next";
-import { useRole, usePrivateProjects } from "hooks";
+import {
+  useRole,
+  usePrivateProjects,
+  useHandleCreateLocalPrices,
+  useHandleCreateLocalProject,
+} from "hooks";
 import { moderatorArray } from "constant";
-import { useFunctions } from "reactfire";
-import { httpsCallable } from "firebase/functions";
-import { useSnackbar } from "notistack";
-import { Item, StyledFormControl } from "./LocalTriggers.styled";
+import { useTranslation } from "react-i18next";
+import { Item } from "./LocalTriggers.styled";
 
 export default function LocalTriggers() {
+  const { t } = useTranslation();
   const [pid, setPid] = useState("");
   const role = useRole();
-  const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
-  const functions = useFunctions();
   const { data: projects } = usePrivateProjects();
   const handleChange = (e: SelectChangeEvent) => {
     setPid(e.target?.value);
   };
-
-  const createLocalProject = httpsCallable(functions, "createLocalProject_v0");
-  const createLocalPrices = httpsCallable(functions, "createLocalPrices_v0");
-
-  const handleCreateLocalProject = () => {
-    createLocalProject()
-      .then(() => {
-        enqueueSnackbar(t("snackbar.projectCreated"), {
-          variant: "success",
-        });
-      })
-      .catch(() => {
-        enqueueSnackbar(t("snackbar.projectNotCreated"), {
-          variant: "error",
-        });
-      });
-  };
-  const handleCreateLocalPrices = () => {
-    createLocalPrices({ id: pid })
-      .then(() => {
-        enqueueSnackbar(t("snackbar.projectCreated"), {
-          variant: "success",
-        });
-      })
-      .catch(() => {
-        enqueueSnackbar(t("snackbar.projectNotCreated"), {
-          variant: "error",
-        });
-      });
-  };
+  const handleCreateLocalPrices = useHandleCreateLocalPrices(pid);
+  const handleCreateLocalProject = useHandleCreateLocalProject();
 
   return (
     <Paper>
@@ -90,9 +63,7 @@ export default function LocalTriggers() {
               size="large"
               variant="contained"
               disabled={!moderatorArray.has(role)}
-              onClick={() => {
-                handleCreateLocalProject();
-              }}
+              onClick={handleCreateLocalProject}
             >
               {t("pages.admin.local.createProduct")}
             </Button>
@@ -113,8 +84,15 @@ export default function LocalTriggers() {
           </GridItem>
           <Item sm={7}>
             {Boolean(projects?.length) && (
-              <StyledFormControl>
-                <InputLabel htmlFor="project-select">Project</InputLabel>
+              <FormControl
+                sx={{
+                  minWidth: 160,
+                  mr: 2,
+                }}
+              >
+                <InputLabel htmlFor="project-select">
+                  {t("pages.admin.local.project")}
+                </InputLabel>
                 <Select
                   id="project-select"
                   label="Project"
@@ -132,16 +110,13 @@ export default function LocalTriggers() {
                     );
                   })}
                 </Select>
-              </StyledFormControl>
+              </FormControl>
             )}
-
             <Button
               size="large"
               variant="contained"
               disabled={!moderatorArray.has(role) || !pid}
-              onClick={() => {
-                handleCreateLocalPrices();
-              }}
+              onClick={handleCreateLocalPrices}
             >
               {t("pages.admin.local.createPrices")}
             </Button>
