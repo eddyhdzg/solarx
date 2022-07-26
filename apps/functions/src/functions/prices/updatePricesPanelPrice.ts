@@ -1,7 +1,7 @@
 import { functions, db } from "../../config";
 import { Project, ProjectPrice, FirestoreUser } from "solarx-types";
 
-export const updatePricesSharePrice_v0 = functions.https.onCall(
+export const updatePricesPanelPrice_v0 = functions.https.onCall(
   async (data, context) => {
     const pid = data?.id;
     const role: FirestoreUser["role"] = context.auth?.token?.role;
@@ -45,7 +45,7 @@ export const updatePricesSharePrice_v0 = functions.https.onCall(
     if (!unsync) {
       throw new functions.https.HttpsError(
         "failed-precondition",
-        "Share Prices are synced."
+        "Panel Prices are synced."
       );
     }
 

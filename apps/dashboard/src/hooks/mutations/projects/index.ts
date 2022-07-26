@@ -4,4 +4,4 @@ export { default as useEditProjectMediaMutation } from "./useEditProjectMediaMut
 export { default as useEditProjectNumberMutation } from "./useEditProjectNumberMutation";
 export { default as useEditProjectGeneralMutation } from "./useEditProjectGeneralMutation";
 export { default as useEditProjectPricesMutation } from "./useEditProjectPricesMutation";
-export { default as useTriggerStandardPriceShares } from "./useTriggerStandardPriceShares";
+export { default as useTriggerStandardPanelPrice } from "./useTriggerStandardPanelPrice";

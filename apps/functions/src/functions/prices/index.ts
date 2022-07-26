@@ -1,4 +1,4 @@
 export * from "./addPriceData";
 export * from "./updateGeneralPriceQuantity";
-export * from "./updatePricesSharePrice";
+export * from "./updatePricesPanelPrice";
 export * from "./updateProjectGoal";

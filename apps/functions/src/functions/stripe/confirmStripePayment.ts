@@ -2,8 +2,8 @@ import { Project, UserWallet, Investors } from "solarx-types";
 import { functions, db, stripe } from "../../config";
 import {
   appendUserHistory,
-  updateUserSharesSummary,
-  assignUserShares,
+  updateUserPanelsSummary,
+  assignUserPanels,
   updateUserWallet,
   updateProject,
   updateProjectPrice,
@@ -37,10 +37,10 @@ exports.confirmStripePayment_v0 = functions.firestore
             .collection("privateUserData")
             .doc("wallet");
 
-          const userSharesProjectRef = db
+          const userPanelsProjectRef = db
             .collection("users")
             .doc(uid)
-            .collection("userShares")
+            .collection("userPanels")
             .doc(projectId);
 
           const newInvestors = await db
@@ -69,7 +69,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             sxp = 0,
           } = (await t.get(wallet)).data() as UserWallet;
 
-          const userSharesProject = await userSharesProjectRef.get();
+          const userPanelsProject = await userPanelsProjectRef.get();
 
           const {
             images,
@@ -77,7 +77,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             roi = 0,
             basePrice = 0,
             panelsSold = 0,
-            totalShares = Number.MAX_SAFE_INTEGER,
+            totalPanels = Number.MAX_SAFE_INTEGER,
           } = (await db
             .collection("projects")
             .doc(projectId)
@@ -90,11 +90,11 @@ exports.confirmStripePayment_v0 = functions.firestore
           const newStocks = panels + basePrice * qty;
           const total = cash + sxp + newStocks;
 
-          await updateUserSharesSummary({
+          await updateUserPanelsSummary({
             t,
             avatar: images?.length ? images[0] : null,
             basePrice,
-            exists: userSharesProject.exists,
+            exists: userPanelsProject.exists,
             name,
             projectId,
             quantity: qty,
@@ -122,7 +122,7 @@ exports.confirmStripePayment_v0 = functions.firestore
 
           await updateProject({
             t,
-            fundedDate: panelsSold >= totalShares,
+            fundedDate: panelsSold >= totalPanels,
             investors: newInvestors,
             projectId,
             amount: amount_received,
@@ -145,7 +145,7 @@ exports.confirmStripePayment_v0 = functions.firestore
           });
         })
         .then(() => {
-          assignUserShares({
+          assignUserPanels({
             priceId,
             projectId,
             qty,

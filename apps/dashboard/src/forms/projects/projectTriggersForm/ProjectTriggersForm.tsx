@@ -9,10 +9,10 @@ import {
 } from "@mui/material";
 import { useScrollRight } from "hooks";
 import { useTranslation } from "react-i18next";
-import TriggerSharePrice from "./projectTriggerRows/TriggerSharePrice";
-import TriggerStandardSharesQuantity from "./projectTriggerRows/TriggerStandardSharesQuantity";
+import TriggerPanelPrice from "./projectTriggerRows/TriggerPanelPrice";
+import TriggerStandardPanelsQuantity from "./projectTriggerRows/TriggerStandardPanelsQuantity";
 import TriggerGoal from "./projectTriggerRows/TriggerGoal";
-import TriggerGenerateShares from "./projectTriggerRows/TriggerGenerateShares";
+import TriggerGeneratePanels from "./projectTriggerRows/TriggerGeneratePanels";
 import {
   Titles,
   StyledTableContainer,
@@ -56,10 +56,10 @@ export default function ProjectTriggersForm() {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TriggerSharePrice scrolled={scroll} />
-              <TriggerStandardSharesQuantity scrolled={scroll} />
+              <TriggerPanelPrice scrolled={scroll} />
+              <TriggerStandardPanelsQuantity scrolled={scroll} />
               <TriggerGoal scrolled={scroll} />
-              <TriggerGenerateShares scrolled={scroll} />
+              <TriggerGeneratePanels scrolled={scroll} />
             </TableBody>
           </Table>
         </StyledTableContainer>

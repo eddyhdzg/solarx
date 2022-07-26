@@ -10,6 +10,6 @@ export { default as useHandleEditProjectMediaForm } from "./useHandleEditProject
 export { default as useHandleEditProjectNumberForm } from "./useHandleEditProjectNumberForm";
 export { default as useHandleEditProjectPriceForm } from "./useHandleEditProjectPriceForm";
 export { default as useHandleTriggerGoal } from "./useHandleTriggerGoal";
-export { default as useHandleTriggerGenerateShares } from "./useHandleTriggerGenerateShares";
-export { default as useHandleTriggerSharePrice } from "./useHandleTriggerSharePrice";
+export { default as useHandleTriggerGeneratePanels } from "./useHandleTriggerGeneratePanels";
+export { default as useHandleTriggerPanelPrice } from "./useHandleTriggerPanelPrice";
 export { default as useHandleTriggerStandard } from "./useHandleTriggerStandard";

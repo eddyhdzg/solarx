@@ -1,7 +1,7 @@
 import { functions, db } from "../../config";
-import { Project, ProjectPrice, FirestoreUser, Share } from "solarx-types";
+import { Project, ProjectPrice, FirestoreUser, Panel } from "solarx-types";
 
-export const createShares_v0 = functions.https.onCall(async (data, context) => {
+export const createPanels_v0 = functions.https.onCall(async (data, context) => {
   const pid = data?.id;
   const role: FirestoreUser["role"] = context.auth?.token?.role;
   const panelsColRef = db.collection("panels");
@@ -22,7 +22,7 @@ export const createShares_v0 = functions.https.onCall(async (data, context) => {
   if (panels.size) {
     throw new functions.https.HttpsError(
       "failed-precondition",
-      `"Shares for project: ${pid} already exist"`
+      `"Panels for project: ${pid} already exist"`
     );
   }
 
@@ -55,7 +55,7 @@ export const createShares_v0 = functions.https.onCall(async (data, context) => {
   const batches: FirebaseFirestore.WriteBatch[] = [];
 
   projectPrice.forEach(({ priceId, unit_amount = 0, quantity = 0 }) => {
-    const panels: Share = {
+    const panels: Panel = {
       basePrice,
       owner: null,
       priceId,

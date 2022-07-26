@@ -21,7 +21,7 @@ export const addProjectData_v0 = functions.firestore
       panelsSold: 0,
       state: "",
       status: "coming soon",
-      totalShares: 1,
+      totalPanels: 1,
     };
 
     return db.collection("projects").doc(context.params.pid).update(data);

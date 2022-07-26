@@ -6,7 +6,7 @@ import {
   formatTimestamp,
   getProgress,
   getPanelsRatio,
-  sortShares,
+  sortPanels,
 } from "utils";
 import { Chip, IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -51,7 +51,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         id: "funded",
         Header: t("projects.funded"),
         accessor: (row: Project) =>
-          (row.panelsSold ?? 0) >= (row.totalShares ?? 0) ? true : false,
+          (row.panelsSold ?? 0) >= (row.totalPanels ?? 0) ? true : false,
         Cell: ({ value }: { value: boolean }) =>
           value ? (
             <Chip size="small" label={t("projects.funded")} variant="teal" />
@@ -86,23 +86,23 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       {
         id: "progress",
         Header: t("projects.progress"),
-        accessor: ({ panelsSold, totalShares }: Project) =>
-          getProgress({ panelsSold, totalShares }),
+        accessor: ({ panelsSold, totalPanels }: Project) =>
+          getProgress({ panelsSold, totalPanels }),
         Cell: (cell: Cell<Project>) => (
           <LinearWithValueLabel
             label={cell.value}
             panelsSold={cell.row.original.panelsSold}
-            totalShares={cell.row.original.totalShares}
+            totalPanels={cell.row.original.totalPanels}
           />
         ),
       },
       {
         id: "panels",
         Header: t("projects.panelsRatio"),
-        accessor: ({ panelsSold, totalShares }: Project) =>
-          getPanelsRatio({ panelsSold, totalShares }),
+        accessor: ({ panelsSold, totalPanels }: Project) =>
+          getPanelsRatio({ panelsSold, totalPanels }),
         className: "alignRight",
-        sortType: sortShares,
+        sortType: sortPanels,
       },
       {
         id: "ppa",

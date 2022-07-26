@@ -21,7 +21,7 @@ export default function useHandleTriggerGoal() {
   const [newGoal, setNewGoal] = useState(0);
   const [newQuantity, setNewQuantity] = useState(0);
   const disabled =
-    project?.goal === newGoal || project?.totalShares !== newQuantity;
+    project?.goal === newGoal || project?.totalPanels !== newQuantity;
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {

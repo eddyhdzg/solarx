@@ -46,7 +46,7 @@ service cloud.firestore {
       match /userHistory/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
-      match /userShares/{id} {
+      match /userPanels/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
       match /userTransactions/{id} {

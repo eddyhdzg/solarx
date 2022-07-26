@@ -6,7 +6,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { formatNumber, formatUnits, formatPercentage2Dec } from "utils";
-import { UserShare } from "solarx-types";
+import { UserPanel } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import {
   StyledTableContainer,
@@ -14,13 +14,13 @@ import {
   CenterCol,
   StyledAvatar,
   StyledTableCellHeader,
-} from "./WalletSharesTable.styled";
+} from "./WalletPanelsTable.styled";
 
-interface WalletSharesTableProps {
-  rows: UserShare[];
+interface WalletPanelsTableProps {
+  rows: UserPanel[];
 }
 
-export default function WalletSharesTable({ rows }: WalletSharesTableProps) {
+export default function WalletPanelsTable({ rows }: WalletPanelsTableProps) {
   const { t } = useTranslation();
 
   return (
@@ -51,8 +51,8 @@ export default function WalletSharesTable({ rows }: WalletSharesTableProps) {
         </StyledTableHead>
         <TableBody>
           {rows.map(({ roi = 0, basePrice = 0, quantity = 0, ...row }) => {
-            const totalSharePrice = basePrice * quantity;
-            const yearlyRevenue = totalSharePrice * roi * 0.01;
+            const totalPanelPrice = basePrice * quantity;
+            const yearlyRevenue = totalPanelPrice * roi * 0.01;
             const monthlyRevenue = yearlyRevenue / 12;
             return (
               <TableRow key={row.name}>
@@ -77,7 +77,7 @@ export default function WalletSharesTable({ rows }: WalletSharesTableProps) {
                 </TableCell>
                 <TableCell align="center">{formatNumber(quantity)}</TableCell>
                 <TableCell align="right">
-                  ${formatUnits(totalSharePrice)}
+                  ${formatUnits(totalPanelPrice)}
                   <Typography
                     variant="caption"
                     color="textSecondary"

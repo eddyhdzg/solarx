@@ -7,16 +7,16 @@ import {
 import { Project } from "solarx-types";
 
 interface LinearWithValueLabelProps
-  extends Pick<Project, "panelsSold" | "totalShares"> {
+  extends Pick<Project, "panelsSold" | "totalPanels"> {
   label: string;
 }
 
 export default function LinearWithValueLabel({
   label,
   panelsSold = 0,
-  totalShares = 1,
+  totalPanels = 1,
 }: LinearWithValueLabelProps) {
-  const value = (panelsSold / totalShares) * 100;
+  const value = (panelsSold / totalPanels) * 100;
   return (
     <Box sx={{ width: "100%", textAlign: "right" }}>
       <Box sx={{ display: "flex", alignItems: "center" }}>

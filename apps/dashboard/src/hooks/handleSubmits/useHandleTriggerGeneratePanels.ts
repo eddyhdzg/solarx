@@ -1,4 +1,4 @@
-import { useRole, useProjectSharesExist } from "hooks";
+import { useRole, useProjectPanelsExist } from "hooks";
 import { useParams } from "react-router-dom";
 import { ProjectIDParams } from "solarx-types";
 import { useFunctions } from "reactfire";
@@ -6,21 +6,21 @@ import { httpsCallable } from "firebase/functions";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 
-export default function useHandleTriggerGenerateShares() {
+export default function useHandleTriggerGeneratePanels() {
   const { t } = useTranslation();
   const role = useRole();
   const functions = useFunctions();
-  const createShares = httpsCallable<{ id?: string }, boolean>(
+  const createPanels = httpsCallable<{ id?: string }, boolean>(
     functions,
-    "createShares_v0"
+    "createPanels_v0"
   );
   const { id } = useParams<ProjectIDParams>();
-  const projectSharesExist = useProjectSharesExist(id);
+  const projectPanelsExist = useProjectPanelsExist(id);
   const { enqueueSnackbar } = useSnackbar();
-  const disabled = role !== "SUPER_USER" || projectSharesExist;
+  const disabled = role !== "SUPER_USER" || projectPanelsExist;
 
-  const handleTriggerGenerateShares = () => {
-    createShares({ id })
+  const handleTriggerGeneratePanels = () => {
+    createPanels({ id })
       .then(() => {
         enqueueSnackbar(t("snackbar.panelsCreated"), {
           variant: "success",
@@ -33,5 +33,5 @@ export default function useHandleTriggerGenerateShares() {
       });
   };
 
-  return { disabled, projectSharesExist, handleTriggerGenerateShares };
+  return { disabled, projectPanelsExist, handleTriggerGeneratePanels };
 }

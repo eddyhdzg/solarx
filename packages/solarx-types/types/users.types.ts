@@ -50,7 +50,7 @@ export interface UserHistory {
   type?: "crowdfund";
 }
 
-export interface UserShare {
+export interface UserPanel {
   id?: string;
   avatar?: string;
   basePrice?: number;
@@ -67,6 +67,8 @@ export interface UserTransaction {
   sxp?: number;
   total?: number;
 }
+
+// fixme
 export interface UserWallet {
   cash?: number;
   // fullName?: string;

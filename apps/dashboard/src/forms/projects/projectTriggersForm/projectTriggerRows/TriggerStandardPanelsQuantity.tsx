@@ -5,13 +5,13 @@ import { moderatorArray } from "constant";
 import { useTranslation } from "react-i18next";
 import { TableCellLast } from "../../ProjectForms.styled";
 
-interface TriggerStandardSharesQuantityProps {
+interface TriggerStandardPanelsQuantityProps {
   scrolled: boolean;
 }
 
-export default function TriggerStandardSharesQuantity({
+export default function TriggerStandardPanelsQuantity({
   scrolled,
-}: TriggerStandardSharesQuantityProps) {
+}: TriggerStandardPanelsQuantityProps) {
   const { t } = useTranslation();
   const role = useRole();
   const { disabled, handleTriggerGeneral, newQuantity, prices } =

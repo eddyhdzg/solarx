@@ -2,7 +2,7 @@ import { collection, query, limit, where } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
 import { Panel } from "solarx-types";
 
-export default function useProjectSharesExist(projectId: string = "null") {
+export default function useProjectPanelsExist(projectId: string = "null") {
   const firestore = useFirestore();
   const panelsRef = collection(firestore, "panels");
   const panelsQuery = query(

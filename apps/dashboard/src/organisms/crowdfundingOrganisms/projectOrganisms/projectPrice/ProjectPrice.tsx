@@ -52,13 +52,13 @@ const ProjectPriceCard = ({
   roi = 0,
 }: TProjectPriceCardProps) => {
   const { t } = useTranslation();
-  const [panels, setShares] = useState(1);
+  const [panels, setPanels] = useState(1);
   const { data: signinResult } = useSigninCheck();
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const handleChangeShares = (num: number) => {
-    setShares(panels + num);
+  const handleChangePanels = (num: number) => {
+    setPanels(panels + num);
   };
 
   const rest = quantity - panelsSold;
@@ -152,8 +152,8 @@ const ProjectPriceCard = ({
             </Typography>
             <Counter
               panels={panels}
-              onChangeShares={handleChangeShares}
-              setShares={setShares}
+              onChangePanels={handleChangePanels}
+              setPanels={setPanels}
               error={error}
               max={max}
             />

@@ -9,9 +9,9 @@ import {
 } from "./Counter.styled";
 
 interface ICounterProps {
-  onChangeShares: (num: number) => void;
+  onChangePanels: (num: number) => void;
   panels: number;
-  setShares:
+  setPanels:
     | React.Dispatch<React.SetStateAction<number>>
     | ((num: number) => void);
   error: boolean;
@@ -19,18 +19,18 @@ interface ICounterProps {
 }
 
 export default function Counter({
-  onChangeShares,
+  onChangePanels,
   panels,
-  setShares,
+  setPanels,
   error,
   max,
 }: ICounterProps) {
   const disabled = max === 0;
 
   const handleChange = (num: number) => {
-    if (num <= 1) setShares(1);
-    else if (num >= max) setShares(max);
-    else setShares(num);
+    if (num <= 1) setPanels(1);
+    else if (num >= max) setPanels(max);
+    else setPanels(num);
   };
 
   return (
@@ -39,7 +39,7 @@ export default function Counter({
         variant="outlined"
         color="inherit"
         disabled={panels <= 1}
-        onClick={() => onChangeShares(-1)}
+        onClick={() => onChangePanels(-1)}
       >
         <RemoveRoundedIcon />
       </CounterButtonLeft>
@@ -67,7 +67,7 @@ export default function Counter({
         variant="outlined"
         color="inherit"
         disabled={max <= panels}
-        onClick={() => onChangeShares(1)}
+        onClick={() => onChangePanels(1)}
       >
         <AddRoundedIcon />
       </CounterButtonRight>

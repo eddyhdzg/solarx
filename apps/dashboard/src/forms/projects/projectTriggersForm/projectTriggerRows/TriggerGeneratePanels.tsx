@@ -1,19 +1,19 @@
 import { Typography, Button, TableCell, TableRow } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
-import { useHandleTriggerGenerateShares } from "hooks";
+import { useHandleTriggerGeneratePanels } from "hooks";
 import { useTranslation } from "react-i18next";
 import { TableCellLast } from "../../ProjectForms.styled";
 
-interface TriggerGenerateSharesProps {
+interface TriggerGeneratePanelsProps {
   scrolled: boolean;
 }
 
-export default function TriggerGenerateShares({
+export default function TriggerGeneratePanels({
   scrolled,
-}: TriggerGenerateSharesProps) {
+}: TriggerGeneratePanelsProps) {
   const { t } = useTranslation();
-  const { disabled, handleTriggerGenerateShares, projectSharesExist } =
-    useHandleTriggerGenerateShares();
+  const { disabled, handleTriggerGeneratePanels, projectPanelsExist } =
+    useHandleTriggerGeneratePanels();
 
   return (
     <TableRow
@@ -32,17 +32,17 @@ export default function TriggerGenerateShares({
         </div>
       </TableCell>
       <TableCell align="right">
-        {projectSharesExist ? <DoneIcon /> : "-"}
+        {projectPanelsExist ? <DoneIcon /> : "-"}
       </TableCell>
       <TableCell align="right">
-        {!projectSharesExist ? <DoneIcon /> : "-"}
+        {!projectPanelsExist ? <DoneIcon /> : "-"}
       </TableCell>
       <TableCellLast scrolled={Boolean(scrolled)} align="right">
         <Button
           size="large"
           variant="contained"
           disabled={disabled}
-          onClick={handleTriggerGenerateShares}
+          onClick={handleTriggerGeneratePanels}
         >
           {t("forms.projectForm.generatePanels")}
         </Button>

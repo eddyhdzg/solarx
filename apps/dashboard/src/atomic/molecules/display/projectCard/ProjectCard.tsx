@@ -30,11 +30,11 @@ export default function ProjectCard({
   panelsSold = 0,
   roi = 0,
   state,
-  totalShares = 1,
+  totalPanels = 1,
   url = "/crowdfunding/projects/",
 }: IProjectCardProps) {
   const { t } = useTranslation();
-  const progress = Math.trunc((panelsSold / totalShares) * 100);
+  const progress = Math.trunc((panelsSold / totalPanels) * 100);
   const [loading, setLoading] = useState(true);
 
   return (
@@ -95,7 +95,7 @@ export default function ProjectCard({
               })}
             </Typography>
             <Typography variant="caption" color="textSecondary">
-              {panelsSold.toLocaleString()} / {totalShares.toLocaleString()}{" "}
+              {panelsSold.toLocaleString()} / {totalPanels.toLocaleString()}{" "}
               {t("projects.panels")}
             </Typography>
           </ProjectCardSummary>

@@ -11,8 +11,8 @@ import { useScrollRight } from "hooks";
 import { useTranslation } from "react-i18next";
 import AdminTriggerGeneralOptionRow from "./adminTriggersRows/AdminTriggerGeneralOptionRow";
 import AdminTriggerGoalRow from "./adminTriggersRows/AdminTriggerGoalRow";
-import AdminTriggerSharePrice from "./adminTriggersRows/AdminTriggerSharePrice";
-import AdminTriggerShares from "./adminTriggersRows/AdminTriggerShares";
+import AdminTriggerPanelPrice from "./adminTriggersRows/AdminTriggerPanelPrice";
+import AdminTriggerPanels from "./adminTriggersRows/AdminTriggerPanels";
 import Styles from "./AdminTriggers.styled";
 
 export default function AdminTriggers() {
@@ -49,10 +49,10 @@ export default function AdminTriggers() {
               </TableRow>
             </TableHead>
             <TableBody>
-              <AdminTriggerSharePrice scrolled={scroll} />
+              <AdminTriggerPanelPrice scrolled={scroll} />
               <AdminTriggerGeneralOptionRow scrolled={scroll} />
               <AdminTriggerGoalRow scrolled={scroll} />
-              <AdminTriggerShares scrolled={scroll} />
+              <AdminTriggerPanels scrolled={scroll} />
             </TableBody>
           </Styles.Table>
         </TableContainer>

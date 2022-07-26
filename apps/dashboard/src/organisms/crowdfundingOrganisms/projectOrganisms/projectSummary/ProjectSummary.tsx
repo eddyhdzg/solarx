@@ -29,7 +29,7 @@ interface IProjectSummaryProps
     | "raised"
     | "roi"
     | "panelsSold"
-    | "totalShares"
+    | "totalPanels"
     | "basePrice"
     | "releaseDate"
   > {}
@@ -41,19 +41,19 @@ export default function ProjectSummary({
   raised = 0,
   basePrice = 0,
   panelsSold = 0,
-  totalShares = 1,
+  totalPanels = 1,
   releaseDate,
 }: IProjectSummaryProps) {
   const { t } = useTranslation();
-  const progress = Math.trunc((panelsSold / totalShares) * 100);
-  const [panels, setShares] = useState(1);
-  const handleChangeShares = (num: number) => {
-    setShares(panels + num);
+  const progress = Math.trunc((panelsSold / totalPanels) * 100);
+  const [panels, setPanels] = useState(1);
+  const handleChangePanels = (num: number) => {
+    setPanels(panels + num);
   };
-  const max = totalShares;
+  const max = totalPanels;
   const error = panels < 1 || panels > max;
-  const displaySharePrice = basePrice;
-  const yearlyRevenue = displaySharePrice * roi * 0.01 * panels;
+  const displayPanelPrice = basePrice;
+  const yearlyRevenue = displayPanelPrice * roi * 0.01 * panels;
   const monthlyRevenue = yearlyRevenue / 12;
   const numInYears = basePrice / ((basePrice * roi * 0.01) / 12) / 12;
 
@@ -68,7 +68,7 @@ export default function ProjectSummary({
             })}
           </Typography>
           <Typography variant="caption" color="textSecondary">
-            {formatNumber(panelsSold)} / {formatNumber(totalShares)}{" "}
+            {formatNumber(panelsSold)} / {formatNumber(totalPanels)}{" "}
             {t("projects.panels")}
           </Typography>
         </ProjectSummaryHeader>
@@ -84,7 +84,7 @@ export default function ProjectSummary({
       <ProjectSummaryStyledDivider />
       <ProjectSummaryStatsWrapper>
         <div>
-          <Typography variant="h6">{formatMoney(displaySharePrice)}</Typography>
+          <Typography variant="h6">{formatMoney(displayPanelPrice)}</Typography>
           <Typography variant="body2" color="textSecondary">
             {t("projects.basePrice")}
           </Typography>
@@ -120,8 +120,8 @@ export default function ProjectSummary({
           {max > 0 ? (
             <Counter
               panels={panels || 0}
-              onChangeShares={handleChangeShares}
-              setShares={setShares}
+              onChangePanels={handleChangePanels}
+              setPanels={setPanels}
               error={error}
               max={max}
             />

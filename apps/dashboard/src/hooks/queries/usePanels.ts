@@ -2,13 +2,13 @@ import { collection, query, where } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
 import { Panel } from "solarx-types";
 
-interface useSharesProps {
+interface usePanelsProps {
   projectId: string;
   priceId: string;
   uid: string;
 }
 
-export default function useShares({ projectId, priceId, uid }: useSharesProps) {
+export default function usePanels({ projectId, priceId, uid }: usePanelsProps) {
   const firestore = useFirestore();
   const panelsRef = collection(firestore, "panels");
   const panelsQuery = query(

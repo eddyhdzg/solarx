@@ -3,7 +3,7 @@ import { GridItem } from "atomic";
 import {
   WalletHistory,
   WalletBalance,
-  WalletShares,
+  WalletPanels,
   WalletTotalBalance,
   WalletTimeline,
 } from "organisms";
@@ -14,7 +14,7 @@ export default function WalletDesktopLayout() {
       <GridItem lg={8}>
         <Grid container spacing={3}>
           <GridItem>
-            <WalletShares />
+            <WalletPanels />
           </GridItem>
           <GridItem>
             <WalletTimeline />

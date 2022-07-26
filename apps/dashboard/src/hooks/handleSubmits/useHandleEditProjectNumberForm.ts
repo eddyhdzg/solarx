@@ -29,7 +29,7 @@ export default function useHandleEditProjectNumberForm(
       : {
           roi: data?.roi,
           basePrice: data?.basePrice,
-          totalShares: data?.totalShares,
+          totalPanels: data?.totalPanels,
           ppa: data?.ppa,
         };
 

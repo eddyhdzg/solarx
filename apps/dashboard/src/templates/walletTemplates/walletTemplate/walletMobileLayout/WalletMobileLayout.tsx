@@ -4,7 +4,7 @@ import {
   WalletHistory,
   WalletBalance,
   WalletTotalBalance,
-  WalletShares,
+  WalletPanels,
   WalletTimeline,
 } from "organisms";
 import { Grid } from "@mui/material";
@@ -46,7 +46,7 @@ export default function WalletMobileLayout() {
         </Grid>
       </StyledTabPanel>
       <StyledTabPanel value="1">
-        <WalletShares />
+        <WalletPanels />
       </StyledTabPanel>
       <StyledTabPanel value="2">
         <WalletHistory />

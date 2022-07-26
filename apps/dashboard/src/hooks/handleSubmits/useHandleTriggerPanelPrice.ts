@@ -7,15 +7,14 @@ import { httpsCallable } from "firebase/functions";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 
-export default function useHandleTriggerSharePrice() {
+export default function useHandleTriggerPanelPrice() {
   const { t } = useTranslation();
-  const functions = useFunctions();
-  const updatePricesSharePrice = httpsCallable<{ id?: string }, boolean>(
-    functions,
-    "updatePricesSharePrice_v0"
-  );
-
   const { id = "" } = useParams<ProjectIDParams>();
+  const functions = useFunctions();
+  const updatePricesPanelPrice = httpsCallable<{ id?: string }, boolean>(
+    functions,
+    "updatePricesPanelPrice_v0"
+  );
   const {
     data: { basePrice },
     status: projectStatus,
@@ -29,8 +28,8 @@ export default function useHandleTriggerSharePrice() {
     setDisabled(!unsync);
   }, [prices, projectStatus, pricesStatus, basePrice]);
 
-  const handleTriggerSharePrice = () => {
-    updatePricesSharePrice({ id })
+  const handleTriggerPanelPrice = () => {
+    updatePricesPanelPrice({ id })
       .then(() => {
         enqueueSnackbar(t("snackbar.panelsPricesUpdated"), {
           variant: "success",
@@ -45,6 +44,6 @@ export default function useHandleTriggerSharePrice() {
 
   return {
     disabled,
-    handleTriggerSharePrice,
+    handleTriggerPanelPrice,
   };
 }

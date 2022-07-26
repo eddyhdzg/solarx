@@ -32,7 +32,7 @@ export interface Project {
   state?: string; // Custom
   status?: ProjectStatus; // Custom
   tax_code?: null;
-  totalShares?: number; // Custom
+  totalPanels?: number; // Custom
 }
 
 export interface ProjectPrice {

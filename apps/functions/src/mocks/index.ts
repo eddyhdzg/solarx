@@ -11,7 +11,7 @@ export const mockProject: Project = {
   name: `Local project #1`,
   role: null,
   tax_code: null,
-  totalShares: 9000,
+  totalPanels: 9000,
   basePrice: 1000,
   businessType: "",
   city: "",

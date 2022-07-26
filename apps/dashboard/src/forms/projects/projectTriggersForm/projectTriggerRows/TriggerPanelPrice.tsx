@@ -3,19 +3,19 @@ import { moderatorArray } from "constant";
 import { useTranslation } from "react-i18next";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
-import { useRole, useHandleTriggerSharePrice } from "hooks";
+import { useRole, useHandleTriggerPanelPrice } from "hooks";
 import { TableCellLast } from "../../ProjectForms.styled";
 
-interface TriggerSharePriceProps {
+interface TriggerPanelPriceProps {
   scrolled: boolean;
 }
 
-export default function TriggerSharePrice({
+export default function TriggerPanelPrice({
   scrolled,
-}: TriggerSharePriceProps) {
+}: TriggerPanelPriceProps) {
   const { t } = useTranslation();
   const role = useRole();
-  const { disabled, handleTriggerSharePrice } = useHandleTriggerSharePrice();
+  const { disabled, handleTriggerPanelPrice } = useHandleTriggerPanelPrice();
 
   return (
     <TableRow>
@@ -38,7 +38,7 @@ export default function TriggerSharePrice({
           size="large"
           variant="contained"
           disabled={!moderatorArray.has(role) || disabled}
-          onClick={handleTriggerSharePrice}
+          onClick={handleTriggerPanelPrice}
         >
           {t("forms.projectForm.updatePanelPrices")}
         </Button>

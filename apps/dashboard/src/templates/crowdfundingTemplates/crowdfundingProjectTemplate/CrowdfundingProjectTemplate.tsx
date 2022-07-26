@@ -50,7 +50,7 @@ export default function CrowdfundingProjectTemplate() {
                 roi={data?.roi}
                 basePrice={data?.basePrice}
                 panelsSold={data?.panelsSold}
-                totalShares={data?.totalShares}
+                totalPanels={data?.totalPanels}
                 releaseDate={data?.releaseDate}
               />
             </Styled.MaxWidth>

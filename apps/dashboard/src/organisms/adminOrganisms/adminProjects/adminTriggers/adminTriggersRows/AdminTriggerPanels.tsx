@@ -1,5 +1,5 @@
 import { Typography, Button, TableCell } from "@mui/material";
-import { useRole, useProjectSharesExist } from "hooks";
+import { useRole, useProjectPanelsExist } from "hooks";
 import { useParams } from "react-router-dom";
 import { ProjectIDParams } from "solarx-types";
 import { useFunctions } from "reactfire";
@@ -13,23 +13,23 @@ interface AdminTriggerRowProps {
   scrolled?: boolean;
 }
 
-export default function AdminTriggerSharesRow({
+export default function AdminTriggerPanelsRow({
   scrolled,
 }: AdminTriggerRowProps) {
   const role = useRole();
   const functions = useFunctions();
-  const createShares = httpsCallable<{ id?: string }, boolean>(
+  const createPanels = httpsCallable<{ id?: string }, boolean>(
     functions,
-    "createShares_v0"
+    "createPanels_v0"
   );
   const { id } = useParams<ProjectIDParams>();
-  const projectSharesExist = useProjectSharesExist(id);
+  const projectPanelsExist = useProjectPanelsExist(id);
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
-  const disabled = role !== "SUPER_USER" || projectSharesExist;
+  const disabled = role !== "SUPER_USER" || projectPanelsExist;
 
-  const handleCreateShares = () => {
-    createShares({ id })
+  const handleCreatePanels = () => {
+    createPanels({ id })
       .then(() => {
         enqueueSnackbar(t("snackbar.panelsCreated"), {
           variant: "success",
@@ -55,10 +55,10 @@ export default function AdminTriggerSharesRow({
         </div>
       </TableCell>
       <TableCell align="right">
-        {projectSharesExist ? <DoneIcon /> : "-"}
+        {projectPanelsExist ? <DoneIcon /> : "-"}
       </TableCell>
       <TableCell align="right">
-        {!projectSharesExist ? <DoneIcon /> : "-"}
+        {!projectPanelsExist ? <DoneIcon /> : "-"}
       </TableCell>
       <Styles.TableCellLast scrolled={Boolean(scrolled)} align="right">
         <Button
@@ -66,7 +66,7 @@ export default function AdminTriggerSharesRow({
           variant="contained"
           disabled={disabled}
           onClick={() => {
-            handleCreateShares();
+            handleCreatePanels();
           }}
         >
           {t("forms.projectForm.generatePanels")}

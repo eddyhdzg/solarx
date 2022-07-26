@@ -26,7 +26,7 @@ export default function CheckoutProductModal({
     values: { qty = "0" },
     setValue,
   } = useRouterState();
-  const [panels, setShares] = useState(Number(qty));
+  const [panels, setPanels] = useState(Number(qty));
   const { pid = "" } = useQueryParams();
   const { id } = useParams<ProjectIDParams>();
   const { data: project } = useProject(id);
@@ -37,8 +37,8 @@ export default function CheckoutProductModal({
   const max = Math.min(rest, 500);
   const error = panels < 1 || panels > max;
 
-  const handleChangeShares = (num: number) => {
-    setShares(panels + num);
+  const handleChangePanels = (num: number) => {
+    setPanels(panels + num);
   };
 
   const handleSetRouterQty = () => {
@@ -100,8 +100,8 @@ export default function CheckoutProductModal({
           >
             <Counter
               panels={panels}
-              onChangeShares={handleChangeShares}
-              setShares={setShares}
+              onChangePanels={handleChangePanels}
+              setPanels={setPanels}
               error={error}
               max={max}
             />

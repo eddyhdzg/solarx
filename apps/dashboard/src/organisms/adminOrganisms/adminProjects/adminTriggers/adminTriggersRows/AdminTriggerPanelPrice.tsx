@@ -16,15 +16,15 @@ interface AdminTriggerRowProps {
   scrolled?: boolean;
 }
 
-export default function AdminTriggerSharePrice({
+export default function AdminTriggerPanelPrice({
   scrolled,
 }: AdminTriggerRowProps) {
   const { t } = useTranslation();
   const role = useRole();
   const functions = useFunctions();
-  const updatePricesSharePrice = httpsCallable<{ id?: string }, boolean>(
+  const updatePricesPanelPrice = httpsCallable<{ id?: string }, boolean>(
     functions,
-    "updatePricesSharePrice_v0"
+    "updatePricesPanelPrice_v0"
   );
 
   const { id = "" } = useParams<ProjectIDParams>();
@@ -41,8 +41,8 @@ export default function AdminTriggerSharePrice({
     setDisabled(!unsync);
   }, [prices, projectStatus, pricesStatus, basePrice]);
 
-  const handleUpdatePricesSharePrice = () => {
-    updatePricesSharePrice({ id })
+  const handleUpdatePricesPanelPrice = () => {
+    updatePricesPanelPrice({ id })
       .then(() => {
         enqueueSnackbar(t("snackbar.panelsPricesUpdated"), {
           variant: "success",
@@ -77,7 +77,7 @@ export default function AdminTriggerSharePrice({
           variant="contained"
           disabled={!moderatorArray.has(role) || disabled}
           onClick={() => {
-            handleUpdatePricesSharePrice();
+            handleUpdatePricesPanelPrice();
           }}
         >
           {t("forms.projectForm.updatePanelPrices")}

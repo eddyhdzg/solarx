@@ -38,7 +38,7 @@ export default function AdminTriggerGeneralOptionRow({
       return prev + (curr?.quantity || 0);
     }, 0);
 
-    setNewQuantity((project?.totalShares || 0) - aux);
+    setNewQuantity((project?.totalPanels || 0) - aux);
     setDisabled(prices[prices.length - 1]?.quantity === newQuantity);
   }, [newQuantity, prices, pricesStatus, project]);
 

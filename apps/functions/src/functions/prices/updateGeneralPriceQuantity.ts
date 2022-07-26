@@ -14,7 +14,7 @@ export const updateGeneralPriceQuantity_v0 = functions.https.onCall(
       );
     }
 
-    const { basePrice, totalShares } = (await db
+    const { basePrice, totalPanels } = (await db
       .collection("projects")
       .doc(pid)
       .get()
@@ -63,7 +63,7 @@ export const updateGeneralPriceQuantity_v0 = functions.https.onCall(
         );
       });
 
-    const newQuantity = (totalShares || 0) - discountsQuantity;
+    const newQuantity = (totalPanels || 0) - discountsQuantity;
 
     // Free or negative
     if (newQuantity === undefined || newQuantity < 1) {

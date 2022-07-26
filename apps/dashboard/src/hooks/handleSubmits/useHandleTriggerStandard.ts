@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   useProject,
   useProjectPrices,
-  useTriggerStandardPriceShares,
+  useTriggerStandardPanelPrice,
 } from "hooks";
 import { useParams } from "react-router-dom";
 import { ProjectIDParams } from "solarx-types";
@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export default function useHandleTriggerStandard() {
   const { t } = useTranslation();
-  const triggerStandardPriceShares = useTriggerStandardPriceShares();
+  const triggerStandardPricePanels = useTriggerStandardPanelPrice();
   const { id = "" } = useParams<ProjectIDParams>();
   const { data: project } = useProject(id);
   const { data: prices, status: pricesStatus } = useProjectPrices(id);
@@ -25,12 +25,12 @@ export default function useHandleTriggerStandard() {
       return prev + (curr?.quantity || 0);
     }, 0);
 
-    setNewQuantity((project?.totalShares || 0) - aux);
+    setNewQuantity((project?.totalPanels || 0) - aux);
     setDisabled(prices[prices.length - 1]?.quantity === newQuantity);
   }, [newQuantity, prices, pricesStatus, project]);
 
   const handleTriggerGeneral = () => {
-    triggerStandardPriceShares({ id })
+    triggerStandardPricePanels({ id })
       .then(() => {
         enqueueSnackbar(t("snackbar.projectGoalEdited"), {
           variant: "success",

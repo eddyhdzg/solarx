@@ -1,7 +1,7 @@
 import { db, functions, serverTimestamp, FieldValue } from "../config";
 import { UserHistory } from "solarx-types";
 
-interface AssignUserSharesProps {
+interface AssignUserPanelsProps {
   priceId: string;
   projectId: string;
   qty: number;
@@ -9,12 +9,12 @@ interface AssignUserSharesProps {
 }
 
 // asign user panels under panels collection
-export const assignUserShares = async ({
+export const assignUserPanels = async ({
   priceId,
   projectId,
   qty,
   uid,
-}: AssignUserSharesProps) => {
+}: AssignUserPanelsProps) => {
   return await db
     .collection("panels")
     .where("projectId", "==", projectId)
@@ -37,7 +37,7 @@ export const assignUserShares = async ({
     });
 };
 
-interface UpdateUserSharesSummaryProps {
+interface UpdateUserPanelsSummaryProps {
   t: FirebaseFirestore.Transaction;
   avatar: string | null;
   basePrice?: number;
@@ -49,7 +49,7 @@ interface UpdateUserSharesSummaryProps {
   uid: string;
 }
 
-export const updateUserSharesSummary = async ({
+export const updateUserPanelsSummary = async ({
   t,
   avatar,
   basePrice,
@@ -59,19 +59,19 @@ export const updateUserSharesSummary = async ({
   quantity,
   roi,
   uid,
-}: UpdateUserSharesSummaryProps) => {
-  const userSharesProjectRef = db
+}: UpdateUserPanelsSummaryProps) => {
+  const userPanelsProjectRef = db
     .collection("users")
     .doc(uid)
-    .collection("userShares")
+    .collection("userPanels")
     .doc(projectId);
 
   if (exists) {
-    t.update(userSharesProjectRef, {
+    t.update(userPanelsProjectRef, {
       quantity: FieldValue.increment(quantity),
     });
   } else {
-    t.create(userSharesProjectRef, {
+    t.create(userPanelsProjectRef, {
       avatar,
       name,
       roi,

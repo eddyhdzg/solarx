@@ -111,12 +111,12 @@ export default function ProjectNumberFormLayout({
             </GridItem>
             <GridItem xs={6}>
               <Controller
-                name="totalShares"
+                name="totalPanels"
                 control={control}
                 render={({ field, fieldState }) => (
                   <StyledTextField
-                    id="project-totalShares"
-                    label={t("projects.totalShares")}
+                    id="project-totalPanels"
+                    label={t("projects.totalPanels")}
                     variant="outlined"
                     fullWidth
                     required
