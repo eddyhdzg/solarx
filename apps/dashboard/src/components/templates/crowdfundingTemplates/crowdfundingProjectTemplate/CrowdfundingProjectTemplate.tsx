@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useProject, useBreakpoint, useProjectContent } from "hooks";
-import { CenterLoader, GridItem } from "components";
 import {
+  CenterLoader,
+  GridItem,
   ProjectGallery,
   ProjectHeader,
   ProjectPrices,
   ProjectSummary,
   ProjectTabs,
-} from "organisms";
+} from "components";
 import { ProjectIDParams } from "solarx-types";
 import { Container } from "@mui/material";
 import Styled from "./CrowdfundingProjectTemplate.styled";

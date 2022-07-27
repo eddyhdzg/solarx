@@ -1,5 +1,5 @@
 import { Paper, Typography } from "@mui/material";
-import { WalletPanelsTable } from "tables";
+import { WalletPanelsTable } from "components";
 import { useCurrUserPanels } from "hooks";
 import { useTranslation } from "react-i18next";
 

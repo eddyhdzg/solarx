@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Grid, Tabs } from "@mui/material";
 import { TabContext } from "@mui/lab";
 import {
+  GridItem,
   WalletHistory,
   WalletBalance,
   WalletTotalBalance,
   WalletPanels,
   WalletTimeline,
-} from "organisms";
-import { GridItem } from "components";
+} from "components";
 import { useTranslation } from "react-i18next";
 import { StyledTab, StyledTabPanel } from "./WalletMobileLayout.styled";
 

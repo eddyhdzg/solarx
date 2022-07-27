@@ -1,6 +1,12 @@
 import { Container } from "@mui/material";
-import { CreateNewsletterEmail, Footer, Header, Hero } from "organisms";
-import { GradientLine, Notch } from "components";
+import {
+  Notch,
+  GradientLine,
+  CreateNewsletterEmail,
+  Footer,
+  Header,
+  Hero,
+} from "components";
 
 export default function LandingTemplate() {
   return (

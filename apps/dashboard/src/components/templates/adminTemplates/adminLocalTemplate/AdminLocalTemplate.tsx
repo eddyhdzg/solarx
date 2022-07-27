@@ -1,6 +1,5 @@
-import { GridItem, PageTitle } from "components";
+import { GridItem, PageTitle, LocalTriggers } from "components";
 import { Box, Container, Grid } from "@mui/material";
-import { LocalTriggers } from "organisms";
 import { useTranslation } from "react-i18next";
 
 export default function AdminLocalTemplate() {

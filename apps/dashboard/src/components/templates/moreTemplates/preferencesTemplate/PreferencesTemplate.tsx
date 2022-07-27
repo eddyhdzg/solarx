@@ -1,6 +1,5 @@
-import { GridItem, PageTitle } from "components";
+import { GridItem, PageTitle, LocaleSection } from "components";
 import { Box, Container, Grid } from "@mui/material";
-import { LocaleSection } from "organisms";
 import { useTranslation } from "react-i18next";
 
 export default function PreferencesTemplate() {

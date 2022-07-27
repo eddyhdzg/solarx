@@ -8,10 +8,10 @@ import {
   EditProjectDatesForm,
   EditProjectContentForm,
   ProjectTriggersForm,
+  AdminProjectSummary,
 } from "components";
 import { Box, Container, Tabs, Tab, Grid } from "@mui/material";
 import { TabContext } from "@mui/lab";
-import { AdminProjectSummary } from "organisms";
 import { useLocation, useHistory } from "react-router-dom";
 import queryString from "query-string";
 import { useTranslation } from "react-i18next";

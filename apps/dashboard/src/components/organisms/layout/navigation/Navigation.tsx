@@ -15,6 +15,7 @@ interface INavigationHelperProps {
 }
 
 const NavigationHelper = ({ routerTree }: INavigationHelperProps) => {
+  const md = useBreakpoint("md");
   const { pathname } = useLocation();
   const { routerMemo } = useRouterMemo(
     ({ routerMemo }) => ({ routerMemo }),
@@ -26,7 +27,6 @@ const NavigationHelper = ({ routerTree }: INavigationHelperProps) => {
     }
     return routerMemo[baseRoute];
   };
-  const md = useBreakpoint("md");
 
   return md ? (
     <DesktopAppBar routerTree={routerTree} getMemoryRoute={getMemoryRoute} />

@@ -1,12 +1,12 @@
 import { Grid } from "@mui/material";
-import { GridItem } from "components";
 import {
+  GridItem,
   WalletHistory,
   WalletBalance,
   WalletPanels,
   WalletTotalBalance,
   WalletTimeline,
-} from "organisms";
+} from "components";
 
 export default function WalletDesktopLayout() {
   return (

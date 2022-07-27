@@ -1,7 +1,6 @@
 import { Container } from "@mui/material";
-import { UsersTableLayout } from "tables";
 import { useTranslation } from "react-i18next";
-import { PageTitle } from "components";
+import { PageTitle, UsersTableLayout } from "components";
 import { useUsersTable } from "hooks";
 
 export default function AdminUsersTemplate() {
