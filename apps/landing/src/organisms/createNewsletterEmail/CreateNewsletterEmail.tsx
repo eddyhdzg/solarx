@@ -25,7 +25,7 @@ export default function CreateNewsletterEmail() {
         <CreateNewsletterEmailForm />
       </Box>
       <Typography variant="body2" color="textSecondary">
-        {t("translation:pages.landing.notifyMeWhen")}
+        {t("pages.landing.notifyMeWhen")}
       </Typography>
     </Box>
   );

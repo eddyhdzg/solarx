@@ -14,9 +14,7 @@ export default function AdminHomePage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.adminHome.admin", {
-          postProcess: "capitalize",
-        })}
+        title={t("pages.admin.adminHome.admin")}
         description={t("pages.admin.adminHome.adminDescription")}
       />
       <AdminHomeTemplate />

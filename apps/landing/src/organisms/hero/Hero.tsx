@@ -16,10 +16,10 @@ export default function Hero() {
       }}
     >
       <Title variant="h1" component="h2" className="gradient-text glow">
-        {t("translation:pages.landing.comingSoon")}
+        {t("pages.landing.comingSoon")}
       </Title>
       <Typography variant="h6">
-        {t("translation:pages.landing.investInSolarEnergy")}
+        {t("pages.landing.investInSolarEnergy")}
       </Typography>
     </Box>
   );

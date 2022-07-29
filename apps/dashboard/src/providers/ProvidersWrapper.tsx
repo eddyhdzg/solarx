@@ -1,9 +1,9 @@
 import FirebaseProvider from "./firebaseProvider/FirebaseProvider";
-import ThemeProvider from "./ThemeProvider";
-import RouterMemo from "router/RouterMemo";
-import SnackbarProvider from "./SnackbarProvider";
-import DayjsProvider from "./dayjsProvider/DayjsProvider";
 import { BrowserRouter } from "react-router-dom";
+import RouterMemo from "router/RouterMemo";
+import ThemeProvider from "./themeProvider/ThemeProvider";
+import DayjsProvider from "./dayjsProvider/DayjsProvider";
+import SnackbarProvider from "./snackbarProvider/SnackbarProvider";
 
 const ProvidersWrapper: React.FC = ({ children }) => {
   return (

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useHeader } from "hooks";
 import { Seo, AdminEditProjectTemplate } from "components";
 import { useTranslation } from "react-i18next";
+import { FirebaseStorageProvider } from "providers";
 
 export default function AdminEditProjectPage() {
   const { t } = useTranslation();
@@ -17,7 +18,9 @@ export default function AdminEditProjectPage() {
         title={t("pages.admin.editProject.editProject")}
         description={t("pages.admin.editProject.editProjectDescription")}
       />
-      <AdminEditProjectTemplate />
+      <FirebaseStorageProvider>
+        <AdminEditProjectTemplate />
+      </FirebaseStorageProvider>
     </>
   );
 }

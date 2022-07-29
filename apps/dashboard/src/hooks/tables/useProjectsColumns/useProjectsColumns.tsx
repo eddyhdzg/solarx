@@ -146,9 +146,9 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
         accessor: "active",
         Cell: ({ value }: { value: boolean }) =>
           !value ? (
-            <Chip size="small" label="Active" variant="teal" />
+            <Chip size="small" label={t("projects.active")} variant="teal" />
           ) : (
-            <Chip size="small" label="Not Active" variant="red" />
+            <Chip size="small" label={t("projects.notActive")} variant="red" />
           ),
         sortType: "basic",
       },

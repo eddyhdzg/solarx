@@ -36,7 +36,7 @@ export default function CreateNewsletterEmailFormLayout({
           return (
             <Input
               id="email-input"
-              label={t("translation:pages.landing.email")}
+              label={t("pages.landing.email")}
               variant="outlined"
               fullWidth
               type="email"
@@ -51,7 +51,7 @@ export default function CreateNewsletterEmailFormLayout({
                     disabled={!formState.isValid}
                     type="submit"
                   >
-                    {t("translation:pages.landing.notifyMe")}
+                    {t("pages.landing.notifyMe")}
                   </CTA>
                 ),
               }}

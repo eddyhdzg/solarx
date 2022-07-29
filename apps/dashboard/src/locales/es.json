@@ -72,6 +72,7 @@
           "createProducts": "Crear un producto nuevo",
           "createPrices": "Crear precios",
           "create3Prices": "Crear 3 precios para un producto",
+          "project": "Proyecto",
           "createAuthUser": "Creat usuario autenticado con la información por defecto",
           "createUser": "Crear Usuario"
         }

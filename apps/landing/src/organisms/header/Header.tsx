@@ -40,7 +40,7 @@ export default function Header() {
           rel="noopener noreferrer"
         >
           <CTA variant="contained" size="large" type="submit">
-            {t("translation:pages.landing.viewDemo")}
+            {t("pages.landing.viewDemo")}
           </CTA>
         </Link>
       </Toolbar>

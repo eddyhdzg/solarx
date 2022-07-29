@@ -4,10 +4,6 @@ import { amber, blue, grey, red, teal, yellow } from "@mui/material/colors";
 const customTheme = {
   custom: {
     gradient: `linear-gradient(60deg, ${yellow[400]}, ${amber[900]})`,
-    gradient2: `linear-gradient(60deg, ${alpha(yellow[400], 0.9)}, ${alpha(
-      amber[900],
-      0.9
-    )})`,
     glassBackground: {
       backgroundColor: alpha(grey[900], 0.9),
       backdropFilter: "blur(10px)",
