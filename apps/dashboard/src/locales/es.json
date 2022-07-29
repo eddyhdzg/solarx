@@ -1,205 +1,202 @@
 {
   "translation": {
+    "auth": {
+      "myAccount": "Mi Cuenta",
+      "signInWithGoogle": "Inicia sesión con Google",
+      "signIntoUseThisRoute": "Inicia sesión para usar esta ruta",
+      "signOut": "Cerrar sesión",
+      "youNeedToBeAnAdmin": "Debes ser un administrador para usar esta ruta"
+    },
     "common": {
-      "loadMore": "Cargar más",
-      "loading": "Cargando...",
-      "noUsersFound": "¡No se encontraron usuarios!",
-      "ok": "OK",
-      "yes": "Sí",
-      "no": "No",
+      "avatar": "Avatar",
       "cancel": "Cancelar",
-      "save": "Guardar",
-      "edit": "Editar",
-      "delete": "Borrar",
-      "copyLink": "Copiar enlace",
-      "copied": "¡Copiado!",
-      "copy": "Copiar",
-      "error": "Error",
-      "panel": "panel",
-      "panels": "paneles"
+      "email": "Email",
+      "id": "id",
+      "ID": "ID",
+      "investorCount_one": "{{count}} Inversionista",
+      "investorCount_other": "{{count}} Inversionistas",
+      "investor_one": "Inversionista",
+      "investor_other": "Inversionistas",
+      "noInvestorsFound": "¡No se encontraron inversionistas!",
+      "ok": "OK",
+      "panel_one": "Panel",
+      "panels_other": "Páneles",
+      "profile": "Perfil",
+      "uid": "uid"
+    },
+    "dates": {
+      "year_one": "año",
+      "year_other": "años"
+    },
+    "filters": {
+      "results": "Resultados",
+      "selected": "Seleccionados:"
+    },
+    "forms": {
+      "cards": "Tarjetas",
+      "clear": "Limpear",
+      "copiedToClipboard": "Copiado al portapapeles ✅",
+      "copyToClipboard": "Copiar al portapapeles",
+      "dragNDropfile": "Arrastre y suelte un archivo aquí, o haga clic para seleccionar un archivo",
+      "dragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos",
+      "filters": "Filtros",
+      "founded": "Fundada",
+      "notFounded": "No Fundada",
+      "projectForm": {
+        "aboutContent": "Contentenido acerca de",
+        "content": "Contenido",
+        "contentDescription": "Contenido para enseñar el projecto.",
+        "coverImage": "Imagen de portada desde stripe.",
+        "current": "Actual",
+        "datesDescription": "Proporcione las fechas importantes del projecto.",
+        "generalContent": "Contentenido general",
+        "generalDescription": "Proporcione información básica sobre el proyecto.",
+        "generalOption": "General Option",
+        "generalOptionDescription": "Volver a calcular la cantidad de la opcion generales con respecto a las nuevas opciones de compra",
+        "generatePanels": "Generar paneles",
+        "generatePanelsDescription": "Genera los paneles cuando el proyecto esté listo.",
+        "goalDescription": "Recalcula la meta.",
+        "graphsContent": "Contentenido gráfico",
+        "mediaDescription": "Imágenes para mostrar el proyecto.",
+        "new": "Nuevo",
+        "notionLink": "https://www.notion.so/solarxapp/",
+        "numbersDescription": "Todos los datos numéricos del proyecto.",
+        "panelPrice": "Precio del panel",
+        "panelPriceDescription": "Actualizar el precio del panel en todos los precios si no están sincronizados",
+        "pricesDescription": "Precios para los primeros inversores o para el público en general.",
+        "triggersDescription": "Funciones que el usuario puede ejecutar para actualizar los datos del proyecto.",
+        "updateGeneralOption": "Actualizar opción general",
+        "updateGoal": "Actualizar meta",
+        "updatePanelPrices": "Actualizar precios"
+      },
+      "reset": "Resetear",
+      "search": "Buscar",
+      "share": "Compartir",
+      "table": "Tabla"
+    },
+    "locales": {
+      "english": "English",
+      "spanish": "Español"
     },
     "pages": {
       "admin": {
         "adminHome": {
-          "admin": "admin",
-          "adminDescription": "Sección de administración.",
-          "projects": "proyectos",
-          "users": "usuarios",
-          "local": "local"
-        },
-        "createProject": {
-          "title": "Crear proyecto",
-          "description": "Crea un proyecto de crowdfunding."
+          "admin": "Admin",
+          "adminDescription": "Sección de administración."
         },
         "editProject": {
-          "editProject": "Editar proyecto",
-          "editProjectDescription": "Edita un proyecto de crowdfunding."
+          "title": "Editar proyecto",
+          "description": "Edita un proyecto de crowdfunding."
         },
-        "projects": {
-          "administratorProjects": "Proyectos de administrador",
-          "administratorProjectsDescription": "Proyectos que solo los administradores pueden ver."
-        },
-        "project": {
-          "general": "General",
-          "numbers": "Números",
-          "prices": "Precios",
-          "media": "Media",
-          "cms": "CMS",
-          "dates": "Fechas",
-          "triggers": "Triggers",
-          "summary": "Resumen",
-          "status": "Status",
-          "goal": "Meta",
-          "investor_one": "Inversionista",
-          "investor_other": "Inversionistas",
-          "investorCount_one": "{{count}} Inversionista",
-          "investorCount_other": "{{count}} Inversionistas",
-          "images": "Imágenes",
-          "created": "Creada",
-          "releaseDate": "Lanzamiento",
-          "funded": "Fundada",
-          "operationDate": "Operación"
-        },
-        "users": {
-          "users": "usuarios",
-          "usersDescription": "Gestionar usuarios como administrador."
+        "investors": {
+          "title": "Inversionistas",
+          "description": "Gestionar inversionistas como administrador.",
+          "role": "Rol"
         },
         "local": {
-          "local": "local",
-          "localDescription": "Gestionar firestore local como administrador.",
-          "triggers": "Ejecutables",
-          "createProduct": "Crear producto",
-          "createProducts": "Crear un producto nuevo",
-          "createPrices": "Crear precios",
+          "title": "Local",
+          "description": "Gestionar base de datos local como administrador.",
           "create3Prices": "Crear 3 precios para un producto",
-          "project": "Proyecto",
-          "createAuthUser": "Creat usuario autenticado con la información por defecto",
-          "createUser": "Crear Usuario"
+          "createPrices": "Crear precios",
+          "createProduct": "Crear producto"
+        },
+        "projects": {
+          "title": "Proyectos de administrador",
+          "description": "Proyectos que solo los administradores pueden ver."
         }
       },
       "crowdfunding": {
-        "projects": {
-          "crowdfundingProjects": "Crowdfunding",
-          "crowdfundingProjectsDescription": "Todos los proyectos de crowdfunding."
+        "checkout": {
+          "addNewPaymentMethod": "Agrega nuevo método de pago",
+          "addPaymentMethod": "Agregar método de pago",
+          "cardDetails": "Detalles de tarjeta",
+          "each": "cada una",
+          "forThisDemo": "para este demo!",
+          "nameOnCard": "Nombre en la tarjeta",
+          "pay": "Pagar",
+          "poweredBy": "Desarrollado por",
+          "privacy": "Privacidad",
+          "qty": "Cant",
+          "selectPaymentMethod": "Selecciona método de pago",
+          "stripeTestCards": " tarjetas de prueba de Stripe ",
+          "terms": "Términos",
+          "update": "Actualizar",
+          "updateQuantity": "Actualizar cantidad",
+          "useAnyOfThe": "¡Usa cualquiera de las"
         },
         "project": {
-          "raisedOf": "levantado de",
-          "monthlyRevenue": "ingreso mensual",
-          "yearlyRevenue": "ingreso anual",
-          "releaseDate": "Fecha de lanzamiento:",
-          "price": "Precio",
-          "goToCheckout": "Ir a pago",
-          "signInToProceedToPayment": "Inicie sesión para proceder al pago",
-          "showAllPhotos": "Ver más fotos",
-          "limited": "Limitada (quedan {{rest}} de {{quantity}})",
-          "notlimited": "Quedan {{rest}} de {{quantity}}",
-          "general": "General",
-          "graphs": "Gráficas",
           "about": "Acerca de",
-          "discount": "Descuento {{discount}}%",
+          "allGone": "Agotadas",
           "crowdfund": "Crowdfund",
-          "allGone": "Agotadas"
+          "goToCheckout": "Ir a pago",
+          "graphs": "Gráficas",
+          "limited": "Limitada (quedan {{rest}} de {{quantity}})",
+          "monthlyRevenue": "Ingreso mensual",
+          "notLimited": "Quedan {{rest}} de {{quantity}}",
+          "price": "Precio",
+          "raisedOf": "levantado de",
+          "releaseDate:": "Fecha de lanzamiento:",
+          "showAllPhotos": "Ver más fotos",
+          "signInToProceedToPayment": "Inicie sesión para proceder al pago",
+          "yearlyRevenue": "Ingreso anual"
         },
-        "checkout": {
-          "pay": "Pagar",
-          "cardDetails": "Detalles de tarjeta",
-          "selectPaymentMethod": "Selecciona método de pago",
-          "addNewPaymentMethod": "Agrega nuevo método de pago",
-          "nameOnCard": "Nombre en la tarjeta",
-          "addPaymentMethod": "Agregar método de pago",
-          "each": "cada una",
-          "qty": "Cant",
-          "updateQuantity": "Actualizar cantidad",
-          "update": "Actualizar",
-          "useAnyOfThe": "¡Usa cualquiera de las",
-          "stripeTestCards": " tarjetas de prueba de Stripe ",
-          "forThisDemo": "para este demo!",
-          "poweredBy": "Desarrollado por",
-          "terms": "Términos",
-          "privacy": "Privacidad"
+        "projects": {
+          "title": "Crowdfunding",
+          "description": "Todos los proyectos de crowdfunding."
         }
       },
       "more": {
         "preferences": {
-          "language": "Idioma",
-          "interfaceLanguage": "Idioma de la interfaz",
-          "preferences": "Preferencias",
-          "preferencesDescription": "Preferencias del usuario."
+          "title": "Preferences",
+          "description": "Investor's preferences.",
+          "interfaceLanguage": "Interface language",
+          "language": "Language"
         },
         "profile": {
-          "profile": "Perfil",
-          "myProfile": "Mi perfil",
-          "accountInformationDescription": "Edite la información de su cuenta.",
-          "privateInformation": "Información privada",
-          "publicInformation": "Información pública",
+          "title": "Perfil",
+          "description": "Mi perfil.",
           "accountID": "ID de cuenta",
-          "email": "Correo electrónico",
-          "publicInformationDescription": "Esta información se mostrará públicamente",
-          "avatar": "Avatar",
           "displayName": "Nombre para mostrar",
           "editAccount": "Editar cuenta",
-          "uid": "uid",
-          "name": "Nombre",
-          "role": "Rol"
+          "privateInformation": "Información privada",
+          "publicInformation": "Información pública",
+          "publicInformationDescription": "Esta información se mostrará públicamente."
         },
         "moreHome": {
-          "more": "Más",
-          "moreDescription": "Más sección."
+          "title": "Más",
+          "description": "Más sección."
         },
         "history": {
-          "history": "Historial",
-          "historyDescription": "Historial del usuario."
+          "title": "Historial",
+          "description": "Historial del inversionista."
         },
         "receipt": {
-          "receipt": "Recivo",
-          "receiptDescription": "Recivo.",
-          "date": "FECHA",
-          "paymentMethod": "MÉTODO DE PAGO",
-          "summary": "RESUMEN",
-          "each": "cada una",
-          "questions?": "Questions?",
+          "title": "Recivo",
+          "description": "Recivo.",
           "contactEmail": "eddy@solarx.app",
-          "sharableReceipt": "URL de recibo compartible"
+          "date": "FECHA",
+          "each": "cada una",
+          "paymentMethod": "MÉTODO DE PAGO",
+          "questions?": "¿Preguntas?",
+          "sharableReceipt": "URL de recibo compartible",
+          "summary": "RESUMEN"
         }
       },
       "wallet": {
         "title": "Wallet",
         "description": "Sección de la wallet.",
+        "balances": {
+          "balances": "Balances"
+        },
+        "cash": "Cash",
         "sections": {
           "balance": "Balance",
-          "panels": "Páneles",
           "history": "Historial",
-          "timeline": "Línea del tiempo"
-        },
-        "totalBalance": {
-          "totalBalance": "Balance total",
-          "monthlyRevenue": "Ingreso mensual"
-        },
-        "balances": {
-          "balances": "Balances",
-          "cash": "Cash",
-          "panels": "Páneles",
-          "solarXPoints": "SolarX Points"
-        },
-        "panels": {
-          "panels": "Páneles",
-          "project": "Proyecto",
-          "quantity": "Cantidad",
-          "basePrice": "Precio Base",
-          "total": "Total",
-          "roi": "ROI",
-          "monthlyRevenue": "Ingreso mensual",
-          "yearlyRevenue": "Ingreso mensual"
-        },
-        "history": {
-          "history": "Historial"
-        },
-        "timeline": {
           "timeline": "Línea del tiempo",
-          "cash": "Cash",
-          "panels": "Páneles",
-          "solarXPoints": "SolarX Points",
-          "totalBalance": "Balance total",
+          "totalBalance": "Balance total"
+        },
+        "solarXPoints": "SolarX Points",
+        "timeline": {
           "1 month": "1 mes",
           "3 month": "3 meses",
           "1 year": "1 año",
@@ -207,165 +204,92 @@
         }
       }
     },
-    "locales": {
-      "english": "English",
-      "en": "English",
-      "spanish": "Español",
-      "es": "Español"
-    },
-    "forms": {
-      "search": "Buscar",
-      "filters": "filtros",
-      "reset": "resetear",
-      "id": "ID",
-      "name": "Nombre",
-      "location": "Ubicación",
-      "founded": "Fundada",
-      "notFounded": "No Fundada",
-      "cards": "tarjetas",
-      "table": "tabla",
-      "share": "compartir",
-      "copyToClipboard": "Copiar al portapapeles",
-      "copiedToClipboard": "Copiado al portapapeles ✅",
-      "clear": "Limpear",
-      "cancel": "Cancelar",
-      "ok": "OK",
-      "projectForm": {
-        "general": "General",
-        "generalDescription": "Proporcione información básica sobre el proyecto.",
-        "numbers": "Números",
-        "numbersDescription": "Todos los datos numéricos del proyecto.",
-        "prices": "Precios",
-        "pricesDescription": "Precios para los primeros inversores o para el público en general.",
-        "content": "Contenido",
-        "contentDescription": "Contenido para enseñar el projecto.",
-        "media": "Media",
-        "mediaDescription": "Imágenes para mostrar el proyecto.",
-        "dates": "Fechas",
-        "datesDescription": "Proporcione las fechas importantes del projecto.",
-        "triggers": "Triggers",
-        "triggersDescription": "Funciones que el usuario puede ejecutar para actualizar los datos del proyecto.",
-        "coverImage": "Imagen de portada desde stripe.",
-        "images": "Imágenes",
-        "generalContent": "Contentenido general",
-        "graphsContent": "Contentenido gráfico",
-        "aboutContent": "Contentenido acerca de",
-        "project": "Proyecto",
-        "status": "Status",
-        "current": "Actual",
-        "new": "Nuevo",
-        "panelPrice": "Precio del panel",
-        "panelPriceDescription": "Actualizar el precio del panel en todos los precios si no están sincronizados",
-        "updatePanelPrices": "Actualizar precios",
-        "generalOption": "General Option",
-        "generalOptionDescription": "Volver a calcular la cantidad de la opcion generales con respecto a las nuevas opciones de compra",
-        "updateGeneralOption": "Actualizar opción general",
-        "goal": "Meta",
-        "goalDescription": "Recalcula la meta.",
-        "updateGoal": "Actualizar meta",
-        "generatePanels": "Generar paneles",
-        "generatePanelsDescription": "Genera los paneles cuando el proyecto esté listo.",
-        "notionLink": "https://www.notion.so/solarxapp/"
-      },
-      "DragNDropfile": "Arrastre y suelte un archivo aquí, o haga clic para seleccionar un archivo",
-      "DragNDropfiles": "Arrastre y suelte multiples archivos aquí, o haga clic para seleccionar archivos"
-    },
     "projects": {
-      "id": "id",
-      "projectName": "Nombre del proyecto",
-      "location": "Ubicación",
-      "funded": "Financiado",
-      "notFunded": "No financiado",
+      "active": "Activo",
       "basePrice": "Precio base",
-      "roi": "ROI (Retorno de inversión)",
-      "roiShort": "ROI",
-      "progress": "Progreso",
-      "panelsRatio": "Páneles (financiadas / total)",
-      "panels": "páneles",
-      "ppa": "PPA",
-      "created": "Creado",
-      "acthive": "Activo",
-      "investors": "Inversionistas",
       "businessType": "Tipo de empresa",
-      "company": "Empresa",
-      "totalPanels": "Total de acciones",
-      "ppaYears": "Años de PPA",
-      "state": "Estado",
       "city": "Ciudad",
-      "status": {
+      "cms": "CMS",
+      "company": "Empresa",
+      "created": "Creado",
+      "dates": "Fechas",
+      "description": "Descripción",
+      "discount": "Descuento",
+      "discount_amount": "Descuento {{discount}}%",
+      "funded": "Financiado",
+      "general": "General",
+      "goal": "Meta",
+      "images": "Imágenes",
+      "local": "Local",
+      "location": "Ubicación",
+      "media": "Media",
+      "name": "Nombre",
+      "notActive": "Not activo",
+      "notFunded": "No financiado",
+      "numbers": "Números",
+      "operationDate": "Fecha de la operación",
+      "panels(funded/total)": "Paneles (financiados/total)",
+      "ppa": "PPA",
+      "ppaYears": "Años de PPA",
+      "prices": "Precios",
+      "progress": "Progreso",
+      "project": "Projecto",
+      "projectName": "Nombre del proyecto",
+      "projects": "Projectos",
+      "quantity": "Cantidad",
+      "releaseDate": "Fecha de lanzamiento",
+      "roi(ReturnOnInvestment)": "TIR (Tasa Interna de Retorno)",
+      "roi": "TIR",
+      "salePrice": "Precio de Venta",
+      "sold": "Vendidos",
+      "state": "Estado",
+      "status": "Status",
+      "statuses": {
         "comingSoon": "Próximamente",
         "funding": "Financiando",
         "funded": "Financiado",
         "operating": "Operando",
         "canceled": "Cancelado"
-      }
+      },
+      "summary": "Resumen",
+      "total": "Total",
+      "totalPanels": "Total de acciones",
+      "triggers": "Triggers"
     },
-    "prices": {
-      "id": "ID",
-      "quantity": "Cantidad",
-      "salePrice": "Precio de Venta",
-      "basePrice": "Precio Base",
-      "discount": "Descuento",
-      "description": "Descripción",
-      "investors": "Inversionistas",
-      "sold": "Vendidos"
+    "router": {
+      "admin": "Admin",
+      "crowdfunding": "Crowdfunding",
+      "history": "Historial",
+      "more": "Más",
+      "project": "Proyecto",
+      "projects": "Proyectos",
+      "wallet": "Wallet"
+    },
+    "snackbar": {
+      "errorPayment": "Error de pago. Vuelve a intentarlo más tarde. 😔",
+      "investorEdited": "Inversionista editado! 🔥",
+      "investorNotEdited": "Error al editar al inversionista. 😔",
+      "panelsCreated": "Páneles creadas! 🔥",
+      "panelsNotCreated": "Error al crear páneles. 😔",
+      "panelsPricesNotUpdated": "Error al editar precio de los páneles. 😔",
+      "panelsPricesUpdated": "Precio de los páneles editados! 🔥",
+      "paymentMethodCreated": "Método de pago creado. 👍🏻",
+      "paymentMethodCreatedError": "Error al crear el método de pago. 😔",
+      "priceEdited": "Precio editado! 🔥",
+      "priceNotEdited": "Error al editar el precio. 😔",
+      "projectCreated": "Projecto Creado! 🔥",
+      "projectEdited": "Proyecto editado! 🔥",
+      "projectGoalEdited": "Meta del proyecto editada! 🔥",
+      "projectGoalNotEdited": "Error al editar meta del proyecto. 😔",
+      "projectNotCreated": "Error al crear projecto. 😔",
+      "projectNotEdited": "Error al editar proyecto. 😔",
+      "roleEdited": "Rol editado! 🔥",
+      "roleNotEdited": "Error al editar rol. 😔"
     },
     "table": {
       "actions": "Acciones",
-      "rowsPerPage": "Filas por página:",
-      "displayedRows": "{{from}}-{{to}} de {{count}}"
-    },
-    "filters": {
-      "filters": "Filtros",
-      "selected": "Seleccionados:",
-      "results": "Resultados"
-    },
-    "dates": {
-      "year_one": "año",
-      "year_other": "años",
-      "yearWithCount_one": "{{count}} año",
-      "yearWithCount_other": "{{count}} años"
-    },
-    "router": {
-      "admin": "admin",
-      "crowdfunding": "crowdfunding",
-      "more": "más",
-      "project": "proyecto",
-      "projects": "proyectos",
-      "wallet": "wallet",
-      "history": "historial"
-    },
-    "snackbar": {
-      "userEdited": "Usuario editado! 🔥",
-      "userNotEdited": "Error al editar usuario. 😔",
-      "roleEdited": "Rol editado! 🔥",
-      "roleNotEdited": "Error al editar rol. 😔",
-      "projectAdded": "Proyecto gregado! 🔥",
-      "projectNotAdded": "Error al agregar proyecto. 😔",
-      "projectEdited": "Proyecto editado! 🔥",
-      "projectNotEdited": "Error al editar proyecto. 😔",
-      "projectGoalEdited": "Meta del proyecto editada! 🔥",
-      "projectGoalNotEdited": "Error al editar meta del proyecto. 😔",
-      "priceEdited": "Precio editado! 🔥",
-      "priceNotEdited": "Error al editar el precio. 😔",
-      "panelsCreated": "Páneles creadas! 🔥",
-      "panelsNotCreated": "Error al crear páneles. 😔",
-      "projectCreated": "Projecto Creado! 🔥",
-      "projectNotCreated": "Error al crear projecto. 😔",
-      "panelsPricesUpdated": "Precio de los páneles editados! 🔥",
-      "panelsPricesNotUpdated": "Error al editar precio de los páneles. 😔",
-      "checkoutError": "Error al intentar generar ficha de pago. Vuelve a intentarlo más tarde.",
-      "paymentMethodCreated": "Método de pago creado. 👍🏻",
-      "paymentMethodCreatedError": "Error al crear el método de pago. 😔",
-      "successfulPayment": "Pago exitoso! 👍🏻",
-      "errorPayment": "Error de pago. Vuelve a intentarlo más tarde. 😔"
-    },
-    "auth": {
-      "myAccount": "Mi Cuenta",
-      "youNeedToBeAnAdmin": "Debes ser un administrador para usar esta ruta",
-      "signIntoUseThisRoute": "Inicia sesión para usar esta ruta",
-      "signInWithGoogle": "Inicia sesión con Google",
-      "signOut": "Cerrar sesión"
+      "displayedRows": "{{from}}-{{to}} de {{count}}",
+      "rowsPerPage": "Filas por página:"
     }
   }
 }

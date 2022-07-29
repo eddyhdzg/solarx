@@ -10,51 +10,36 @@
     "common": {
       "avatar": "Avatar",
       "cancel": "Cancel",
-      "copied": "Copied!",
-      "copy": "Copy",
-      "copyLink": "Copy link",
-      "delete": "Delete",
-      "edit": "Edit",
       "email": "Email",
-      "error": "Error",
       "id": "id",
       "ID": "ID",
-      "investor": "Investor",
       "investorCount_one": "{{count}} Investor",
       "investorCount_other": "{{count}} Investors",
       "investor_one": "Investor",
       "investor_other": "Investors",
-      "investors": "Investors",
-      "loadMore": "Load More",
-      "loading": "Loading...",
-      "no": "No",
       "noInvestorsFound": "No investors found!",
       "ok": "OK",
-      "panel": "Panel",
-      "panels": "Panels",
+      "panel_one": "Panel",
+      "panels_other": "Panels",
       "profile": "Profile",
-      "save": "Save",
-      "uid": "uid",
-      "yes": "Yes"
+      "uid": "uid"
     },
     "dates": {
-      "yearWithCount_one": "{{count}} year",
-      "yearWithCount_other": "{{count}} years",
-      "year_one": "year",
-      "year_other": "years"
+      "year_one": "Year",
+      "year_other": "Years"
     },
     "filters": {
       "results": "Results",
       "selected": "Selected:"
     },
     "forms": {
-      "cards": "cards",
+      "cards": "Cards",
       "clear": "Clear",
       "copiedToClipboard": "Copied to clipboard ✅",
       "copyToClipboard": "Copy to clipboard",
       "dragNDropfile": "Drag 'n' drop some a file here, or click to select a file",
       "dragNDropfiles": "Drag 'n' drop some files here, or click to select files",
-      "filters": "filters",
+      "filters": "Filters",
       "founded": "Founded",
       "notFounded": "Not Founded",
       "projectForm": {
@@ -84,10 +69,10 @@
         "updateGoal": "Update goal",
         "updatePanelPrices": "Update panel prices"
       },
-      "reset": "reset",
+      "reset": "Reset",
       "search": "Search",
-      "share": "share",
-      "table": "table"
+      "share": "Share",
+      "table": "Table"
     },
     "locales": {
       "english": "English",
@@ -112,7 +97,6 @@
           "title": "Local",
           "description": "Manage local database as an administrator.",
           "create3Prices": "Create 3 prices for a product",
-          "createANewProduct": "Create a new product",
           "createPrices": "Create Prices",
           "createProduct": "Create Product"
         },
@@ -176,7 +160,7 @@
           "editAccount": "Edit Account",
           "privateInformation": "Private Information",
           "publicInformation": "Public Information",
-          "publicInformationDescription": "This information will be displayed publicly"
+          "publicInformationDescription": "This information will be displayed publicly."
         },
         "moreHome": {
           "title": "More",
@@ -187,15 +171,15 @@
           "description": "Investors's history."
         },
         "receipt": {
+          "title": "Receipt",
+          "description": "Receipt.",
           "contactEmail": "eddy@solarx.app",
           "date": "DATE",
-          "description": "Receipt.",
           "each": "each",
           "paymentMethod": "PAYMENT METHOD",
           "questions?": "Questions?",
           "sharableReceipt": "Sharable Receipt URL",
-          "summary": "SUMMARY",
-          "title": "Receipt"
+          "summary": "SUMMARY"
         }
       },
       "wallet": {
@@ -208,7 +192,8 @@
         "sections": {
           "balance": "Balance",
           "history": "History",
-          "timeline": "Timeline"
+          "timeline": "Timeline",
+          "totalBalance": "Total balance"
         },
         "solarXPoints": "SolarX Points",
         "timeline": {
@@ -216,9 +201,6 @@
           "3 month": "3 months",
           "1 year": "1 year",
           "historic": "Historic"
-        },
-        "totalBalance": {
-          "totalBalance": "Total balance"
         }
       }
     },
@@ -284,8 +266,9 @@
       "wallet": "Wallet"
     },
     "snackbar": {
-      "checkoutError": "Error while trying to generate payment checkout, please try again later.",
       "errorPayment": "Payment error, please try again later. 😔",
+      "investorEdited": "Investor Edited! 🔥",
+      "investorNotEdited": "Investor Edition Error. 😔",
       "panelsCreated": "Panels Creates! 🔥",
       "panelsNotCreated": "Error while creating panels. 😔",
       "panelsPricesNotUpdated": "Panel prices update error. 😔",
@@ -294,19 +277,14 @@
       "paymentMethodCreatedError": "Error while creating the payment method. 😔",
       "priceEdited": "Price Edited! 🔥",
       "priceNotEdited": "Price Edited Error. 😔",
-      "projectAdded": "Project Added! 🔥",
       "projectCreated": "Project Created! 🔥",
       "projectEdited": "Project Edited! 🔥",
       "projectGoalEdited": "Project Goal Edited! 🔥",
       "projectGoalNotEdited": "Project Goal Edited Error. 😔",
-      "projectNotAdded": "Project Added Error. 😔",
       "projectNotCreated": "Project Creation Error. 😔",
       "projectNotEdited": "Project Edited Error. 😔",
       "roleEdited": "Role Edited! 🔥",
-      "roleNotEdited": "Role Edition Error. 😔",
-      "successfulPayment": "Your payment was successful! 👍🏻",
-      "investorEdited": "Investor Edited! 🔥",
-      "investorNotEdited": "Investor Edition Error. 😔"
+      "roleNotEdited": "Role Edition Error. 😔"
     },
     "table": {
       "actions": "Actions",
