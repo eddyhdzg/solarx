@@ -3,9 +3,9 @@
     "auth": {
       "myAccount": "My account",
       "signInWithGoogle": "Sign in with Google",
-      "signIntoUseThisRoute": "Sign in to use this route",
+      "signIntoUseThisRoute": "Sign in to use this route.",
       "signOut": "Sign Out",
-      "youNeedToBeAnAdmin": "You need to be an admin to use this route"
+      "youNeedToBeAnAdmin": "You need to be an admin to use this route."
     },
     "common": {
       "avatar": "Avatar",
@@ -13,24 +13,31 @@
       "email": "Email",
       "id": "id",
       "ID": "ID",
-      "investorCount_one": "{{count}} Investor",
-      "investorCount_other": "{{count}} Investors",
-      "investor_one": "Investor",
-      "investor_other": "Investors",
+      "investor": "Investor",
+      "investors": "Investors",
+      "investor-plural_one": "Investor",
+      "investor-plural_other": "Investors",
+      "investorWithCount_one": "{{count}} Investor",
+      "investorWithCount_other": "{{count}} Investors",
       "noInvestorsFound": "No investors found!",
       "ok": "OK",
-      "panel_one": "Panel",
-      "panels_other": "Panels",
+      "panel": "Panel",
+      "panels": "Panels",
+      "panel-plural_one": "Panel",
+      "panels-plural_other": "Panels",
       "profile": "Profile",
       "uid": "uid"
     },
     "dates": {
-      "year_one": "Year",
-      "year_other": "Years"
+      "year": "Year",
+      "years": "Years",
+      "year-plural_one": "Year",
+      "year-plural_other": "Years"
     },
     "filters": {
       "results": "Results",
-      "selected": "Selected:"
+      "selected": "Selected:",
+      "basePriceRange": "Base Price Range"
     },
     "forms": {
       "cards": "Cards",
@@ -85,6 +92,7 @@
           "description": "Admin section."
         },
         "editProject": {
+          "editProject": "Edit project",
           "title": "Edit project",
           "description": "Edit a crowdfunding project."
         },
@@ -215,7 +223,7 @@
       "dates": "Dates",
       "description": "Description",
       "discount": "Discount",
-      "discount_amount": "Discount {{discount}}%",
+      "discountWithCount": "Discount {{discount}}%",
       "funded": "Funded",
       "general": "General",
       "goal": "Goal",

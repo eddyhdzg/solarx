@@ -22,7 +22,7 @@ const Dropzone = ({
     ...options,
   });
 
-  const text = multiple ? t("forms.DragNDropfiles") : t("forms.DragNDropfile");
+  const text = multiple ? t("forms.dragNDropfiles") : t("forms.dragNDropfile");
 
   return (
     <DropzoneFieldBox

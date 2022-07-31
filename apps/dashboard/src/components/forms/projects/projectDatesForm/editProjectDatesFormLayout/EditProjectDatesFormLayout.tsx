@@ -31,7 +31,7 @@ export default function EditProjectDatesFormLayout({
         <Section>
           <Titles>
             <Typography variant="h6" component="h6">
-              {t("forms.projectForm.dates")}
+              {t("projects.dates")}
             </Typography>
             <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.datesDescription")}
@@ -44,7 +44,7 @@ export default function EditProjectDatesFormLayout({
                 control={control}
                 render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
-                    label={t("pages.admin.project.releaseDate")}
+                    label={t("projects.releaseDate")}
                     error={Boolean(fieldState.error)}
                     success={fieldState.isDirty}
                     {...field}
@@ -58,7 +58,7 @@ export default function EditProjectDatesFormLayout({
                 control={control}
                 render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
-                    label={t("pages.admin.project.funded")}
+                    label={t("projects.funded")}
                     error={Boolean(fieldState.error)}
                     success={fieldState.isDirty}
                     {...field}
@@ -72,7 +72,7 @@ export default function EditProjectDatesFormLayout({
                 control={control}
                 render={({ field: { ref, ...field }, fieldState }) => (
                   <DateTimePicker
-                    label={t("pages.admin.project.operationDate")}
+                    label={t("projects.operationDate")}
                     error={Boolean(fieldState.error)}
                     success={fieldState.isDirty}
                     {...field}

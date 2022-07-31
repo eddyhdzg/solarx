@@ -60,8 +60,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({ count, children }) => {
             mr: 1,
           }}
         />
-        {t("filters.filters")}
-
+        {t("forms.filters")}
         {Boolean(badge) && (
           <Box
             sx={{
@@ -114,9 +113,7 @@ const FilterDrawer: React.FC<FilterDrawerProps> = ({ count, children }) => {
             }}
           >
             <Button color="primary" onClick={handleReset} size="large">
-              {t("forms.reset", {
-                postProcess: "capitalize",
-              })}
+              {t("forms.reset")}
             </Button>
             <Typography variant="subtitle1">
               {count} {t("filters.results")}

@@ -28,7 +28,7 @@ export default function ProjectTriggersForm() {
       <TableContent>
         <Titles>
           <Typography variant="h6" component="h6" gutterBottom>
-            {t("forms.projectForm.triggers")}
+            {t("projects.triggers")}
           </Typography>
           <Typography variant="subtitle3" color="textSecondary">
             {t("forms.projectForm.triggersDescription")}
@@ -50,9 +50,7 @@ export default function ProjectTriggersForm() {
                 <TableCell align="right">
                   {t("forms.projectForm.new")}
                 </TableCell>
-                <TableCell align="right">
-                  {t("forms.projectForm.triggers")}
-                </TableCell>
+                <TableCell align="right">{t("projects.triggers")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

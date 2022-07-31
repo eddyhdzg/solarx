@@ -50,7 +50,7 @@ export default function BasePriceSection() {
           mb: 2,
         }}
       >
-        {t("prices.basePrice")}
+        {t("projects.basePrice")}
       </Typography>
       <Box
         sx={{
@@ -60,7 +60,7 @@ export default function BasePriceSection() {
         <Slider
           className="noselect"
           name="basePrice"
-          getAriaLabel={() => "Base Price Range"}
+          getAriaLabel={() => t("filters.basePriceRange")}
           value={values}
           onChange={handleChange}
           valueLabelDisplay="auto"

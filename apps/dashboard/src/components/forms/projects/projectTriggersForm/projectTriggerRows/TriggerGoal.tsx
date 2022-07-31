@@ -22,9 +22,7 @@ export default function TriggerGoal({ scrolled }: TriggerGoalProps) {
     <TableRow>
       <TableCell component="th" scope="row">
         <div>
-          <Typography variant="subtitle1">
-            {t("forms.projectForm.goal")}
-          </Typography>
+          <Typography variant="subtitle1">{t("projects.goal")}</Typography>
           <Typography variant="subtitle2" color="textSecondary">
             {t("forms.projectForm.goalDescription")}
           </Typography>

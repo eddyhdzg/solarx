@@ -1,3 +1,4 @@
+export * from "./investors";
 export * from "./local";
 export {
   default as useHandleCreateCrowdfundingPayment,

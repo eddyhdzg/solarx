@@ -3,9 +3,9 @@
     "auth": {
       "myAccount": "Mi Cuenta",
       "signInWithGoogle": "Inicia sesión con Google",
-      "signIntoUseThisRoute": "Inicia sesión para usar esta ruta",
+      "signIntoUseThisRoute": "Inicia sesión para usar esta ruta.",
       "signOut": "Cerrar sesión",
-      "youNeedToBeAnAdmin": "Debes ser un administrador para usar esta ruta"
+      "youNeedToBeAnAdmin": "Necesitas ser administrador para usar esta ruta."
     },
     "common": {
       "avatar": "Avatar",
@@ -13,24 +13,31 @@
       "email": "Email",
       "id": "id",
       "ID": "ID",
-      "investorCount_one": "{{count}} Inversionista",
-      "investorCount_other": "{{count}} Inversionistas",
-      "investor_one": "Inversionista",
-      "investor_other": "Inversionistas",
+      "investor": "Inversionista",
+      "investors": "Inversionistas",
+      "investor-plural_one": "Inversionista",
+      "investor-plural_other": "Inversionistas",
+      "investorWithCount_one": "{{count}} Inversionista",
+      "investorWithCount_other": "{{count}} Inversionistas",
       "noInvestorsFound": "¡No se encontraron inversionistas!",
       "ok": "OK",
-      "panel_one": "Panel",
-      "panels_other": "Páneles",
+      "panel": "Panel",
+      "panels": "Páneles",
+      "panel-plural_one": "Panel",
+      "panels-plural_other": "Páneles",
       "profile": "Perfil",
       "uid": "uid"
     },
     "dates": {
-      "year_one": "año",
-      "year_other": "años"
+      "year": "Año",
+      "years": "Años",
+      "year-plural_one": "Año",
+      "year-plural_other": "Años"
     },
     "filters": {
       "results": "Resultados",
-      "selected": "Seleccionados:"
+      "selected": "Seleccionados:",
+      "basePriceRange": "Rango de precio base"
     },
     "forms": {
       "cards": "Tarjetas",
@@ -81,10 +88,11 @@
     "pages": {
       "admin": {
         "adminHome": {
-          "admin": "Admin",
-          "adminDescription": "Sección de administración."
+          "title": "Admin",
+          "description": "Sección de administración."
         },
         "editProject": {
+          "editProject": "Editar proyecto",
           "title": "Editar proyecto",
           "description": "Edita un proyecto de crowdfunding."
         },
@@ -215,7 +223,7 @@
       "dates": "Fechas",
       "description": "Descripción",
       "discount": "Descuento",
-      "discount_amount": "Descuento {{discount}}%",
+      "discountWithCount": "Descuento {{discount}}%",
       "funded": "Financiado",
       "general": "General",
       "goal": "Meta",

@@ -56,7 +56,7 @@ export default function AccountInformationFormLayout({
               <GridItem sm={6}>
                 <Typography noWrap variant="body2">
                   <strong>
-                    {t("pages.more.profile.email")}
+                    {t("common.email")}
                     {": "}
                   </strong>
                   {data?.email}
@@ -74,9 +74,7 @@ export default function AccountInformationFormLayout({
             </Caption>
 
             <AvatarContainer>
-              <Typography variant="subtitle2">
-                {t("pages.more.profile.avatar")}
-              </Typography>
+              <Typography variant="subtitle2">{t("common.avatar")}</Typography>
               <StyledAvatar alt="google avatar" src={data?.avatar} />
             </AvatarContainer>
             <Grid container spacing={3}>
