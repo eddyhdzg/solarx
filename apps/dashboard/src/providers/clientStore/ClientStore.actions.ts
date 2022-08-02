@@ -18,8 +18,8 @@ export interface ProjectsChangePageSize {
   type: "PROJECTS_CHANGE_PAGESIZE";
   payload: number;
 }
-export interface UsersChangePageSize {
-  type: "USERS_CHANGE_PAGESIZE";
+export interface InvestorsChangePageSize {
+  type: "INVESTORS_CHANGE_PAGESIZE";
   payload: number;
 }
 
@@ -28,4 +28,4 @@ export type Actions =
   | LocaleToggleLocale
   | ProjectsToggleType
   | ProjectsChangePageSize
-  | UsersChangePageSize;
+  | InvestorsChangePageSize;

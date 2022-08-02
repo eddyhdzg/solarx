@@ -11,7 +11,7 @@ import {
 export default function WalletDesktopLayout() {
   return (
     <Grid container spacing={3}>
-      <GridItem lg={8}>
+      <GridItem lg={7}>
         <Grid container spacing={3}>
           <GridItem>
             <WalletPanels />
@@ -21,7 +21,7 @@ export default function WalletDesktopLayout() {
           </GridItem>
         </Grid>
       </GridItem>
-      <GridItem lg={4}>
+      <GridItem lg={5}>
         <Grid container spacing={3}>
           <GridItem>
             <WalletTotalBalance />

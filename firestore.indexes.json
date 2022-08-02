@@ -15,7 +15,7 @@
       ]
     },
     {
-      "collectionGroup": "userHistory",
+      "collectionGroup": "investorHistory",
       "queryScope": "COLLECTION",
       "fields": [
         {

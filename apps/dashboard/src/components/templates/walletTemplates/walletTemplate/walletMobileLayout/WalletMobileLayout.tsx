@@ -37,10 +37,10 @@ export default function WalletMobileLayout() {
       </Tabs>
       <StyledTabPanel value="0">
         <Grid container spacing={3}>
-          <GridItem sm={5}>
+          <GridItem md={6}>
             <WalletTotalBalance />
           </GridItem>
-          <GridItem sm={7}>
+          <GridItem md={6}>
             <WalletBalance />
           </GridItem>
         </Grid>

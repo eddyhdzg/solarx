@@ -1,4 +1,5 @@
 import { Timespan } from "solarx-types";
+export * from "./firebase.constant";
 export * from "./mexicanCities.constant";
 export * from "./mexicanStates.constant";
 export * from "./others.constant";

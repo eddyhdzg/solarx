@@ -1,0 +1,10 @@
+export { default as useInvestor } from "./useInvestor";
+export { default as useInvestorHistory } from "./useInvestorHistory";
+export { default as useInvestorHistoryDoc } from "./useInvestorHistoryDoc";
+export { default as useInvestorPanels } from "./useInvestorPanels";
+export { default as useInvestorPaymentDoc } from "./useInvestorPaymentDoc";
+export { default as useInvestorPaymentMethods } from "./useInvestorPaymentMethods";
+export { default as useInvestors } from "./useInvestors";
+export { default as useInvestorTransactions } from "./useInvestorTransactions";
+export { default as useInvestorWallet } from "./useInvestorWallet";
+export { default as useLastInvestorMonthlyRevenue } from "./useLastInvestorMonthlyRevenue";

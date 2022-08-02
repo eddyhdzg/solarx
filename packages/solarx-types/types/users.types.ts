@@ -21,7 +21,7 @@ export type UserRole =
   | null
   | undefined;
 
-export interface FirestoreUser {
+export interface Investor {
   anonymous?: boolean;
   avatar?: string;
   created?: Timestamp;
@@ -32,7 +32,7 @@ export interface FirestoreUser {
   stripeId?: string;
   stripeLink?: string;
 }
-export interface UserHistory {
+export interface InvestorHistory {
   id?: string;
   amount?: number;
   avatar?: string;
@@ -50,7 +50,7 @@ export interface UserHistory {
   type?: "crowdfund";
 }
 
-export interface UserPanel {
+export interface InvestorPanel {
   id?: string;
   avatar?: string;
   basePrice?: number;
@@ -59,7 +59,7 @@ export interface UserPanel {
   roi?: number;
 }
 
-export interface UserTransaction {
+export interface InvestorTransaction {
   id?: string;
   cash?: number;
   date?: Timestamp;
@@ -69,7 +69,7 @@ export interface UserTransaction {
 }
 
 // fixme
-export interface UserWallet {
+export interface InvestorWallet {
   cash?: number;
   // fullName?: string;
   // lastNames?: string;

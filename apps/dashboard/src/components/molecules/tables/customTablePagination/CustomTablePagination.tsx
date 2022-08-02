@@ -5,7 +5,7 @@ import shallow from "zustand/shallow";
 import { useTranslation } from "react-i18next";
 import { TableInstance } from "react-table";
 import {
-  UsersChangePageSize,
+  InvestorsChangePageSize,
   ProjectsChangePageSize,
 } from "providers/clientStore/ClientStore.actions";
 
@@ -14,7 +14,7 @@ interface ICustomTablePaginationProps
     TableInstance<object>,
     "rows" | "gotoPage" | "setPageSize" | "state"
   > {
-  actionType: UsersChangePageSize["type"] | ProjectsChangePageSize["type"];
+  actionType: InvestorsChangePageSize["type"] | ProjectsChangePageSize["type"];
   component?: "td" | "div";
 }
 

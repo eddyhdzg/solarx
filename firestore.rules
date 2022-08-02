@@ -35,21 +35,21 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    match /users/{uid} {
+    match /investors/{uid} {
       allow read;
       allow update: if (myDocument(uid) && onlyAffectsFields(['avatar','displayName']));
       allow update: if (isAdmin() && onlyAffectsFields(['role']));
 
-      match /privateUserData/wallet {
+      match /privateInvestorData/wallet {
         allow read: if myDocumentOrAdmin(uid);
       }
-      match /userHistory/{id} {
+      match /investorHistory/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
-      match /userPanels/{id} {
+      match /investorPanels/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
-      match /userTransactions/{id} {
+      match /investorTransactions/{id} {
         allow read: if myDocumentOrAdmin(uid);
       }
 

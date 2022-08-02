@@ -6,6 +6,9 @@ import { FileWithPath } from "react-dropzone";
 export type Timestamp = FirestoreTimestamp;
 export type FirestoreQueryStatus = "loading" | "error" | "success";
 
+export type InitialDocData = null;
+export type InitialCollectionData = null;
+
 export interface FilePreview extends FileWithPath {
   preview: string;
 }
