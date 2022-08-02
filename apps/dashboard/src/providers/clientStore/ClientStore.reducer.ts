@@ -15,8 +15,8 @@ const reducer = (draft: ClientState, action: Actions) => {
     case "PROJECTS_CHANGE_PAGESIZE":
       draft.projects.pageSize = action.payload;
       break;
-    case "USERS_CHANGE_PAGESIZE":
-      draft.users.pageSize = action.payload;
+    case "INVESTORS_CHANGE_PAGESIZE":
+      draft.investors.pageSize = action.payload;
       break;
     default:
       throw new Error("Invalid action type");

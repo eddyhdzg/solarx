@@ -5,7 +5,7 @@ import { functions, stripe } from "../../config";
  * this function is triggered to retrieve the payment method details.
  */
 exports.addPaymentMethodDetails = functions.firestore
-  .document("/users/{uid}/payment_methods/{pushId}")
+  .document("/investors/{uid}/payment_methods/{pushId}")
   .onCreate(async (snap, _) => {
     try {
       const paymentMethodId = snap.data().id;

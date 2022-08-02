@@ -57,8 +57,10 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
       );
     }
 
-    const userDocRef = db.collection("users").doc(context.auth?.uid || "");
-    const paymentsColRef = userDocRef.collection("payments");
+    const investorDocRef = db
+      .collection("investors")
+      .doc(context.auth?.uid || "");
+    const paymentsColRef = investorDocRef.collection("payments");
     const projectDocRef = db.collection("projects").doc(projectId);
 
     const projectPriceDocRef = db
@@ -77,7 +79,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
         );
       })) as Project;
 
-    const { stripeId = "" } = (await userDocRef
+    const { stripeId = "" } = (await investorDocRef
       .get()
       .then((res) => res.data())
       .catch(() => ({}))) as Investor;

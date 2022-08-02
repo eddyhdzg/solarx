@@ -21,7 +21,7 @@ export default function AdminHomeTemplate() {
         <GridItem xs={6} sm={4} md={3}>
           <SectionButton
             title={t("common.investors")}
-            to="/admin/users"
+            to="/admin/investors"
             emoji="👥"
           />
         </GridItem>

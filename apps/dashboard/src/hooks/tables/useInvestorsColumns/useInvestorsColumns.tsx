@@ -10,10 +10,10 @@ interface Row {
   original: Investor;
 }
 
-const useUsersColumns = () => {
+const useInvestorsColumns = () => {
   const { t } = useTranslation();
   const columns: Column<object>[] = useMemo(() => {
-    const adminUsers = [
+    const investors = [
       {
         id: "avatar",
         Header: t("common.avatar"),
@@ -55,11 +55,10 @@ const useUsersColumns = () => {
         },
       },
     ];
-
-    return adminUsers;
+    return investors;
   }, [t]);
 
   return columns;
 };
 
-export default useUsersColumns;
+export default useInvestorsColumns;

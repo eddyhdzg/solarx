@@ -1,2 +1,2 @@
+export { default as useInvestorsTable } from "./useInvestorsTable";
 export { default as useProjectsTable } from "./useProjectsTable";
-export { default as useUsersTable } from "./useUsersTable";

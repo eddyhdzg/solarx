@@ -7,23 +7,23 @@ import {
   usePagination,
 } from "react-table";
 import {
-  useUsersColumns,
+  useInvestorsColumns,
   useStore,
-  useUsersFilters,
+  useInvestorsFilters,
   useFuzzyGlobalFilter,
   useInvestors,
 } from "hooks";
 import shallow from "zustand/shallow";
-import { usersSearchFilters } from "constant";
+import { investorsSearchFilters } from "constant";
 import { fuzzyTextFilterFn } from "utils";
 
-export default function useUsersTable() {
-  const { data: firestoreUsers } = useInvestors();
-  const usersColumns = useUsersColumns();
-  const globalFilter = useFuzzyGlobalFilter(usersSearchFilters);
+export default function useInvestorsTable() {
+  const { data: firestoreInvestors } = useInvestors();
+  const investorsColumns = useInvestorsColumns();
+  const globalFilter = useFuzzyGlobalFilter(investorsSearchFilters);
   const {
-    users: { pageSize },
-  } = useStore(({ users }) => ({ users }), shallow);
+    investors: { pageSize },
+  } = useStore(({ investors }) => ({ investors }), shallow);
   const filterTypes = useMemo(
     () => ({
       fuzzyText: fuzzyTextFilterFn,
@@ -33,8 +33,8 @@ export default function useUsersTable() {
 
   const table = useTable(
     {
-      columns: usersColumns,
-      data: firestoreUsers,
+      columns: investorsColumns,
+      data: firestoreInvestors,
       initialState: {
         pageSize,
       },
@@ -47,7 +47,7 @@ export default function useUsersTable() {
     usePagination
   );
 
-  useUsersFilters({
+  useInvestorsFilters({
     setGlobalFilter: table?.setGlobalFilter,
     data: table?.data,
   });

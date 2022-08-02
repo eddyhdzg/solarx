@@ -1,8 +1,8 @@
 import { GlobalFilter } from "components";
 import { TableInstance } from "react-table";
 import { Investor } from "solarx-types";
-import { InvestorsTableLayoutRoot } from "./InvestorsTableLayout.styled";
 import InvestorsTable from "./investorsTable/InvestorsTable";
+import { InvestorsTableLayoutRoot } from "./InvestorsTableLayout.styled";
 
 interface InvestorsTableLayoutProps {
   table: TableInstance<Investor>;

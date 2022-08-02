@@ -1,12 +1,12 @@
 import { useMemo } from "react";
-import { UserHistory } from "solarx-types";
+import { InvestorHistory } from "solarx-types";
 import {
   formatMonthAndYear,
   formatDisplayDate,
   formatAbsoluteWithCurreny,
 } from "utils";
 
-interface DisplayUserHistory {
+interface DisplayInvestorHistory {
   id?: string;
   avatar?: string;
   date?: string;
@@ -16,9 +16,11 @@ interface DisplayUserHistory {
   value?: string;
 }
 
-export default function useFormatedUserHistory(userHistory: UserHistory[]) {
-  const displayUserHistory = useMemo(() => {
-    return userHistory.reduce<Map<string, DisplayUserHistory[]>>(
+export default function useFormatedInvestorHistory(
+  investorHistory: InvestorHistory[]
+) {
+  const displayInvestorHistory = useMemo(() => {
+    return investorHistory.reduce<Map<string, DisplayInvestorHistory[]>>(
       (prev, { amount = 0, ...curr }) => {
         const month = formatMonthAndYear(curr.date?.seconds || 0);
 
@@ -26,7 +28,7 @@ export default function useFormatedUserHistory(userHistory: UserHistory[]) {
           prev.set(month, []);
         }
 
-        const transaction: DisplayUserHistory = {
+        const transaction: DisplayInvestorHistory = {
           id: curr?.id,
           avatar: curr?.avatar,
           green: Boolean(amount > 0),
@@ -41,7 +43,7 @@ export default function useFormatedUserHistory(userHistory: UserHistory[]) {
       },
       new Map()
     );
-  }, [userHistory]);
+  }, [investorHistory]);
 
-  return Array.from(displayUserHistory.entries());
+  return Array.from(displayInvestorHistory.entries());
 }

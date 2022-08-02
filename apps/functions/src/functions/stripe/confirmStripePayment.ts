@@ -1,10 +1,10 @@
-import { Project, UserWallet, Investors } from "solarx-types";
+import { Project, InvestorWallet, Investors } from "solarx-types";
 import { functions, db, stripe } from "../../config";
 import {
-  appendUserHistory,
-  updateUserPanelsSummary,
-  assignUserPanels,
-  updateUserWallet,
+  appendInvestorHistory,
+  updateInvestorPanelsSummary,
+  assignInvestorPanels,
+  updateInvestorWallet,
   updateProject,
   updateProjectPrice,
   updateInvestors,
@@ -17,7 +17,7 @@ import {
  * @see https://stripe.com/docs/payments/accept-a-payment-synchronously#web-confirm-payment
  */
 exports.confirmStripePayment_v0 = functions.firestore
-  .document("users/{uid}/payments/{pushId}")
+  .document("investors/{uid}/payments/{pushId}")
   .onUpdate(async (change, context) => {
     if (
       change.after.data().status === "succeeded" &&
@@ -32,15 +32,15 @@ exports.confirmStripePayment_v0 = functions.firestore
       return db
         .runTransaction(async (t) => {
           const wallet = db
-            .collection("users")
+            .collection("investors")
             .doc(uid)
-            .collection("privateUserData")
+            .collection("privateInvestorData")
             .doc("wallet");
 
-          const userPanelsProjectRef = db
-            .collection("users")
+          const investorPanelsProjectRef = db
+            .collection("investors")
             .doc(uid)
-            .collection("userPanels")
+            .collection("investorPanels")
             .doc(projectId);
 
           const newInvestors = await db
@@ -67,9 +67,9 @@ exports.confirmStripePayment_v0 = functions.firestore
             cash = 0,
             panels = 0,
             sxp = 0,
-          } = (await t.get(wallet)).data() as UserWallet;
+          } = (await t.get(wallet)).data() as InvestorWallet;
 
-          const userPanelsProject = await userPanelsProjectRef.get();
+          const investorPanelsProject = await investorPanelsProjectRef.get();
 
           const {
             images,
@@ -90,11 +90,11 @@ exports.confirmStripePayment_v0 = functions.firestore
           const newStocks = panels + basePrice * qty;
           const total = cash + sxp + newStocks;
 
-          await updateUserPanelsSummary({
+          await updateInvestorPanelsSummary({
             t,
             avatar: images?.length ? images[0] : null,
             basePrice,
-            exists: userPanelsProject.exists,
+            exists: investorPanelsProject.exists,
             name,
             projectId,
             quantity: qty,
@@ -102,7 +102,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             uid,
           });
 
-          await appendUserHistory({
+          await appendInvestorHistory({
             t,
             uid: uid,
             amount: -amount_received,
@@ -111,7 +111,7 @@ exports.confirmStripePayment_v0 = functions.firestore
             title: "Crowdfund",
           });
 
-          await updateUserWallet({
+          await updateInvestorWallet({
             t,
             uid,
             cash,
@@ -145,7 +145,7 @@ exports.confirmStripePayment_v0 = functions.firestore
           });
         })
         .then(() => {
-          assignUserPanels({
+          assignInvestorPanels({
             priceId,
             projectId,
             qty,

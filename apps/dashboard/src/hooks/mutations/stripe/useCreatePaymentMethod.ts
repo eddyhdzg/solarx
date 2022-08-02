@@ -6,10 +6,11 @@ export default function useCreatePaymentMethod() {
   const user = useUser();
 
   const createPaymentMethod = (paymentMethodId: string = "") => {
+    const uid = user.data?.uid || "";
     const projectDocRef = collection(
       firestore,
       "users",
-      user.data?.uid || "",
+      uid,
       "payment_methods"
     );
     return addDoc(projectDocRef, { id: paymentMethodId });

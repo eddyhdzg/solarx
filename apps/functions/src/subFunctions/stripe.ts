@@ -1,20 +1,20 @@
 import { db, functions, serverTimestamp, FieldValue } from "../config";
-import { UserHistory } from "solarx-types";
+import { InvestorHistory } from "solarx-types";
 
-interface AssignUserPanelsProps {
+interface AssignInvestorPanelsProps {
   priceId: string;
   projectId: string;
   qty: number;
   uid: string;
 }
 
-// asign user panels under panels collection
-export const assignUserPanels = async ({
+// asign investor panels under panels collection
+export const assignInvestorPanels = async ({
   priceId,
   projectId,
   qty,
   uid,
-}: AssignUserPanelsProps) => {
+}: AssignInvestorPanelsProps) => {
   return await db
     .collection("panels")
     .where("projectId", "==", projectId)
@@ -37,7 +37,7 @@ export const assignUserPanels = async ({
     });
 };
 
-interface UpdateUserPanelsSummaryProps {
+interface UpdateInvestorPanelsSummaryProps {
   t: FirebaseFirestore.Transaction;
   avatar: string | null;
   basePrice?: number;
@@ -49,7 +49,7 @@ interface UpdateUserPanelsSummaryProps {
   uid: string;
 }
 
-export const updateUserPanelsSummary = async ({
+export const updateInvestorPanelsSummary = async ({
   t,
   avatar,
   basePrice,
@@ -59,19 +59,19 @@ export const updateUserPanelsSummary = async ({
   quantity,
   roi,
   uid,
-}: UpdateUserPanelsSummaryProps) => {
-  const userPanelsProjectRef = db
-    .collection("users")
+}: UpdateInvestorPanelsSummaryProps) => {
+  const investorPanelsProjectRef = db
+    .collection("investors")
     .doc(uid)
-    .collection("userPanels")
+    .collection("investorPanels")
     .doc(projectId);
 
   if (exists) {
-    t.update(userPanelsProjectRef, {
+    t.update(investorPanelsProjectRef, {
       quantity: FieldValue.increment(quantity),
     });
   } else {
-    t.create(userPanelsProjectRef, {
+    t.create(investorPanelsProjectRef, {
       avatar,
       name,
       roi,
@@ -81,27 +81,30 @@ export const updateUserPanelsSummary = async ({
   }
 };
 
-interface AppendUserHistoryProps
-  extends Pick<UserHistory, "amount" | "currency" | "description" | "title"> {
+interface AppendInvestorHistoryProps
+  extends Pick<
+    InvestorHistory,
+    "amount" | "currency" | "description" | "title"
+  > {
   t: FirebaseFirestore.Transaction;
   uid: string;
 }
 
-export const appendUserHistory = async ({
+export const appendInvestorHistory = async ({
   t,
   uid,
   amount,
   currency,
   description,
   title,
-}: AppendUserHistoryProps) => {
-  const userHistoryRef = db
-    .collection("users")
+}: AppendInvestorHistoryProps) => {
+  const investorHistoryRef = db
+    .collection("investors")
     .doc(uid)
-    .collection("userHistory")
+    .collection("investorHistory")
     .doc();
 
-  t.create(userHistoryRef, {
+  t.create(investorHistoryRef, {
     amount,
     currency,
     date: serverTimestamp(),
@@ -110,7 +113,7 @@ export const appendUserHistory = async ({
   });
 };
 
-interface UpdateUserWalletProps {
+interface UpdateInvestorWalletProps {
   t: FirebaseFirestore.Transaction;
   uid: string;
   cash: number;
@@ -119,18 +122,18 @@ interface UpdateUserWalletProps {
   total: number;
 }
 
-export const updateUserWallet = async ({
+export const updateInvestorWallet = async ({
   t,
   uid,
   cash,
   panels,
   sxp,
   total,
-}: UpdateUserWalletProps) => {
+}: UpdateInvestorWalletProps) => {
   const wallet = db
-    .collection("users")
+    .collection("investors")
     .doc(uid)
-    .collection("privateUserData")
+    .collection("privateInvestorData")
     .doc("wallet");
 
   return t.update(wallet, {

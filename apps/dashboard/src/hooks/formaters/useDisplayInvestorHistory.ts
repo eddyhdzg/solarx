@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { UserHistory } from "solarx-types";
+import { InvestorHistory } from "solarx-types";
 import {
   formatMonthAndYear,
   toColor,
@@ -8,7 +8,7 @@ import {
   formatHistoryValue,
 } from "utils";
 
-interface DisplayUserHistory {
+interface DisplayInvestorHistory {
   color?: "red" | "teal";
   dot?: "red" | "cash";
   title?: string;
@@ -17,9 +17,11 @@ interface DisplayUserHistory {
   date?: string;
 }
 
-export default function useDisplayUserHistory(userHistory: UserHistory[]) {
-  const displayUserHistory = useMemo(() => {
-    return userHistory.reduce<Map<string, DisplayUserHistory[]>>(
+export default function useDisplayInvestorHistory(
+  investorHistory: InvestorHistory[]
+) {
+  const displayInvestorHistory = useMemo(() => {
+    return investorHistory.reduce<Map<string, DisplayInvestorHistory[]>>(
       (prev, curr) => {
         const month = formatMonthAndYear(curr.date?.seconds || 0);
 
@@ -27,7 +29,7 @@ export default function useDisplayUserHistory(userHistory: UserHistory[]) {
           prev.set(month, []);
         }
 
-        const transaction: DisplayUserHistory = {
+        const transaction: DisplayInvestorHistory = {
           color: toColor(Number(curr.amount)),
           dot: toDot(Number(curr.amount)),
           title: curr.title,
@@ -41,7 +43,7 @@ export default function useDisplayUserHistory(userHistory: UserHistory[]) {
       },
       new Map()
     );
-  }, [userHistory]);
+  }, [investorHistory]);
 
-  return Array.from(displayUserHistory.entries());
+  return Array.from(displayInvestorHistory.entries());
 }

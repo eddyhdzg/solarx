@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import { useAsyncDebounce, TableInstance } from "react-table";
 import { useQueryParams } from "hooks";
 
-interface useUsersFiltersProps {
+interface useInvestorsFiltersProps {
   setGlobalFilter: TableInstance<object>["setGlobalFilter"];
   data?: TableInstance<object>["data"];
 }
 
-export default function useUsersFilters({
+export default function useInvestorsFilters({
   setGlobalFilter,
   data,
-}: useUsersFiltersProps) {
+}: useInvestorsFiltersProps) {
   const { search = "" } = useQueryParams();
 
   const performantGlobalChange = useAsyncDebounce((value) => {

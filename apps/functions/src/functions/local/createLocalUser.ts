@@ -1,12 +1,12 @@
 import { functions, db, serverTimestamp } from "../../config";
 import { Investor, Timestamp } from "solarx-types";
 
-export const createLocalUser_v0 = functions.firestore
-  .document("/users/{uid}")
+export const createLocalInvestor_v0 = functions.firestore
+  .document("/investors/{uid}")
   .onCreate(async (_, context) => {
     const { uid } = context.params;
 
-    const newUser: Investor = {
+    const newInvestor: Investor = {
       displayName: "Eddy Hernández Local",
       email: "eddyhdzg@gmail.com",
       role: "SUPER_USER",
@@ -22,14 +22,14 @@ export const createLocalUser_v0 = functions.firestore
     };
 
     return db
-      .collection("users")
+      .collection("investors")
       .doc(uid)
-      .set(newUser, { merge: true })
+      .set(newInvestor, { merge: true })
       .then(() => {
         return db
-          .collection("users")
+          .collection("investors")
           .doc(uid)
-          .collection("privateUserData")
+          .collection("privateInvestorData")
           .doc("wallet")
           .set(wallet, { merge: true });
       });

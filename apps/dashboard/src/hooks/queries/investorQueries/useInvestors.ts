@@ -5,9 +5,9 @@ import { Investor } from "solarx-types";
 
 export default function useInvestors() {
   const firestore = useFirestore();
-  const usersRef = collection(firestore, "users");
-  const usersQuery = query(usersRef, orderBy("created"));
-  return useFirestoreCollectionData<Investor>(usersQuery, {
+  const investorsRef = collection(firestore, "investors");
+  const investorsQuery = query(investorsRef, orderBy("created"));
+  return useFirestoreCollectionData<Investor>(investorsQuery, {
     idField: "uid",
     initialData: initialCollectionData,
   });

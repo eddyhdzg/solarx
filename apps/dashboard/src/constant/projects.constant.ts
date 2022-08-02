@@ -13,7 +13,7 @@ export const projectSearchFilters = [
   "created",
 ];
 
-export const usersSearchFilters = [
+export const investorsSearchFilters = [
   "uid",
   "displayName",
   "email",

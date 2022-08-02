@@ -1,2 +1,2 @@
-export { default as useDisplayUserHistory } from "./useDisplayUserHistory";
-export { default as useFormatedUserHistory } from "./useFormatedUserHistory";
+export { default as useDisplayInvestorHistory } from "./useDisplayInvestorHistory";
+export { default as useFormatedInvestorHistory } from "./useFormatedInvestorHistory";

@@ -6,7 +6,7 @@ export default function useEditRoleMutation() {
   const firestore = useFirestore();
 
   const editRoleMutation = (id: string, role?: UserRole) => {
-    const userRef = doc(firestore, "users", id);
+    const userRef = doc(firestore, "investors", id);
     const newRole: { role: UserRole } = {
       role: role ? role : "DEFAULT",
     };

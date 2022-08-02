@@ -27,6 +27,7 @@ const useHandleCreateCrowdfundingPayment = () => {
   const stripe = useStripe();
   const firestore = useFirestore();
   const user = useUser();
+  const uid = user.data?.uid || "";
 
   const handleCardAction = async (payment: any, docId: any) => {
     const { error, paymentIntent } =
@@ -40,13 +41,7 @@ const useHandleCreateCrowdfundingPayment = () => {
       payment = paymentIntent;
     }
 
-    const paymentRef = doc(
-      firestore,
-      "users",
-      user.data?.uid || "",
-      "payments",
-      docId
-    );
+    const paymentRef = doc(firestore, "investors", uid, "payments", docId);
 
     setDoc(
       paymentRef,

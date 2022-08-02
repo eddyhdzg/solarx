@@ -6,7 +6,7 @@ export default function useEditUserMutation() {
   const firestore = useFirestore();
 
   const editUserMutation = (id: string, data?: Investor) => {
-    const userRef = doc(firestore, "users", id);
+    const userRef = doc(firestore, "investors", id);
     return updateDoc(userRef, { ...data });
   };
 

@@ -21,7 +21,7 @@ const AdminRoute = () => {
         <Route exact path="/admin/projects/:id">
           <AdminEditProjectPage />
         </Route>
-        <Route exact path="/admin/users">
+        <Route exact path="/admin/investors">
           <AdminUsersPage />
         </Route>
         <Route exact path="/admin/local">
