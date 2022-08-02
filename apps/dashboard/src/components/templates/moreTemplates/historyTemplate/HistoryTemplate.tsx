@@ -7,7 +7,7 @@ export default function HistoryTemplate() {
   return (
     <>
       <Container maxWidth="2xl">
-        <PageTitle>{t("pages.more.history.history")}</PageTitle>
+        <PageTitle>{t("pages.more.history.title")}</PageTitle>
       </Container>
       <Box
         sx={{

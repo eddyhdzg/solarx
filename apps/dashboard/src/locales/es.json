@@ -83,7 +83,9 @@
     },
     "locales": {
       "english": "English",
-      "spanish": "Español"
+      "en": "English",
+      "spanish": "Español",
+      "es": "Español"
     },
     "pages": {
       "admin": {
@@ -140,14 +142,12 @@
           "goToCheckout": "Ir a pago",
           "graphs": "Gráficas",
           "limited": "Limitada (quedan {{rest}} de {{quantity}})",
-          "monthlyRevenue": "Ingreso mensual",
           "notLimited": "Quedan {{rest}} de {{quantity}}",
           "price": "Precio",
           "raisedOf": "levantado de",
           "releaseDate:": "Fecha de lanzamiento:",
           "showAllPhotos": "Ver más fotos",
-          "signInToProceedToPayment": "Inicie sesión para proceder al pago",
-          "yearlyRevenue": "Ingreso anual"
+          "signInToProceedToPayment": "Inicie sesión para proceder al pago"
         },
         "projects": {
           "title": "Crowdfunding",
@@ -198,10 +198,10 @@
         "balances": {
           "balances": "Balances"
         },
-        "cash": "Cash",
         "sections": {
           "balance": "Balance",
           "history": "Historial",
+          "panels": "Páneles",
           "timeline": "Línea del tiempo",
           "totalBalance": "Balance Total"
         },
@@ -237,6 +237,7 @@
       "local": "Local",
       "location": "Ubicación",
       "media": "Media",
+      "monthlyRevenue": "Ingreso mensual",
       "name": "Nombre",
       "notActive": "Not activo",
       "notFunded": "No financiado",
@@ -269,7 +270,8 @@
       "summary": "Resumen",
       "total": "Total",
       "totalPanels": "Total de acciones",
-      "triggers": "Triggers"
+      "triggers": "Triggers",
+      "yearlyRevenue": "Ingreso anual"
     },
     "router": {
       "admin": "Admin",

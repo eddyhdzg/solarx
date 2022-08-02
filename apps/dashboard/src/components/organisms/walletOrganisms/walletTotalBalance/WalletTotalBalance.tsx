@@ -32,7 +32,7 @@ export default function WalletTotalBalance() {
               {formatHistoryValue(amount, currency)}
             </Styled.Cash>
             <Typography variant="subtitle3" color="textSecondary">
-              {t("pages.crowdfunding.project.monthlyRevenue")}
+              {t("projects.monthlyRevenue")}
             </Typography>
           </Styled.CashWrapper>
         )}

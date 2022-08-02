@@ -9,26 +9,18 @@ export default function AdminHomeTemplate() {
 
   return (
     <Container maxWidth="2xl">
-      <PageTitle>
-        {t("pages.admin.adminHome.admin", {
-          postProcess: "capitalize",
-        })}
-      </PageTitle>
+      <PageTitle>{t("pages.admin.adminHome.title")}</PageTitle>
       <Grid container spacing={3}>
         <GridItem xs={6} sm={4} md={3}>
           <SectionButton
-            title={t("pages.admin.adminHome.projects", {
-              postProcess: "capitalize",
-            })}
+            title={t("projects.projects")}
             to="/admin/projects"
             emoji="💼"
           />
         </GridItem>
         <GridItem xs={6} sm={4} md={3}>
           <SectionButton
-            title={t("pages.admin.adminHome.users", {
-              postProcess: "capitalize",
-            })}
+            title={t("common.investors")}
             to="/admin/users"
             emoji="👥"
           />
@@ -36,9 +28,7 @@ export default function AdminHomeTemplate() {
         {isLocal && (
           <GridItem xs={6} sm={4} md={3}>
             <SectionButton
-              title={t("pages.admin.adminHome.local", {
-                postProcess: "capitalize",
-              })}
+              title={t("projects.local")}
               to="/admin/local"
               emoji="📟"
             />

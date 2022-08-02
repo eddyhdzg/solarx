@@ -21,7 +21,7 @@ export default function WalletPanels() {
           pb: 1,
         }}
       >
-        {t("pages.wallet.panels.panels")}
+        {t("pages.wallet.sections.panels")}
       </Typography>
       <WalletPanelsTable rows={data} />
     </Paper>

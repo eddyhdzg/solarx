@@ -46,13 +46,13 @@ export default function AdminEditProjectTemplate() {
           selectionFollowsFocus
           variant="scrollable"
         >
-          <Tab disableRipple label={t("pages.admin.project.general")} />
-          <Tab disableRipple label={t("pages.admin.project.numbers")} />
-          <Tab disableRipple label={t("pages.admin.project.prices")} />
-          <Tab disableRipple label={t("pages.admin.project.media")} />
-          <Tab disableRipple label={t("pages.admin.project.cms")} />
-          <Tab disableRipple label={t("pages.admin.project.dates")} />
-          <Tab disableRipple label={t("pages.admin.project.triggers")} />
+          <Tab disableRipple label={t("projects.general")} />
+          <Tab disableRipple label={t("projects.numbers")} />
+          <Tab disableRipple label={t("projects.prices")} />
+          <Tab disableRipple label={t("projects.media")} />
+          <Tab disableRipple label={t("projects.cms")} />
+          <Tab disableRipple label={t("projects.dates")} />
+          <Tab disableRipple label={t("projects.triggers")} />
         </Tabs>
       </Box>
       <Grid container spacing={3}>

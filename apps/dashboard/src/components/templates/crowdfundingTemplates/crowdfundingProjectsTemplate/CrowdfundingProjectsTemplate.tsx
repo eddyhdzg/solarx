@@ -12,9 +12,7 @@ export default function CrowdfundingProjectsTemplate() {
 
   return (
     <Container maxWidth="2xl">
-      <PageTitle>
-        {t("pages.crowdfunding.projects.crowdfundingProjects")}
-      </PageTitle>
+      <PageTitle>{t("pages.crowdfunding.projects.title")}</PageTitle>
       <ProjectsTableLayout table={projectsTable} section={section} />
     </Container>
   );

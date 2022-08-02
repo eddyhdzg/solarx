@@ -16,7 +16,7 @@ export default function ReceiptTemplate() {
   const md = useBreakpoint("md");
   return (
     <Container maxWidth="2xl">
-      <PageTitle>{t("pages.more.receipt.receipt")}</PageTitle>
+      <PageTitle>{t("pages.more.receipt.title")}</PageTitle>
       <Paper
         sx={{
           maxWidth: 800,

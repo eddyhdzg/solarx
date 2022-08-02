@@ -6,7 +6,7 @@ export default function AdminLocalTemplate() {
   const { t } = useTranslation();
   return (
     <Container maxWidth="2xl">
-      <PageTitle>{t("pages.admin.local.local")}</PageTitle>
+      <PageTitle>{t("pages.admin.local.title")}</PageTitle>
       <Box
         sx={{
           maxWidth: "960px",

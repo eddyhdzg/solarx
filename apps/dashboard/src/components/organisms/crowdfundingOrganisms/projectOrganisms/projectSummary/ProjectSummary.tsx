@@ -135,20 +135,15 @@ export default function ProjectSummary({
 
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("pages.crowdfunding.project.monthlyRevenue", {
-              postProcess: "capitalize",
-            })}
+            {t("projects.monthlyRevenue")}
           </Typography>
           <Typography variant="subtitle1" align="right">
             {formatMoney(monthlyRevenue)}
           </Typography>
         </ProjectSummaryLi>
-
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("pages.crowdfunding.project.yearlyRevenue", {
-              postProcess: "capitalize",
-            })}
+            {t("projects.yearlyRevenue")}
           </Typography>
           <Typography variant="subtitle1" align="right">
             {formatMoney(yearlyRevenue)}

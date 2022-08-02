@@ -31,7 +31,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
     const commonColumns = [
       {
         id: "id",
-        Header: t("projects.id"),
+        Header: t("common.id"),
         accessor: "id",
         minWidth: 160,
       },
@@ -98,7 +98,7 @@ const useProjectsColumns = ({ section }: IuseProjectsColumnsArgs) => {
       },
       {
         id: "panels",
-        Header: t("projects.panelsRatio"),
+        Header: t("projects.panels(funded/total)"),
         accessor: ({ panelsSold, totalPanels }: Project) =>
           getPanelsRatio({ panelsSold, totalPanels }),
         className: "alignRight",

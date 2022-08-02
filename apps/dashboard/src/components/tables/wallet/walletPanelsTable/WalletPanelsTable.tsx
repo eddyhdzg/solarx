@@ -29,24 +29,14 @@ export default function WalletPanelsTable({ rows }: WalletPanelsTableProps) {
         <StyledTableHead>
           <TableRow>
             <StyledTableCellHeader>
-              {t("pages.wallet.panels.project")}
+              {t("projects.project")}
             </StyledTableCellHeader>
-            <TableCell align="right">
-              {t("pages.wallet.panels.basePrice")}
-            </TableCell>
-            <TableCell align="center">
-              {t("pages.wallet.panels.quantity")}
-            </TableCell>
-            <TableCell align="right">
-              {t("pages.wallet.panels.total")}
-            </TableCell>
-            <TableCell align="right">{t("pages.wallet.panels.roi")}</TableCell>
-            <TableCell align="right">
-              {t("pages.wallet.panels.monthlyRevenue")}
-            </TableCell>
-            <TableCell align="right">
-              {t("pages.wallet.panels.yearlyRevenue")}
-            </TableCell>
+            <TableCell align="right">{t("projects.basePrice")}</TableCell>
+            <TableCell align="center">{t("projects.quantity")}</TableCell>
+            <TableCell align="right">{t("projects.total")}</TableCell>
+            <TableCell align="right">{t("projects.roi")}</TableCell>
+            <TableCell align="right">{t("projects.monthlyRevenue")}</TableCell>
+            <TableCell align="right">{t("projects.yearlyRevenue")}</TableCell>
           </TableRow>
         </StyledTableHead>
         <TableBody>

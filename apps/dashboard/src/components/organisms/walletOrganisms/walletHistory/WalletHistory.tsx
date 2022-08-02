@@ -14,7 +14,7 @@ export default function WalletHistory() {
   return (
     <Styled.Paper>
       <Styled.Title variant="subtitle1">
-        {t("pages.wallet.history.history")}
+        {t("pages.more.history.title")}
       </Styled.Title>
       {displayUserHistory.map(([month, transactions]) => {
         return (

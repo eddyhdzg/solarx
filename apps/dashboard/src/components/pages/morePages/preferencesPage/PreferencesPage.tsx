@@ -14,8 +14,8 @@ export default function PreferencesPage() {
   return (
     <>
       <Seo
-        title={t("pages.more.preferences.preferences")}
-        description={t("pages.more.preferences.preferencesDescription")}
+        title={t("pages.more.preferences.title")}
+        description={t("pages.more.preferences.description")}
       />
       <PreferencesTemplate />
     </>

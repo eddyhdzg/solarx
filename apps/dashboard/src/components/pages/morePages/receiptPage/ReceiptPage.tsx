@@ -14,8 +14,8 @@ export default function ReceiptPage() {
   return (
     <>
       <Seo
-        title={t("pages.more.receipt.receipt")}
-        description={t("pages.more.receipt.receiptDescription")}
+        title={t("pages.more.receipt.title")}
+        description={t("pages.more.receipt.description")}
       />
       <ReceiptTemplate />
     </>

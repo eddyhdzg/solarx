@@ -83,7 +83,9 @@
     },
     "locales": {
       "english": "English",
-      "spanish": "Español"
+      "en": "English",
+      "spanish": "Español",
+      "es": "Español"
     },
     "pages": {
       "admin": {
@@ -140,14 +142,12 @@
           "goToCheckout": "Go To Checkout",
           "graphs": "Graphs",
           "limited": "Limited ({{rest}} left of {{quantity}})",
-          "monthlyRevenue": "Monthly revenue",
           "notLimited": "{{rest}} left of {{quantity}}",
           "price": "Price",
           "raisedOf": "raised of",
           "releaseDate:": "Release date:",
           "showAllPhotos": "Show all photos",
-          "signInToProceedToPayment": "Sign in to proceed to payment",
-          "yearlyRevenue": "Yearly revenue"
+          "signInToProceedToPayment": "Sign in to proceed to payment"
         },
         "projects": {
           "title": "Crowdfunding",
@@ -201,6 +201,7 @@
         "sections": {
           "balance": "Balance",
           "history": "History",
+          "panels": "Panels",
           "timeline": "Timeline",
           "totalBalance": "Total Balance"
         },
@@ -236,6 +237,7 @@
       "local": "Local",
       "location": "Location",
       "media": "Media",
+      "monthlyRevenue": "Monthly revenue",
       "name": "Name",
       "notActive": "Not Active",
       "notFunded": "Not Funded",
@@ -268,7 +270,8 @@
       "summary": "Summary",
       "total": "Total",
       "totalPanels": "Total Panels",
-      "triggers": "Triggers"
+      "triggers": "Triggers",
+      "yearlyRevenue": "Yearly revenue"
     },
     "router": {
       "admin": "Admin",

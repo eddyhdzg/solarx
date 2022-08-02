@@ -16,7 +16,7 @@ const useUsersColumns = () => {
     const adminUsers = [
       {
         id: "avatar",
-        Header: t("pages.more.profile.avatar"),
+        Header: t("common.avatar"),
         accessor: "avatar",
         Cell: ({ value }: { value: string }) => {
           return <Avatar alt="avatar" src={value || undefined} />;
@@ -26,17 +26,17 @@ const useUsersColumns = () => {
       },
       {
         id: "uid",
-        Header: t("pages.more.profile.uid"),
+        Header: t("common.uid"),
         accessor: "uid",
       },
       {
         id: "email",
-        Header: t("pages.more.profile.email"),
+        Header: t("common.email"),
         accessor: "email",
       },
       {
         id: "displayName",
-        Header: t("pages.more.profile.name"),
+        Header: t("pages.more.profile.displayName"),
         accessor: "displayName",
       },
       {
@@ -48,7 +48,7 @@ const useUsersColumns = () => {
       },
       {
         id: "role",
-        Header: t("pages.more.profile.role"),
+        Header: t("pages.admin.investors.role"),
         accessor: "role",
         Cell: ({ value, row }: { value: UserRole; row: Row }) => {
           return <UserRoleForm uid={row?.original?.uid} role={value} />;

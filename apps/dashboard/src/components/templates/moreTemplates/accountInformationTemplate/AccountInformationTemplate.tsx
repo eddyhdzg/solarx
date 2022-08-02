@@ -6,7 +6,7 @@ export default function AccountInformationTemplate() {
   const { t } = useTranslation();
   return (
     <Container maxWidth="2xl">
-      <PageTitle>{t("pages.more.profile.profile")}</PageTitle>
+      <PageTitle>{t("pages.more.profile.title")}</PageTitle>
       <AuthWrapper>
         <AccountInformationForm />
       </AuthWrapper>
