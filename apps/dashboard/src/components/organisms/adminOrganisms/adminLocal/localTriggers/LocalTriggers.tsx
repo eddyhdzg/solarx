@@ -41,9 +41,7 @@ export default function LocalTriggers() {
           px: 3,
         }}
       >
-        <Typography variant="subtitle1">
-          {t("pages.admin.local.triggers")}
-        </Typography>
+        <Typography variant="subtitle1">{t("projects.triggers")}</Typography>
       </Box>
       <Divider />
       <Box
@@ -91,7 +89,7 @@ export default function LocalTriggers() {
                 }}
               >
                 <InputLabel htmlFor="project-select">
-                  {t("pages.admin.local.project")}
+                  {t("projects.project")}
                 </InputLabel>
                 <Select
                   id="project-select"

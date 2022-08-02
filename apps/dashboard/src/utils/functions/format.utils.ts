@@ -8,6 +8,7 @@ export const formatNumber = (num: number) => {
 export const formatUnits = (num: number) => {
   return (num / 100).toLocaleString(undefined, { maximumFractionDigits: 2 });
 };
+
 // 100,000 => 1,000.00
 export const formatUnitsWithDecimals = (num: number) => {
   return (num / 100).toLocaleString(undefined, {

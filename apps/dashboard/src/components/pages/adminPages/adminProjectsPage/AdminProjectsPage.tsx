@@ -14,8 +14,8 @@ export default function AdminProjectsPage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.projects.administratorProjects")}
-        description={t("pages.admin.projects.administratorProjectsDescription")}
+        title={t("pages.admin.projects.title")}
+        description={t("pages.admin.projects.description")}
       />
       <AdminProjectsTemplate />
     </>

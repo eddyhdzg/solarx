@@ -72,7 +72,6 @@ export default function AccountInformationFormLayout({
             <Caption variant="caption" component="p" color="textSecondary">
               {t("pages.more.profile.publicInformationDescription")}
             </Caption>
-
             <AvatarContainer>
               <Typography variant="subtitle2">{t("common.avatar")}</Typography>
               <StyledAvatar alt="google avatar" src={data?.avatar} />

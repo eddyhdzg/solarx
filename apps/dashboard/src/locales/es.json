@@ -24,7 +24,7 @@
       "panel": "Panel",
       "panels": "Páneles",
       "panel-plural_one": "Panel",
-      "panels-plural_other": "Páneles",
+      "panel-plural_other": "Páneles",
       "profile": "Perfil",
       "uid": "uid"
     },
@@ -60,8 +60,8 @@
         "generalDescription": "Proporcione información básica sobre el proyecto.",
         "generalOption": "General Option",
         "generalOptionDescription": "Volver a calcular la cantidad de la opcion generales con respecto a las nuevas opciones de compra",
-        "generatePanels": "Generar paneles",
-        "generatePanelsDescription": "Genera los paneles cuando el proyecto esté listo.",
+        "generatePanels": "Generar páneles",
+        "generatePanelsDescription": "Genera los páneles cuando el proyecto esté listo.",
         "goalDescription": "Recalcula la meta.",
         "graphsContent": "Contentenido gráfico",
         "mediaDescription": "Imágenes para mostrar el proyecto.",
@@ -105,8 +105,9 @@
           "title": "Local",
           "description": "Gestionar base de datos local como administrador.",
           "create3Prices": "Crear 3 precios para un producto",
-          "createPrices": "Crear precios",
-          "createProduct": "Crear producto"
+          "createPrices": "Crear Precios",
+          "createProduct": "Crear Producto",
+          "createProducts": "Crear Productos"
         },
         "projects": {
           "title": "Proyectos de administrador",
@@ -155,10 +156,11 @@
       },
       "more": {
         "preferences": {
-          "title": "Preferences",
-          "description": "Investor's preferences.",
-          "interfaceLanguage": "Interface language",
-          "language": "Language"
+          "title": "Preferencias",
+          "description": "Preferencias del inversor.",
+          "interfaceLanguage": "Idioma de la interfaz",
+          "language": "Idioma",
+          "preferences": "Preferencias"
         },
         "profile": {
           "title": "Perfil",
@@ -201,14 +203,17 @@
           "balance": "Balance",
           "history": "Historial",
           "timeline": "Línea del tiempo",
-          "totalBalance": "Balance total"
+          "totalBalance": "Balance Total"
         },
-        "solarXPoints": "SolarX Points",
         "timeline": {
           "1 month": "1 mes",
           "3 month": "3 meses",
           "1 year": "1 año",
-          "historic": "Histórico"
+          "cash": "Cash",
+          "historic": "Histórico",
+          "solarXPoints": "SolarX Points",
+          "panels": "Páneles",
+          "totalBalance": "Total Balance"
         }
       }
     },
@@ -225,6 +230,7 @@
       "discount": "Descuento",
       "discountWithCount": "Descuento {{discount}}%",
       "funded": "Financiado",
+      "fundedWithCount": "{{count}}% Financiado",
       "general": "General",
       "goal": "Meta",
       "images": "Imágenes",
@@ -236,7 +242,8 @@
       "notFunded": "No financiado",
       "numbers": "Números",
       "operationDate": "Fecha de la operación",
-      "panels(funded/total)": "Paneles (financiados/total)",
+      "panels(funded/total)": "Páneles (financiados/total)",
+      "panelsWithRatio": "{{funded}} / {{total}} páneles",
       "ppa": "PPA",
       "ppaYears": "Años de PPA",
       "prices": "Precios",

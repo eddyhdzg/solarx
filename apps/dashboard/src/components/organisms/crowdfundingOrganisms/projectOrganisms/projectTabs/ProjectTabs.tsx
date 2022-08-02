@@ -24,10 +24,7 @@ export default function ProjectTabs(props: IProjectTabsProps) {
             selectionFollowsFocus
             variant="scrollable"
           >
-            <Segment
-              disableRipple
-              label={t("pages.crowdfunding.project.general")}
-            />
+            <Segment disableRipple label={t("projects.general")} />
             <Segment
               disableRipple
               label={t("pages.crowdfunding.project.graphs")}

@@ -24,7 +24,7 @@
       "panel": "Panel",
       "panels": "Panels",
       "panel-plural_one": "Panel",
-      "panels-plural_other": "Panels",
+      "panel-plural_other": "Panels",
       "profile": "Profile",
       "uid": "uid"
     },
@@ -106,7 +106,8 @@
           "description": "Manage local database as an administrator.",
           "create3Prices": "Create 3 prices for a product",
           "createPrices": "Create Prices",
-          "createProduct": "Create Product"
+          "createProduct": "Create Product",
+          "createProducts": "Create Products"
         },
         "projects": {
           "title": "Administrator projects",
@@ -158,7 +159,8 @@
           "title": "Preferences",
           "description": "Investor's preferences.",
           "interfaceLanguage": "Interface language",
-          "language": "Language"
+          "language": "Language",
+          "preferences": "Preferences"
         },
         "profile": {
           "title": "Profile",
@@ -196,19 +198,21 @@
         "balances": {
           "balances": "Balances"
         },
-        "cash": "Cash",
         "sections": {
           "balance": "Balance",
           "history": "History",
           "timeline": "Timeline",
-          "totalBalance": "Total balance"
+          "totalBalance": "Total Balance"
         },
-        "solarXPoints": "SolarX Points",
         "timeline": {
           "1 month": "1 month",
           "3 month": "3 months",
           "1 year": "1 year",
-          "historic": "Historic"
+          "cash": "Cash",
+          "historic": "Historic",
+          "solarXPoints": "SolarX Points",
+          "panels": "Panels",
+          "totalBalance": "Total Balance"
         }
       }
     },
@@ -225,6 +229,7 @@
       "discount": "Discount",
       "discountWithCount": "Discount {{discount}}%",
       "funded": "Funded",
+      "fundedWithCount": "{{count}}% Funded",
       "general": "General",
       "goal": "Goal",
       "images": "Images",
@@ -237,6 +242,7 @@
       "numbers": "Numbers",
       "operationDate": "Operation Date",
       "panels(funded/total)": "Panels (funded/total)",
+      "panelsWithRatio": "{{funded}} / {{total}} panels",
       "ppa": "PPA",
       "ppaYears": "PPA years",
       "prices": "Prices",

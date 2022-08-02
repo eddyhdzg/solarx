@@ -114,7 +114,7 @@ const ProjectPriceCard = ({
               label={
                 discount
                   ? t("pages.crowdfunding.project.limited", { rest, quantity })
-                  : t("pages.crowdfunding.project.notlimited", {
+                  : t("pages.crowdfunding.project.notLimited", {
                       rest,
                       quantity,
                     })
@@ -126,7 +126,7 @@ const ProjectPriceCard = ({
 
             {Boolean(investors) && (
               <StyledChip
-                label={t("pages.admin.project.investorCount", {
+                label={t("common.investorWithCount", {
                   count: investors,
                 })}
                 variant="blue"
@@ -148,7 +148,7 @@ const ProjectPriceCard = ({
         <Ul>
           <Li>
             <Typography variant="body2" color="textSecondary">
-              {t("projects.panels")}
+              {t("common.panels")}
             </Typography>
             <Counter
               panels={panels}
@@ -166,7 +166,7 @@ const ProjectPriceCard = ({
                   color: "success.main",
                 }}
               >
-                {t("pages.crowdfunding.project.discount", { discount })}
+                {t("projects.discountWithCount", { discount })}
               </Typography>
               <Typography
                 variant="subtitle1"

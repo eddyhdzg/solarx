@@ -43,7 +43,7 @@ export default function EditProjectGeneralFormLayout({
         <Section>
           <Titles>
             <Typography variant="h6" component="h6">
-              {t("forms.projectForm.general")}
+              {t("projects.general")}
             </Typography>
             <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.generalDescription")}
@@ -237,11 +237,11 @@ export default function EditProjectGeneralFormLayout({
                   return (
                     <FormControl fullWidth>
                       <InputLabel htmlFor="project-status">
-                        {t("forms.projectForm.status")}
+                        {t("projects.status")}
                       </InputLabel>
                       <StyledSelect
                         id="project-status"
-                        label={t("forms.projectForm.status")}
+                        label={t("projects.status")}
                         variant="outlined"
                         native
                         error={Boolean(fieldState.error)}
@@ -251,19 +251,19 @@ export default function EditProjectGeneralFormLayout({
                       >
                         <option aria-label="None" value="" disabled />
                         <option value="coming soon">
-                          {t("projects.status.comingSoon")}
+                          {t("projects.statuses.comingSoon")}
                         </option>
                         <option value="funding">
-                          {t("projects.status.funding")}
+                          {t("projects.statuses.funding")}
                         </option>
                         <option value="funded">
-                          {t("projects.status.funded")}
+                          {t("projects.statuses.funded")}
                         </option>
                         <option value="operating">
-                          {t("projects.status.operating")}
+                          {t("projects.statuses.operating")}
                         </option>
                         <option value="canceled">
-                          {t("projects.status.canceled")}
+                          {t("projects.statuses.canceled")}
                         </option>
                       </StyledSelect>
                     </FormControl>

@@ -71,7 +71,7 @@ export default function AccountButton() {
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
-          {t("pages.more.profile.profile")}
+          {t("common.profile")}
         </MenuItem>
         <MenuItem component={Link} to="/more/preferences">
           <ListItemIcon>

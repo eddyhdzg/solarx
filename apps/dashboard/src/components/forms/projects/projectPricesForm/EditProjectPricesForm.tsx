@@ -32,7 +32,7 @@ export default function EditProjectPricesForm() {
       <TableContent>
         <Titles>
           <Typography variant="h6" component="h6">
-            {t("forms.projectForm.prices")}
+            {t("projects.prices")}
           </Typography>
           <Typography variant="subtitle3" color="textSecondary">
             {t("forms.projectForm.pricesDescription")}
@@ -47,27 +47,27 @@ export default function EditProjectPricesForm() {
               }}
             >
               <TableRow>
-                <TableCell>{t("prices.id")}</TableCell>
+                <TableCell>{t("common.id")}</TableCell>
                 <TableCellNumber align="right">
-                  {t("prices.quantity")}
+                  {t("projects.quantity")}
                 </TableCellNumber>
                 <TableCellNumber align="right">
-                  {t("prices.salePrice")}
+                  {t("projects.salePrice")}
                 </TableCellNumber>
                 <TableCellNumber align="right">
-                  {t("prices.basePrice")}
+                  {t("projects.basePrice")}
                 </TableCellNumber>
                 <TableCellNumber align="right">
-                  {t("prices.discount")}
+                  {t("projects.discount")}
                 </TableCellNumber>
                 <TableCellDescription>
-                  {t("prices.description")}
+                  {t("projects.description")}
                 </TableCellDescription>
                 <TableCellNumber align="right">
-                  {t("prices.investors")}
+                  {t("common.investors")}
                 </TableCellNumber>
                 <TableCellNumber align="right">
-                  {t("prices.sold")}
+                  {t("projects.sold")}
                 </TableCellNumber>
                 <TableCell align="right">{t("table.actions")}</TableCell>
               </TableRow>

@@ -62,7 +62,6 @@ export default function ProjectCard({
               {city}, {state}
             </Typography>
           </ProjectCardHeaders>
-
           <ProjectCardDataRow>
             <ProjectCardDataColumn>
               <SellOutlinedIcon />
@@ -89,14 +88,13 @@ export default function ProjectCard({
           </ProjectCardDataRow>
           <ProjectCardSummary>
             <Typography variant="body1">
-              {progress}%{" "}
-              {t("projects.funded", {
-                postProcess: "capitalize",
-              })}
+              {t("projects.fundedWithCount", { count: progress })}
             </Typography>
             <Typography variant="caption" color="textSecondary">
-              {panelsSold.toLocaleString()} / {totalPanels.toLocaleString()}{" "}
-              {t("projects.panels")}
+              {t("projects.panelsWithRatio", {
+                funded: panelsSold,
+                total: totalPanels,
+              })}
             </Typography>
           </ProjectCardSummary>
           <GradientLinearProgress value={progress} />

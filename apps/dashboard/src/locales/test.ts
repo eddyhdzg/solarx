@@ -2,7 +2,7 @@ import en from "./en.json";
 
 type EN = typeof en;
 
-const es: EN = {
+export const es: EN = {
   translation: {
     auth: {
       myAccount: "Mi Cuenta",
@@ -28,7 +28,7 @@ const es: EN = {
       panel: "Panel",
       panels: "Páneles",
       "panel-plural_one": "Panel",
-      "panels-plural_other": "Páneles",
+      "panel-plural_other": "Páneles",
       profile: "Perfil",
       uid: "uid",
     },
@@ -41,6 +41,7 @@ const es: EN = {
     filters: {
       results: "Resultados",
       selected: "Seleccionados:",
+      basePriceRange: "Rango de precio base",
     },
     forms: {
       cards: "Tarjetas",
@@ -66,9 +67,9 @@ const es: EN = {
         generalOption: "General Option",
         generalOptionDescription:
           "Volver a calcular la cantidad de la opcion generales con respecto a las nuevas opciones de compra",
-        generatePanels: "Generar paneles",
+        generatePanels: "Generar páneles",
         generatePanelsDescription:
-          "Genera los paneles cuando el proyecto esté listo.",
+          "Genera los páneles cuando el proyecto esté listo.",
         goalDescription: "Recalcula la meta.",
         graphsContent: "Contentenido gráfico",
         mediaDescription: "Imágenes para mostrar el proyecto.",
@@ -102,6 +103,7 @@ const es: EN = {
           description: "Sección de administración.",
         },
         editProject: {
+          editProject: "Editar proyecto",
           title: "Editar proyecto",
           description: "Edita un proyecto de crowdfunding.",
         },
@@ -114,8 +116,9 @@ const es: EN = {
           title: "Local",
           description: "Gestionar base de datos local como administrador.",
           create3Prices: "Crear 3 precios para un producto",
-          createPrices: "Crear precios",
-          createProduct: "Crear producto",
+          createPrices: "Crear Precios",
+          createProduct: "Crear Producto",
+          createProducts: "Crear Productos",
         },
         projects: {
           title: "Proyectos de administrador",
@@ -164,10 +167,11 @@ const es: EN = {
       },
       more: {
         preferences: {
-          title: "Preferences",
-          description: "Investor's preferences.",
-          interfaceLanguage: "Interface language",
-          language: "Language",
+          title: "Preferencias",
+          description: "Preferencias del inversor.",
+          interfaceLanguage: "Idioma de la interfaz",
+          language: "Idioma",
+          preferences: "Preferencias",
         },
         profile: {
           title: "Perfil",
@@ -206,19 +210,21 @@ const es: EN = {
         balances: {
           balances: "Balances",
         },
-        cash: "Cash",
         sections: {
           balance: "Balance",
           history: "Historial",
           timeline: "Línea del tiempo",
-          totalBalance: "Balance total",
+          totalBalance: "Balance Total",
         },
-        solarXPoints: "SolarX Points",
         timeline: {
           "1 month": "1 mes",
           "3 month": "3 meses",
           "1 year": "1 año",
+          cash: "Cash",
           historic: "Histórico",
+          solarXPoints: "SolarX Points",
+          panels: "Panels",
+          totalBalance: "Total Balance",
         },
       },
     },
@@ -235,6 +241,7 @@ const es: EN = {
       discount: "Descuento",
       discountWithCount: "Descuento {{discount}}%",
       funded: "Financiado",
+      fundedWithCount: "{{count}}% Financiado",
       general: "General",
       goal: "Meta",
       images: "Imágenes",
@@ -246,7 +253,8 @@ const es: EN = {
       notFunded: "No financiado",
       numbers: "Números",
       operationDate: "Fecha de la operación",
-      "panels(funded/total)": "Paneles (financiados/total)",
+      "panels(funded/total)": "Páneles (financiados/total)",
+      panelsWithRatio: "{{funded}} / {{total}} páneles",
       ppa: "PPA",
       ppaYears: "Años de PPA",
       prices: "Precios",

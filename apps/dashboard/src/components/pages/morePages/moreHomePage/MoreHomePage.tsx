@@ -14,8 +14,8 @@ export default function MoreHomePage() {
   return (
     <>
       <Seo
-        title={t("pages.more.moreHome.more")}
-        description={t("pages.more.moreHome.moreDescription")}
+        title={t("pages.more.moreHome.title")}
+        description={t("pages.more.moreHome.description")}
       />
       <MoreHomeTemplate />
     </>

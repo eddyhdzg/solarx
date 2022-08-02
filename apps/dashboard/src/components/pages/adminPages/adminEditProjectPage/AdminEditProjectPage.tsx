@@ -15,8 +15,8 @@ export default function AdminEditProjectPage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.editProject.editProject")}
-        description={t("pages.admin.editProject.editProjectDescription")}
+        title={t("pages.admin.editProject.title")}
+        description={t("pages.admin.editProject.description")}
       />
       <FirebaseStorageProvider>
         <AdminEditProjectTemplate />

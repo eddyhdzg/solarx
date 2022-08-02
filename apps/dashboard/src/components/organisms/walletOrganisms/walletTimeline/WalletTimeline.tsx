@@ -68,7 +68,7 @@ export default function WalletTimeline() {
               mr: 2,
             }}
           >
-            {t("pages.wallet.timeline.timeline")}
+            {t("pages.wallet.sections.timeline")}
           </Typography>
         </TitleContainer>
         <ButtonGroupContainer>

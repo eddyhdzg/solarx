@@ -15,26 +15,27 @@ export default function AdminProjectSummary() {
   const { id = "" } = useParams<ProjectIDParams>();
   const { data } = useProject(id);
   const { t } = useTranslation();
+  const investors = data?.investors || 0;
 
   return (
     <Paper>
       <AdminProjectSummaryBody>
         <AdminProjectSummaryTitle variant="h6" component="h6">
-          {t("pages.admin.project.summary")}
+          {t("projects.summary")}
         </AdminProjectSummaryTitle>
         <Typography variant="subtitle1" gutterBottom>
-          {t("pages.admin.project.general")}
+          {t("projects.general")}
         </Typography>
         <AdminProjectSummaryUL>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.status")}
+              {t("projects.status")}
             </Typography>
             <Chip label={data?.status} variant="yellow" size="small" />
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.goal")}
+              {t("projects.goal")}
             </Typography>
             <Typography variant="subtitle2">
               {formatMoney(data?.goal || 0)}
@@ -42,17 +43,17 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.investor", {
-                count: data?.investors || 0,
+              {t("common.investor-plural", {
+                count: investors,
               })}
             </Typography>
             <Typography variant="subtitle2">
-              {formatNumber(data?.investors || 0)}
+              {formatNumber(investors)}
             </Typography>
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.images")}
+              {t("projects.images")}
             </Typography>
             <Typography variant="subtitle2">
               {data?.images?.length || 0}
@@ -61,12 +62,12 @@ export default function AdminProjectSummary() {
         </AdminProjectSummaryUL>
         <AdminProjectSummaryDivider />
         <Typography variant="subtitle1" gutterBottom>
-          {t("pages.admin.project.dates")}
+          {t("projects.dates")}
         </Typography>
         <AdminProjectSummaryUL>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.created")}
+              {t("projects.created")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.created
@@ -76,7 +77,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.releaseDate")}
+              {t("projects.releaseDate")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.releaseDate
@@ -86,7 +87,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.funded")}
+              {t("projects.funded")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.fundedDate
@@ -96,7 +97,7 @@ export default function AdminProjectSummary() {
           </li>
           <li>
             <Typography variant="body2" color="textSecondary">
-              {t("pages.admin.project.operationDate")}
+              {t("projects.operationDate")}
             </Typography>
             <Typography variant="subtitle2" textAlign="right">
               {data?.operationDate

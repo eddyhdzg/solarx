@@ -14,8 +14,8 @@ export default function AdminHomePage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.adminHome.admin")}
-        description={t("pages.admin.adminHome.adminDescription")}
+        title={t("pages.admin.adminHome.title")}
+        description={t("pages.admin.adminHome.description")}
       />
       <AdminHomeTemplate />
     </>

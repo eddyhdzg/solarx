@@ -9,7 +9,7 @@ export default function AdminUsersTemplate() {
 
   return (
     <Container maxWidth="2xl">
-      <PageTitle>{t("pages.admin.users.users")}</PageTitle>
+      <PageTitle>{t("pages.admin.investors.title")}</PageTitle>
       <UsersTableLayout table={usersTable} />
     </Container>
   );

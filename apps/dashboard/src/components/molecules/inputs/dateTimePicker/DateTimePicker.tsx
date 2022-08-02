@@ -29,8 +29,8 @@ export default function DateTimePicker({
         label={label}
         value={value}
         onChange={onChange}
-        okText={t("forms.ok")}
-        cancelText={t("forms.cancel")}
+        okText={t("common.ok")}
+        cancelText={t("common.cancel")}
         clearText={t("forms.clear")}
         renderInput={(params) => (
           <StyledTextField

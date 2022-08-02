@@ -14,8 +14,8 @@ export default function HistoryPage() {
   return (
     <>
       <Seo
-        title={t("pages.more.history.history")}
-        description={t("pages.more.history.historyDescription")}
+        title={t("pages.more.history.title")}
+        description={t("pages.more.history.description")}
       />
       <HistoryTemplate />
     </>

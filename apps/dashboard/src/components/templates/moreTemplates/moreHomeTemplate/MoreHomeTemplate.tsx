@@ -14,18 +14,18 @@ export default function MoreHomeTemplate() {
 
   return (
     <Container maxWidth="2xl">
-      <PageTitle>{t("pages.more.moreHome.more")}</PageTitle>
+      <PageTitle>{t("pages.more.moreHome.title")}</PageTitle>
       <Grid container spacing={3}>
         <GridItem xs={6} sm={4} md={3}>
           <SectionButton
-            title={t("pages.more.history.history")}
+            title={t("pages.more.history.title")}
             to="/more/history"
             emoji="📜"
           />
         </GridItem>
         <GridItem xs={6} sm={4} md={3}>
           <SectionButton
-            title={t("pages.more.profile.profile")}
+            title={t("pages.more.profile.title")}
             to="/more/profile"
             emoji="👤"
           />

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Typography } from "@mui/material";
 import {
   formatMoney,
-  formatPercentage,
   formatPercentage2Dec,
   formatNumber,
   fomatNumInYears,
@@ -62,14 +61,15 @@ export default function ProjectSummary({
       <div>
         <ProjectSummaryHeader>
           <Typography variant="h5" component="h4">
-            {formatPercentage(progress)}{" "}
-            {t("projects.funded", {
-              postProcess: "capitalize",
+            {t("projects.fundedWithCount", {
+              count: progress,
             })}
           </Typography>
           <Typography variant="caption" color="textSecondary">
-            {formatNumber(panelsSold)} / {formatNumber(totalPanels)}{" "}
-            {t("projects.panels")}
+            {t("projects.panelsWithRatio", {
+              funded: panelsSold,
+              total: totalPanels,
+            })}
           </Typography>
         </ProjectSummaryHeader>
         <ProjectSummaryProgressWrapper>
@@ -96,16 +96,17 @@ export default function ProjectSummary({
               ({fomatNumInYears(numInYears)})
             </Typography>
           </Typography>
-
           <Typography variant="body2" color="textSecondary">
-            {t("projects.roiShort")}
+            {t("projects.roi")}
           </Typography>
         </div>
 
         <div>
           <Typography variant="h6">{formatNumber(investors)}</Typography>
           <Typography variant="body2" color="textSecondary">
-            {t("projects.investors")}
+            {t("common.investor-plural", {
+              count: investors,
+            })}
           </Typography>
         </div>
       </ProjectSummaryStatsWrapper>
@@ -113,13 +114,13 @@ export default function ProjectSummary({
       <ul>
         <ProjectSummaryLi>
           <Typography variant="body2" color="textSecondary">
-            {t("projects.panels", {
-              postProcess: "capitalize",
+            {t("common.panel-plural", {
+              count: panels,
             })}
           </Typography>
           {max > 0 ? (
             <Counter
-              panels={panels || 0}
+              panels={panels}
               onChangePanels={handleChangePanels}
               setPanels={setPanels}
               error={error}
@@ -165,7 +166,7 @@ export default function ProjectSummary({
               mr: 0.5,
             }}
           >
-            {t("pages.crowdfunding.project.releaseDate")}
+            {t("pages.crowdfunding.project.releaseDate:")}
           </Typography>
           <Typography
             variant="body3"

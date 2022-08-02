@@ -14,8 +14,8 @@ export default function AdminUsersPage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.users.users")}
-        description={t("pages.admin.users.usersDescription")}
+        title={t("pages.admin.investors.title")}
+        description={t("pages.admin.investors.description")}
       />
       <AdminUsersTemplate />
     </>

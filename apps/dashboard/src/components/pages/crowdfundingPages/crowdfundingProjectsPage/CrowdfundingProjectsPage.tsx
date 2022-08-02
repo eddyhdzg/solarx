@@ -14,10 +14,8 @@ export default function CrowdfundingProjectsPage() {
   return (
     <>
       <Seo
-        title={t("pages.crowdfunding.projects.crowdfundingProjects")}
-        description={t(
-          "pages.crowdfunding.projects.crowdfundingProjectsDescription"
-        )}
+        title={t("pages.crowdfunding.projects.title")}
+        description={t("pages.crowdfunding.projects.description")}
       />
       <CrowdfundingProjectsTemplate />
     </>

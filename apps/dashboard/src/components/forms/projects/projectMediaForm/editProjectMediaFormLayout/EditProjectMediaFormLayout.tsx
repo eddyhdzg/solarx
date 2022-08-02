@@ -40,7 +40,7 @@ export default function EditProjectMediaFormLayout({
         <Section>
           <Titles>
             <Typography variant="h6" component="h6">
-              {t("forms.projectForm.media")}
+              {t("projects.media")}
             </Typography>
             <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.mediaDescription")}
@@ -51,7 +51,7 @@ export default function EditProjectMediaFormLayout({
           </ImageTypography>
           <Img src={coverImg} alt="project" />
           <ImageTypography variant="caption">
-            {t("forms.projectForm.images")}
+            {t("projects.images")}
           </ImageTypography>
           <Grid container spacing={3}>
             <GridItem sm={9} lg={6}>

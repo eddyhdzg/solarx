@@ -14,8 +14,8 @@ export default function AccountInformationPage() {
   return (
     <>
       <Seo
-        title={t("pages.more.profile.profile")}
-        description={t("pages.more.profile.accountInformationDescription")}
+        title={t("pages.more.profile.title")}
+        description={t("pages.more.profile.description")}
       />
       <AccountInformationTemplate />
     </>

@@ -36,7 +36,7 @@ export default function ProjectNumberFormLayout({
         <Section>
           <Titles>
             <Typography variant="h6" component="h6">
-              {t("forms.projectForm.numbers")}
+              {t("projects.numbers")}
             </Typography>
             <Typography variant="subtitle3" color="textSecondary">
               {t("forms.projectForm.numbersDescription")}
@@ -51,7 +51,7 @@ export default function ProjectNumberFormLayout({
                   return (
                     <StyledTextField
                       id="project-roi"
-                      label={t("projects.roiShort")}
+                      label={t("projects.roi")}
                       variant="outlined"
                       fullWidth
                       required

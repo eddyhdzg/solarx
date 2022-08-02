@@ -14,8 +14,8 @@ export default function AdminLocalPage() {
   return (
     <>
       <Seo
-        title={t("pages.admin.local.local")}
-        description={t("pages.admin.local.localDescription")}
+        title={t("pages.admin.local.title")}
+        description={t("pages.admin.local.description")}
       />
       <AdminLocalTemplate />
     </>

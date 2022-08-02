@@ -24,7 +24,7 @@ export default function AdminTriggers() {
       <Styles.Body>
         <div>
           <Typography variant="h6" component="h6" gutterBottom>
-            {t("forms.projectForm.triggers")}
+            {t("projects.triggers")}
           </Typography>
           <Styles.Subtitle
             variant="subtitle3"

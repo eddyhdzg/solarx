@@ -23,7 +23,7 @@ export default function WalletTotalBalance() {
             </Styled.TotalBalance>
           </Styled.Div>
           <Typography variant="subtitle1" color="textSecondary">
-            {t("pages.wallet.totalBalance.totalBalance")}
+            {t("pages.wallet.sections.totalBalance")}
           </Typography>
         </div>
         {amount && (
@@ -32,7 +32,7 @@ export default function WalletTotalBalance() {
               {formatHistoryValue(amount, currency)}
             </Styled.Cash>
             <Typography variant="subtitle3" color="textSecondary">
-              {t("pages.wallet.totalBalance.monthlyRevenue")}
+              {t("pages.crowdfunding.project.monthlyRevenue")}
             </Typography>
           </Styled.CashWrapper>
         )}
