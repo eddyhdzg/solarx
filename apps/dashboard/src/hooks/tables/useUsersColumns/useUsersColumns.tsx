@@ -1,13 +1,13 @@
 import { Avatar } from "@mui/material";
 import { useMemo } from "react";
 import { UserRoleForm } from "components";
-import { FirestoreUser, UserRole } from "solarx-types";
+import { Investor, UserRole } from "solarx-types";
 import { useTranslation } from "react-i18next";
 import { formatTimestampWithMinAndSec } from "utils";
 import { Column } from "react-table";
 
 interface Row {
-  original: FirestoreUser;
+  original: Investor;
 }
 
 const useUsersColumns = () => {
@@ -42,7 +42,7 @@ const useUsersColumns = () => {
       {
         id: "created",
         Header: t("projects.created"),
-        accessor: ({ created }: FirestoreUser) => {
+        accessor: ({ created }: Investor) => {
           return created ? formatTimestampWithMinAndSec(created) : "";
         },
       },

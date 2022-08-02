@@ -1,15 +1,13 @@
 import { Typography } from "@mui/material";
 import { Dot } from "components";
-import { useUserHistory, useDisplayUserHistory } from "hooks";
-import { useUser } from "reactfire";
+import { useInvestorHistory, useDisplayUserHistory } from "hooks";
 import { useTranslation } from "react-i18next";
 import Styled from "./WalletHistory.styled";
 
 export default function WalletHistory() {
-  const user = useUser();
-  const { data } = useUserHistory(user.data?.uid || "");
-  const displayUserHistory = useDisplayUserHistory(data);
   const { t } = useTranslation();
+  const { data } = useInvestorHistory();
+  const displayUserHistory = useDisplayUserHistory(data);
 
   return (
     <Styled.Paper>

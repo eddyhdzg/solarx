@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 
-export const UsersTableLayoutRoot = styled("div")(({ theme }) => ({
+export const InvestorsTableLayoutRoot = styled("div")(({ theme }) => ({
   marginBottom: theme.spacing(1),
   [theme.breakpoints.up("sm")]: {
     display: "flex",

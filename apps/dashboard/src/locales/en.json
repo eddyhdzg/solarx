@@ -101,7 +101,12 @@
         "investors": {
           "title": "Investors",
           "description": "Manage investors as an administrator.",
-          "role": "Role"
+          "role": "Role",
+          "default": "Default",
+          "beta": "Beta",
+          "admin": "Admin",
+          "moderator": "Moderator",
+          "superUser": "Super User"
         },
         "local": {
           "title": "Local",

@@ -1,14 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { formatAbsoluteWithCurreny } from "utils";
-import { useQueryParams, useUserHistoryDoc } from "hooks";
-import { useUser } from "reactfire";
+import { useQueryParams, useCurrInvestorHistoryDoc } from "hooks";
 
 export default function ReceiptSummary() {
   const { t } = useTranslation();
   const { id } = useQueryParams();
-  const user = useUser();
-  const { data } = useUserHistoryDoc(user.data?.uid, id);
+  const { data } = useCurrInvestorHistoryDoc(id);
   const title = data?.title || "-";
   const description = data?.description || "-";
   const amount =

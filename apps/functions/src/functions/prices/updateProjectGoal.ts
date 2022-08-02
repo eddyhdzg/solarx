@@ -1,11 +1,11 @@
 import { functions, db } from "../../config";
 import { funCalcMoney } from "../../utils";
-import { Project, ProjectPrice, FirestoreUser } from "solarx-types";
+import { Project, ProjectPrice, Investor } from "solarx-types";
 
 export const updateProjectGoal_v0 = functions.https.onCall(
   async (data, context) => {
     const pid = data?.id;
-    const role: FirestoreUser["role"] = context.auth?.token?.role;
+    const role: Investor["role"] = context.auth?.token?.role;
 
     if (role !== "MODERATOR" && role !== "SUPER_USER") {
       throw new functions.https.HttpsError(

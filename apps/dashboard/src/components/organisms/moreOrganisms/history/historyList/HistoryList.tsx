@@ -9,13 +9,11 @@ import {
 } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SavingsIcon from "@mui/icons-material/Savings";
-import { useUser } from "reactfire";
-import { useUserHistory, useFormatedUserHistory } from "hooks";
+import { useCurrInvestorHistory, useFormatedUserHistory } from "hooks";
 import { Link } from "react-router-dom";
 
 export default function HistoryList() {
-  const user = useUser();
-  const { data } = useUserHistory(user.data?.uid);
+  const { data } = useCurrInvestorHistory();
   const displayUserHistory = useFormatedUserHistory(data);
 
   return (

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import {
   useEditUserMutation,
-  useFirestoreUser,
+  useInvestor,
   IEditUserSchema,
   editUserDefaultValues,
 } from "hooks";
@@ -16,7 +16,7 @@ export default function useHandleEditInvestorForm(
   reset: UseFormReset<IEditUserSchema>
 ) {
   const { t } = useTranslation();
-  const { data, status } = useFirestoreUser();
+  const { data, status } = useInvestor();
   const editUserMutation = useEditUserMutation();
   const { enqueueSnackbar } = useSnackbar();
 

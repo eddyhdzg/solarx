@@ -3,7 +3,7 @@ import { UserRecord } from "firebase-functions/v1/auth";
 import { updateRole_v0 } from "../../functions";
 import { projectId, testEnv } from "../../testConfig";
 import { auth } from "../../config";
-import { FirestoreUser } from "solarx-types";
+import { Investor } from "solarx-types";
 
 describe("updateRole_v0", () => {
   let user: UserRecord;
@@ -17,11 +17,11 @@ describe("updateRole_v0", () => {
   it("update role doc ib /users/{uid}", async () => {
     const { uid } = user;
 
-    const beforeRole: FirestoreUser = {
+    const beforeRole: Investor = {
       role: "DEFAULT",
     };
 
-    const afterRole: FirestoreUser = {
+    const afterRole: Investor = {
       role: "ADMIN",
     };
 

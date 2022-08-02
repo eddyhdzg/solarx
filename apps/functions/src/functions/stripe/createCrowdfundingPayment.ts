@@ -1,6 +1,6 @@
 import { functions, db, stripe } from "../../config";
 import {
-  FirestoreUser,
+  Investor,
   CreateCrowdfundingPayment,
   ProjectPrice,
   Project,
@@ -80,7 +80,7 @@ export const createCrowdfundingPayment_v0 = functions.https.onCall(
     const { stripeId = "" } = (await userDocRef
       .get()
       .then((res) => res.data())
-      .catch(() => ({}))) as FirestoreUser;
+      .catch(() => ({}))) as Investor;
 
     const description = `Crowdfund ${qty} panels${
       qty > 1 ? "s" : ""

@@ -11,14 +11,14 @@ import {
   useStore,
   useUsersFilters,
   useFuzzyGlobalFilter,
-  useFirestoreUsers,
+  useInvestors,
 } from "hooks";
 import shallow from "zustand/shallow";
 import { usersSearchFilters } from "constant";
 import { fuzzyTextFilterFn } from "utils";
 
 export default function useUsersTable() {
-  const { data: firestoreUsers } = useFirestoreUsers();
+  const { data: firestoreUsers } = useInvestors();
   const usersColumns = useUsersColumns();
   const globalFilter = useFuzzyGlobalFilter(usersSearchFilters);
   const {

@@ -1,12 +1,10 @@
-import { useQueryParams, useUserHistoryDoc } from "hooks";
-import { useUser } from "reactfire";
+import { useQueryParams, useCurrInvestorHistoryDoc } from "hooks";
 import { formatAbsoluteWithCurreny } from "utils";
 import { Box, Typography } from "@mui/material";
 
 export default function ReceiptHeader() {
   const { id } = useQueryParams();
-  const user = useUser();
-  const { data } = useUserHistoryDoc(user.data?.uid, id);
+  const { data } = useCurrInvestorHistoryDoc(id);
   const amount =
     typeof data?.amount === "number"
       ? formatAbsoluteWithCurreny(data?.amount, data?.currency)

@@ -1,5 +1,7 @@
 import {
+  Paper,
   Table,
+  TableHead,
   TableBody,
   TableCell,
   TableRow,
@@ -7,10 +9,9 @@ import {
 } from "@mui/material";
 import { CustomTablePagination } from "components";
 import { TableInstance, HeaderGroup, Row, Cell } from "react-table";
-import { FirestoreUser } from "solarx-types";
-import { StyledPaper, StyledTableHead } from "./UsersTable.styled";
+import { Investors } from "solarx-types";
 
-export default function UsersTable({
+export default function InvestorsTable({
   getTableProps,
   getTableBodyProps,
   headerGroups,
@@ -20,16 +21,26 @@ export default function UsersTable({
   gotoPage,
   setPageSize,
   state,
-}: TableInstance<FirestoreUser>) {
+}: TableInstance<Investors>) {
   return (
-    <StyledPaper>
+    <Paper
+      sx={{
+        display: "flex",
+        whiteSpace: "nowrap",
+        overflow: "auto",
+      }}
+    >
       <Table {...getTableProps()}>
-        <StyledTableHead>
-          {headerGroups.map((headerGroup: HeaderGroup<FirestoreUser>) => (
+        <TableHead
+          sx={{
+            textTransform: "capitalize",
+          }}
+        >
+          {headerGroups.map((headerGroup: HeaderGroup<Investors>) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(
                 (
-                  column: HeaderGroup<FirestoreUser> & {
+                  column: HeaderGroup<Investors> & {
                     tabIndex?: number;
                     className?: string;
                   }
@@ -59,15 +70,15 @@ export default function UsersTable({
               )}
             </TableRow>
           ))}
-        </StyledTableHead>
+        </TableHead>
         <TableBody {...getTableBodyProps()}>
-          {page.map((row: Row<FirestoreUser>) => {
+          {page.map((row: Row<Investors>) => {
             prepareRow(row);
             return (
               <TableRow {...row.getRowProps()}>
                 {row.cells.map(
                   (
-                    cell: Cell<FirestoreUser> & {
+                    cell: Cell<Investors> & {
                       column: {
                         className?: string;
                       };
@@ -95,11 +106,11 @@ export default function UsersTable({
               gotoPage={gotoPage}
               setPageSize={setPageSize}
               state={state}
-              actionType="USERS_CHANGE_PAGESIZE"
+              actionType="INVESTORS_CHANGE_PAGESIZE"
             />
           </TableRow>
         </TableFooter>
       </Table>
-    </StyledPaper>
+    </Paper>
   );
 }

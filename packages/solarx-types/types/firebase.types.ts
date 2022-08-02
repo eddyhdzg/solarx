@@ -7,7 +7,7 @@ export type Timestamp = FirestoreTimestamp;
 export type FirestoreQueryStatus = "loading" | "error" | "success";
 
 export type InitialDocData = null;
-export type InitialCollectionData = null;
+export type InitialCollectionData = [];
 
 export interface FilePreview extends FileWithPath {
   preview: string;

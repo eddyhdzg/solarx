@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCurrUserPaymentMethods } from "hooks";
+import { useCurrInvestorPaymentMethods } from "hooks";
 import { ListItemIcon, Skeleton } from "@mui/material";
 import { useFormContext, Controller } from "react-hook-form";
 import {
@@ -12,7 +12,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import Styled from "./PaymentMethods.styled";
 
 export default function PaymentMethods() {
-  const { data } = useCurrUserPaymentMethods();
+  const { data } = useCurrInvestorPaymentMethods();
   const { control } = useFormContext<CreateCrowdfundingPaymentFormSchema>();
   const { dispatch, method } = useCrowdfundingStore(
     ({ dispatch, method }) => ({ dispatch, method }),

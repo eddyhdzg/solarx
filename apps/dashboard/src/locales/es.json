@@ -101,7 +101,12 @@
         "investors": {
           "title": "Inversionistas",
           "description": "Gestionar inversionistas como administrador.",
-          "role": "Rol"
+          "role": "Rol",
+          "default": "Default",
+          "beta": "Beta",
+          "admin": "Admin",
+          "moderator": "Moderador",
+          "superUser": "Super Usuario"
         },
         "local": {
           "title": "Local",

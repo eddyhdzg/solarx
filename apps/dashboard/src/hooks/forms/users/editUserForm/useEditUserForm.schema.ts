@@ -1,7 +1,7 @@
 import * as yup from "yup";
-import { FirestoreUser } from "solarx-types";
+import { Investor } from "solarx-types";
 
-export type IEditUserSchema = Pick<FirestoreUser, "displayName">;
+export type IEditUserSchema = Pick<Investor, "displayName">;
 
 export const editUserDefaultValues: IEditUserSchema = {
   displayName: "",

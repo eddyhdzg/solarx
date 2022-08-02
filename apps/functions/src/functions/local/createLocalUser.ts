@@ -1,12 +1,12 @@
 import { functions, db, serverTimestamp } from "../../config";
-import { FirestoreUser, Timestamp } from "solarx-types";
+import { Investor, Timestamp } from "solarx-types";
 
 export const createLocalUser_v0 = functions.firestore
   .document("/users/{uid}")
   .onCreate(async (_, context) => {
     const { uid } = context.params;
 
-    const newUser: FirestoreUser = {
+    const newUser: Investor = {
       displayName: "Eddy Hernández Local",
       email: "eddyhdzg@gmail.com",
       role: "SUPER_USER",

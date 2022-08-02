@@ -1,14 +1,12 @@
 import { Box, Typography, alpha, Button } from "@mui/material";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { useTranslation } from "react-i18next";
-import { useQueryParams, useUserHistoryDoc } from "hooks";
-import { useUser } from "reactfire";
+import { useQueryParams, useCurrInvestorHistoryDoc } from "hooks";
 
 export default function ReceiptActions() {
   const { t } = useTranslation();
   const { id } = useQueryParams();
-  const user = useUser();
-  const { data } = useUserHistoryDoc(user.data?.uid, id);
+  const { data } = useCurrInvestorHistoryDoc(id);
 
   return (
     <Box

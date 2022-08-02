@@ -1,10 +1,10 @@
 import { functions, db, serverTimestamp } from "../../config";
-import { FirestoreUser, UserWallet, Timestamp } from "solarx-types";
+import { Investor, UserWallet, Timestamp } from "solarx-types";
 
 export const createUser_v0 = functions.auth.user().onCreate(async (snap) => {
   const { uid, displayName, email, photoURL } = snap;
 
-  const newUser: FirestoreUser = {
+  const newUser: Investor = {
     avatar: photoURL,
     displayName,
     email,

@@ -24,6 +24,7 @@ export default function AccountButton() {
   const { data: signinResult } = useSigninCheck();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const photoURL = signinResult?.user?.photoURL || undefined;
 
   const handleSignOut = () => {
     signOut();
@@ -43,10 +44,7 @@ export default function AccountButton() {
           title={t("auth.myAccount")}
           children={
             <IconButton onClick={handleClick}>
-              <Avatar
-                alt="avatar"
-                src={signinResult?.user?.photoURL || undefined}
-              />
+              <Avatar alt="avatar" src={photoURL} />
             </IconButton>
           }
         />

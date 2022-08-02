@@ -1,5 +1,5 @@
 import { serverTimestamp } from "../config";
-import { Project, ProjectPrice, FirestoreUser, Timestamp } from "solarx-types";
+import { Project, ProjectPrice, Investor, Timestamp } from "solarx-types";
 
 export const mockProject: Project = {
   active: true,
@@ -53,7 +53,7 @@ export const mockProjectPrice: ProjectPrice = {
   unit_amount: 1,
 };
 
-export const mockUser: FirestoreUser = {
+export const mockUser: Investor = {
   avatar: "",
   created: serverTimestamp() as Timestamp,
   displayName: "",

@@ -1,9 +1,9 @@
 import { functions, db } from "../../config";
-import { Project, ProjectPrice, FirestoreUser, Panel } from "solarx-types";
+import { Project, ProjectPrice, Investor, Panel } from "solarx-types";
 
 export const createPanels_v0 = functions.https.onCall(async (data, context) => {
   const pid = data?.id;
-  const role: FirestoreUser["role"] = context.auth?.token?.role;
+  const role: Investor["role"] = context.auth?.token?.role;
   const panelsColRef = db.collection("panels");
 
   if (role !== "SUPER_USER") {

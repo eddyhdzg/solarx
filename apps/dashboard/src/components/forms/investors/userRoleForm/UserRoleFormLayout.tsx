@@ -3,6 +3,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { FormControl, InputLabel } from "@mui/material";
 import { StyledSelect } from "components";
 import { UserRole } from "solarx-types";
+import { useTranslation } from "react-i18next";
 
 interface IRoleSelectProps {
   onSubmit: (role: UserRole) => void;
@@ -14,17 +15,21 @@ export default function UserRoleFormLayout({
   onSubmit,
 }: IRoleSelectProps) {
   const { control } = useFormContext<IEditRoleSchema>();
-  const userRole = useRole();
+  const role = useRole();
   const customId = `role-select-${uid}`;
+  const { t } = useTranslation();
 
   return (
     <Controller
       name="role"
       control={control}
-      render={({ field: { value, onChange, ...field }, fieldState }) => {
+      render={({ field: { value = "", onChange, ...field }, fieldState }) => {
+        const disabled = role === "ADMIN" || value === "SUPER_USER";
         return (
           <FormControl fullWidth>
-            <InputLabel htmlFor={customId}>Role</InputLabel>
+            <InputLabel htmlFor={customId}>
+              {t("pages.admin.investors.role")}
+            </InputLabel>
             <StyledSelect
               id={customId}
               label="Role"
@@ -33,8 +38,8 @@ export default function UserRoleFormLayout({
               required
               error={Boolean(fieldState.error)}
               success={fieldState.isDirty}
-              value={value || ""}
-              disabled={userRole === "ADMIN" || value === "SUPER_USER"}
+              value={value}
+              disabled={disabled}
               onChange={(e) => {
                 onSubmit(e.target.value as UserRole);
               }}
@@ -42,14 +47,20 @@ export default function UserRoleFormLayout({
             >
               <option aria-label="None" value="" disabled />
               <optgroup label="Investors">
-                <option value="DEFAULT">Default</option>
-                <option value="BETA">Beta</option>
+                <option value="DEFAULT">
+                  {t("pages.admin.investors.default")}
+                </option>
+                <option value="BETA">{t("pages.admin.investors.beta")}</option>
               </optgroup>
               <optgroup label="SolarX Team">
-                <option value="ADMIN">Admin</option>
-                <option value="MODERATOR">Moderator</option>
+                <option value="ADMIN">
+                  {t("pages.admin.investors.admin")}
+                </option>
+                <option value="MODERATOR">
+                  {t("pages.admin.investors.moderator")}
+                </option>
                 <option value="SUPER_USER" disabled>
-                  Super_User
+                  {t("pages.admin.investors.superUser")}
                 </option>
               </optgroup>
             </StyledSelect>
