@@ -6,7 +6,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { formatNumber, formatUnits, formatPercentage2Dec } from "utils";
-import { UserPanel } from "solarx-types";
+import { useCurrInvestorPanels } from "hooks";
 import { useTranslation } from "react-i18next";
 import {
   StyledTableContainer,
@@ -16,12 +16,9 @@ import {
   StyledTableCellHeader,
 } from "./WalletPanelsTable.styled";
 
-interface WalletPanelsTableProps {
-  rows: UserPanel[];
-}
-
-export default function WalletPanelsTable({ rows }: WalletPanelsTableProps) {
+export default function WalletPanelsTable() {
   const { t } = useTranslation();
+  const { data } = useCurrInvestorPanels();
 
   return (
     <StyledTableContainer>
@@ -40,7 +37,7 @@ export default function WalletPanelsTable({ rows }: WalletPanelsTableProps) {
           </TableRow>
         </StyledTableHead>
         <TableBody>
-          {rows.map(({ roi = 0, basePrice = 0, quantity = 0, ...row }) => {
+          {data.map(({ roi = 0, basePrice = 0, quantity = 0, ...row }) => {
             const totalPanelPrice = basePrice * quantity;
             const yearlyRevenue = totalPanelPrice * roi * 0.01;
             const monthlyRevenue = yearlyRevenue / 12;

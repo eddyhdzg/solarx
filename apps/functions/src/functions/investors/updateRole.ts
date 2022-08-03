@@ -2,7 +2,7 @@ import { functions, auth } from "../../config";
 import { UserRole } from "solarx-types";
 
 export const updateRole_v0 = functions.firestore
-  .document("users/{uid}")
+  .document("investors/{uid}")
   .onUpdate((change, context) => {
     const before = change.before?.data();
     const after = change.after?.data();

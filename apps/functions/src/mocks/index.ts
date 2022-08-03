@@ -53,7 +53,7 @@ export const mockProjectPrice: ProjectPrice = {
   unit_amount: 1,
 };
 
-export const mockUser: Investor = {
+export const mockInvestor: Investor = {
   avatar: "",
   created: serverTimestamp() as Timestamp,
   displayName: "",

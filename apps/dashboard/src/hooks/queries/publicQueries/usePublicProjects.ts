@@ -1,7 +1,7 @@
-import { initialCollectionData } from "constant";
 import { collection, where, query, orderBy } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { Project, InitialCollectionData } from "solarx-types";
+import { Project } from "solarx-types";
+import { initialCollectionData } from "constant";
 
 export default function usePublicProjects() {
   const firestore = useFirestore();
@@ -11,11 +11,8 @@ export default function usePublicProjects() {
     where("active", "==", true),
     orderBy("created")
   );
-  return useFirestoreCollectionData<Project | InitialCollectionData>(
-    projectsQuery,
-    {
-      idField: "id",
-      initialData: initialCollectionData,
-    }
-  );
+  return useFirestoreCollectionData<Project>(projectsQuery, {
+    idField: "id",
+    initialData: initialCollectionData,
+  });
 }

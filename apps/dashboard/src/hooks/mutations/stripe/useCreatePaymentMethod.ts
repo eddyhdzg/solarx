@@ -9,7 +9,7 @@ export default function useCreatePaymentMethod() {
     const uid = user.data?.uid || "";
     const projectDocRef = collection(
       firestore,
-      "users",
+      "investors",
       uid,
       "payment_methods"
     );

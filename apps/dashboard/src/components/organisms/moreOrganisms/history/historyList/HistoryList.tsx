@@ -9,16 +9,16 @@ import {
 } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import SavingsIcon from "@mui/icons-material/Savings";
-import { useCurrInvestorHistory, useFormatedUserHistory } from "hooks";
+import { useCurrInvestorHistory, useFormatedInvestorHistory } from "hooks";
 import { Link } from "react-router-dom";
 
 export default function HistoryList() {
   const { data } = useCurrInvestorHistory();
-  const displayUserHistory = useFormatedUserHistory(data);
+  const displayInvestorHistory = useFormatedInvestorHistory(data);
 
   return (
     <>
-      {displayUserHistory.map(([month, transactions]) => {
+      {displayInvestorHistory.map(([month, transactions]) => {
         return (
           <List
             key={month}

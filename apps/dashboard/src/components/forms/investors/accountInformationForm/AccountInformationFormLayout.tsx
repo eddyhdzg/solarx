@@ -1,6 +1,6 @@
 import { Button, Divider, Grid, Typography } from "@mui/material";
 import { GridItem, StyledTextField } from "components";
-import { IEditUserSchema, useCurrInvestor } from "hooks";
+import { EditInvestorSchema, useCurrInvestor } from "hooks";
 import { Controller, useFormContext } from "react-hook-form";
 import { preventEnter } from "utils";
 import { useTranslation } from "react-i18next";
@@ -28,7 +28,7 @@ export default function AccountInformationFormLayout({
   const {
     control,
     formState: { isValid, isDirty },
-  } = useFormContext<IEditUserSchema>();
+  } = useFormContext<EditInvestorSchema>();
 
   return (
     <form

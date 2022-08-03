@@ -1,20 +1,20 @@
 import { Typography } from "@mui/material";
 import { Dot } from "components";
-import { useInvestorHistory, useDisplayUserHistory } from "hooks";
+import { useInvestorHistory, useDisplayInvestorHistory } from "hooks";
 import { useTranslation } from "react-i18next";
 import Styled from "./WalletHistory.styled";
 
 export default function WalletHistory() {
   const { t } = useTranslation();
   const { data } = useInvestorHistory();
-  const displayUserHistory = useDisplayUserHistory(data);
+  const displayInvestorHistory = useDisplayInvestorHistory(data);
 
   return (
     <Styled.Paper>
       <Styled.Title variant="subtitle1">
         {t("pages.more.history.title")}
       </Styled.Title>
-      {displayUserHistory.map(([month, transactions]) => {
+      {displayInvestorHistory.map(([month, transactions]) => {
         return (
           <Styled.Month key={month}>
             <Styled.MonthTitle variant="subtitle2" color="textSecondary">

@@ -1,6 +1,6 @@
 import { doc } from "firebase/firestore";
 import { useFirestore, useFirestoreDocData } from "reactfire";
-import { InvestorWallet, InitialDocData } from "solarx-types";
+import { InvestorWallet } from "solarx-types";
 import { defaultUid, initialDocData } from "constant";
 
 export default function useInvestorWallet(uid: string = defaultUid) {
@@ -12,10 +12,7 @@ export default function useInvestorWallet(uid: string = defaultUid) {
     "privateInvestorData",
     "wallet"
   );
-  return useFirestoreDocData<InvestorWallet | InitialDocData>(
-    investorWalletRef,
-    {
-      initialData: initialDocData,
-    }
-  );
+  return useFirestoreDocData<InvestorWallet>(investorWalletRef, {
+    initialData: initialDocData,
+  });
 }

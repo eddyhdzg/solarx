@@ -1,6 +1,6 @@
 import { collection, orderBy, query } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { PaymentMethod, InitialCollectionData } from "solarx-types";
+import { PaymentMethod } from "solarx-types";
 import { defaultUid, initialCollectionData } from "constant";
 
 export default function useInvestorPaymentMethods(uid: string = defaultUid) {
@@ -15,7 +15,7 @@ export default function useInvestorPaymentMethods(uid: string = defaultUid) {
     investorPaymentMethodsRef,
     orderBy("created", "asc")
   );
-  return useFirestoreCollectionData<PaymentMethod | InitialCollectionData>(
+  return useFirestoreCollectionData<PaymentMethod>(
     investorPaymentMethodsQuery,
     {
       idField: "id",

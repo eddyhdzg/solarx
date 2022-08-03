@@ -15,7 +15,7 @@ export default function useHandleEditRole(
   role?: UserRole
 ) {
   const { t } = useTranslation();
-  const editUserMutation = useEditRoleMutation();
+  const editRoleMutation = useEditRoleMutation();
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function useHandleEditRole(
   }, [role, reset]);
 
   const onSubmit = (role: UserRole) => {
-    editUserMutation(uid, role)
+    editRoleMutation(uid, role)
       .then(() => {
         enqueueSnackbar(t("snackbar.roleEdited"), { variant: "success" });
       })

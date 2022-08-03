@@ -1,12 +1,12 @@
 import { functions, db, serverTimestamp } from "../../config";
 
-export const addFirstUserTransaction_v0 = functions.firestore
-  .document("users/{uid}/privateUserData/wallet")
+export const addFirstInvestorTransaction_v0 = functions.firestore
+  .document("investors/{uid}/privateInvestorData/wallet")
   .onCreate((snap, context) => {
     return db
-      .collection("users")
+      .collection("investors")
       .doc(context.params.uid)
-      .collection("userTransactions")
+      .collection("investorsTransactions")
       .add({
         ...snap.data(),
         date: serverTimestamp(),

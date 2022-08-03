@@ -1,12 +1,12 @@
 import { functions, db, serverTimestamp } from "../../config";
 
-export const addUserTransaction_v0 = functions.firestore
-  .document("users/{uid}/privateUserData/wallet")
+export const addInvestorTransaction_v0 = functions.firestore
+  .document("investors/{uid}/privateInvestorData/wallet")
   .onUpdate((change, context) => {
     return db
-      .collection("users")
+      .collection("investors")
       .doc(context.params.uid)
-      .collection("userTransactions")
+      .collection("investorsTransactions")
       .add({
         ...change.after?.data(),
         date: serverTimestamp(),

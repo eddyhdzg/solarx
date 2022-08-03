@@ -1,6 +1,6 @@
 import { collection, query, where } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { Panel, InitialCollectionData } from "solarx-types";
+import { Panel } from "solarx-types";
 import { initialCollectionData, defaultDoc, defaultUid } from "constant";
 
 interface usePanelsProps {
@@ -22,11 +22,8 @@ export default function usePanels({
     where("priceId", "==", priceId),
     where("owner", "==", uid)
   );
-  return useFirestoreCollectionData<Panel | InitialCollectionData>(
-    panelsQuery,
-    {
-      idField: "id",
-      initialData: initialCollectionData,
-    }
-  );
+  return useFirestoreCollectionData<Panel>(panelsQuery, {
+    idField: "id",
+    initialData: initialCollectionData,
+  });
 }

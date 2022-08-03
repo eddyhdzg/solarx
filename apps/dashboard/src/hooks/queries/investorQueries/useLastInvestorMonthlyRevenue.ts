@@ -1,6 +1,6 @@
 import { collection, query, where, orderBy, limit } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { InvestorHistory, InitialCollectionData } from "solarx-types";
+import { InvestorHistory } from "solarx-types";
 import { defaultUid, initialCollectionData } from "constant";
 
 export default function useLastInvestorMonthlyRevenue(
@@ -19,11 +19,12 @@ export default function useLastInvestorMonthlyRevenue(
     orderBy("date", "desc"),
     limit(1)
   );
-  const { data, ...rest } = useFirestoreCollectionData<
-    InvestorHistory | InitialCollectionData
-  >(investorLastHistoryQuery, {
-    idField: "id",
-    initialData: initialCollectionData,
-  });
+  const { data, ...rest } = useFirestoreCollectionData<InvestorHistory>(
+    investorLastHistoryQuery,
+    {
+      idField: "id",
+      initialData: initialCollectionData,
+    }
+  );
   return { data: data && data.length ? data[0] : null, ...rest };
 }

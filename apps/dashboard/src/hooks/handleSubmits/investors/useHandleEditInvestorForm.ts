@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import {
-  useEditUserMutation,
+  useEditInvestorMutation,
   useInvestor,
-  IEditUserSchema,
-  editUserDefaultValues,
+  EditInvestorSchema,
+  editInvestorDefaultValues,
 } from "hooks";
 import { useTranslation } from "react-i18next";
 import { getDirtyValues } from "utils";
@@ -11,18 +11,19 @@ import { useSnackbar } from "notistack";
 import { UseFormReset, UseFormHandleSubmit, FormState } from "react-hook-form";
 
 export default function useHandleEditInvestorForm(
-  formState: FormState<IEditUserSchema>,
-  handleSubmit: UseFormHandleSubmit<IEditUserSchema>,
-  reset: UseFormReset<IEditUserSchema>
+  formState: FormState<EditInvestorSchema>,
+  handleSubmit: UseFormHandleSubmit<EditInvestorSchema>,
+  reset: UseFormReset<EditInvestorSchema>
 ) {
   const { t } = useTranslation();
   const { data, status } = useInvestor();
-  const editUserMutation = useEditUserMutation();
+  const editInvestorMutation = useEditInvestorMutation();
   const { enqueueSnackbar } = useSnackbar();
+  const uid = data?.uid || "";
 
   useEffect(() => {
-    const defaultValues: IEditUserSchema = !data
-      ? editUserDefaultValues
+    const defaultValues: EditInvestorSchema = !data
+      ? editInvestorDefaultValues
       : {
           displayName: data?.displayName,
         };
@@ -36,9 +37,9 @@ export default function useHandleEditInvestorForm(
     const dirtyValues = getDirtyValues(
       formState?.dirtyFields,
       values
-    ) as IEditUserSchema;
+    ) as EditInvestorSchema;
 
-    editUserMutation(data?.uid || "", dirtyValues)
+    editInvestorMutation(uid, dirtyValues)
       .then(() => {
         enqueueSnackbar(t("snackbar.investorEdited"), { variant: "success" });
       })

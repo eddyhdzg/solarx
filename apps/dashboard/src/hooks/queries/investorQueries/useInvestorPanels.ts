@@ -1,6 +1,6 @@
 import { collection, orderBy, query } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { InvestorPanel, InitialCollectionData } from "solarx-types";
+import { InvestorPanel } from "solarx-types";
 import { defaultUid, initialCollectionData } from "constant";
 
 export default function useInvestorPanels(uid: string = defaultUid) {
@@ -12,11 +12,8 @@ export default function useInvestorPanels(uid: string = defaultUid) {
     "investorPanels"
   );
   const investorPanelsQuery = query(investorPanelsRef, orderBy("roi", "desc"));
-  return useFirestoreCollectionData<InvestorPanel | InitialCollectionData>(
-    investorPanelsQuery,
-    {
-      idField: "id",
-      initialData: initialCollectionData,
-    }
-  );
+  return useFirestoreCollectionData<InvestorPanel>(investorPanelsQuery, {
+    idField: "id",
+    initialData: initialCollectionData,
+  });
 }

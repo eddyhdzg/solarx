@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { Button, Typography, ButtonGroup } from "@mui/material";
 import { Timespan } from "solarx-types";
 import { timespans, secondsHash } from "constant";
-import { useBreakpoint, useCurrUserTransactions } from "hooks";
+import { useBreakpoint, useCurrInvestorTransactions } from "hooks";
 import { formatStock1M, formatStock1Y, getFirebseTime } from "utils";
 import { useTranslation } from "react-i18next";
 import WalletChart from "./walletTimelineChart/WalletTimelineChart";
@@ -14,10 +14,10 @@ import {
 } from "./WalletTimeline.styled";
 
 export default function WalletTimeline() {
-  const [timespan, setTimespan] = useState<Timespan>("H");
-  const xs = useBreakpoint("xs");
-  const { data } = useCurrUserTransactions("asc");
   const { t } = useTranslation();
+  const { data } = useCurrInvestorTransactions("asc");
+  const xs = useBreakpoint("xs");
+  const [timespan, setTimespan] = useState<Timespan>("H");
 
   const handleChange = (newTimespan: Timespan) => {
     setTimespan(newTimespan);

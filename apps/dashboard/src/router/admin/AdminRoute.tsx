@@ -2,9 +2,9 @@ import { Switch, Route } from "react-router-dom";
 import {
   AdminWrapper,
   AdminHomePage,
+  AdminInvestorsPage,
   AdminEditProjectPage,
   AdminProjectsPage,
-  AdminUsersPage,
   AdminLocalPage,
 } from "components";
 
@@ -22,7 +22,7 @@ const AdminRoute = () => {
           <AdminEditProjectPage />
         </Route>
         <Route exact path="/admin/investors">
-          <AdminUsersPage />
+          <AdminInvestorsPage />
         </Route>
         <Route exact path="/admin/local">
           <AdminLocalPage />

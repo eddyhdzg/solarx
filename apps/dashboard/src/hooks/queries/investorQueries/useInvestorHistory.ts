@@ -1,6 +1,6 @@
 import { collection, orderBy, query } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { InvestorHistory, InitialCollectionData } from "solarx-types";
+import { InvestorHistory } from "solarx-types";
 import { defaultUid, initialCollectionData } from "constant";
 
 export default function useInvestorHistory(uid: string = defaultUid) {
@@ -15,11 +15,8 @@ export default function useInvestorHistory(uid: string = defaultUid) {
     investorHistoryRef,
     orderBy("date", "desc")
   );
-  return useFirestoreCollectionData<InvestorHistory | InitialCollectionData>(
-    investorHistoryQuery,
-    {
-      idField: "id",
-      initialData: initialCollectionData,
-    }
-  );
+  return useFirestoreCollectionData<InvestorHistory>(investorHistoryQuery, {
+    idField: "id",
+    initialData: initialCollectionData,
+  });
 }

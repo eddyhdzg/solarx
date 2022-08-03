@@ -1,10 +1,8 @@
 import { Paper, Typography } from "@mui/material";
 import { WalletPanelsTable } from "components";
-import { useCurrUserPanels } from "hooks";
 import { useTranslation } from "react-i18next";
 
 export default function WalletPanels() {
-  const { data } = useCurrUserPanels();
   const { t } = useTranslation();
 
   return (
@@ -23,7 +21,7 @@ export default function WalletPanels() {
       >
         {t("pages.wallet.sections.panels")}
       </Typography>
-      <WalletPanelsTable rows={data} />
+      <WalletPanelsTable />
     </Paper>
   );
 }

@@ -6,13 +6,13 @@ import {
   linearProgressClasses,
   alpha,
 } from "@mui/material";
-import { useCurrUserWallet } from "hooks";
+import { useCurrInvestorWallet } from "hooks";
 import { formatMoney } from "utils";
 import { useTranslation } from "react-i18next";
 import Styled, { Color } from "./WalletBalance.styled";
 
 export default function WalletBalance() {
-  const { data = {} } = useCurrUserWallet();
+  const { data = {} } = useCurrInvestorWallet();
   const { cash = 0, panels = 0, sxp = 0, total = 1 } = data;
   const { t } = useTranslation();
 

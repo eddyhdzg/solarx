@@ -1,12 +1,15 @@
 import { Typography } from "@mui/material";
-import { useCurrUserWallet, useCurrLastUserMonthlyRevenue } from "hooks";
+import {
+  useCurrInvestorWallet,
+  useCurrLastInvestorMonthlyRevenue,
+} from "hooks";
 import { formatUnits, formatHistoryValue } from "utils";
 import { useTranslation } from "react-i18next";
 import Styled from "./WalletTotalBalance.styled";
 
 export default function WalletTotalBalance() {
-  const { data } = useCurrUserWallet();
-  const { data: last } = useCurrLastUserMonthlyRevenue();
+  const { data } = useCurrInvestorWallet();
+  const { data: last } = useCurrLastInvestorMonthlyRevenue();
   const { total = 0 } = data || {};
   const totalBalance = data ? formatUnits(total) : "-";
   const { amount, currency } = last || {};

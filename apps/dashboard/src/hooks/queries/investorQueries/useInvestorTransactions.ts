@@ -5,7 +5,7 @@ import {
   query,
 } from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData } from "reactfire";
-import { InvestorTransaction, InitialCollectionData } from "solarx-types";
+import { InvestorTransaction } from "solarx-types";
 import { defaultUid, initialCollectionData } from "constant";
 
 export default function useInvestorTransactions(
@@ -23,10 +23,11 @@ export default function useInvestorTransactions(
     investorTransactionsRef,
     orderBy("date", directionStr)
   );
-  return useFirestoreCollectionData<
-    InvestorTransaction | InitialCollectionData
-  >(investorTransactionsQuery, {
-    idField: "id",
-    initialData: initialCollectionData,
-  });
+  return useFirestoreCollectionData<InvestorTransaction>(
+    investorTransactionsQuery,
+    {
+      idField: "id",
+      initialData: initialCollectionData,
+    }
+  );
 }

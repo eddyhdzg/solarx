@@ -1,4 +1,4 @@
-export * from "./addUserTransaction";
-export * from "./addFirstUserTransaction";
-export * from "./createUser";
+export * from "./addFirstInvestorTransaction";
+export * from "./addInvestorTransaction";
+export * from "./createInvestor";
 export * from "./updateRole";
